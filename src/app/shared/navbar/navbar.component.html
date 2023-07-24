@@ -1,0 +1,17 @@
+<nav>
+    <div class="navbar-left-area">
+        <img (click)="toggle()" src="/assets/icons/hamburger.svg">
+        <h1>Digitalization Welding Frame Body P3</h1>
+    </div>
+
+    <div class="navbar-right-area">
+        <div class="navbar-date">
+            <span> {{todaysDate | date: 'EEEE, dd MMMM y' | uppercase}} </span>
+            <span> | </span>
+            <span> {{todaysDate| date: 'hh:mm:ss'}} </span>
+        </div>
+        <div class="navbar-notification">
+            <img alt="" src="/assets/icons/notification.svg">
+        </div>
+    </div>
+</nav>

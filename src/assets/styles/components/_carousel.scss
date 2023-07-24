@@ -1,0 +1,13 @@
+.carousel {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.carousel-item {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}

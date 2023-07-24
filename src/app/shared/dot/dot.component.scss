@@ -1,0 +1,59 @@
+:host {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.line {
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+}
+
+.dashed {
+    display: inline-block;
+    width: 14px;
+    border-bottom: 2px dotted transparent;
+    background: transparent !important;
+}
+
+.text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 16px;
+}
+
+.success {
+    background: #33A02C;
+    border-bottom-color: #33A02C;
+}
+
+.danger {
+    background: #DC3545;
+    border-bottom-color: #DC3545;
+}
+
+.warning {
+    background: #F1BE42;
+    border-bottom-color: #F1BE42;
+}
+
+.primary {
+    background: #0177FB;
+    border-bottom-color: #0177FB;
+}
+
+.secondary {
+    background: rgba(140, 137, 180, 0.5);
+    border-bottom-color: rgba(140, 137, 180, 0.5);
+}

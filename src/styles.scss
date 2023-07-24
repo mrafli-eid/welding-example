@@ -1,0 +1,71 @@
+@import "src/assets/styles/main";
+
+html, body {
+    height: 100%;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, "Helvetica Neue", sans-serif;
+    background-color: black;
+}
+
+.datepicker-container {
+    display: flex!important;
+    width: 100%;
+    max-width: 100%!important;
+    background: #2E3034;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+    min-height: 800px;
+}
+
+.mat-mdc-menu-content {
+    display: flex!important;
+    width: 100%;
+    max-width: 100%!important;
+    height: 100% !important;
+    padding: 28px 12px!important;
+    flex-direction: column;
+}
+
+.content-flex {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: white;
+    margin-bottom: 0!important;
+}
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.mat-mdc-icon-button  {
+    color: white!important;
+}
+
+.mat-mdc-form-field-infix {
+    min-height: 0;
+}
+
+.mat-mdc-form-field-icon-suffix {
+    scale: 0.75!important;
+    min-height: 0!important;
+}
+

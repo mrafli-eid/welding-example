@@ -1,0 +1,45 @@
+<nav [class.sidebar-hidden]="!(sidebarService.isSidebarOpened$ | async)">
+    <a class="sidebar-brand" routerLink="/">
+        <img alt="Honda" src="/assets/images/honda.png">
+    </a>
+    <a class="sidebar-nav-item" routerLink="/dashboard"
+       routerLinkActive="active">
+        <img src="/assets/icons/dashboard.svg">
+        <span>Dashboard</span>
+    </a>
+    <a class="sidebar-nav-item" routerLink="/master"
+       routerLinkActive="active">
+        <img src="/assets/icons/master-data.svg">
+        <span>Master Data</span>
+    </a>
+    <a class="sidebar-nav-item" routerLink="/maintenance"
+       routerLinkActive="active">
+        <img src="/assets/icons/maintenance.svg">
+        <span>Maintenance</span>
+    </a>
+    <a class="sidebar-nav-item" routerLink="/user-activity"
+       routerLinkActive="active">
+        <img src="/assets/icons/activity-user.svg">
+        <span>Activity User</span>
+    </a>
+    <a class="sidebar-nav-item" routerLink="/user-management"
+       routerLinkActive="active">
+        <img src="/assets/icons/management-user.svg">
+        <span>Management <br> User</span>
+    </a>
+    <a class="sidebar-nav-item" routerLink="/account"
+       routerLinkActive="active">
+        <img src="/assets/icons/account.svg">
+        <span>Account</span>
+    </a>
+    <a class="sidebar-nav-item" routerLink="/settings"
+       routerLinkActive="active">
+        <img src="/assets/icons/setting.svg">
+        <span>Setting</span>
+    </a>
+
+    <a (click)="logout()" class="sidebar-nav-item">
+        <img src="/assets/icons/logout.svg">
+        <span>Logout</span>
+    </a>
+</nav>

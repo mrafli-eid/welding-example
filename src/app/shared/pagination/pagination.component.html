@@ -1,0 +1,4 @@
+<span (click)="selectPage(p)"
+      *ngFor="let p of pageList"
+      [class.active]="p === page"
+      class="dot"></span>

@@ -1,0 +1,62 @@
+<div class="dashboard-header d-block">
+    <h5>History Alarm</h5>
+    <div class="dashboard-filter">
+        <div class="ahm-input-wrapper">
+            <img src="/assets/icons/search.svg" alt="seach">
+            <input placeholder="Search" type="text" [formControl]="searchTerm">
+        </div>
+        <div class="dashboard-header-nav">
+            <button class="btn-filter" [matMenuTriggerFor]="menu" (click)="openFilter()">
+                Filter <img src="/assets/icons/exchange.svg" alt="Alternate Exchange">
+            </button>
+            <button class="btn-download" (click)="download()">
+                <img src="/assets/icons/download.svg" alt="Download">
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-content">
+    <div class="table-wrapper">
+        <table class="ahm-table">
+            <tr>
+                <th>No</th>
+                <th>Machine</th>
+                <th>Error</th>
+                <th>Description</th>
+                <th>Act Date</th>
+            </tr>
+            <tr *ngFor="let item of historyAlarmList; let index = index;">
+                <td>{{(pagination.page_size * (pagination.page_number - 1)) + (index + 1)}}</td>
+                <td>{{item.machine_name}}</td>
+                <td>{{item.value}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.act_date}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="dashboard-footer">
+    <ahm-paginator [pagination]="pagination"
+                   (selectedLimit)="changeLimit($event)"
+                   (selectedPage)="changePage($event)"></ahm-paginator>
+</div>
+
+<mat-menu #menu="matMenu" class="menu-request">
+    <label (click)="$event.stopPropagation()">Desc</label>
+    <mat-form-field (click)="$event.stopPropagation()">
+        <mat-select placeholder="-- Desc --" [formControl]="description">
+            <mat-option *ngFor="let desc of descriptionList"
+                        [value]="desc.description">{{desc.description}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <label (click)="$event.stopPropagation()">Date</label>
+    <mat-form-field (click)="$event.stopPropagation()">
+        <input matInput [matDatepicker]="picker" placeholder="-- dd-mm-yyyy --" [formControl]="actDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div>
+        <button class="ahm-btn ahm-btn-primary" (click)="applyFilter()">Apply</button>
+    </div>
+</mat-menu>

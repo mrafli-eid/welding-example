@@ -1,0 +1,57 @@
+<div class="dashboard-header d-block">
+    <h5>Actual Maintenance</h5>
+    <div class="dashboard-filter">
+        <div class="ahm-input-wrapper">
+            <img src="/assets/icons/search.svg" alt="seach">
+            <input placeholder="Search" type="text" [formControl]="searchTerm">
+        </div>
+        <div class="dashboard-header-nav">
+            <button class="btn-filter" [matMenuTriggerFor]="menu" (click)="openFilter()">
+                Filter <img src="/assets/icons/exchange.svg" alt="Alternate Exchange">
+            </button>
+        </div>
+    </div>
+</div>
+<div class="dashboard-content">
+    <div class="table-wrapper">
+        <table class="ahm-table">
+            <tr>
+                <th>No</th>
+                <th>Category</th>
+                <th>Actual Detail</th>
+                <th>Plan Date</th>
+                <th>Act Date</th>
+            </tr>
+            <tr *ngFor="let item of actualMaintenanceList; let index = index;">
+                <td>{{(pagination.page_size * (pagination.page_number - 1)) + (index + 1)}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.actual}}</td>
+                <td>{{item.plan_date}}</td>
+                <td>{{item.act_date}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="dashboard-footer">
+    <ahm-paginator [pagination]="pagination"
+                   (selectedLimit)="changeLimit($event)"
+                   (selectedPage)="changePage($event)"></ahm-paginator>
+</div>
+
+<mat-menu #menu="matMenu" class="menu-request">
+    <label (click)="$event.stopPropagation()">Plan Date</label>
+    <mat-form-field (click)="$event.stopPropagation()">
+        <input matInput [matDatepicker]="planPicker" placeholder="-- dd-mm-yyyy --" [formControl]="planDate">
+        <mat-datepicker-toggle matIconSuffix [for]="planPicker"></mat-datepicker-toggle>
+        <mat-datepicker #planPicker></mat-datepicker>
+    </mat-form-field>
+    <label (click)="$event.stopPropagation()">Act Date</label>
+    <mat-form-field (click)="$event.stopPropagation()">
+        <input matInput [matDatepicker]="actPicker" placeholder="-- dd-mm-yyyy --" [formControl]="actDate">
+        <mat-datepicker-toggle matIconSuffix [for]="actPicker"></mat-datepicker-toggle>
+        <mat-datepicker #actPicker></mat-datepicker>
+    </mat-form-field>
+    <div>
+        <button class="ahm-btn ahm-btn-primary" (click)="applyFilter()">Apply</button>
+    </div>
+</mat-menu>

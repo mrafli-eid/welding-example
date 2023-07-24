@@ -1,0 +1,39 @@
+<div *ngIf="dateStyle == 'selected-start'" class="wrapper pointer">
+    <div class="selected-start-wrapper">
+        <div class="selected">
+            {{ d }}
+        </div>
+    </div>
+</div>
+
+<div *ngIf="dateStyle == 'selected-end'" class="wrapper pointer">
+    <div class="selected-end-wrapper">
+        <div class="selected">
+            {{ d }}
+        </div>
+    </div>
+</div>
+
+<div *ngIf="dateStyle == 'selected'" class="wrapper default pointer">
+    <div class="selected">
+        {{ d }}
+    </div>
+</div>
+
+<div *ngIf="dateStyle == 'in-select'" class="wrapper pointer">
+    <div class="in-select">
+        {{ d }}
+    </div>
+</div>
+
+<div *ngIf="dateStyle == 'disable'" class="wrapper disable">
+    {{ d }}
+</div>
+
+<div *ngIf="dateStyle == 'today'" class="wrapper today pointer">
+    {{ d }}
+</div>
+
+<div *ngIf="dateStyle == 'default'" class="wrapper default pointer">
+    {{ d }}
+</div>

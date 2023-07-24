@@ -1,0 +1,32 @@
+:host {
+    color: white;
+}
+
+.calendar {
+    width: 294px;
+}
+
+.weekdays {
+    display: flex;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #adadad;
+}
+
+.days {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.date-cell {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    width: 42px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

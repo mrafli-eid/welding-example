@@ -1,0 +1,188 @@
+.calendar-container {
+    background: #2E3034;
+    border-radius: 3px;
+    padding: 6px 4px;
+    font-family: 'Inter';
+    display: inline-block;
+    box-sizing: border-box;
+    width: 191.33px;
+    height: 100%;
+}
+
+.calendar-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    padding: 4px 4px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+
+    button {
+        background: transparent;
+        border: 0;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+        outline: 0;
+    }
+
+    .calendar-header-btn {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 12px;
+        margin-inline: auto;
+        padding: 6px 20px;
+        border-radius: 20px;
+        transition: .2s;
+
+        &:hover {
+            background-color: #151618;
+            transition: .2s;
+        }
+
+    }
+
+    .calendar-prev-btn, .calendar-next-btn {
+        background: #151618;
+        color: white;
+        border-radius: 50%;
+    }
+}
+
+.calendar-content {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 150%;
+
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: .2s;
+    }
+
+    &.month-view {
+
+        div {
+            width: calc(100% / 7);
+            aspect-ratio: 1/1;
+            cursor: default;
+
+            &.disabled {
+                color: #ADADAD;
+                cursor: default;
+            }
+
+            &.calendar-day-label {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 8px;
+                line-height: 10px;
+                color: #FFFFFF;
+                opacity: 0.5;
+            }
+
+            &.active {
+                color: #FFFFFF;
+                background-color: #101F5C;
+            }
+        }
+    }
+
+    &.multi-year-view {
+        gap: 8px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 150%;
+
+        div {
+            width: calc(100% / 4 - 8px);
+
+            span {
+                padding: 4px 8px;
+                border-radius: 50px;
+                transition: .2s;
+            }
+
+            &.active {
+                span {
+                    background-color: #101F5C;
+                    color: #FFFFFF;
+                }
+            }
+
+            &:hover:not(.active) {
+                span {
+                    background-color: #151618;
+                    transition: .2s;
+                }
+            }
+        }
+    }
+
+    &.year-view {
+        gap: 8px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 150%;
+
+        div {
+            width: calc(100% / 4 - 8px);
+
+            span {
+                padding: 4px 8px;
+                border-radius: 50px;
+                transition: .2s;
+            }
+
+            &.active {
+                span {
+                    background-color: #101F5C;
+                    color: #FFFFFF;
+                }
+            }
+
+            &:hover {
+                span {
+                    background-color: #151618;
+                    transition: .2s;
+                }
+            }
+        }
+    }
+}
+
+.today {
+    color: #0177FB;
+}
+
+.red {
+    color: #DC3545;
+}
+
+.green {
+    color: #33A02C;
+}

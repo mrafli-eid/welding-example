@@ -1,0 +1,21 @@
+@import "src/assets/styles/variables";
+
+.main-area {
+    min-height: 100%;
+    padding-block: 10px;
+    padding-right: 10px;
+    padding-left: $sidebar-width + 10px;
+    transition: padding-left .5s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-hidden {
+    padding-left: 10px;
+}
+
+.main-content {
+    flex: 1;
+    position: relative;
+}

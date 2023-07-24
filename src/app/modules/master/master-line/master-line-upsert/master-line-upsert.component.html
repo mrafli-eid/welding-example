@@ -1,0 +1,23 @@
+<div class="master-upsert">
+    <div class="master-header">
+        <div>
+            <h2>{{masterData ? 'Edit' : 'Add'}}</h2>
+            <p>Please {{masterData ? 'edit' : 'add'}} line data</p>
+        </div>
+        <div>
+            <img alt="file" height="53" ngSrc="/assets/icons/file.svg" width="53">
+        </div>
+    </div>
+    <div [formGroup]="formGroup" class="master-content">
+        <div>
+            <label>Line</label>
+            <input formControlName="name" type="text">
+        </div>
+    </div>
+    <div class="master-footer">
+        <button (click)="submit()"
+                class="ahm-btn ahm-btn-primary">Save
+        </button>
+    </div>
+
+</div>

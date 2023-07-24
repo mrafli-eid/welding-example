@@ -1,0 +1,22 @@
+:host {
+    display: inline-flex;
+    flex-direction: column;
+    color: white;
+    gap: 4px;
+}
+
+.btn-preset {
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+        background: #434445;
+    }
+
+    &.selected {
+        background: #141517;
+        border-radius: 4px;
+    }
+}
+

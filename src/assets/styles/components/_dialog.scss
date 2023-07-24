@@ -1,0 +1,28 @@
+.ahm-dialog-delete {
+    width: 486px;
+    padding-top: 36px;
+    padding-bottom: 40px;
+    padding-block: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #9BA5AC;
+
+    img {
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-bottom: 12px;
+    }
+
+    p {
+        margin-bottom: 32px;
+    }
+
+    .navigations {
+        display: flex;
+        gap: 12px;
+    }
+}

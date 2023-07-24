@@ -1,0 +1,13 @@
+<div class="dashboard-header">
+    <h5>Production Graph</h5>
+    <div class="dashboard-header-nav">
+        <ahm-datepicker (dateChanged)="onFilterChanged($event)"
+                        [dateFilter]="dateFilter"></ahm-datepicker>
+        <button class="btn-download" (click)="download()">
+            <img alt="download" src="/assets/icons/download.svg">
+        </button>
+    </div>
+</div>
+<div class="dashboard-content">
+    <ahm-chart-detail-machine-production-graph [data]="productionGraphList"></ahm-chart-detail-machine-production-graph>
+</div>

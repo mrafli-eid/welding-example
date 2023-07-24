@@ -1,0 +1,22 @@
+<div class="dashboard-content">
+    <div class="content-header">
+        <h5>MTBF</h5>
+        <ahm-datepicker (dateChanged)="dateFilter=$event"
+                        [hideDayPreset]="true"></ahm-datepicker>
+    </div>
+    <div class="content-wrapper">
+        <ahm-chart-maintenance-indicator-graph-mtbf [data]="chartData"
+                                               [target]="200"
+                                               dataType="value"></ahm-chart-maintenance-indicator-graph-mtbf>
+    </div>
+</div>
+<div class="dashboard-footer justify-content-between">
+    <div class="chart-legend">
+        <ahm-dot color="success" type="line">MTBF</ahm-dot>
+        <ahm-dot color="warning" type="line">Plan</ahm-dot>
+    </div>
+    <!-- <ahm-pagination (onPageChange)="onPageChange($event)"
+                    [page]="page"
+                    [totalPage]="machineList.length"></ahm-pagination> -->
+</div>
+

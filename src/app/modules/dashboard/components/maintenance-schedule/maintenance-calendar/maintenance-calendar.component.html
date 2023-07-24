@@ -1,0 +1,44 @@
+<div class="calendar-container">
+    <div class="calendar-title">Calender Maintenance</div>
+    <div class="calendar-header">
+        <button (click)="prev()" *ngIf="currentState !=='year-view'" class="calendar-prev-btn"><</button>
+        <button (click)="changeState()" class="calendar-header-btn">{{calendarLabel}}</button>
+        <button (click)="next()" *ngIf="currentState !=='year-view'" class="calendar-next-btn">></button>
+    </div>
+    <div [class]="contentClass">
+        <ng-container *ngIf="currentState === 'month-view'">
+            <div *ngFor="let day of DAYS"
+                 class="calendar-day-label disabled">
+                <span>{{day}}</span>
+            </div>
+            <div *ngFor="let item of prevDays"
+                 class="disabled">
+                <span>{{item}}</span>
+            </div>
+            <div (click)="clickItem(item)"
+                 *ngFor="let item of items">
+            <span [class.green]="currentEvent[item] === 2"
+                  [class.red]="currentEvent[item] === 1"
+                  [class.today]="currentEvent[item] === 0">{{item}}</span>
+            </div>
+            <div *ngFor="let item of nextDays"
+                 class="disabled">
+                <span>{{item}}</span>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="currentState === 'multi-year-view'">
+            <div (click)="clickItem(item)"
+                 *ngFor="let item of items">
+                <span>{{item}}</span>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="currentState === 'year-view'">
+            <div (click)="clickItem(index.toString())"
+                 *ngFor="let item of items; let index = index">
+                <span>{{item}}</span>
+            </div>
+        </ng-container>
+    </div>
+</div>

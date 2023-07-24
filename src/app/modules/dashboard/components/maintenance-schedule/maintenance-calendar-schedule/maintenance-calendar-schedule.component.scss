@@ -1,0 +1,102 @@
+:host {
+    background: #2E3034;
+    border-radius: 3px;
+    padding: 6px 4px;
+    overflow-y: hidden;
+}
+
+.schedule-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    padding: 10px 6px;
+}
+
+.schedule-item {
+    background: #141517;
+    padding: 8px 8px;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    border-left: 1px solid #DC3545;
+
+    .text-name {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 150%;
+    }
+
+    .text-plan {
+        font-weight: 300;
+        font-size: 8px;
+        line-height: 150%;
+        color: #CCCCCC;
+    }
+
+    .text-date {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 9px;
+        line-height: 150%;
+        color: #FFFFFF;
+    }
+
+    &.blue {
+        border-left-color: #0E9CFF;
+    }
+
+    &.red {
+        border-left-color: #DC3545;
+    }
+
+    &.green {
+        border-left-color: #33A02C;
+    }
+}
+
+.text-no-schedule {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 9px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.schedule-footer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 6px;
+}
+
+.schedule-data {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 36px);
+    gap: 2px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}

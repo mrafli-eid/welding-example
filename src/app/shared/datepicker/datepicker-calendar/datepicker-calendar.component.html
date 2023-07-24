@@ -1,0 +1,32 @@
+<div class="calendar">
+    <div class="weekdays">
+        <div class="date-cell">Sun</div>
+        <div class="date-cell">Mon</div>
+        <div class="date-cell">Tue</div>
+        <div class="date-cell">Wed</div>
+        <div class="date-cell">Thu</div>
+        <div class="date-cell">Fri</div>
+        <div class="date-cell">Sat</div>
+    </div>
+    <div class="days">
+        <div *ngFor="let prevDay of prevDaysArray" class="date-cell">
+            <ahm-datepicker-calendar-date [d]="prevDay"
+                                          dateStyle="disable">
+            </ahm-datepicker-calendar-date>
+        </div>
+
+        <div (click)="onDateClick(day)"
+             *ngFor="let day of daysArray"
+             class="date-cell">
+            <ahm-datepicker-calendar-date [d]="day"
+                                          [dateStyle]="getClass(day)">
+            </ahm-datepicker-calendar-date>
+        </div>
+
+        <div *ngFor="let nextDay of nextDaysArray" class="date-cell">
+            <ahm-datepicker-calendar-date [d]="nextDay"
+                                          dateStyle="disable">
+            </ahm-datepicker-calendar-date>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="dashboard-header">
+    <h5>Cycle Time <span>({{this.machineList[this.page].name}})</span></h5>
+    <ahm-datepicker (dateChanged)="onFilterChanged($event)"
+                    [dateFilter]="dateFilter"></ahm-datepicker>
+</div>
+<div class="dashboard-content">
+    <ahm-chart-cycle-time [data]="cycleTime"></ahm-chart-cycle-time>
+</div>
+<div class="dashboard-footer justify-content-between">
+    <div class="chart-legend">
+        <ahm-dot color="danger" type="line">Maximum</ahm-dot>
+        <ahm-dot color="success" type="line">Minimum</ahm-dot>
+        <ahm-dot color="primary">Actual</ahm-dot>
+    </div>
+    <ahm-pagination (onPageChange)="onPageChange($event)"
+                    [page]="page"
+                    [totalPage]="machineList.length"></ahm-pagination>
+</div>

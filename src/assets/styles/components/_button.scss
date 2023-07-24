@@ -1,0 +1,81 @@
+.ahm-btn-login {
+    font-family: Poppins;
+    font-weight: 700;
+    padding: 16px;
+    background: #E44741;
+    border-radius: 13px;
+    font-size: 22px;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    outline: 0;
+
+    &:hover {
+        background-color: #cd3f3a;
+        transition: 0.2s;
+    }
+
+    &:active {
+        background-color: #b63834;
+        transition: 0.2s;
+    }
+}
+
+.ahm-btn {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    outline: 0;
+    padding-inline: 24px;
+    border-radius: 4px;
+    min-height: 38px;
+
+    img {
+        height: 28px;
+        width: auto;
+    }
+}
+
+.ahm-table-btn {
+    font-family: Poppins;
+    font-weight: 700;
+    padding: 4px 8px;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 32px;
+    min-width: 40px;
+}
+
+.ahm-btn-success {
+    background: #28A745;
+}
+
+.ahm-btn-danger {
+    background: #DC3545;
+}
+
+.ahm-btn-warning {
+    background: #F1BE42;
+}
+
+.ahm-btn-primary {
+    background: #0177FB;
+}
+
+.ahm-btn-secondary {
+    background: #9BA5AC;
+}

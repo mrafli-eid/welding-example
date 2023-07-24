@@ -1,0 +1,43 @@
+<div class="master-list">
+    <div class="master-header">
+        <h2>List Machine</h2>
+        <div class="ahm-input-wrapper">
+            <img alt="search" ngSrc="/assets/icons/search.svg" height="27" width="26">
+            <input [formControl]="searchTerm" placeholder="Search" type="text">
+        </div>
+    </div>
+    <div class="master-content">
+        <div class="ahm-table">
+            <table (matSortChange)="sortData($event)" matSort>
+                <tr>
+                    <th>No</th>
+                    <th mat-sort-header="machine">Machine</th>
+                    <th mat-sort-header="subject">Subject</th>
+                    <th mat-sort-header="minimum">Minimum</th>
+                    <th mat-sort-header="medium">Medium</th>
+                    <th mat-sort-header="maximum">Maximum</th>
+                    <th mat-sort-header="lowerlimit">Lower Limit</th>
+                    <th mat-sort-header="upperlimit">Upper Limit</th>
+                    <th mat-sort-header="unit">Unit</th>
+                    <th mat-sort-header="createddate">Last Created</th>
+                </tr>
+                <tr *ngFor="let data of settingList; let index = index">
+                    <td>{{ ((pagination.page_number - 1) * pagination.page_size) + (index + 1)}}</td>
+                    <td>{{data.machine_name}}</td>
+                    <td>{{data.subject_name}}</td>
+                    <td>{{data.minimum | string}}</td>
+                    <td>{{data.medium | string}}</td>
+                    <td>{{data.maximum | string}}</td>
+                    <td>{{data.lower_limit | string}}</td>
+                    <td>{{data.upper_limit | string}}</td>
+                    <td>{{data.unit | string}}</td>
+                    <td>{{data.created_at}}</td>
+                </tr>
+            </table>
+        </div>
+        <ahm-paginator (selectedLimit)="onSelectLimit($event)"
+                       (selectedPage)="onSelectPage($event)"
+                       [pagination]="pagination"></ahm-paginator>
+    </div>
+</div>
+

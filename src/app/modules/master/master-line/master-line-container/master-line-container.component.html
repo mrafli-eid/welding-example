@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row">
+        <ahm-breadcrumbs [breadcrumbs]="breadcrumbs"></ahm-breadcrumbs>
+    </div>
+    <div *ngIf="!isDetail" class="row">
+        <div class="col-4">
+            <ahm-master-line-upsert (onSubmit)="onFinished()"
+                                    [masterData]="masterLine"></ahm-master-line-upsert>
+        </div>
+        <div class="col-8">
+            <ahm-master-line-list (onDetail)="onDetail($event)"
+                                  (onEdit)="onEdit($event)"></ahm-master-line-list>
+        </div>
+    </div>
+    <div *ngIf="isDetail" class="row">
+        <ahm-master-line-detail (onFinished)="onFinished()"
+                                [masterData]="masterLine"></ahm-master-line-detail>
+    </div>
+</div>

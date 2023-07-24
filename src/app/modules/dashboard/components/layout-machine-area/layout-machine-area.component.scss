@@ -1,0 +1,75 @@
+@import "components/scrollbar";
+
+.machine-container {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.machine {
+    background-color: #9BA5AC;
+    width: calc(100% / 6 - 4px);
+    height: calc((100% - 10px) / 3);
+    padding: 2px;
+    border-radius: 2px;
+    animation: shimmer 1.5s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: break-word;
+    text-align: center;
+}
+
+.machine-list {
+  cursor: pointer;
+}
+
+.dashboard-footer {
+    font-size: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.machine-info-icon {
+    display: flex;
+    gap: 8px;
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+}
+
+.running {
+    background: #33A02C;
+}
+
+.stop {
+    background: #DC3545;
+}
+
+.idle {
+    background: #F1BE42;
+}
+
+.disconnect {
+    background: rgba(140, 137, 180, 0.5);
+}
+
+@keyframes shimmer {
+    10% {
+        background-color: #FFFFFF;
+    }
+}
+

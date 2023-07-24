@@ -1,0 +1,29 @@
+<div class="dashboard-header">
+    <h5>C&B Lub Oil Preasure</h5>
+    <div class="dashboard-header-nav">
+        <ahm-datepicker (dateChanged)="onFilterChanged($event)"
+                        [dateFilter]="dateFilter"></ahm-datepicker>
+        <button class="btn-settings" (click)="goToSettings()">
+            <img alt="settings" src="/assets/icons/setting.svg">
+        </button>
+        <button class="btn-download" (click)="download()">
+            <img alt="download" src="/assets/icons/download.svg">
+        </button>
+    </div>
+</div>
+<div class="dashboard-content">
+    <ahm-chart-detail-machine-cnb-lub-oil-pressure [data]="cnbLubOilPressureList"
+                                                   [minimum]="minimum"
+                                                   [lowerLimit]="lowerLimit"
+                                                   [upperLimit]="upperLimit"
+                                                   [maximum]="maximum"></ahm-chart-detail-machine-cnb-lub-oil-pressure>
+</div>
+<div class="dashboard-footer">
+    <div class="chart-legend">
+        <ahm-dot type="line" color="success">Minimum</ahm-dot>
+        <ahm-dot type="dashed" color="success">Lower Limit</ahm-dot>
+        <ahm-dot type="dashed" color="warning">Upper Limit</ahm-dot>
+        <ahm-dot type="line" color="danger">Maximum</ahm-dot>
+        <ahm-dot type="line" color="primary">Actual</ahm-dot>
+    </div>
+</div>

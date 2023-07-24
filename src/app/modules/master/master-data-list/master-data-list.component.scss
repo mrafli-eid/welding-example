@@ -1,0 +1,16 @@
+.master-data-title {
+    margin-bottom: 1em;
+}
+
+.master-data-container {
+    display: flex;
+    gap: 16px;
+}
+
+.master-data-item {
+    padding: 24px 36px;
+    background: #141517;
+    border-radius: 12px;
+    cursor: pointer;
+    text-transform: capitalize;
+}

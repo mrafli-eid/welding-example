@@ -1,0 +1,44 @@
+:host {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.grid {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+}
+
+.grid-item {
+    height: calc(100% / 3 - 8px);
+    width: calc(100% / 3 - 7.5px);
+    border-radius: 7px;
+    background-color: #141517;
+}
+
+
+.grid-layout {
+    height: calc(100% / 3 - 8px);
+    width: calc(100% / 1.5 - 7.5px);
+    border-radius: 7px;
+    background-color: #141517;
+}
+
+.transparent {
+    background-color: transparent;
+}
+
+@media (max-width: 1100px) {
+    .grid-item {
+        width: calc(100% / 2 - 7.5px);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-item {
+        width: calc(100%);
+    }
+}

@@ -1,0 +1,29 @@
+<ng-container [ngSwitch]="page">
+
+    <ng-container *ngSwitchCase="MaintenancePage.LIST">
+        <div class="grid">
+            <div class="grid-item-top">
+                <ahm-preventive-maintenance-calendar></ahm-preventive-maintenance-calendar>
+            </div>
+            <div class="grid-item-top">
+                <ahm-preventive-maintenance-graph></ahm-preventive-maintenance-graph>
+            </div>
+            <div class="grid-item-bottom">
+                <ahm-preventive-maintenance-list (onEdit)="openUpsert($event)"
+                                                 (onDetail)="openDetail($event)"></ahm-preventive-maintenance-list>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="MaintenancePage.DETAIL">
+        <ahm-preventive-maintenance-detail [data]="data" (onFinished)="openList()"></ahm-preventive-maintenance-detail>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="MaintenancePage.UPSERT">
+        <div class="grid grid-hide">
+            <div class="grid-item-top">
+                <ahm-preventive-maintenance-upsert [data]="data" (onSubmit)="openList()"></ahm-preventive-maintenance-upsert>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

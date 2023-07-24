@@ -1,0 +1,29 @@
+<div class="master-list">
+    <div class="master-header">
+        <h2>List View Line</h2>
+    </div>
+    <div class="master-content">
+        <table class="ahm-table">
+            <tr>
+                <th>Machine</th>
+                <th>Subject</th>
+                <th>Last Created</th>
+            </tr>
+            <tr>
+                <td>{{data.machine_name}}</td>
+                <td>
+                    <div *ngFor="let subject of data.subjects">
+                        {{subject.subject_name}}
+                    </div>
+                </td>
+                <td>{{data.created_at}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="master-footer">
+        <button (click)="back()" class="ahm-btn ahm-btn-primary">
+            Back
+        </button>
+    </div>
+</div>
+

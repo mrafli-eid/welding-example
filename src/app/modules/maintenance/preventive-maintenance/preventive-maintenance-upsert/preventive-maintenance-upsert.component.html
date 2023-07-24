@@ -1,0 +1,63 @@
+<div class="master-upsert">
+    <div class="master-header">
+        <div>
+            <h2>{{data ? 'Edit' : 'Add'}}</h2>
+            <p>Please {{data ? 'edit' : 'add'}} line data</p>
+        </div>
+        <div>
+            <img alt="file" height="53" ngSrc="/assets/icons/file.svg" width="53">
+        </div>
+    </div>
+    <div [formGroup]="formGroup" class="master-content">
+        <div>
+            <label>Name</label>
+            <mat-form-field>
+                <input formControlName="name" type="text" matInput>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <label>Plan</label>
+                <mat-form-field>
+                    <input formControlName="plan" type="text" matInput>
+                </mat-form-field>
+            </div>
+
+            <ng-container *ngIf="isOk">
+                <div class="col-lg-6 col-12">
+                    <label>Actual</label>
+                    <mat-form-field>
+                        <input formControlName="actual" type="text" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-12">
+                    <label>Start Date</label>
+                    <mat-form-field>
+                        <input matInput formControlName="start_date" [matDatepicker]="picker">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!isOk">
+                <div class="col-lg-6 col-12">
+                    <label>Start Date</label>
+                    <mat-form-field>
+                        <input matInput formControlName="start_date" [matDatepicker]="picker">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker style='width: 0.1em'></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </ng-container>
+
+
+        </div>
+    </div>
+    <div class="master-footer">
+        <button (click)="submit()"
+                class="ahm-btn ahm-btn-primary">Save
+        </button>
+    </div>
+
+</div>

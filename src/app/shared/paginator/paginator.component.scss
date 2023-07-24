@@ -1,0 +1,54 @@
+:host {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 24px;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.05em;
+    gap: 24px;
+}
+
+.paginator-container {
+    display: flex;
+    gap: 12px;
+
+    .number {
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            color: cornflowerblue;
+            transition: .2s;
+        }
+
+        &.active {
+            color: cornflowerblue;
+            transition: .2s;
+        }
+    }
+
+    .arrow {
+        cursor: pointer;
+        transition: .2s;
+    }
+}
+
+select {
+    background-color: transparent;
+    color: white;
+    border: 0;
+    padding: 4px;
+
+    &:focus-visible {
+        border: 0;
+        outline: 0;
+    }
+}
+
+option {
+    color: black;
+}
+
+

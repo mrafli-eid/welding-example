@@ -1,0 +1,17 @@
+<div class="schedule-title">
+    Maintenance Schedule
+</div>
+<div class="schedule-data">
+    <div *ngFor="let s of scheduleList;"
+         class="schedule-item">
+        <div>
+            <h6 class="text-name">{{s.name}}</h6>
+            <p class="text-plan">{{s.plan}}</p>
+        </div>
+        <p class="text-date">{{s.start_date | date}}</p>
+    </div>
+    <div *ngIf="scheduleList.length === 0" class="text-no-schedule">
+        No schedule available.
+    </div>
+
+</div>

@@ -1,0 +1,29 @@
+<div class="dashboard-header justify-content-center">
+    <h5>Layout Machine Area</h5>
+</div>
+<div class="dashboard-content">
+    <div class="machine-container">
+        <div *ngFor="let machine of layoutMachineList; let index = index"
+             [class]="getMachineClass(machine.value)"
+             [routerLink]="'/machine/' + machine.id" class="machine-list">
+            <span>{{machine.name}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-footer">
+    <div class="chart-legend">
+        <ahm-dot color="danger">Stop</ahm-dot>
+        <ahm-dot color="warning">Idle</ahm-dot>
+        <ahm-dot color="success">Running</ahm-dot>
+        <ahm-dot color="secondary">Disconnect</ahm-dot>
+    </div>
+    <div class="machine-info-icon">
+        <span>
+            <img src="/assets/icons/alarm.svg">Alarm
+        </span>
+        <span>
+            <img src="/assets/icons/maintenance-2.svg">Maintenance
+        </span>
+    </div>
+</div>

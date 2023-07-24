@@ -1,0 +1,9 @@
+<div class="dashboard-header">
+    <h5>5 Top Frequency Machine Alarm</h5>
+    <ahm-datepicker (dateChanged)="onFilterChanged($event)"
+                    [dateFilter]="dateFilter"
+                    [hideDayPreset]="true"></ahm-datepicker>
+</div>
+<div class="dashboard-content">
+    <ahm-chart-top-machine-alarm [data]="machineAlarms"></ahm-chart-top-machine-alarm>
+</div>

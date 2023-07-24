@@ -1,0 +1,138 @@
+:host {
+    color: white;
+}
+
+.btn-datepicker {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #2D2E32;
+    border-radius: 2px;
+    line-height: 1em;
+    cursor: pointer;
+    transition: .2s;
+
+    span {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 14px;
+    }
+
+    &:hover {
+        background-color: #242528;
+        transition: .2s;
+    }
+}
+
+.mat-menu-container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.datepicker-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.datepicker-content {
+    display: flex;
+    gap: 20px;
+}
+
+.datepicker-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    button {
+
+    }
+}
+
+.vertical-line {
+    background-color: #e6e8f120;
+    width: 2px;
+    border-radius: 50px;
+}
+
+.calendar-container {
+    display: flex;
+    gap: 10px;
+}
+
+.calendar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: white;
+
+    .calendar-title {
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    .calendar-timepicker input {
+        width: 100%;
+        padding: 6px 12px;
+        border-radius: 5px;
+        outline: 2px solid transparent;
+        transition: .2s;
+
+        &:focus {
+            outline-color: #14151775;
+            transition: .2s;
+        }
+
+        &:focus-visible {
+            outline-color: #14151775;
+            transition: .2s;
+        }
+    }
+
+    .calendar-timepicker {
+        margin-bottom: 16px;
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+    }
+
+    .calendar-header-date {
+        display: flex;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        gap: 4px;
+    }
+
+    .btn-chevron {
+        width: 24px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .chevron-right {
+        right: 0;
+    }
+
+    .chevron-left {
+        left: 0;
+    }
+}

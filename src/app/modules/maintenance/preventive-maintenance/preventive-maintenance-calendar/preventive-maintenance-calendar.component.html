@@ -1,0 +1,10 @@
+<div class="dashboard-header justify-content-center">
+    <h5>Maintenance</h5>
+</div>
+<div class="dashboard-content">
+    <div class="content-wrapper">
+        <ahm-maintenance-calendar (onSelectedDateEvent)="setDate($event)"
+                                  [scheduleList]="scheduleList"></ahm-maintenance-calendar>
+        <ahm-maintenance-calendar-schedule [scheduleList]="scheduleList"></ahm-maintenance-calendar-schedule>
+    </div>
+</div>
