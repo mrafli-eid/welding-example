@@ -29,7 +29,7 @@
             <tr *ngFor="let item of historyAlarmList; let index = index;">
                 <td>{{(pagination.page_size * (pagination.page_number - 1)) + (index + 1)}}</td>
                 <td>{{item.machine_name}}</td>
-                <td>{{item.value}}</td>
+                <td class="error">{{item.value}}</td>
                 <td>{{item.description}}</td>
                 <td>{{item.act_date}}</td>
             </tr>
