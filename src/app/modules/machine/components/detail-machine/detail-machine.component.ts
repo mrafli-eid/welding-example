@@ -18,6 +18,7 @@ export class DetailMachineComponent implements OnInit {
     untilDestroyed = untilDestroyed();
 
     @Input() id = '';
+    @Input() src = '';
     detailMachine: DetailMachine = DUMMY_DETAIL_MACHINE;
 
     constructor(private machineService: MachineService) {
