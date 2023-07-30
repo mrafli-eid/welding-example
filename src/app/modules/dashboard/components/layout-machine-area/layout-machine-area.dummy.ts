@@ -45,7 +45,7 @@ export const DUMMY_MACHINE_LIST: Machine[] = [
     },
     {
         id: '8',
-        name: 'FBOR',
+        name: 'BORING',
         value: -1,
         date_time: new Date(),
     },

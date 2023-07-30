@@ -1,6 +1,18 @@
+<div class="content-flex mb-6" *ngIf="showTitleMachine; else showRobot">
+  <h3>MC {{ machine.name }}</h3>
+</div>
+
+<ng-template #showRobot>
+  <div class="content-flex mb-6 font-semibold">
+      <a href="#" class="text-white">MC {{ machine.name }} Robot Master</a>
+      <p>|</p>
+      <a href="#" class="text-white">MC {{ machine.name }} Robot Slave</a>
+  </div>
+</ng-template>
+
 <div class="grid">
     <div class="grid-item">
-        <ahm-detail-machine [id]="id"></ahm-detail-machine>
+        <ahm-detail-machine [id]="id" [src]="imageDetailMachine"></ahm-detail-machine>
     </div>
     <div class="grid-item">
         <ahm-detail-top-machine-alarm [id]="id"></ahm-detail-top-machine-alarm>
@@ -19,6 +31,9 @@
     </div>
     <div class="grid-item">
         <ahm-detail-machine-production-graph [id]="id"></ahm-detail-machine-production-graph>
+    </div>
+    <div class="grid-item">
+        <ahm-detail-machine-actual-maintenance [id]="id"></ahm-detail-machine-actual-maintenance>
     </div>
     <div class="grid-item">
         <ahm-detail-machine-actual-maintenance [id]="id"></ahm-detail-machine-actual-maintenance>
