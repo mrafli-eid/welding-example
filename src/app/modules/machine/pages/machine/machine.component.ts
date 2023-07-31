@@ -14,7 +14,9 @@ export class MachineComponent {
     id = '';
     machine: Machine;
     machineList: Machine[] = DUMMY_MACHINE_LIST;
-    showActualMaintenance: boolean = false;
+    showComponentBoring = false;
+    showComponentLaser = false;
+    showComponentNotLaserAndBoring = false;
     imageDetailMachine: string;
     showTitleMachine: boolean = false;
 
@@ -36,14 +38,15 @@ export class MachineComponent {
   showComponent() {
     if (this.machine.name == 'BORING') {
       this.imageDetailMachine = "/assets/images/detail-machine-boring.png";
-      this.showActualMaintenance = true;
+      this.showComponentBoring = true;
       this.showTitleMachine = true;
     } else if (this.machine.name == 'LASER'){
       this.imageDetailMachine = "/assets/images/detail-machine-laser.png";
-      this.showActualMaintenance = true;
       this.showTitleMachine = true;
-    }else {
+      this.showComponentLaser = true;
+    }else{
       this.imageDetailMachine = "/assets/images/detail-machine.png";
+      this.showComponentNotLaserAndBoring = true;
     }
   }
     

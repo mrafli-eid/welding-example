@@ -32,13 +32,19 @@
     <div class="grid-item">
         <ahm-detail-machine-production-graph [id]="id"></ahm-detail-machine-production-graph>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
+      <ahm-detail-machine-running-hour-slave></ahm-detail-machine-running-hour-slave>
+    </div>
+    <div class="grid-item" *ngIf="showComponentLaser">
         <ahm-detail-machine-actual-maintenance [id]="id"></ahm-detail-machine-actual-maintenance>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" *ngIf="showComponentBoring">
         <ahm-detail-machine-actual-maintenance [id]="id"></ahm-detail-machine-actual-maintenance>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" *ngIf="showComponentLaser">
+        <ahm-detail-machine-lub-oil-pressure [id]="id"></ahm-detail-machine-lub-oil-pressure>
+    </div>
+    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
         <ahm-detail-machine-lub-oil-pressure [id]="id"></ahm-detail-machine-lub-oil-pressure>
     </div>
 </div>
