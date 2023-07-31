@@ -10,8 +10,8 @@ import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 
 @Component({
     selector: 'ahm-detail-top-machine-alarm',
-    templateUrl: './detail-machine-alarm.component.html',
-    styleUrls: [ './detail-machine-alarm.component.scss' ],
+  templateUrl: './detail-machine-alarm.component.html',
+  styleUrls: [ './detail-machine-alarm.component.scss' ],
     host: {
         'class': 'dashboard-card',
     },
