@@ -13,7 +13,8 @@ import {
     DetailMachineHistoryAlarmParams,
     DetailMachineLubOilPressure,
     DetailMachinePressLoad,
-    DetailMachineProductionGraph
+    DetailMachineProductionGraph,
+    DetailMachineRunningHour
 } from '../models/machine.model';
 import { environment } from '../../../environments/environment';
 import { DateFilter } from '../models/date-filter.model';
@@ -182,4 +183,7 @@ export class MachineService {
         });
     }
 
+  getRunningHour(machine_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineRunningHour[]>>(`${this.baseUrl}/get-running-hour-all/${machine_name}/`, { params })
+  }
 }

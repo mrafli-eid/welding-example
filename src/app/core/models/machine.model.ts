@@ -107,3 +107,21 @@ export interface DetailMachineLubOilPressure {
     label: string;
     date_time: string;
 }
+
+export interface DetailMachineRunningHour {
+  machine_name: string,
+  subject_name: string,
+  robot_name: string,
+  maximum: number | null,
+  vid?: string,
+  data: {
+    value: number,
+    label: string,
+    date_time?: string,
+    message?: string | null,
+  }[],
+}
+
+
+
+

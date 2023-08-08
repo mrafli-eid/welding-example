@@ -32,7 +32,7 @@ export class MachineComponent {
         this.machineList = resp.data;
         this.machine = this.machineList.find((machine) => machine.id === this.id);
       });
-      this.showComponent();
+    this.showComponent();
   }
 
   showComponent() {

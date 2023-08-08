@@ -1,0 +1,18 @@
+<div class="dashboard-header">
+  <h5>Running Hour Slave</h5>
+  <div class="dashboard-header-nav">
+    <ahm-datepicker (dateChanged)="onFilterChanged($event)" [dateFilter]="dateFilter"></ahm-datepicker>
+    <button class="btn-settings" (click)="goToSettings()">
+      <img alt="settings" src="/assets/icons/setting.svg">
+    </button>
+    <button class="btn-download" (click)="download()">
+      <img alt="download" src="/assets/icons/download.svg">
+    </button>
+  </div>
+</div>
+<div class="dashboard-footer">
+  <div class="chart-legend">
+    <ahm-dot type="line" color="danger">Maximum</ahm-dot>
+    <ahm-dot type="line" color="primary">Actual</ahm-dot>
+  </div>
+</div>

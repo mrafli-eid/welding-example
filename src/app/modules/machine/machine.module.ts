@@ -58,7 +58,10 @@ import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
-import { DetailMachineRunningHourSlaveComponent } from './components/detail-machine-running-hour-slave/detail-machine-running-hour-slave.component';
+import { DetailMachineTemperatureMirrorComponent } from './components/detail-machine-temperature-mirror/detail-machine-temperature-mirror.component';
+import { ChartDetailMachineTemperatureMirrorComponent } from './components/detail-machine-temperature-mirror/chart-detail-machine-temperature-mirror.component';
+import { DetailMachineRunningHourComponent } from './components/detail-machine-running-hour/detail-machine-running-hour.component';
+import { ChartDetailMachineRunningHourComponent } from './components/detail-machine-running-hour/chart-detail-machine-running-hour.component';
 
 
 @NgModule({
@@ -73,7 +76,8 @@ import { DetailMachineRunningHourSlaveComponent } from './components/detail-mach
         DetailMachineProductionGraphComponent,
         DetailMachineActualMaintenanceComponent,
         DetailMachineLubOilPressureComponent,
-        DetailMachineRunningHourSlaveComponent,
+        DetailMachineTemperatureMirrorComponent,
+        DetailMachineRunningHourComponent,
     ],
     imports: [
         CommonModule,
@@ -92,6 +96,8 @@ import { DetailMachineRunningHourSlaveComponent } from './components/detail-mach
         ChartDetailMachineLubOilPressureComponent,
         ChartDetailMachineActivityMachineComponent,
         ChartDetailMachinePressLoadComponent,
+        ChartDetailMachineTemperatureMirrorComponent,
+        ChartDetailMachineRunningHourComponent,
         MatMenuModule,
         MatInputModule,
         MatDatepickerModule,
