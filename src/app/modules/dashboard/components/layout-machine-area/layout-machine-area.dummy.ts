@@ -3,25 +3,25 @@ import { Machine } from '../../../../core/models/layout-machine.model';
 export const DUMMY_MACHINE_LIST: Machine[] = [
     {
         id: '1',
-        name: 'FRONT_3',
+        name: 'FRONT 3',
         value: -1,
         date_time: new Date(),
     },
     {
         id: '2',
-        name: 'FRONT_1,2',
+        name: 'FRONT 1,2',
         value: -1,
         date_time: new Date(),
     },
     {
         id: '3',
-        name: 'REAR_3',
+        name: 'REAR 3',
         value: -1,
         date_time: new Date(),
     },
     {
         id: '4',
-        name: 'REAR_4',
+        name: 'REAR 4',
         value: -1,
         date_time: new Date(),
     },
@@ -33,7 +33,7 @@ export const DUMMY_MACHINE_LIST: Machine[] = [
     },
     {
         id: '6',
-        name: 'REAR_2',
+        name: 'REAR 2',
         value: -1,
         date_time: new Date(),
     },
@@ -51,7 +51,7 @@ export const DUMMY_MACHINE_LIST: Machine[] = [
     },
     {
         id: '9',
-        name: 'PERMANENT_HANDLING',
+        name: 'PERMANENT HANDLING',
         value: -1,
         date_time: new Date(),
     },
