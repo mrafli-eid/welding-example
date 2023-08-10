@@ -38,7 +38,7 @@ export class DetailMachineProductionGraphComponent {
     }
 
     fetchProductionGraph() {
-        this.machineService.getProductionGraph(this.machine_name, this.robot_name, this.dateFilter)
+        this.machineService.getProductionGraph(this.machine_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
                 next: (resp) => {

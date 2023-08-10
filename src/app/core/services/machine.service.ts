@@ -138,8 +138,8 @@ export class MachineService {
     }
 
     /** Production Graph **/
-    getProductionGraph(machine_name: string, robot_name: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${ this.baseUrl }/get-production-all/${ machine_name }/${robot_name}`, { params });
+    getProductionGraph(machine_name: string, params: Partial<DateFilter>) {
+        return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${ this.baseUrl }/get-production-all/${ machine_name }`, { params });
     }
 
     downloadProductionGraph(machine_name: string, params: Partial<DateFilter>) {
