@@ -22,7 +22,7 @@ export class DetailMachineActivityMachineComponent {
     @Input() id = '';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    activityMachineList: DetailMachineActivityMachine[] = DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE;
+    activityMachineList: DetailMachineActivityMachine = DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE;
 
     constructor(private machineService: MachineService) {
     }
@@ -41,7 +41,9 @@ export class DetailMachineActivityMachineComponent {
             .pipe(take(1))
             .subscribe({
                 next: (resp) => {
-                    this.activityMachineList = resp.data || [];
+                    if(resp.success) {
+                        this.activityMachineList = resp.data;
+                    }
                 },
                 error: () => {
                 },

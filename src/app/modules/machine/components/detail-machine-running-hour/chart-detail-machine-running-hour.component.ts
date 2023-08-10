@@ -1,9 +1,10 @@
-import { Component, ViewChild, Input } from '@angular/core';
-import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
-import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
-
-import { default as Annotation } from 'chartjs-plugin-annotation';
+import { Component, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import Chart from 'chart.js/auto';
+import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
+import { ChartConfiguration, ChartType } from 'chart.js';
+import Annotation from 'chartjs-plugin-annotation';
+import { notNull } from 'src/app/core/helpers/object.helper';
 import { DetailMachineRunningHour } from 'src/app/core/models/machine.model';
 
 @Component({
@@ -17,51 +18,40 @@ export class ChartDetailMachineRunningHourComponent {
   public lineChartType: ChartType = 'line';
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  // @Input() data: DetailMachineRunningHour[];
+  @Input() data: DetailMachineRunningHour;
   @Input() maximum: number;
   
   constructor() {
     Chart.register(Annotation);
   }
 
+  ngOnChanges() {
+      this.lineChartData.datasets[0].data = this.data.data.map((res) => res.value);
+      this.lineChartData.labels = this.data.data.map((res) => res.label);
+
+      if (notNull(this.maximum)) {
+          // @ts-ignore
+          this.lineChartOptions.plugins.annotation.annotations.maximum = {
+              type: 'line',
+              yMin: this.maximum,
+              yMax: this.maximum,
+              borderColor: '#DC3545',
+              borderWidth: 1,
+          }
+      }
+
+      this.chart?.update();
+  }
+
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [65, 59, 80, 81, 56, 55, 40],
-        label: 'Series A',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: 'rgba(148,159,177,1)',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        data: [],
+        borderColor: '#0177FB',
         fill: 'origin',
-      },
-      {
-        data: [28, 48, 40, 19, 86, 27, 90],
-        label: 'Series B',
-        backgroundColor: 'rgba(77,83,96,0.2)',
-        borderColor: 'rgba(77,83,96,1)',
-        pointBackgroundColor: 'rgba(77,83,96,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(77,83,96,1)',
-        fill: 'origin',
-      },
-      {
-        data: [180, 480, 770, 90, 1000, 270, 400],
-        label: 'Series C',
-        yAxisID: 'y1',
-        backgroundColor: 'rgba(255,0,0,0.3)',
-        borderColor: 'red',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
+      }
     ],
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: [],
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
@@ -72,45 +62,59 @@ export class ChartDetailMachineRunningHourComponent {
         tension: 0.5,
       },
     },
+    layout: {
+        padding: { left: -4, bottom: -5 }
+    },
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
       y: {
-        position: 'left',
-      },
-      y1: {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red',
-        },
-      },
-    },
-
-    plugins: {
-      legend: { display: true },
-      annotation: {
-        annotations: [
-          {
-            type: 'line',
-            scaleID: 'x',
-            value: 'March',
-            borderColor: 'orange',
-            borderWidth: 2,
-            label: {
-              display: true,
-              position: 'center',
-              color: 'orange',
-              content: 'LineAnno',
-              font: {
-                weight: 'bold',
-              },
-            },
+          position: 'left',
+          ticks: {
+              padding: 8,
           },
-        ],
+          grid: {
+              color: '#333333',
+          },
+          border: {
+              dash: [ 4, 2 ]
+          },
       },
-    },
+      x: {
+          ticks: {
+              padding: 10,
+          },
+      }
+  },
+
+    // plugins: {
+    //   legend: { display: true },
+    //   annotation: {
+    //     annotations: [
+    //       {
+    //         type: 'line',
+    //         scaleID: 'x',
+    //         value: 'March',
+    //         borderColor: 'orange',
+    //         borderWidth: 2,
+    //         label: {
+    //           display: true,
+    //           position: 'center',
+    //           color: 'orange',
+    //           content: 'LineAnno',
+    //           font: {
+    //             weight: 'bold',
+    //           },
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
+    plugins: {
+      datalabels: { display: false },
+      legend: { display: false },
+      annotation: {
+          annotations: {}
+      },
+  }
   };
 
 }

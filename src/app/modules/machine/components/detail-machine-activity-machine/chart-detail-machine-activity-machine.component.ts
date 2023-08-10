@@ -17,17 +17,17 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
     public lineChartType: ChartType = 'bar';
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-    @Input() data: DetailMachineActivityMachine[];
+    @Input() data: DetailMachineActivityMachine;
 
     constructor() {
         Chart.register(Annotation)
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.map((d) => d.value_run);
-        this.lineChartData.datasets[1].data = this.data.map((d) => d.value_idle);
-        this.lineChartData.datasets[2].data = this.data.map((d) => d.value_stop);
-        this.lineChartData.labels = this.data.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data.data.map((d) => d.value_run);
+        this.lineChartData.datasets[1].data = this.data.data.map((d) => d.value_idle);
+        this.lineChartData.datasets[2].data = this.data.data.map((d) => d.value_stop);
+        this.lineChartData.labels = this.data.data.map((d) => d.label);
 
         this.chart?.update();
     }

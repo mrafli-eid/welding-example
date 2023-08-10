@@ -6,6 +6,8 @@ import { DateFilter } from 'src/app/core/models/date-filter.model';
 import { DetailMachineRunningHour } from 'src/app/core/models/machine.model';
 import { MachineService } from '../../../../core/services/machine.service';
 import { DUMMY_DETAIL_MACHINE_RUNNING_HOUR } from './detail-machine-running-hour';
+import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'ahm-detail-machine-running-hour',
@@ -15,26 +17,40 @@ import { DUMMY_DETAIL_MACHINE_RUNNING_HOUR } from './detail-machine-running-hour
     'class': 'dashboard-card',
   },
 })
+
+
+  
 export class DetailMachineRunningHourComponent {
   untilDestroyed = untilDestroyed();
   
   dateFilter: DateFilter = getDefaultDateFilter();
   @Input() id = '';
   maximum = 950;
+  robot_name = 'MASTER' || 'SLAVE';
 
-  runningHourList: DetailMachineRunningHour[] = DUMMY_DETAIL_MACHINE_RUNNING_HOUR;
+  runningHourList: DetailMachineRunningHour = DUMMY_DETAIL_MACHINE_RUNNING_HOUR;
 
   constructor(private machineService: MachineService,
                 private router: Router) {
     }
     
+  ngOnInit() { 
+    this.fetchRunningHour();
+    interval(DEFAULT_INTERVAL)
+      .pipe(this.untilDestroyed())
+      .subscribe(() => {
+        this.fetchRunningHour();
+      });
+  }
+  
   fetchRunningHour(){
-    this.machineService.get
+    this.robot_name = 'MASTER';
+    this.machineService.getRunningHour(this.id, this.robot_name, this.dateFilter);
   }
     
   onFilterChanged(dateFilter: DateFilter) {
     this.dateFilter = dateFilter;
-    // this.fetchLubOilPressure();
+    this.fetchRunningHour();
   }
 
   download() {

@@ -14,7 +14,7 @@ import { DetailMachineLubOilPressure } from "../../../../core/models/machine.mod
     templateUrl: './chart-detail-machine-lub-oil-pressure.component.html',
     styleUrls: [ './chart-detail-machine-lub-oil-pressure.component.scss' ],
 })
-export class ChartDetailMachineLubOilPressureComponent implements OnChanges {
+export class ChartDetailMachineLubOilPressureComponent {
     public lineChartType: ChartType = 'line';
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
@@ -113,7 +113,7 @@ export class ChartDetailMachineLubOilPressureComponent implements OnChanges {
                     color: '#333333',
                 },
                 border: {
-                    dash: [ 4, 2 ]
+                    // dash: [ 4, 2 ]
                 },
             },
             x: {

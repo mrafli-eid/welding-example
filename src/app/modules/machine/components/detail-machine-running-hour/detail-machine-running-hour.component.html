@@ -10,6 +10,11 @@
     </button>
   </div>
 </div>
+<div class="dashboard-content">
+  <ahm-chart-detail-machine-running-hour [data]="runningHourList"
+                                         [maximum]="maximum">
+                  </ahm-chart-detail-machine-running-hour>
+</div>
 <div class="dashboard-footer">
   <div class="chart-legend">
     <ahm-dot type="line" color="danger">Maximum</ahm-dot>
