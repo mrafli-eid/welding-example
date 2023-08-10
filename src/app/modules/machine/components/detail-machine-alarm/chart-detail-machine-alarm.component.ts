@@ -6,6 +6,7 @@ import Annotation from "chartjs-plugin-annotation";
 import Chart from "chart.js/auto";
 import { getGradient } from "../../../../core/helpers/chart.helper";
 import { DetailMachineAlarm } from "../../../../core/models/machine.model";
+import { DUMMY_DETAIL_MACHINE_ALARM } from './detail-machine-alarm.dummy';
 
 @Component({
     selector: 'ahm-chart-detail-machine-alarm',
@@ -15,15 +16,15 @@ import { DetailMachineAlarm } from "../../../../core/models/machine.model";
     styleUrls: [ './chart-detail-machine-alarm.component.scss' ]
 })
 export class ChartDetailMachineAlarmComponent implements OnChanges {
-    @Input() data: DetailMachineAlarm[] = [];
+    @Input() data: DetailMachineAlarm = DUMMY_DETAIL_MACHINE_ALARM;
 
     constructor() {
         Chart.register(Annotation);
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.map((d) => d.value);
-        this.lineChartData.labels = this.data.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data.data.map((d) => d.value);
+        this.lineChartData.labels = this.data.data.map((d) => d.label);
         this.chart?.update();
     }
 

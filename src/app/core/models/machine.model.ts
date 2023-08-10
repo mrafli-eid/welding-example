@@ -1,23 +1,21 @@
 export interface DetailMachine {
     machine_name: string;
     subject_name: string;
-    vid: string;
     value_stopline: number;
     value_running: number;
     value_idle: number;
-    value_counter: number;
-    value_running_type: string;
-    label: string;
     date_time: string;
 }
 
 export interface DetailMachineAlarm {
     machine_name: string;
     subject_name: string;
-    vid: string;
-    value: number;
-    label: string;
-    date_time: string;
+    robot_name: string;
+    data: {
+        value: number;
+        label: string;
+        date_time: string;
+    }[]
 }
 
 export interface DetailMachinePressLoad {
@@ -43,6 +41,7 @@ export interface DetailMachineActivityMachine {
 
 export interface DetailMachineHistoryAlarm {
     machine_name: string;
+    robot_name: string;
     vid: string;
     value: string;
     description: string;
@@ -75,10 +74,11 @@ export interface DetailMachineCnbLubOilPressure {
 export interface DetailMachineProductionGraph {
     machine_name: string;
     subject_name: string;
-    vid: string;
-    value: number;
-    label: string;
-    date_time: string;
+    data: {
+        value: number;
+        label: string;
+        date_time: string;
+    }[]
 }
 
 export interface DetailMachineActualMaintenance {

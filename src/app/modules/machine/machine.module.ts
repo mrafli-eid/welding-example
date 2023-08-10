@@ -62,6 +62,10 @@ import { DetailMachineTemperatureMirrorComponent } from './components/detail-mac
 import { ChartDetailMachineTemperatureMirrorComponent } from './components/detail-machine-temperature-mirror/chart-detail-machine-temperature-mirror.component';
 import { DetailMachineRunningHourComponent } from './components/detail-machine-running-hour/detail-machine-running-hour.component';
 import { ChartDetailMachineRunningHourComponent } from './components/detail-machine-running-hour/chart-detail-machine-running-hour.component';
+import { DetailMachineAmpereComponent } from './components/detail-machine-ampere/detail-machine-ampere.component';
+import { DetailMachineVoltageComponent } from './components/detail-machine-voltage/detail-machine-voltage.component';
+import { DetailMachineServoLoadComponent } from './components/detail-machine-servo-load/detail-machine-servo-load.component';
+import { ChartDetailMachineServoLoadComponent } from './components/detail-machine-servo-load/chart-detail-machine-servo-load.component';
 
 
 @NgModule({
@@ -78,6 +82,10 @@ import { ChartDetailMachineRunningHourComponent } from './components/detail-mach
         DetailMachineLubOilPressureComponent,
         DetailMachineTemperatureMirrorComponent,
         DetailMachineRunningHourComponent,
+        DetailMachineAmpereComponent,
+        DetailMachineVoltageComponent,
+        DetailMachineServoLoadComponent,
+        ChartDetailMachineServoLoadComponent,
     ],
     imports: [
         CommonModule,

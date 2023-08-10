@@ -18,15 +18,15 @@ export class ChartDetailMachineProductionGraphComponent implements OnChanges {
     public lineChartType: ChartType = 'bar';
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-    @Input() data: DetailMachineProductionGraph[];
+    @Input() data: DetailMachineProductionGraph;
 
     constructor() {
         Chart.register(Annotation)
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.map((d) => d.value);
-        this.lineChartData.labels = this.data.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data.data.map((d) => d.value);
+        this.lineChartData.labels = this.data.data.map((d) => d.label);
         this.chart?.update();
     }
 

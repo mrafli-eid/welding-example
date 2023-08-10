@@ -67,6 +67,10 @@ export class LayoutMachineAreaComponent implements OnChanges, OnInit {
         this.machineList = DUMMY_MACHINE_LIST;
     }
 
+    formatMachineName(name: string) {
+        return name.replace(/_/g, ' ');
+    }
+
     getMachineClass(value: number) {
         let classList = 'machine';
         switch (value) {

@@ -17,7 +17,7 @@ import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
 export class DetailMachineComponent implements OnInit {
     untilDestroyed = untilDestroyed();
 
-    @Input() id = '';
+    @Input() machine_name = '';
     @Input() src = '';
     detailMachine: DetailMachine = DUMMY_DETAIL_MACHINE;
 
@@ -34,7 +34,7 @@ export class DetailMachineComponent implements OnInit {
     }
 
     fetchDetailMachine() {
-        this.machineService.getDetailMachine(this.id)
+        this.machineService.getDetailMachine(this.machine_name)
             .pipe(take(1))
             .subscribe({
                 next: (resp) => {

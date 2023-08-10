@@ -23,7 +23,7 @@ import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 export class DetailMachineHistoryAlarmComponent implements OnInit {
     untilDestroyed = untilDestroyed();
 
-    @Input() id: string;
+    @Input() machine_name: string;
     pagination: Pagination = {
         page_number: 1,
         page_size: 10,
@@ -41,6 +41,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     searchTerm = new FormControl('');
     actDate = new FormControl(null);
     description = new FormControl(null);
+    robot_name = 'MASTER' || 'SLAVE';
 
     historyAlarmList: DetailMachineHistoryAlarm[] = DUMMY_DETAIL_MACHINE_HISTORY_ALARM;
 
@@ -49,6 +50,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.robot_name = "MASTER";
         this.addSearchListener();
         this.fetchList();
         this.fetchDescription();
@@ -70,7 +72,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     }
 
     fetchList() {
-        this.machineService.getHistoryAlarm(this.id, this.queryParams)
+        this.machineService.getHistoryAlarm(this.machine_name, this.robot_name, this.queryParams)
             .pipe(take(1))
             .subscribe((response) => {
                 this.pagination = JSON.parse(response.headers.get('x-pagination'));
@@ -123,6 +125,6 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     }
 
     download() {
-        this.machineService.downloadHistoryAlarm(this.id, this.queryParams);
+        this.machineService.downloadHistoryAlarm(this.machine_name, this.queryParams);
     }
 }

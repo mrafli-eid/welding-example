@@ -19,10 +19,11 @@ import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
 export class DetailMachineProductionGraphComponent {
     untilDestroyed = untilDestroyed();
 
-    @Input() id = '';
+    @Input() machine_name = '';
+    robot_name = 'MASTER' || 'SLAVE';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    productionGraphList: DetailMachineProductionGraph[] = DUMMY_DETAIL_MACHINE_PRODUCTION_GRAPH;
+    productionGraphList: DetailMachineProductionGraph = DUMMY_DETAIL_MACHINE_PRODUCTION_GRAPH;
 
     constructor(private machineService: MachineService) {
     }
@@ -37,11 +38,11 @@ export class DetailMachineProductionGraphComponent {
     }
 
     fetchProductionGraph() {
-        this.machineService.getProductionGraph(this.id, this.dateFilter)
+        this.machineService.getProductionGraph(this.machine_name, this.robot_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
                 next: (resp) => {
-                    this.productionGraphList = resp.data || [];
+                    this.productionGraphList = resp.data;
                 },
                 error: () => {
                 },
@@ -54,7 +55,7 @@ export class DetailMachineProductionGraphComponent {
     }
 
     download() {
-        this.machineService.downloadProductionGraph(this.id, this.dateFilter);
+        this.machineService.downloadProductionGraph(this.machine_name, this.dateFilter);
     }
 
 }

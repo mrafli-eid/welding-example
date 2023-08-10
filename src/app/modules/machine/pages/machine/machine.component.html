@@ -12,10 +12,10 @@
 
 <div class="grid">
     <div class="grid-item">
-        <ahm-detail-machine [id]="machine_name" [src]="imageDetailMachine"></ahm-detail-machine>
+        <ahm-detail-machine [machine_name]="machine_name" [src]="imageDetailMachine"></ahm-detail-machine>
     </div>
     <div class="grid-item">
-        <ahm-detail-top-machine-alarm [id]="machine_name"></ahm-detail-top-machine-alarm>
+        <ahm-detail-top-machine-alarm [machine_name]="machine_name"></ahm-detail-top-machine-alarm>
       </div>
       <div class="grid-item" *ngIf="showComponentLaser">
         <ahm-detail-machine-temperature-mirror [id]="machine_name"></ahm-detail-machine-temperature-mirror>
@@ -27,16 +27,16 @@
         <ahm-detail-machine-activity-machine [id]="machine_name"></ahm-detail-machine-activity-machine>
     </div>
     <div class="grid-item">
-        <ahm-detail-machine-history-alarm [id]="machine_name"></ahm-detail-machine-history-alarm>
+        <ahm-detail-machine-history-alarm [machine_name]="machine_name"></ahm-detail-machine-history-alarm>
     </div>
     <div class="grid-item">
         <ahm-detail-machine-cnb-lub-oil-pressure [id]="machine_name"></ahm-detail-machine-cnb-lub-oil-pressure>
     </div>
     <div class="grid-item">
-        <ahm-detail-machine-production-graph [id]="machine_name"></ahm-detail-machine-production-graph>
+        <ahm-detail-machine-production-graph [machine_name]="machine_name"></ahm-detail-machine-production-graph>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
-      <ahm-detail-machine-running-hour></ahm-detail-machine-running-hour>
+      <ahm-detail-machine-running-hour [machine_name]="machine_name"></ahm-detail-machine-running-hour>
     </div>
     <div class="grid-item" *ngIf="showComponentLaser">
         <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>

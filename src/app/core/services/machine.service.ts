@@ -30,13 +30,13 @@ export class MachineService {
     }
 
     /** Detail Machine **/
-    getDetailMachine(id: string) {
-        return this.http.get<HttpResponse<DetailMachine[]>>(`${ this.baseUrl }/get-detail-machine-all/${ id }`);
+    getDetailMachine(machine_name: string) {
+        return this.http.get<HttpResponse<DetailMachine[]>>(`${ this.baseUrl }/get-detail-machine-all/${ machine_name }`);
     }
 
     /** Alarm **/
-    getAlarm(id: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineAlarm[]>>(`${ this.baseUrl }/get-alarm-all/${ id }`, { params });
+    getAlarm(machine_name: string, robot_name: string, params: Partial<DateFilter>) {
+        return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }/${robot_name}`, { params });
     }
 
     downloadAlarm(id: string, params: Partial<DateFilter>) {
@@ -93,8 +93,8 @@ export class MachineService {
     }
 
     /** History Alarm **/
-    getHistoryAlarm(id: string, params: Partial<DetailMachineHistoryAlarmParams>) {
-        return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ id }`, {
+    getHistoryAlarm(machine_name: string, robot_name: string, params: Partial<DetailMachineHistoryAlarmParams>) {
+        return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ machine_name }/${robot_name}`, {
             observe: 'response',
             params
         });
@@ -138,13 +138,13 @@ export class MachineService {
     }
 
     /** Production Graph **/
-    getProductionGraph(id: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineProductionGraph[]>>(`${ this.baseUrl }/get-production-all/${ id }`, { params });
+    getProductionGraph(machine_name: string, robot_name: string, params: Partial<DateFilter>) {
+        return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${ this.baseUrl }/get-production-all/${ machine_name }/${robot_name}`, { params });
     }
 
-    downloadProductionGraph(id: string, params: Partial<DateFilter>) {
+    downloadProductionGraph(machine_name: string, params: Partial<DateFilter>) {
         const queryParams = {
-            machine: id,
+            machine: machine_name,
             ...params
         };
 

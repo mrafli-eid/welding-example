@@ -19,15 +19,17 @@ import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 export class DetailMachineAlarmComponent implements OnInit {
     untilDestroyed = untilDestroyed();
 
-    @Input() id = '';
+    @Input() machine_name = '';
+    robot_name = 'MASTER' || 'SLAVE';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    alarmList: DetailMachineAlarm[] = DUMMY_DETAIL_MACHINE_ALARM;
+    alarmList: DetailMachineAlarm = DUMMY_DETAIL_MACHINE_ALARM;
 
     constructor(private machineService: MachineService) {
     }
 
     ngOnInit() {
+        this.robot_name = "MASTER";
         this.fetchAlarm();
         interval(DEFAULT_INTERVAL)
             .pipe(this.untilDestroyed())
@@ -37,11 +39,11 @@ export class DetailMachineAlarmComponent implements OnInit {
     }
 
     fetchAlarm() {
-        this.machineService.getAlarm(this.id, this.dateFilter)
+        this.machineService.getAlarm(this.machine_name, this.robot_name,  this.dateFilter)
             .pipe(take(1))
             .subscribe({
                 next: (resp) => {
-                    this.alarmList = resp.data || [];
+                    this.alarmList = resp.data ;
                 },
                 error: () => {
                 },
@@ -54,7 +56,7 @@ export class DetailMachineAlarmComponent implements OnInit {
     }
 
     download() {
-        this.machineService.downloadAlarm(this.id, this.dateFilter);
+        this.machineService.downloadAlarm(this.machine_name, this.dateFilter);
     }
 
 }
