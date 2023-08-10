@@ -4,47 +4,47 @@
 
 <ng-template #showRobot>
   <div class="content-flex mb-6 font-semibold">
-      <a href="#" class="text-white">MC {{ machine.name }} Robot Master</a>
+      <a [routerLink]="'/machine/' + machine.name + '/MASTER'" class="text-white">MC {{ machine.name }} Robot Master</a>
       <p>|</p>
-      <a href="#" class="text-white">MC {{ machine.name }} Robot Slave</a>
+      <a [routerLink]="'/machine/' + machine.name + '/SLAVE'" class="text-white">MC {{ machine.name }} Robot Slave</a>
   </div>
 </ng-template>
 
 <div class="grid">
     <div class="grid-item">
-        <ahm-detail-machine [id]="id" [src]="imageDetailMachine"></ahm-detail-machine>
+        <ahm-detail-machine [id]="machine_name" [src]="imageDetailMachine"></ahm-detail-machine>
     </div>
     <div class="grid-item">
-        <ahm-detail-top-machine-alarm [id]="id"></ahm-detail-top-machine-alarm>
+        <ahm-detail-top-machine-alarm [id]="machine_name"></ahm-detail-top-machine-alarm>
       </div>
       <div class="grid-item" *ngIf="showComponentLaser">
-        <ahm-detail-machine-temperature-mirror [id]="id"></ahm-detail-machine-temperature-mirror>
+        <ahm-detail-machine-temperature-mirror [id]="machine_name"></ahm-detail-machine-temperature-mirror>
       </div>
       <div class="grid-item">
-        <ahm-detail-machine-press-load [id]="id"></ahm-detail-machine-press-load>
+        <ahm-detail-machine-press-load [id]="machine_name"></ahm-detail-machine-press-load>
       </div>
     <div class="grid-item">
-        <ahm-detail-machine-activity-machine [id]="id"></ahm-detail-machine-activity-machine>
+        <ahm-detail-machine-activity-machine [id]="machine_name"></ahm-detail-machine-activity-machine>
     </div>
     <div class="grid-item">
-        <ahm-detail-machine-history-alarm [id]="id"></ahm-detail-machine-history-alarm>
+        <ahm-detail-machine-history-alarm [id]="machine_name"></ahm-detail-machine-history-alarm>
     </div>
     <div class="grid-item">
-        <ahm-detail-machine-cnb-lub-oil-pressure [id]="id"></ahm-detail-machine-cnb-lub-oil-pressure>
+        <ahm-detail-machine-cnb-lub-oil-pressure [id]="machine_name"></ahm-detail-machine-cnb-lub-oil-pressure>
     </div>
     <div class="grid-item">
-        <ahm-detail-machine-production-graph [id]="id"></ahm-detail-machine-production-graph>
+        <ahm-detail-machine-production-graph [id]="machine_name"></ahm-detail-machine-production-graph>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
       <ahm-detail-machine-running-hour></ahm-detail-machine-running-hour>
     </div>
     <div class="grid-item" *ngIf="showComponentLaser">
-        <ahm-detail-machine-actual-maintenance [id]="id"></ahm-detail-machine-actual-maintenance>
+        <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>
     </div>
     <div class="grid-item" *ngIf="showComponentBoring">
-        <ahm-detail-machine-actual-maintenance [id]="id"></ahm-detail-machine-actual-maintenance>
+        <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
-        <ahm-detail-machine-lub-oil-pressure [id]="id"></ahm-detail-machine-lub-oil-pressure>
+        <ahm-detail-machine-lub-oil-pressure [id]="machine_name"></ahm-detail-machine-lub-oil-pressure>
     </div>
 </div>

@@ -4,7 +4,11 @@ import { MachineComponent } from './pages/machine/machine.component';
 
 const routes: Routes = [
     {
-        path: ':id',
+        path: ':name/MASTER',
+        component: MachineComponent,
+    },
+    {
+        path: ':name/SLAVE',
         component: MachineComponent,
     },
 ];

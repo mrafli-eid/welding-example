@@ -5,7 +5,7 @@
     <div class="machine-container">
         <div *ngFor="let machine of layoutMachineList; let index = index"
              [class]="getMachineClass(machine.value)"
-             [routerLink]="'/machine/' + machine.id" class="machine-list">
+             [routerLink]="'/machine/' + machine.name + '/MASTER'" class="machine-list">
             <span>{{machine.name}}</span>
         </div>
     </div>

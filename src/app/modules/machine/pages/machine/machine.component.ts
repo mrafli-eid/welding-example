@@ -11,7 +11,7 @@ import { take } from 'rxjs';
     styleUrls: [ './machine.component.scss' ],
 })
 export class MachineComponent {
-    id = '';
+    machine_name = '';
     machine: Machine;
     machineList: Machine[] = DUMMY_MACHINE_LIST;
     showComponentBoring = false;
@@ -21,16 +21,16 @@ export class MachineComponent {
     showTitleMachine: boolean = false;
 
     constructor(private activatedRoute: ActivatedRoute, private dashboardService: DashboardService){
-        this.id = this.activatedRoute.snapshot.paramMap.get('id') || '';
+        this.machine_name = this.activatedRoute.snapshot.paramMap.get('name') || '';
     }
 
   ngOnInit() {
-    this.machine = this.machineList.find((machine) => machine.id === this.id);
+    this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
     this.dashboardService.getMachineList()
       .pipe(take(1))
       .subscribe((resp) => {
         this.machineList = resp.data;
-        this.machine = this.machineList.find((machine) => machine.id === this.id);
+        this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
       });
     this.showComponent();
   }

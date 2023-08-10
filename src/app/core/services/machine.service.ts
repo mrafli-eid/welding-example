@@ -74,8 +74,8 @@ export class MachineService {
     }
 
     /** Activity Machine **/
-    getActivityMachine(id: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineActivityMachine[]>>(`${ this.baseUrl }/get-activity-machine-all/${ id }`, { params });
+    getActivityMachine(machine_name: string, params: Partial<DateFilter>) {
+        return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${ this.baseUrl }/get-activity-machine-all/${ machine_name }`, { params });
     }
 
     downloadActivityMachine(id: string, params: Partial<DateFilter>) {
@@ -183,7 +183,7 @@ export class MachineService {
         });
     }
 
-  getRunningHour(machine_name: string, params: Partial<DateFilter>){
-    return this.http.get<HttpResponse<DetailMachineRunningHour[]>>(`${this.baseUrl}/get-running-hour-all/${machine_name}/`, { params })
+  getRunningHour(machine_name: string, robot_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineRunningHour>>(`${this.baseUrl}/get-running-hour-all/${machine_name}/${robot_name}`, { params })
   }
 }

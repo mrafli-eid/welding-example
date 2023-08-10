@@ -33,12 +33,12 @@ export interface DetailMachinePressLoad {
 export interface DetailMachineActivityMachine {
     machine_name: string;
     subject_name: string;
-    vid: string;
-    value_stop: number;
-    value_run: number;
-    value_idle: number;
-    label: string;
-    date_time: string;
+    data: {
+        value_stop: number;
+        value_run: number;
+        value_idle: number;
+        label: string;
+    }[];
 }
 
 export interface DetailMachineHistoryAlarm {
