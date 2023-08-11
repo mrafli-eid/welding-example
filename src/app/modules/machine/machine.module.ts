@@ -54,6 +54,8 @@ import { DetailMachineAmpereComponent } from './components/detail-machine-ampere
 import { DetailMachineVoltageComponent } from './components/detail-machine-voltage/detail-machine-voltage.component';
 import { DetailMachineServoLoadComponent } from './components/detail-machine-servo-load/detail-machine-servo-load.component';
 import { ChartDetailMachineServoLoadComponent } from './components/detail-machine-servo-load/chart-detail-machine-servo-load.component';
+import { ChartDetailMachineAmpereComponent } from './components/detail-machine-ampere/chart-detail-machine-ampere.component';
+import { ChartDetailMachineVoltageComponent } from './components/detail-machine-voltage/chart-detail-machine-voltage.component';
 
 
 @NgModule({
@@ -90,6 +92,8 @@ import { ChartDetailMachineServoLoadComponent } from './components/detail-machin
         ChartDetailMachineActivityMachineComponent,
         ChartDetailMachineTemperatureMirrorComponent,
         ChartDetailMachineRunningHourComponent,
+        ChartDetailMachineAmpereComponent,
+        ChartDetailMachineVoltageComponent,
         MatMenuModule,
         MatInputModule,
         MatDatepickerModule,
