@@ -6,17 +6,11 @@ import { DetailMachineComponent } from './components/detail-machine/detail-machi
 import { MachineComponent } from './pages/machine/machine.component';
 import { DetailMachineAlarmComponent } from './components/detail-machine-alarm/detail-machine-alarm.component';
 import {
-    DetailMachinePressLoadComponent
-} from './components/detail-machine-press-load/detail-machine-press-load.component';
-import {
     DetailMachineActivityMachineComponent
 } from './components/detail-machine-activity-machine/detail-machine-activity-machine.component';
 import {
     DetailMachineHistoryAlarmComponent
 } from './components/detail-machine-history-alarm/detail-machine-history-alarm.component';
-import {
-    DetailMachineCnbLubOilPressureComponent
-} from './components/detail-machine-cnb-lub-oil-pressure/detail-machine-cnb-lub-oil-pressure.component';
 import {
     DetailMachineProductionGraphComponent
 } from './components/detail-machine-production-graph/detail-machine-production-graph.component';
@@ -42,17 +36,11 @@ import {
     ChartDetailMachineProductionGraphComponent
 } from "./components/detail-machine-production-graph/chart-detail-machine-production-graph.component";
 import {
-    ChartDetailMachineCnbLubOilPressureComponent
-} from "./components/detail-machine-cnb-lub-oil-pressure/chart-detail-machine-cnb-lub-oil-pressure.component";
-import {
     ChartDetailMachineLubOilPressureComponent
 } from "./components/detail-machine-lub-oil-pressure/chart-detail-machine-lub-oil-pressure.component";
 import {
     ChartDetailMachineActivityMachineComponent
 } from "./components/detail-machine-activity-machine/chart-detail-machine-activity-machine.component";
-import {
-    ChartDetailMachinePressLoadComponent
-} from "./components/detail-machine-press-load/chart-detail-machine-press-load.component";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
@@ -73,10 +61,8 @@ import { ChartDetailMachineServoLoadComponent } from './components/detail-machin
         DetailMachineComponent,
         MachineComponent,
         DetailMachineAlarmComponent,
-        DetailMachinePressLoadComponent,
         DetailMachineActivityMachineComponent,
         DetailMachineHistoryAlarmComponent,
-        DetailMachineCnbLubOilPressureComponent,
         DetailMachineProductionGraphComponent,
         DetailMachineActualMaintenanceComponent,
         DetailMachineLubOilPressureComponent,
@@ -100,10 +86,8 @@ import { ChartDetailMachineServoLoadComponent } from './components/detail-machin
         ChartTopMachineAlarmComponent,
         ChartDetailMachineAlarmComponent,
         ChartDetailMachineProductionGraphComponent,
-        ChartDetailMachineCnbLubOilPressureComponent,
         ChartDetailMachineLubOilPressureComponent,
         ChartDetailMachineActivityMachineComponent,
-        ChartDetailMachinePressLoadComponent,
         ChartDetailMachineTemperatureMirrorComponent,
         ChartDetailMachineRunningHourComponent,
         MatMenuModule,

@@ -122,6 +122,38 @@ export interface DetailMachineRunningHour {
   }[],
 }
 
+export interface DetailMachineAmpereAndVoltage {
+    machine_name: string,
+    subject_name?: string,
+    robot_name?: string,
+    data_actual: {
+        actual: number,
+    }[],
+    data_setting: {
+        setting?: number,
+    }[],
+    data_label: {
+        label: string,
+        message?: string,
+        date_time?: string,
+    }[]
+}
+
+export interface DetailMachineServoLoad {
+    machine_name: string,
+    subject_name?: string,
+    robot_name?: string,
+    maximum: number | null,
+    medium: number | null,
+    minimum: number | null,
+    vid?: string,
+    data: {
+        value: number,
+        label: string,
+        date_time?: string,
+        message?: string,
+    }[],
+}
 
 
 
