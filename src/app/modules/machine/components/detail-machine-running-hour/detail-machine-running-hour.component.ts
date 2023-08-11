@@ -35,6 +35,7 @@ export class DetailMachineRunningHourComponent {
     }
     
   ngOnInit() { 
+    this.robot_name = 'MASTER';
     this.fetchRunningHour();
     interval(DEFAULT_INTERVAL)
     .pipe(this.untilDestroyed())
@@ -45,7 +46,6 @@ export class DetailMachineRunningHourComponent {
   }
   
   fetchRunningHour(){
-    this.robot_name = 'MASTER';
     this.machineService.getRunningHour(this.machine_name, this.robot_name, this.dateFilter)
     .pipe(take(1))
     .subscribe({

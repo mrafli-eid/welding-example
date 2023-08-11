@@ -7,6 +7,7 @@ import {
     DetailMachineActualMaintenance,
     DetailMachineActualMaintenanceParams,
     DetailMachineAlarm,
+    DetailMachineAmpereAndVoltage,
     DetailMachineCnbLubOilPressure,
     DetailMachineDescription,
     DetailMachineHistoryAlarm,
@@ -185,5 +186,9 @@ export class MachineService {
 
   getRunningHour(machine_name: string, robot_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineRunningHour>>(`${this.baseUrl}/get-running-hour-all/${machine_name}/${robot_name}`, { params })
+  }
+  
+  getAmpere(machine_name: string, robot_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineAmpereAndVoltage>>(`${this.baseUrl}/get-ampere-all/${machine_name}/${robot_name}`, { params })
   }
 }
