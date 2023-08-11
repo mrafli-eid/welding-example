@@ -94,15 +94,15 @@ export class ChartMachineActivityComponent implements OnChanges {
 
             x.ticks.forEach((tick, index) => {
                 if (x.ticks.length > 30) {
-                    if (index % 4 === 0) {
+                    if (index % 30 === 0) {
                         ctx.fillText(ChartMachineActivityComponent.machineActivity.label[index], x.getPixelForValue(tick.value) + 5, bottom + 5);
                     }
                 } else if (x.ticks.length > 20) {
-                    if (index % 3 === 0) {
+                    if (index % 20 === 0) {
                         ctx.fillText(ChartMachineActivityComponent.machineActivity.label[index], x.getPixelForValue(tick.value) + 5, bottom + 5);
                     }
                 } else if (x.ticks.length > 10) {
-                    if (index % 2 === 0) {
+                    if (index % 10 === 0) {
                         ctx.fillText(ChartMachineActivityComponent.machineActivity.label[index], x.getPixelForValue(tick.value) + 5, bottom + 5);
                     }
                 } else {

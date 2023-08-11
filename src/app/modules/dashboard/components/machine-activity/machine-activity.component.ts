@@ -30,7 +30,7 @@ export class MachineActivityComponent {
 
     ngOnInit() {
         this.getChartData();
-        interval(DEFAULT_INTERVAL)
+        interval(60 * 1000 * 2)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.getChartData();
