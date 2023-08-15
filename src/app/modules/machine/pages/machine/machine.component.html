@@ -51,7 +51,10 @@
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
         <ahm-detail-machine-running-hour [machine_name]="machine_name"></ahm-detail-machine-running-hour>
     </div>
-    <div class="grid-item">
-        <ahm-detail-machine-lub-oil-pressure [id]="machine_name"></ahm-detail-machine-lub-oil-pressure>
+    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
+        <ahm-detail-machine-servo-load [machine_name]="machine_name"></ahm-detail-machine-servo-load>
     </div>
+    <!-- <div class="grid-item">
+        <ahm-detail-machine-lub-oil-pressure [id]="machine_name"></ahm-detail-machine-lub-oil-pressure>
+    </div> -->
 </div>

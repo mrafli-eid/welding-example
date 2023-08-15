@@ -1,10 +1,74 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DateFilter } from '../../../../core/models/date-filter.model';
+import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
+import { MachineService } from '../../../../core/services/machine.service';
+import { Router } from '@angular/router';
+import { interval, take } from 'rxjs';
+import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
+import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DetailMachineServoLoad } from 'src/app/core/models/machine.model';
+import { DUMMY_DETAIL_MACHINE_SERVO_LOAD } from './detail-machine-servo-load';
 
 @Component({
   selector: 'ahm-detail-machine-servo-load',
   templateUrl: './detail-machine-servo-load.component.html',
-  styleUrls: ['./detail-machine-servo-load.component.scss']
+  styleUrls: ['./detail-machine-servo-load.component.scss'],
+  host: {
+    'class': 'dashboard-card',
+  },
 })
-export class DetailMachineServoLoadComponent {
 
+export class DetailMachineServoLoadComponent {
+    untilDestroyed = untilDestroyed();
+
+    @Input() machine_name = '';
+
+    dateFilter: DateFilter = getDefaultDateFilter();
+    servoLoadList: DetailMachineServoLoad = DUMMY_DETAIL_MACHINE_SERVO_LOAD;
+
+    standard = 0.1;
+    warning = 1.2;
+    breakdown = 3;
+    robot_name = 'MASTER' || 'SLAVE';
+
+    constructor(private machineService: MachineService,
+      private router: Router) {
+    }
+    
+    ngOnInit() {
+      this.fetchServoLoad();
+      interval(DEFAULT_INTERVAL)
+        .pipe(this.untilDestroyed())
+        .subscribe(() => {
+          this.fetchServoLoad();
+        });
+    }
+    
+    fetchServoLoad() {
+      this.machineService.getServoLoad(this.machine_name, this.robot_name, this.dateFilter)
+      .pipe(take(1))
+      .subscribe({
+        next: (resp) => {
+          if (resp.success) {
+            this.servoLoadList = resp.data;
+          }
+        },
+        error: () => {
+
+        }
+      })
+    }
+
+    onFilterChanged(dateFilter: DateFilter) {
+      this.dateFilter = dateFilter;
+      this.fetchServoLoad();
+    }
+
+    download() {
+        // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+    }
+
+    goToSettings() {
+        this.router.navigate([ '/SOMEWHERE' ]);
+    }
 }

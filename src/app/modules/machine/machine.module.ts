@@ -73,7 +73,6 @@ import { ChartDetailMachineVoltageComponent } from './components/detail-machine-
         DetailMachineAmpereComponent,
         DetailMachineVoltageComponent,
         DetailMachineServoLoadComponent,
-        ChartDetailMachineServoLoadComponent,
     ],
     imports: [
         CommonModule,
@@ -94,6 +93,7 @@ import { ChartDetailMachineVoltageComponent } from './components/detail-machine-
         ChartDetailMachineRunningHourComponent,
         ChartDetailMachineAmpereComponent,
         ChartDetailMachineVoltageComponent,
+        ChartDetailMachineServoLoadComponent,
         MatMenuModule,
         MatInputModule,
         MatDatepickerModule,

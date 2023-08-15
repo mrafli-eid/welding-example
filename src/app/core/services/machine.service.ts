@@ -8,14 +8,13 @@ import {
     DetailMachineActualMaintenanceParams,
     DetailMachineAlarm,
     DetailMachineAmpereAndVoltage,
-    DetailMachineCnbLubOilPressure,
     DetailMachineDescription,
     DetailMachineHistoryAlarm,
     DetailMachineHistoryAlarmParams,
     DetailMachineLubOilPressure,
-    DetailMachinePressLoad,
     DetailMachineProductionGraph,
-    DetailMachineRunningHour
+    DetailMachineRunningHour,
+    DetailMachineServoLoad
 } from '../models/machine.model';
 import { environment } from '../../../environments/environment';
 import { DateFilter } from '../models/date-filter.model';
@@ -47,26 +46,6 @@ export class MachineService {
         };
 
         this.http.get(`${ this.baseUrl }/get-download-excel-alarm-all`, {
-            responseType: "arraybuffer",
-            params: queryParams
-        }).subscribe((response) => {
-            downLoadFile(response);
-        });
-    }
-
-
-    /** Press Load (Ton/Force) **/
-    getPressLoad(id: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachinePressLoad[]>>(`${ this.baseUrl }/get-press-load-all/${ id }`, { params });
-    }
-
-    downloadPressLoad(id: string, params: Partial<DateFilter>) {
-        const queryParams = {
-            machine: id,
-            ...params
-        };
-
-        this.http.get(`${ this.baseUrl }/get-download-excel-press-load-all`, {
             responseType: "arraybuffer",
             params: queryParams
         }).subscribe((response) => {
@@ -117,25 +96,6 @@ export class MachineService {
 
     getDescription() {
         return this.http.get<HttpResponse<DetailMachineDescription[]>>(`${ this.baseUrl }/get-list-description-history-alarm-all`);
-    }
-
-    /** C&B Lub Oil Pressure **/
-    getCnbLubOilPressure(id: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineCnbLubOilPressure[]>>(`${ this.baseUrl }/get-c-b-lub-oil-pressure-all/${ id }`, { params });
-    }
-
-    downloadCnbLubOilPressure(id: string, params: Partial<DateFilter>) {
-        const queryParams = {
-            machine: id,
-            ...params
-        };
-
-        this.http.get(`${ this.baseUrl }/get-download-excel-c-b-lub-oil-pressure-all`, {
-            responseType: "arraybuffer",
-            params: queryParams
-        }).subscribe((response) => {
-            downLoadFile(response);
-        });
     }
 
     /** Production Graph **/
@@ -190,5 +150,13 @@ export class MachineService {
   
   getAmpere(machine_name: string, robot_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineAmpereAndVoltage>>(`${this.baseUrl}/get-ampere-all/${machine_name}/${robot_name}`, { params })
+  }
+  
+  getVoltage(machine_name: string, robot_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineAmpereAndVoltage>>(`${this.baseUrl}/get-voltage-all/${machine_name}/${robot_name}`, { params })
+  }
+  
+  getServoLoad(machine_name: string, robot_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineServoLoad>>(`${this.baseUrl}/get-servo-load-all/${machine_name}/${robot_name}`, { params })
   }
 }
