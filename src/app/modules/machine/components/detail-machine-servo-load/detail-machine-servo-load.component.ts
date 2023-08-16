@@ -27,9 +27,9 @@ export class DetailMachineServoLoadComponent {
     dateFilter: DateFilter = getDefaultDateFilter();
     servoLoadList: DetailMachineServoLoad = DUMMY_DETAIL_MACHINE_SERVO_LOAD;
 
-    standard = 0.1;
-    warning = 1.2;
-    breakdown = 3;
+    standard = 10;
+    warning = 5;
+    breakdown = 15;
 
     constructor(private machineService: MachineService,
       private router: Router) {
