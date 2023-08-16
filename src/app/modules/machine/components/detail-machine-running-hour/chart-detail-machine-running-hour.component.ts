@@ -31,7 +31,7 @@ export class ChartDetailMachineRunningHourComponent {
       this.lineChartData.labels = this.data.data.map((res) => res.label);
 
       const maximum = this.data.maximum;
-      if (notNull(maximum)) {
+      if (notNull(maximum || this.maximum)) {
           // @ts-ignore
           this.lineChartOptions.plugins.annotation.annotations.maximum = {
               type: 'line',
