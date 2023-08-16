@@ -24,7 +24,7 @@ export class DetailMachineRunningHourComponent implements OnInit, OnChanges {
   dateFilter: DateFilter = getDefaultDateFilter();
   @Input() machine_name = '';
   @Input() robot_name = '';
-  maximum = 0.9;
+  maximum = 9500;
 
   runningHourList: DetailMachineRunningHour = DUMMY_DETAIL_MACHINE_RUNNING_HOUR;
 
