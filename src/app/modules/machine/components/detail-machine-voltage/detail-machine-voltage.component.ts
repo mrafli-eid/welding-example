@@ -7,6 +7,7 @@ import { DetailMachineAmpereAndVoltage } from 'src/app/core/models/machine.model
 import { MachineService } from 'src/app/core/services/machine.service';
 import { interval, take } from 'rxjs';
 import { DUMMY_DETAIL_MACHINE_VOLTAGE } from './detail-machine-voltage';
+import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
 
 @Component({
   selector: 'ahm-detail-machine-voltage',
@@ -20,9 +21,10 @@ export class DetailMachineVoltageComponent {
   untilDestroyed = untilDestroyed();
 
   @Input() machine_name = '';
+  @Input() robot_name = '';
+  
   dateFilter: DateFilter = getDefaultDateFilter();
-  maximum = 950;
-  robot_name = 'MASTER' || 'SLAVE';
+  setting = 950;
 
   voltageList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_VOLTAGE;
 
@@ -32,10 +34,19 @@ export class DetailMachineVoltageComponent {
     ngOnInit() {
       this.robot_name = "MASTER";
       this.fetchVoltage();
+      interval(DEFAULT_INTERVAL)
+        .pipe(this.untilDestroyed())
+        .subscribe(() => {
+          this.fetchVoltage();
+      });
+    }
+
+    ngOnChanges() {
+      this.fetchVoltage();
     }
 
     fetchVoltage(){
-      this.machineService.getAmpere(this.machine_name, this.robot_name, this.dateFilter)
+      this.machineService.getVoltage(this.machine_name, this.robot_name, this.dateFilter)
       .pipe(take(1))
       .subscribe({
         next: (resp) => {

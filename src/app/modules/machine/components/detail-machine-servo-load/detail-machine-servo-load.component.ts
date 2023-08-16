@@ -22,6 +22,7 @@ export class DetailMachineServoLoadComponent {
     untilDestroyed = untilDestroyed();
 
     @Input() machine_name = '';
+    @Input() robot_name = '';
 
     dateFilter: DateFilter = getDefaultDateFilter();
     servoLoadList: DetailMachineServoLoad = DUMMY_DETAIL_MACHINE_SERVO_LOAD;
@@ -29,19 +30,23 @@ export class DetailMachineServoLoadComponent {
     standard = 0.1;
     warning = 1.2;
     breakdown = 3;
-    robot_name = 'MASTER' || 'SLAVE';
 
     constructor(private machineService: MachineService,
       private router: Router) {
     }
     
     ngOnInit() {
+      this.robot_name = "MASTER";
       this.fetchServoLoad();
       interval(DEFAULT_INTERVAL)
         .pipe(this.untilDestroyed())
         .subscribe(() => {
           this.fetchServoLoad();
         });
+    }
+
+    ngOnChanges() {
+      this.fetchServoLoad();
     }
     
     fetchServoLoad() {

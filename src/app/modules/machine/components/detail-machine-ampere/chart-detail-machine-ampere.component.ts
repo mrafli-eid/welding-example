@@ -19,7 +19,7 @@ export class ChartDetailMachineAmpereComponent {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   @Input() data: DetailMachineAmpereAndVoltage;
-  @Input() maximum: number;
+  @Input() setting: number;
   
   constructor() {
     Chart.register(Annotation);
@@ -27,20 +27,10 @@ export class ChartDetailMachineAmpereComponent {
 
   ngOnChanges() {
     this.lineChartData.datasets[0].data = this.data.data_actual.map((res) => res.actual);
-      this.lineChartData.labels = this.data.data_label.map((res) => res.label);
+    this.lineChartData.datasets[1].data = this.data.data_setting.map((res) => res.setting);
+    this.lineChartData.labels = this.data.data_label.map((res) => res.label);
 
-      if (notNull(this.maximum)) {
-          // @ts-ignore
-          this.lineChartOptions.plugins.annotation.annotations.maximum = {
-              type: 'line',
-              yMin: this.maximum,
-              yMax: this.maximum,
-              borderColor: '#DC3545',
-              borderWidth: 1,
-          }
-      }
-
-      this.chart?.update();
+    this.chart?.update();
   }
 
   public lineChartData: ChartConfiguration['data'] = {
@@ -49,7 +39,12 @@ export class ChartDetailMachineAmpereComponent {
         data: [],
         borderColor: '#0177FB',
         fill: 'origin',
-      }
+      },
+      {
+        data: [],
+        borderColor: '#DC3545',
+        fill: 'origin',
+      },
     ],
     labels: [],
   };

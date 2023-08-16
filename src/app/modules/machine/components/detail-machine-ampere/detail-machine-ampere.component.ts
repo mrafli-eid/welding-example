@@ -21,9 +21,10 @@ export class DetailMachineAmpereComponent {
   untilDestroyed = untilDestroyed();
 
   @Input() machine_name = '';
+  @Input() robot_name = '';
+  
   dateFilter: DateFilter = getDefaultDateFilter();
-  maximum = 950;
-  robot_name = 'MASTER' || 'SLAVE';
+  setting = 950;
 
   ampereList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_AMPERE;
 
@@ -31,7 +32,10 @@ export class DetailMachineAmpereComponent {
     private router: Router) {}
     
   ngOnInit() {
-    this.robot_name = "MASTER";
+    this.fetchAmpere();
+  }
+
+  ngOnChanges() {
     this.fetchAmpere();
   }
 

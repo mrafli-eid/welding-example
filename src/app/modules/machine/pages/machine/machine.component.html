@@ -4,9 +4,9 @@
 
 <ng-template #showRobot>
   <div class="content-flex mb-6 font-semibold">
-      <a [routerLink]="'/machine/' + machine.name + '/MASTER'" class="text-white">MC {{ machine.name }} Robot Master</a>
+      <a [routerLink]="'/machine/' + machine.name + '/MASTER'" class="text-white" (click)="changeRobotToMaster()">MC {{ machine.name }} Robot Master</a>
       <p>|</p>
-      <a [routerLink]="'/machine/' + machine.name + '/SLAVE'" class="text-white">MC {{ machine.name }} Robot Slave</a>
+      <a [routerLink]="'/machine/' + machine.name + '/SLAVE'" class="text-white" (click)="changeRobotToSlave()">MC {{ machine.name }} Robot Slave</a>
   </div>
 </ng-template>
 
@@ -18,10 +18,10 @@
     </div>
     <!-- Downtime History -->
     <div class="grid-item">
-        <ahm-detail-top-machine-alarm [machine_name]="machine_name"></ahm-detail-top-machine-alarm>
+        <ahm-detail-top-machine-alarm [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-top-machine-alarm>
     </div>
     <div class="grid-item">
-        <ahm-detail-machine-ampere [machine_name]="machine_name"></ahm-detail-machine-ampere>
+        <ahm-detail-machine-ampere [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-ampere>
     </div>
 
     <!-- GRID 3 MIDDLE -->
@@ -32,7 +32,7 @@
         <ahm-detail-machine-activity-machine [id]="machine_name"></ahm-detail-machine-activity-machine>
     </div>
     <div class="grid-item">
-        <ahm-detail-machine-history-alarm [machine_name]="machine_name"></ahm-detail-machine-history-alarm>
+        <ahm-detail-machine-history-alarm [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-history-alarm>
     </div>
     <div class="grid-item" *ngIf="showComponentLaser">
         <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>
@@ -41,7 +41,7 @@
         <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
-        <ahm-detail-machine-voltage></ahm-detail-machine-voltage>
+        <ahm-detail-machine-voltage [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-voltage>
     </div>
 
     <!-- GRID 3 BOTTOM -->
@@ -49,10 +49,10 @@
         <ahm-detail-machine-production-graph [machine_name]="machine_name"></ahm-detail-machine-production-graph>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
-        <ahm-detail-machine-running-hour [machine_name]="machine_name"></ahm-detail-machine-running-hour>
+        <ahm-detail-machine-running-hour [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-running-hour>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
-        <ahm-detail-machine-servo-load [machine_name]="machine_name"></ahm-detail-machine-servo-load>
+        <ahm-detail-machine-servo-load [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-servo-load>
     </div>
     <!-- <div class="grid-item">
         <ahm-detail-machine-lub-oil-pressure [id]="machine_name"></ahm-detail-machine-lub-oil-pressure>

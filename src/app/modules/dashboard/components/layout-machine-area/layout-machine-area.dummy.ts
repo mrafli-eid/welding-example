@@ -9,7 +9,7 @@ export const DUMMY_MACHINE_LIST: Machine[] = [
     },
     {
         id: '2',
-        name: 'FRONT 1,2',
+        name: 'FRONT 1, 2',
         value: -1,
         date_time: new Date(),
     },

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DUMMY_MACHINE_LIST } from '../../../dashboard/components/layout-machine-area/layout-machine-area.dummy';
 import { Machine } from '../../../../core/models/layout-machine.model';
@@ -10,7 +10,7 @@ import { take } from 'rxjs';
     templateUrl: './machine.component.html',
     styleUrls: [ './machine.component.scss' ],
 })
-export class MachineComponent {
+export class MachineComponent implements OnInit {
     machine_name = '';
     machine: Machine;
     machineList: Machine[] = DUMMY_MACHINE_LIST;
@@ -20,11 +20,14 @@ export class MachineComponent {
     imageDetailMachine: string;
     showTitleMachine: boolean = false;
 
+    robot_name = 'MASTER' || 'SLAVE';
+
     constructor(private activatedRoute: ActivatedRoute, private dashboardService: DashboardService){
         this.machine_name = this.activatedRoute.snapshot.paramMap.get('name') || '';
     }
 
   ngOnInit() {
+    this.robot_name = 'MASTER';
     this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
     this.dashboardService.getMachineList()
       .pipe(take(1))
@@ -48,6 +51,16 @@ export class MachineComponent {
       this.imageDetailMachine = "/assets/images/detail-machine.png";
       this.showComponentNotLaserAndBoring = true;
     }
+  }
+
+  changeRobotToSlave() {
+    this.robot_name = 'SLAVE';
+    console.log(this.robot_name);
+  }
+
+  changeRobotToMaster() {
+    this.robot_name = 'MASTER';
+    console.log(this.robot_name);
   }
     
 }

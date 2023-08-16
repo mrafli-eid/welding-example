@@ -20,7 +20,7 @@ export class DetailMachineAlarmComponent implements OnInit {
     untilDestroyed = untilDestroyed();
 
     @Input() machine_name = '';
-    robot_name = 'MASTER' || 'SLAVE';
+    @Input() robot_name: string;
 
     dateFilter: DateFilter = getDefaultDateFilter();
     alarmList: DetailMachineAlarm = DUMMY_DETAIL_MACHINE_ALARM;
@@ -29,13 +29,16 @@ export class DetailMachineAlarmComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.robot_name = "MASTER";
         this.fetchAlarm();
         interval(DEFAULT_INTERVAL)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchAlarm();
             });
+    }
+
+    ngOnChanges() {
+        this.fetchAlarm();
     }
 
     fetchAlarm() {

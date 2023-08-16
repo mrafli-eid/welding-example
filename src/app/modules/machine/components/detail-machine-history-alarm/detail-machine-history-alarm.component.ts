@@ -24,6 +24,8 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     untilDestroyed = untilDestroyed();
 
     @Input() machine_name: string;
+    @Input() robot_name: string;
+    
     pagination: Pagination = {
         page_number: 1,
         page_size: 10,
@@ -41,7 +43,6 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     searchTerm = new FormControl('');
     actDate = new FormControl(null);
     description = new FormControl(null);
-    robot_name = 'MASTER' || 'SLAVE';
 
     historyAlarmList: DetailMachineHistoryAlarm[] = DUMMY_DETAIL_MACHINE_HISTORY_ALARM;
 
@@ -59,6 +60,10 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
             .subscribe(() => {
                 this.fetchList();
             });
+    }
+
+    ngOnChanges() {
+        this.fetchList();
     }
 
     addSearchListener() {

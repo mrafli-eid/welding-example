@@ -27,9 +27,11 @@ export class ChartDetailMachineRunningHourComponent {
 
   ngOnChanges() {
       this.lineChartData.datasets[0].data = this.data.data.map((res) => res.value);
+      // this.lineChartData.datasets[1].data = this.data.maximum;
       this.lineChartData.labels = this.data.data.map((res) => res.label);
 
-      if (notNull(this.maximum)) {
+      const maximum = this.data.maximum;
+      if (notNull(maximum)) {
           // @ts-ignore
           this.lineChartOptions.plugins.annotation.annotations.maximum = {
               type: 'line',
@@ -49,7 +51,7 @@ export class ChartDetailMachineRunningHourComponent {
         data: [],
         borderColor: '#0177FB',
         fill: 'origin',
-      }
+      },
     ],
     labels: [],
   };

@@ -12,12 +12,12 @@
   </div>
   <div class="dashboard-content">
     <ahm-chart-detail-machine-voltage [data]="voltageList"
-                                           [maximum]="maximum">
+                                           [setting]="setting">
                     </ahm-chart-detail-machine-voltage>
   </div>
   <div class="dashboard-footer">
     <div class="chart-legend">
-      <ahm-dot type="line" color="danger">Maximum</ahm-dot>
+      <ahm-dot type="line" color="danger">Setting</ahm-dot>
       <ahm-dot type="line" color="primary">Actual</ahm-dot>
     </div>
   </div>

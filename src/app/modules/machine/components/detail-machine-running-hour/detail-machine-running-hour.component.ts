@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDefaultDateFilter } from 'src/app/core/consts/datepicker.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
@@ -15,18 +15,16 @@ import { interval, take } from 'rxjs';
   styleUrls: ['./detail-machine-running-hour.component.scss'],
   host: {
     'class': 'dashboard-card',
-  },
+  }
 })
-
-
   
-export class DetailMachineRunningHourComponent {
+export class DetailMachineRunningHourComponent implements OnInit, OnChanges {
   untilDestroyed = untilDestroyed();
   
   dateFilter: DateFilter = getDefaultDateFilter();
   @Input() machine_name = '';
+  @Input() robot_name = '';
   maximum = 950;
-  robot_name = 'MASTER' || 'SLAVE';
 
   runningHourList: DetailMachineRunningHour = DUMMY_DETAIL_MACHINE_RUNNING_HOUR;
 
@@ -35,14 +33,16 @@ export class DetailMachineRunningHourComponent {
     }
     
   ngOnInit() { 
-    this.robot_name = 'MASTER';
     this.fetchRunningHour();
     interval(DEFAULT_INTERVAL)
     .pipe(this.untilDestroyed())
     .subscribe(() => {
       this.fetchRunningHour();
     });
-    console.log(this.machine_name);
+  }
+
+  ngOnChanges() {
+    this.fetchRunningHour();
   }
   
   fetchRunningHour(){

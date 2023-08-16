@@ -31,8 +31,8 @@ export class ChartDetailMachineServoLoadComponent {
       this.lineChartData.datasets[0].data = this.data.data.map((d) => d.value);
       this.lineChartData.labels = this.data.data.map((d) => d.label);
 
-      
-      if (notNull(this.standard)) {
+      const standard = this.data.minimum;
+      if (notNull(standard)) {
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.standard = {
           type: 'line',
@@ -43,7 +43,8 @@ export class ChartDetailMachineServoLoadComponent {
         }
       }
       
-      if (notNull(this.warning)) {
+      const warning = this.data.medium;
+      if (notNull(warning)) {
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.warning = {
           type: 'line',
@@ -54,7 +55,8 @@ export class ChartDetailMachineServoLoadComponent {
         }
       }
       
-      if (notNull(this.breakdown)) {
+      const breakdown = this.data.maximum;
+      if (notNull(breakdown)) {
           // @ts-ignore
           this.lineChartOptions.plugins.annotation.annotations.breakdown = {
               type: 'line',
