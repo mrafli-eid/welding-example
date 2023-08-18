@@ -107,6 +107,7 @@ import { ChartDetailMachineDewPointComponent } from './components/detail-machine
         ChartDetailMachineServoLoadComponent,
         ChartDetailMachineTemperatureMirrorComponent,
         ChartDetailMachineDewPointComponent,
+        ChartDetailMachineRurgeCellComponent,
         MatMenuModule,
         MatInputModule,
         MatDatepickerModule,
