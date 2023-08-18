@@ -56,6 +56,14 @@ import { DetailMachineServoLoadComponent } from './components/detail-machine-ser
 import { ChartDetailMachineServoLoadComponent } from './components/detail-machine-servo-load/chart-detail-machine-servo-load.component';
 import { ChartDetailMachineAmpereComponent } from './components/detail-machine-ampere/chart-detail-machine-ampere.component';
 import { ChartDetailMachineVoltageComponent } from './components/detail-machine-voltage/chart-detail-machine-voltage.component';
+import { DetailMachineRpmSpindleComponent } from './components/detail-machine-rpm-spindle/detail-machine-rpm-spindle.component';
+import { ChartDetailMachineRpmSpindleComponent } from './components/detail-machine-rpm-spindle/chart-detail-machine-rpm-spindle.component';
+import { DetailMachineRurgeCellComponent } from './components/detail-machine-rurge-cell/detail-machine-rurge-cell.component';
+import { ChartDetailMachineRurgeCellComponent } from './components/detail-machine-rurge-cell/chart-detail-machine-rurge-cell.component';
+import { DetailMachineSansoMaticComponent } from './components/detail-machine-sanso-matic/detail-machine-sanso-matic.component';
+import { ChartDetailMachineSansoMaticComponent } from './components/detail-machine-sanso-matic/chart-detail-machine-sanso-matic.component';
+import { DetailMachineDewPointComponent } from './components/detail-machine-dew-point/detail-machine-dew-point.component';
+import { ChartDetailMachineDewPointComponent } from './components/detail-machine-dew-point/chart-detail-machine-dew-point.component';
 
 
 @NgModule({
@@ -73,6 +81,10 @@ import { ChartDetailMachineVoltageComponent } from './components/detail-machine-
         DetailMachineAmpereComponent,
         DetailMachineVoltageComponent,
         DetailMachineServoLoadComponent,
+        DetailMachineRpmSpindleComponent,
+        DetailMachineRurgeCellComponent,
+        DetailMachineSansoMaticComponent,
+        DetailMachineDewPointComponent,
     ],
     imports: [
         CommonModule,
@@ -89,11 +101,12 @@ import { ChartDetailMachineVoltageComponent } from './components/detail-machine-
         ChartDetailMachineProductionGraphComponent,
         ChartDetailMachineLubOilPressureComponent,
         ChartDetailMachineActivityMachineComponent,
-        ChartDetailMachineTemperatureMirrorComponent,
         ChartDetailMachineRunningHourComponent,
         ChartDetailMachineAmpereComponent,
         ChartDetailMachineVoltageComponent,
         ChartDetailMachineServoLoadComponent,
+        ChartDetailMachineTemperatureMirrorComponent,
+        ChartDetailMachineDewPointComponent,
         MatMenuModule,
         MatInputModule,
         MatDatepickerModule,

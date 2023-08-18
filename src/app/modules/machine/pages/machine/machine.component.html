@@ -20,19 +20,36 @@
     <div class="grid-item">
         <ahm-detail-top-machine-alarm [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-top-machine-alarm>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
         <ahm-detail-machine-ampere [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-ampere>
+    </div>
+    <div class="grid-item" *ngIf="showComponentLaser">
+        <ahm-detail-machine-temperature-mirror [machine_name]="machine_name"></ahm-detail-machine-temperature-mirror>
+    </div>
+    <div class="grid-item" *ngIf="showComponentBoring">
+        <ahm-detail-machine-sanso-matic></ahm-detail-machine-sanso-matic>
     </div>
 
     <!-- GRID 3 MIDDLE -->
-    <div class="grid-item" *ngIf="showComponentLaser">
-        <ahm-detail-machine-voltage [id]="machine_name"></ahm-detail-machine-voltage>
-      </div>
     <div class="grid-item">
         <ahm-detail-machine-activity-machine [id]="machine_name"></ahm-detail-machine-activity-machine>
     </div>
     <div class="grid-item">
         <ahm-detail-machine-history-alarm [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-history-alarm>
+    </div>
+    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
+        <ahm-detail-machine-voltage [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-voltage>
+    </div>
+    <div class="grid-item" *ngIf="showComponentLaser">
+        <ahm-detail-machine-dew-point [machine_name]="machine_name"></ahm-detail-machine-dew-point>
+    </div>
+    <div class="grid-item" *ngIf="showComponentBoring">
+        <ahm-detail-machine-rpm-spindle></ahm-detail-machine-rpm-spindle>
+    </div>
+
+    <!-- GRID 3 BOTTOM -->
+    <div class="grid-item">
+        <ahm-detail-machine-production-graph [machine_name]="machine_name"></ahm-detail-machine-production-graph>
     </div>
     <div class="grid-item" *ngIf="showComponentLaser">
         <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>
@@ -41,18 +58,13 @@
         <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
-        <ahm-detail-machine-voltage [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-voltage>
-    </div>
-
-    <!-- GRID 3 BOTTOM -->
-    <div class="grid-item">
-        <ahm-detail-machine-production-graph [machine_name]="machine_name"></ahm-detail-machine-production-graph>
-    </div>
-    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
         <ahm-detail-machine-running-hour [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-running-hour>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
         <ahm-detail-machine-servo-load [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-servo-load>
+    </div>
+    <div class="grid-item" *ngIf="showComponentLaser">
+        <ahm-detail-machine-rurge-cell></ahm-detail-machine-rurge-cell>
     </div>
     <!-- <div class="grid-item">
         <ahm-detail-machine-lub-oil-pressure [id]="machine_name"></ahm-detail-machine-lub-oil-pressure>

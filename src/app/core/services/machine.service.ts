@@ -9,12 +9,15 @@ import {
     DetailMachineAlarm,
     DetailMachineAmpereAndVoltage,
     DetailMachineDescription,
+    DetailMachineDewPoint,
     DetailMachineHistoryAlarm,
     DetailMachineHistoryAlarmParams,
     DetailMachineLubOilPressure,
     DetailMachineProductionGraph,
     DetailMachineRunningHour,
-    DetailMachineServoLoad
+    DetailMachineRurgeCell,
+    DetailMachineServoLoad,
+    DetailMachineTemperatureMirror
 } from '../models/machine.model';
 import { environment } from '../../../environments/environment';
 import { DateFilter } from '../models/date-filter.model';
@@ -158,5 +161,17 @@ export class MachineService {
   
   getServoLoad(machine_name: string, robot_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineServoLoad>>(`${this.baseUrl}/get-servo-load-all/${machine_name}/${robot_name}`, { params })
+  }
+  
+  getTemperatureMirror(machine_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineTemperatureMirror>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
+  }
+  
+  getDewPoint(machine_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineDewPoint>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
+  }
+  
+  getRurgeCell(machine_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineRurgeCell>>(`${this.baseUrl}/get-rurge-cell-all/${machine_name}`, { params })
   }
 }

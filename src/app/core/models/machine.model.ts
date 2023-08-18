@@ -155,5 +155,64 @@ export interface DetailMachineServoLoad {
     }[],
 }
 
+export interface DetailMachineTemperatureMirror{
+    machine_name: string,
+    subject_name: string,
+    unit: null,
+    maximum: number | null,
+    minimum: number | null,
+    medium: number | null,
+    lower_limit: number | null,
+    upper_limit: number | null,
+    label: number | null,
+    data_tamp_one: {
+        value: number
+    }[],
+    data_tamp_two: {
+        value: number
+    }[],
+    data_label: {
+        label: string,
+        message: string | null,
+        date_time: string
+    }[]
+}
+
+export interface DetailMachineDewPoint {
+    machine_name: string,
+    subject_name: string,
+    unit: string | null,
+    maximum: number | null,
+    minimum: number | null,
+    medium: number | null,
+    lower_limit: number | null,
+    upper_limit: number | null,
+    vid: string | null,
+    data: {
+        value: number,
+        label: string,
+        date_time: string,
+        message: null
+    }[]
+}
+
+export interface DetailMachineRurgeCell {
+    machine_name: string,
+    subject_name: string,
+    unit: string | null,
+    maximum: number | null,
+    minimum: number | null,
+    medium: number | null,
+    lower_limit: number | null,
+    upper_limit: number | null,
+    vid: string | null,
+    data: {
+        value: number,
+        label: string,
+        date_time: string,
+        message: string | null
+    }[]
+}
+
 
 

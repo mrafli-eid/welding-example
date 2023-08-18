@@ -19,11 +19,11 @@ import { interval, take } from 'rxjs';
 })
 export class DetailMachineAmpereComponent {
   untilDestroyed = untilDestroyed();
+  dateFilter: DateFilter = getDefaultDateFilter();
 
   @Input() machine_name = '';
   @Input() robot_name = '';
   
-  dateFilter: DateFilter = getDefaultDateFilter();
   setting = 950;
 
   ampereList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_AMPERE;

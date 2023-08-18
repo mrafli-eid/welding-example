@@ -5,6 +5,7 @@ import { BaseChartDirective, NgChartsModule } from "ng2-charts";
 import { ChartConfiguration, ChartType } from "chart.js";
 import Annotation from "chartjs-plugin-annotation";
 import { notNull } from "../../../../core/helpers/object.helper";
+import { DetailMachineTemperatureMirror } from 'src/app/core/models/machine.model';
 
 @Component({
   selector: 'ahm-chart-detail-machine-temperature-mirror',
@@ -19,16 +20,65 @@ export class ChartDetailMachineTemperatureMirrorComponent implements OnChanges {
   public lineChartType: ChartType = 'line';
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
+  @Input() data: DetailMachineTemperatureMirror;
+  @Input() minimum: number;
+  @Input() medium: number;
+  @Input() maximum: number;
+
   constructor() {
     Chart.register(Annotation)
   }
   
   ngOnChanges() {
+    this.lineChartData.datasets[0].data = this.data.data_tamp_one.map((d) => d.value);
+    this.lineChartData.datasets[1].data = this.data.data_tamp_two.map((d) => d.value);
+      this.lineChartData.labels = this.data.data_label.map((d) => d.label);
 
+      const minimum = this.data.minimum;
+      if (notNull(minimum || this.minimum)) {
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.minimum = {
+          type: 'line',
+          yMin: this.minimum,
+          yMax: this.minimum,
+          borderColor: '#28A745',
+          borderWidth: 1,
+        }
+      }
+      
+      const medium = this.data.medium;
+      if (notNull(medium || this.medium)) {
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.medium = {
+          type: 'line',
+          yMin: this.medium,
+          yMax: this.medium,
+          borderColor: '#F1BE42',
+          borderWidth: 1,
+        }
+      }
+      
+      const maximum = this.data.maximum;
+      if (notNull(maximum || this.maximum)) {
+          // @ts-ignore
+          this.lineChartOptions.plugins.annotation.annotations.maximum = {
+              type: 'line',
+              yMin: this.maximum,
+              yMax: this.maximum,
+              borderColor: '#DC3545',
+              borderWidth: 1,
+          }
+      }
+      this.chart?.update();
   }
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
+      {
+        data: [],
+        borderColor: '#0177FB',
+        fill: 'origin',
+      },
       {
         data: [],
         borderColor: '#0177FB',
@@ -43,48 +93,39 @@ export class ChartDetailMachineTemperatureMirrorComponent implements OnChanges {
     maintainAspectRatio: false,
     elements: {
       line: {
-        tension: 0.5,
-      },
+          tension: 0.5
+      }
+    },
+    layout: {
+        padding: { left: -4, bottom: -5 }
     },
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
       y: {
-        position: 'left',
+          position: 'left',
+          ticks: {
+              padding: 8,
+          },
+          grid: {
+              color: '#333333',
+          },
+          border: {
+              // dash: [ 4, 2 ]
+          },
       },
-      y1: {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red',
-        },
-      },
+      x: {
+          ticks: {
+              padding: 10,
+          },
+      }
     },
 
     plugins: {
-      legend: { display: true },
+      datalabels: { display: false },
+      legend: { display: false },
       annotation: {
-        annotations: [
-          {
-            type: 'line',
-            scaleID: 'x',
-            value: 'March',
-            borderColor: 'orange',
-            borderWidth: 2,
-            label: {
-              display: true,
-              position: 'center',
-              color: 'orange',
-              content: 'LineAnno',
-              font: {
-                weight: 'bold',
-              },
-            },
-          },
-        ],
+          annotations: {}
       },
-    },
+    }
   };
 
 }
