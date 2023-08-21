@@ -178,6 +178,29 @@ export interface DetailMachineTemperatureMirror {
   }[]
 }
 
+export interface DetailMachineRpmSpindle{
+    machine_name: string,
+    subject_name: string,
+    unit: string,
+    maximum: number | null,
+    minimum: number | null,
+    medium: number | null,
+    lower_limit: number | null,
+    upper_limit: number | null,
+    label: number | null,
+    data_rpm_a: {
+        value: number
+    }[],
+    data_rpm_b: {
+        value: number
+    }[],
+    data_label: {
+        label: string,
+        message: string | null,
+        date_time: string
+    }[]
+}
+
 export interface DetailMachineDewPoint {
   machine_name: string,
   subject_name: string,
