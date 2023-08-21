@@ -113,7 +113,8 @@ import { ChartDetailMachineDewPointComponent } from './components/detail-machine
         MatDatepickerModule,
         MatNativeDateModule,
         MatSelectModule,
-    ],
+        ChartDetailMachineRpmSpindleComponent
+    ]
 })
 export class MachineModule {
 }
