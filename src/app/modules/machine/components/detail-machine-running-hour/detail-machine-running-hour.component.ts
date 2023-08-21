@@ -5,9 +5,9 @@ import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 import { DateFilter } from 'src/app/core/models/date-filter.model';
 import { DetailMachineRunningHour } from 'src/app/core/models/machine.model';
 import { MachineService } from '../../../../core/services/machine.service';
+import { interval, take } from 'rxjs';
 import { DUMMY_DETAIL_MACHINE_RUNNING_HOUR } from './detail-machine-running-hour';
 import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
-import { interval, take } from 'rxjs';
 
 @Component({
   selector: 'ahm-detail-machine-running-hour',

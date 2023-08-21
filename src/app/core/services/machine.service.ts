@@ -16,6 +16,7 @@ import {
     DetailMachineProductionGraph,
     DetailMachineRunningHour,
     DetailMachineRurgeCell,
+    DetailMachineSansoMatic,
     DetailMachineServoLoad,
     DetailMachineTemperatureMirror
 } from '../models/machine.model';
@@ -163,6 +164,7 @@ export class MachineService {
     return this.http.get<HttpResponse<DetailMachineServoLoad>>(`${this.baseUrl}/get-servo-load-all/${machine_name}/${robot_name}`, { params })
   }
   
+  // INTEGRASI API LASER
   getTemperatureMirror(machine_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineTemperatureMirror>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
   }
@@ -173,5 +175,10 @@ export class MachineService {
   
   getRurgeCell(machine_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineRurgeCell>>(`${this.baseUrl}/get-rurge-cell-all/${machine_name}`, { params })
+  }
+  
+  // INTEGRASI API BORING
+  getSansoMatic(machine_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineSansoMatic>>(`${this.baseUrl}/get-sanso-matic-all/${machine_name}`, { params })
   }
 }

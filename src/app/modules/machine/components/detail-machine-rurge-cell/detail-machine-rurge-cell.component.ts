@@ -7,6 +7,7 @@ import { MachineService } from 'src/app/core/services/machine.service';
 import { interval, take } from 'rxjs';
 import { DetailMachineRurgeCell } from 'src/app/core/models/machine.model';
 import { DUMMY_DETAIL_MACHINE_RURGE_CELL } from './detail-machine-rurge-cell';
+import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
 
 @Component({
   selector: 'ahm-detail-machine-rurge-cell',
@@ -17,40 +18,53 @@ import { DUMMY_DETAIL_MACHINE_RURGE_CELL } from './detail-machine-rurge-cell';
   },
 })
 export class DetailMachineRurgeCellComponent {
-    untilDestroyed = untilDestroyed();
-    dateFilter: DateFilter = getDefaultDateFilter();
+  untilDestroyed = untilDestroyed();
+  dateFilter: DateFilter = getDefaultDateFilter();
 
-    @Input() machine_name = '';
-    maximum = 20;
-    rurgeCellList: DetailMachineRurgeCell = DUMMY_DETAIL_MACHINE_RURGE_CELL;
+  @Input() machine_name = '';
+  maximum = 20;
+  rurgeCellList: DetailMachineRurgeCell = DUMMY_DETAIL_MACHINE_RURGE_CELL;
 
-    constructor(
-        private machineService: MachineService,
-        private router: Router
-    ) {}
+  constructor(
+    private machineService: MachineService,
+    private router: Router
+  ) { }
 
-    ngOnInit() {
-      this.fetchRurgeCell();
-    }
-
-    ngOnChanges() {
+  ngOnInit() {
+    this.fetchRurgeCell();
+    interval(DEFAULT_INTERVAL)
+      .pipe(this.untilDestroyed())
+      .subscribe(() => {
         this.fetchRurgeCell();
-    }
+      });
+  }
 
-    fetchRurgeCell() {
+  ngOnChanges() {
+    this.fetchRurgeCell();
+  }
 
-    }
+  fetchRurgeCell() {
+    this.machineService.getRurgeCell(this.machine_name, this.dateFilter)
+      .pipe(take(1))
+      .subscribe({
+        next: (resp) => {
+          if (resp.success) {
+            this.rurgeCellList = resp.data;
+          }
+        }
+      });
+  }
 
-    onFilterChanged(dateFilter: DateFilter) {
-      this.dateFilter = dateFilter;
-      this.fetchRurgeCell();
-    }
+  onFilterChanged(dateFilter: DateFilter) {
+    this.dateFilter = dateFilter;
+    this.fetchRurgeCell();
+  }
 
-    download() {
-        // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
-    }
+  download() {
+    // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+  }
 
-    goToSettings() {
-        this.router.navigate(['/SOMEWHERE']);
-    }
+  goToSettings() {
+    this.router.navigate(['/SOMEWHERE']);
+  }
 }
