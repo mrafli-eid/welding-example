@@ -84,7 +84,7 @@ import { ChartDetailMachineDewPointComponent } from './components/detail-machine
         DetailMachineRpmSpindleComponent,
         DetailMachineRurgeCellComponent,
         DetailMachineSansoMaticComponent,
-        DetailMachineDewPointComponent,
+        DetailMachineDewPointComponent
     ],
     imports: [
         CommonModule,
@@ -109,13 +109,13 @@ import { ChartDetailMachineDewPointComponent } from './components/detail-machine
         ChartDetailMachineDewPointComponent,
         ChartDetailMachineRurgeCellComponent,
         ChartDetailMachineSansoMaticComponent,
+        ChartDetailMachineRpmSpindleComponent,
         MatMenuModule,
         MatInputModule,
         MatDatepickerModule,
         MatNativeDateModule,
         MatSelectModule,
-        ChartDetailMachineRpmSpindleComponent
-    ]
+    ],
 })
 export class MachineModule {
 }
