@@ -181,7 +181,7 @@ export interface DetailMachineTemperatureMirror {
 export interface DetailMachineRpmSpindle{
     machine_name: string,
     subject_name: string,
-    unit: null,
+    unit: string,
     maximum: number | null,
     minimum: number | null,
     medium: number | null,
