@@ -4,12 +4,12 @@ import { getDefaultDateFilter } from 'src/app/core/consts/datepicker.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 import { DateFilter } from 'src/app/core/models/date-filter.model';
 import {
-    DetailMachineAmpereAndVoltage,
     DetailMachineDewPoint,
 } from 'src/app/core/models/machine.model';
 import { MachineService } from 'src/app/core/services/machine.service';
 import { interval, take } from 'rxjs';
 import { DUMMY_DETAIL_MACHINE_DEW_POINT } from './detail-machine-dew-point';
+import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
 
 @Component({
     selector: 'ahm-detail-machine-dew-point',
@@ -34,6 +34,11 @@ export class DetailMachineDewPointComponent {
 
     ngOnInit() {
         this.fetchDewPoint();
+        interval(DEFAULT_INTERVAL)
+          .pipe(this.untilDestroyed())
+          .subscribe(() => {
+            this.fetchDewPoint();
+          });
     }
 
     ngOnChanges() {

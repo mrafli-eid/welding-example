@@ -53,7 +53,8 @@ export class DetailMachineSansoMaticComponent {
           if (res.success) {
             this.sansoMaticList = res.data;
           }
-        }
+        },
+        error() {console.log('error api sanso matic')}
       })
   }
 
