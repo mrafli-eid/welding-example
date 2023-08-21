@@ -18,7 +18,8 @@ import {
     DetailMachineRurgeCell,
     DetailMachineSansoMatic,
     DetailMachineServoLoad,
-    DetailMachineTemperatureMirror
+    DetailMachineTemperatureMirror,
+    DetailMachineRpmSpindle
 } from '../models/machine.model';
 import { environment } from '../../../environments/environment';
 import { DateFilter } from '../models/date-filter.model';
@@ -168,7 +169,11 @@ export class MachineService {
   getTemperatureMirror(machine_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineTemperatureMirror>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
   }
-  
+
+  getRpmSpindle(machine_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineRpmSpindle>>(`${this.baseUrl}/get-rpm-spindle-all/${machine_name}`, { params })
+  }
+
   getDewPoint(machine_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineDewPoint>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
   }
