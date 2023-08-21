@@ -20,6 +20,7 @@ import { interval, take } from 'rxjs';
 export class DetailMachineRpmSpindleComponent {
   untilDestroyed = untilDestroyed();
   
+  @Input() machine_name = '';
   dateFilter: DateFilter = getDefaultDateFilter();
   maximum = 100;
 
