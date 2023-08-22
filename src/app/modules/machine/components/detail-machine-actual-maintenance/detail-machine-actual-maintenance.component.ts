@@ -89,12 +89,12 @@ export class DetailMachineActualMaintenanceComponent {
     applyFilter() {
         let isChanged = false;
         if (this.actDate.value) {
-            this.queryParams.act_date = this.actDate.value;
+            this.queryParams.end_date = this.actDate.value;
             isChanged = true;
         }
 
         if (this.planDate.value) {
-            this.queryParams.plan_date = this.planDate.value;
+            this.queryParams.start_date = this.planDate.value;
             isChanged = true;
         }
 
@@ -105,7 +105,7 @@ export class DetailMachineActualMaintenanceComponent {
     }
 
     openFilter() {
-        this.actDate.setValue(this.queryParams?.act_date);
-        this.planDate.setValue(this.queryParams?.plan_date);
+        this.actDate.setValue(this.queryParams?.end_date);
+        this.planDate.setValue(this.queryParams?.start_date);
     }
 }

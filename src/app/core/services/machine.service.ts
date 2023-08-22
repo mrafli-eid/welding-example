@@ -141,8 +141,8 @@ export class MachineService {
     }
 
     /** Actual Maintenance **/
-    getActualMaintenance(id: string, params: Partial<DetailMachineActualMaintenanceParams>) {
-        return this.http.get<HttpResponse<DetailMachineActualMaintenance[]>>(`${ environment.API_URL }/api/machine/get-plan-and-actual-all/${ id }`, {
+  getActualMaintenance(machine_name: string, params: Partial<DetailMachineActualMaintenanceParams>) {
+    return this.http.get<HttpResponse<DetailMachineActualMaintenance[]>>(`${environment.API_URL}/api/machine/get-plan-and-actual-all/${machine_name }`, {
             observe: 'response',
             params,
         });
