@@ -38,7 +38,7 @@ export class MachineService {
     getDetailMachine(machine_name: string) {
         if(machine_name == "LASER"){
           return this.http.get<HttpResponse<DetailMachine[]>>(`${this.baseUrl}/get-detail-machines-all/${machine_name}`);
-        }else if(machine_name == "ROBOT"){
+        }else if(machine_name == "BORRING" || machine_name == "BORRING"){
           return this.http.get<HttpResponse<DetailMachine[]>>(`${this.baseUrl}/get-detail-machines-all/${machine_name}`);
         }else{
           return this.http.get<HttpResponse<DetailMachine[]>>(`${ this.baseUrl }/get-detail-machine-all/${ machine_name }`);
