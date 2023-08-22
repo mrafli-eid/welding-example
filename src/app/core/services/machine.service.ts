@@ -144,7 +144,7 @@ export class MachineService {
     getActualMaintenance(id: string, params: Partial<DetailMachineActualMaintenanceParams>) {
         return this.http.get<HttpResponse<DetailMachineActualMaintenance[]>>(`${ environment.API_URL }/api/machine/get-plan-and-actual-all/${ id }`, {
             observe: 'response',
-            params
+            params,
         });
     }
 
@@ -193,7 +193,7 @@ export class MachineService {
   }
 
   getDewPoint(machine_name: string, params: Partial<DateFilter>){
-    return this.http.get<HttpResponse<DetailMachineDewPoint>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
+    return this.http.get<HttpResponse<DetailMachineDewPoint>>(`${this.baseUrl}/get-dew-point-all/${machine_name}`, { params })
   }
   
   getRurgeCell(machine_name: string, params: Partial<DateFilter>){
