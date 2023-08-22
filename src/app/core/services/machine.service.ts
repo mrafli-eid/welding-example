@@ -41,7 +41,13 @@ export class MachineService {
 
     /** Alarm **/
     getAlarm(machine_name: string, robot_name: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }/${robot_name}`, { params });
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }`, { params });
+        }else if(machine_name == "BORING"){
+          return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }`, { params });
+        }else{
+          return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }/${robot_name}`, { params });
+        }
     }
 
     downloadAlarm(id: string, params: Partial<DateFilter>) {
