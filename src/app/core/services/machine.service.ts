@@ -79,10 +79,22 @@ export class MachineService {
 
     /** History Alarm **/
     getHistoryAlarm(machine_name: string, robot_name: string, params: Partial<DetailMachineHistoryAlarmParams>) {
-        return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ machine_name }/${robot_name}`, {
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ machine_name }`, {
+              observe: 'response',
+              params
+          });
+        }else if(machine_name == "BORING"){
+          return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ machine_name }`, {
+              observe: 'response',
+              params
+          });
+        }else{
+          return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${this.baseUrl}/get-history-alarm-all/${machine_name}/${robot_name}`, {
             observe: 'response',
             params
-        });
+          });
+        }
     }
 
     downloadHistoryAlarm(id: string, params: Partial<DetailMachineHistoryAlarmParams>) {
