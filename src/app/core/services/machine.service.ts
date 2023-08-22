@@ -36,7 +36,13 @@ export class MachineService {
 
     /** Detail Machine **/
     getDetailMachine(machine_name: string) {
-        return this.http.get<HttpResponse<DetailMachine[]>>(`${ this.baseUrl }/get-detail-machine-all/${ machine_name }`);
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachine[]>>(`${this.baseUrl}/get-detail-machines-all/${machine_name}`);
+        }else if(machine_name == "ROBOT"){
+          return this.http.get<HttpResponse<DetailMachine[]>>(`${this.baseUrl}/get-detail-machines-all/${machine_name}`);
+        }else{
+          return this.http.get<HttpResponse<DetailMachine[]>>(`${ this.baseUrl }/get-detail-machine-all/${ machine_name }`);
+        }
     }
 
     /** Alarm **/
@@ -66,7 +72,13 @@ export class MachineService {
 
     /** Activity Machine **/
     getActivityMachine(machine_name: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${ this.baseUrl }/get-activity-machine-all/${ machine_name }`, { params });
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${this.baseUrl}/get-activity-machines-all/${machine_name}`, { params }); 
+        }else if(machine_name == "BORING"){
+          return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${this.baseUrl}/get-activity-machines-all/${machine_name}`, { params }); 
+        }else{
+          return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${ this.baseUrl }/get-activity-machine-all/${ machine_name }`, { params });
+        }
     }
 
     downloadActivityMachine(id: string, params: Partial<DateFilter>) {
@@ -123,7 +135,13 @@ export class MachineService {
 
     /** Production Graph **/
     getProductionGraph(machine_name: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${ this.baseUrl }/get-production-all/${ machine_name }`, { params });
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${this.baseUrl}/get-productions-all/${machine_name}`, { params });
+        }else if(machine_name == "BORING"){
+          return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${this.baseUrl}/get-productions-all/${machine_name}`, { params });
+        }else{
+          return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${ this.baseUrl }/get-production-all/${ machine_name }`, { params });
+        }
     }
 
     downloadProductionGraph(machine_name: string, params: Partial<DateFilter>) {
