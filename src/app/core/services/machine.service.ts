@@ -49,7 +49,7 @@ export class MachineService {
     getAlarm(machine_name: string, robot_name: string, params: Partial<DateFilter>) {
         if(machine_name == "LASER"){
           return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }`, { params });
-        }else if(machine_name == "BORING"){
+        }else if(machine_name == "BORING" || machine_name == "BORRING"){
           return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }`, { params });
         }else{
           return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }/${robot_name}`, { params });
@@ -74,7 +74,7 @@ export class MachineService {
     getActivityMachine(machine_name: string, params: Partial<DateFilter>) {
         if(machine_name == "LASER"){
           return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${this.baseUrl}/get-activity-machines-all/${machine_name}`, { params }); 
-        }else if(machine_name == "BORING"){
+        } else if (machine_name == "BORING" || machine_name == "BORRING"){
           return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${this.baseUrl}/get-activity-machines-all/${machine_name}`, { params }); 
         }else{
           return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${ this.baseUrl }/get-activity-machine-all/${ machine_name }`, { params });
@@ -102,7 +102,7 @@ export class MachineService {
               observe: 'response',
               params
           });
-        }else if(machine_name == "BORING"){
+        } else if (machine_name == "BORING" || machine_name == "BORRING"){
           return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ machine_name }`, {
               observe: 'response',
               params
@@ -137,7 +137,7 @@ export class MachineService {
     getProductionGraph(machine_name: string, params: Partial<DateFilter>) {
         if(machine_name == "LASER"){
           return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${this.baseUrl}/get-productions-all/${machine_name}`, { params });
-        }else if(machine_name == "BORING"){
+        } else if (machine_name == "BORING" || machine_name == "BORRING"){
           return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${this.baseUrl}/get-productions-all/${machine_name}`, { params });
         }else{
           return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${ this.baseUrl }/get-production-all/${ machine_name }`, { params });
