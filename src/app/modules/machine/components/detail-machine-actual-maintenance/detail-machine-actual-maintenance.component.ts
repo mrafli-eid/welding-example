@@ -22,7 +22,7 @@ import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 export class DetailMachineActualMaintenanceComponent {
     untilDestroyed = untilDestroyed();
 
-    @Input() id: string;
+  @Input() machine_name: string;
     pagination: Pagination = {
         page_number: 1,
         page_size: 10,
@@ -65,7 +65,7 @@ export class DetailMachineActualMaintenanceComponent {
     }
 
     fetchList() {
-        this.machineService.getActualMaintenance(this.id, this.queryParams)
+      this.machineService.getActualMaintenance(this.machine_name, this.queryParams)
             .pipe(take(1))
             .subscribe((response) => {
                 this.pagination = JSON.parse(response.headers.get('x-pagination'));

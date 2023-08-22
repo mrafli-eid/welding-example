@@ -52,10 +52,10 @@
         <ahm-detail-machine-production-graph [machine_name]="machine_name"></ahm-detail-machine-production-graph>
     </div>
     <div class="grid-item" *ngIf="showComponentLaser">
-        <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>
+        <ahm-detail-machine-actual-maintenance [machine_name]="machine_name"></ahm-detail-machine-actual-maintenance>
     </div>
     <div class="grid-item" *ngIf="showComponentBoring">
-        <ahm-detail-machine-actual-maintenance [id]="machine_name"></ahm-detail-machine-actual-maintenance>
+        <ahm-detail-machine-actual-maintenance [machine_name]="machine_name"></ahm-detail-machine-actual-maintenance>
     </div>
     <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
         <ahm-detail-machine-running-hour [machine_name]="machine_name" [robot_name]="robot_name"></ahm-detail-machine-running-hour>
