@@ -36,12 +36,24 @@ export class MachineService {
 
     /** Detail Machine **/
     getDetailMachine(machine_name: string) {
-        return this.http.get<HttpResponse<DetailMachine[]>>(`${ this.baseUrl }/get-detail-machine-all/${ machine_name }`);
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachine[]>>(`${this.baseUrl}/get-detail-machines-all/${machine_name}`);
+        }else if(machine_name == "BORRING" || machine_name == "BORRING"){
+          return this.http.get<HttpResponse<DetailMachine[]>>(`${this.baseUrl}/get-detail-machines-all/${machine_name}`);
+        }else{
+          return this.http.get<HttpResponse<DetailMachine[]>>(`${ this.baseUrl }/get-detail-machine-all/${ machine_name }`);
+        }
     }
 
     /** Alarm **/
     getAlarm(machine_name: string, robot_name: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }/${robot_name}`, { params });
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }`, { params });
+        }else if(machine_name == "BORING" || machine_name == "BORRING"){
+          return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }`, { params });
+        }else{
+          return this.http.get<HttpResponse<DetailMachineAlarm>>(`${ this.baseUrl }/get-alarm-all/${ machine_name }/${robot_name}`, { params });
+        }
     }
 
     downloadAlarm(id: string, params: Partial<DateFilter>) {
@@ -60,7 +72,13 @@ export class MachineService {
 
     /** Activity Machine **/
     getActivityMachine(machine_name: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${ this.baseUrl }/get-activity-machine-all/${ machine_name }`, { params });
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${this.baseUrl}/get-activity-machines-all/${machine_name}`, { params }); 
+        } else if (machine_name == "BORING" || machine_name == "BORRING"){
+          return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${this.baseUrl}/get-activity-machines-all/${machine_name}`, { params }); 
+        }else{
+          return this.http.get<HttpResponse<DetailMachineActivityMachine>>(`${ this.baseUrl }/get-activity-machine-all/${ machine_name }`, { params });
+        }
     }
 
     downloadActivityMachine(id: string, params: Partial<DateFilter>) {
@@ -79,10 +97,22 @@ export class MachineService {
 
     /** History Alarm **/
     getHistoryAlarm(machine_name: string, robot_name: string, params: Partial<DetailMachineHistoryAlarmParams>) {
-        return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ machine_name }/${robot_name}`, {
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ machine_name }`, {
+              observe: 'response',
+              params
+          });
+        } else if (machine_name == "BORING" || machine_name == "BORRING"){
+          return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${ this.baseUrl }/get-history-alarm-all/${ machine_name }`, {
+              observe: 'response',
+              params
+          });
+        }else{
+          return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${this.baseUrl}/get-history-alarm-all/${machine_name}/${robot_name}`, {
             observe: 'response',
             params
-        });
+          });
+        }
     }
 
     downloadHistoryAlarm(id: string, params: Partial<DetailMachineHistoryAlarmParams>) {
@@ -105,7 +135,13 @@ export class MachineService {
 
     /** Production Graph **/
     getProductionGraph(machine_name: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${ this.baseUrl }/get-production-all/${ machine_name }`, { params });
+        if(machine_name == "LASER"){
+          return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${this.baseUrl}/get-productions-all/${machine_name}`, { params });
+        } else if (machine_name == "BORING" || machine_name == "BORRING"){
+          return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${this.baseUrl}/get-productions-all/${machine_name}`, { params });
+        }else{
+          return this.http.get<HttpResponse<DetailMachineProductionGraph>>(`${ this.baseUrl }/get-production-all/${ machine_name }`, { params });
+        }
     }
 
     downloadProductionGraph(machine_name: string, params: Partial<DateFilter>) {
@@ -123,10 +159,10 @@ export class MachineService {
     }
 
     /** Actual Maintenance **/
-    getActualMaintenance(id: string, params: Partial<DetailMachineActualMaintenanceParams>) {
-        return this.http.get<HttpResponse<DetailMachineActualMaintenance[]>>(`${ environment.API_URL }/api/machine/get-plan-and-actual-all/${ id }`, {
+  getActualMaintenance(machine_name: string, params: Partial<DetailMachineActualMaintenanceParams>) {
+    return this.http.get<HttpResponse<DetailMachineActualMaintenance[]>>(`${environment.API_URL}/api/machine/get-plan-and-actual-all/${machine_name }`, {
             observe: 'response',
-            params
+            params,
         });
     }
 
@@ -169,19 +205,19 @@ export class MachineService {
   getTemperatureMirror(machine_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineTemperatureMirror>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
   }
-
-  getRpmSpindle(machine_name: string, params: Partial<DateFilter>){
-    return this.http.get<HttpResponse<DetailMachineRpmSpindle>>(`${this.baseUrl}/get-rpm-spindle-all/${machine_name}`, { params })
-  }
-
+  
   getDewPoint(machine_name: string, params: Partial<DateFilter>){
-    return this.http.get<HttpResponse<DetailMachineDewPoint>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
+    return this.http.get<HttpResponse<DetailMachineDewPoint>>(`${this.baseUrl}/get-dew-point-all/${machine_name}`, { params })
   }
   
   getRurgeCell(machine_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineRurgeCell>>(`${this.baseUrl}/get-rurge-cell-all/${machine_name}`, { params })
   }
   
+  getRpmSpindle(machine_name: string, params: Partial<DateFilter>){
+    return this.http.get<HttpResponse<DetailMachineRpmSpindle>>(`${this.baseUrl}/get-rpm-spindle-all/${machine_name}`, { params })
+  }
+
   // INTEGRASI API BORING
   getSansoMatic(machine_name: string, params: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineSansoMatic>>(`${this.baseUrl}/get-sanso-matic-all/${machine_name}`, { params })

@@ -39,7 +39,7 @@ export class MachineComponent implements OnInit {
   }
 
   showComponent() {
-    if (this.machine.name == 'BORING') {
+    if (this.machine.name == 'BORRING') {
       this.imageDetailMachine = "/assets/images/detail-machine-boring.png";
       this.showComponentBoring = true;
       this.showTitleMachine = true;

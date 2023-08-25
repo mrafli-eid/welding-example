@@ -84,17 +84,17 @@ export interface DetailMachineProductionGraph {
 export interface DetailMachineActualMaintenance {
   machine_name: string;
   category: string;
-  plan_date: string;
+  start_date: string;
+  end_date: string;
   actual: string;
-  act_date: string;
 }
 
 export interface DetailMachineActualMaintenanceParams {
   search_term: string;
   page_number: number;
   page_size: number;
-  plan_date: any;
-  act_date: any;
+  start_date: any;
+  end_date: any;
   actual: string;
 }
 

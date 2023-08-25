@@ -22,7 +22,7 @@ import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 export class DetailMachineActualMaintenanceComponent {
     untilDestroyed = untilDestroyed();
 
-    @Input() id: string;
+  @Input() machine_name: string;
     pagination: Pagination = {
         page_number: 1,
         page_size: 10,
@@ -65,7 +65,7 @@ export class DetailMachineActualMaintenanceComponent {
     }
 
     fetchList() {
-        this.machineService.getActualMaintenance(this.id, this.queryParams)
+      this.machineService.getActualMaintenance(this.machine_name, this.queryParams)
             .pipe(take(1))
             .subscribe((response) => {
                 this.pagination = JSON.parse(response.headers.get('x-pagination'));
@@ -89,12 +89,12 @@ export class DetailMachineActualMaintenanceComponent {
     applyFilter() {
         let isChanged = false;
         if (this.actDate.value) {
-            this.queryParams.act_date = this.actDate.value;
+            this.queryParams.end_date = this.actDate.value;
             isChanged = true;
         }
 
         if (this.planDate.value) {
-            this.queryParams.plan_date = this.planDate.value;
+            this.queryParams.start_date = this.planDate.value;
             isChanged = true;
         }
 
@@ -105,7 +105,7 @@ export class DetailMachineActualMaintenanceComponent {
     }
 
     openFilter() {
-        this.actDate.setValue(this.queryParams?.act_date);
-        this.planDate.setValue(this.queryParams?.plan_date);
+        this.actDate.setValue(this.queryParams?.end_date);
+        this.planDate.setValue(this.queryParams?.start_date);
     }
 }
