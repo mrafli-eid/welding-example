@@ -36,10 +36,11 @@ export class MachineComponent implements OnInit {
         this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
       });
     this.showComponent();
+    console.log(this.machine);
   }
 
   showComponent() {
-    if (this.machine.name == 'BORRING') {
+    if (this.machine.id == '8') {
       this.imageDetailMachine = "/assets/images/detail-machine-boring.png";
       this.showComponentBoring = true;
       this.showTitleMachine = true;
