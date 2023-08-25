@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+} from '@angular/core';
 import { MasterSubject } from '../../../../core/models/master.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MasterService } from '../../../../core/services/master.service';
@@ -7,20 +13,18 @@ import { take } from 'rxjs';
 @Component({
     selector: 'ahm-master-subject-upsert',
     templateUrl: './master-subject-upsert.component.html',
-    styleUrls: [ './master-subject-upsert.component.scss' ],
+    styleUrls: ['./master-subject-upsert.component.scss'],
 })
 export class MasterSubjectUpsertComponent implements OnChanges {
     @Input() masterData: MasterSubject;
     @Output() onSubmit = new EventEmitter();
 
     formGroup: FormGroup = new FormGroup({
-        vid: new FormControl('', [ Validators.required ]),
-        name: new FormControl('', [ Validators.required ]),
+        vid: new FormControl('', [Validators.required]),
+        name: new FormControl('', [Validators.required]),
     });
 
-    constructor(private masterService: MasterService) {
-    }
-
+    constructor(private masterService: MasterService) {}
 
     ngOnChanges() {
         this.formGroup.patchValue(this.masterData);
@@ -40,7 +44,8 @@ export class MasterSubjectUpsertComponent implements OnChanges {
 
     edit(body: any) {
         const id = this.masterData.id;
-        this.masterService.updateSubject(id, body)
+        this.masterService
+            .updateSubject(id, body)
             .pipe(take(1))
             .subscribe({
                 next: () => {
@@ -53,7 +58,8 @@ export class MasterSubjectUpsertComponent implements OnChanges {
     }
 
     create(body: any) {
-        this.masterService.createSubject(body)
+        this.masterService
+            .createSubject(body)
             .pipe(take(1))
             .subscribe({
                 next: () => {

@@ -14,6 +14,7 @@ export class MasterService {
     baseUrlLine = `${ environment.API_URL }/api/line`;
     baseUrlMachine = `${ environment.API_URL }/api/machine`;
     baseUrlSubject = `${ environment.API_URL }/api/subject`;
+    baseUrlRobot = `${ environment.API_URL }/api/robot`;
 
     constructor(private http: HttpClient) {
     }
@@ -83,19 +84,19 @@ export class MasterService {
             params: params,
         });
     }
-
+    
     createSubject(body: any) {
         return this.http.post<HttpResponse<any>>(`${ this.baseUrlSubject }/create-subject`, body);
     }
-
+    
     deleteSubject(id: string) {
         return this.http.delete<HttpResponse<any>>(`${ this.baseUrlSubject }/${ id }`);
     }
-
+    
     updateSubject(id: string, body: any) {
         return this.http.post<HttpResponse<any>>(`${ this.baseUrlSubject }/${ id }`, body);
     }
-
+    
     exportExcelSubject() {
         this.http.get(`${ this.baseUrlSubject }/download-excel-subject`, {
             responseType: "arraybuffer",
@@ -103,5 +104,32 @@ export class MasterService {
             downLoadFile(response);
         });
     }
+    
+    createRobot(body: any) {
+        return this.http.post<HttpResponse<any>>(`${ this.baseUrlRobot }/create-robot`, body);
+    }
+    
+    getRobotList(params: Partial<MasterParams>) {
+        params = removeEmptyObject(params);
+        return this.http.get<HttpResponse<any>>(`${ this.baseUrlRobot }/get-robot-all`, {
+            observe: 'response',
+            params: params,
+        });
+    }
+    
+    deleteRobot(id: string) {
+        return this.http.delete<HttpResponse<any>>(`${ this.baseUrlRobot }/${ id }`);
+    }
+    
+    updateRobot(id: string, body: any) {
+        return this.http.put    <HttpResponse<any>>(`${ this.baseUrlRobot }/${ id }`, body);
+    }
 
+    exportExcelRobot() {
+        this.http.get(`${ this.baseUrlRobot }/download-excel-robot`, {
+            responseType: "arraybuffer",
+        }).subscribe((response) => {
+            downLoadFile(response);
+        });
+    }
 }

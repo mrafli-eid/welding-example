@@ -1,33 +1,33 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnChanges,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MasterRobot } from '../../../../core/models/master.model';
 import { MasterMachine } from '../../../../core/models/master.model';
+import { DUMMY_MACHINE_LIST } from './master-robot.dummy';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MasterService } from '../../../../core/services/master.service';
 import { take } from 'rxjs';
 
 @Component({
-    selector: 'ahm-master-machine-upsert',
-    templateUrl: './master-machine-upsert.component.html',
-    styleUrls: ['./master-machine-upsert.component.scss'],
+    selector: 'app-master-robot-upsert',
+    templateUrl: './master-robot-upsert.component.html',
+    styleUrls: ['./master-robot-upsert.component.scss'],
 })
-export class MasterMachineUpsertComponent implements OnChanges {
-    @Input() masterData: MasterMachine;
+
+export class MasterRobotUpsertComponent {
+    @Input() masterData: MasterRobot;
     @Output() onSubmit = new EventEmitter();
 
+    machineList: MasterMachine[] = DUMMY_MACHINE_LIST;
+
     formGroup: FormGroup = new FormGroup({
+        machine_id: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
     });
 
-    constructor(private masterService: MasterService) {}
+    constructor(private MasterService: MasterService) {}
 
-        ngOnChanges() {
-            this.formGroup.patchValue(this.masterData);
-        }
+    ngOnChanges() {
+        this.formGroup.patchValue(this.masterData);
+    }
 
     submit() {
         this.formGroup.markAllAsTouched();
@@ -42,9 +42,8 @@ export class MasterMachineUpsertComponent implements OnChanges {
     }
 
     edit(body: any) {
-        const id = this.masterData.id;
-        this.masterService
-            .updateMachine(id, body)
+        const id = this.masterData.machine_id;
+        this.MasterService.updateRobot(id, body)
             .pipe(take(1))
             .subscribe({
                 next: () => {
@@ -57,8 +56,7 @@ export class MasterMachineUpsertComponent implements OnChanges {
     }
 
     create(body: any) {
-        this.masterService
-            .createMachine(body)
+        this.MasterService.createRobot(body)
             .pipe(take(1))
             .subscribe({
                 next: () => {

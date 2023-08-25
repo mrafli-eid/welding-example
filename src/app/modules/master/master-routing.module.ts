@@ -12,6 +12,9 @@ import {
 import {
     RegisterMachineLineContainerComponent
 } from "./register-machine-line/register-machine-line-container/register-machine-line-container.component";
+import {
+    MasterRobotContainerComponent
+} from "./master-robot/master-robot-container/master-robot-container.component";
 
 const routes: Routes = [
     {
@@ -37,6 +40,10 @@ const routes: Routes = [
     {
         path: 'register/machine-line',
         component: RegisterMachineLineContainerComponent,
+    },
+    {
+        path: 'robot',
+        component: MasterRobotContainerComponent,
     },
 
 ];

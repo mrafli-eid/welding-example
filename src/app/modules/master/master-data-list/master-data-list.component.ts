@@ -26,6 +26,10 @@ export class MasterDataListComponent {
             link: '/master/subject',
         },
         {
+            label: 'robot',
+            link: '/master/robot',
+        },
+        {
             label: 'register subject machine',
             link: '/master/register/subject-machine',
         },
@@ -33,6 +37,7 @@ export class MasterDataListComponent {
             label: 'register machine line',
             link: '/master/register/machine-line',
         },
+        
     ];
 
     constructor(private router: Router) {

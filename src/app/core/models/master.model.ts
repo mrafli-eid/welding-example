@@ -4,7 +4,15 @@ export interface MasterLine {
     created_at: string;
 }
 
+export interface MasterRobot {
+    name: string;
+    machine_id: string;
+    machine_name: string;
+    created_at: string;
+}[]
+
 export interface MasterSubject {
+    selected?: boolean;    
     id: string;
     name: string;
     vid: string;
@@ -12,6 +20,13 @@ export interface MasterSubject {
 }
 
 export interface MasterMachine {
+    id: string;
+    name: string;
+    created_at: string;
+}
+
+export interface MasterMachineLine {
+    selected?: boolean;
     id: string;
     name: string;
     created_at: string;

@@ -11,7 +11,6 @@ import { DatefilterInterceptor } from './core/interceptors/datefilter.intercepto
 import { NgChartsModule } from "ng2-charts";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { registerLocaleData } from "@angular/common";
-
 import localeId from '@angular/common/locales/id';
 import { MAT_SLIDE_TOGGLE_DEFAULT_OPTIONS } from "@angular/material/slide-toggle";
 

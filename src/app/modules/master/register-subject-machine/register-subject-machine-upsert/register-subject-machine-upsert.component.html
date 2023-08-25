@@ -1,1 +1,69 @@
-<p>register-machine-upsert works!</p>
+<div class="master-upsert">
+    <div class="master-header">
+        <div>
+            <h2>{{masterData ? 'Edit' : 'Add'}}</h2>
+            <p>Please {{masterData ? 'edit' : 'add'}} register line machine</p>
+        </div>
+        <div>
+            <img alt="file" height="53" ngSrc="/assets/icons/file.svg" width="53">
+        </div>
+    </div>
+    <div [formGroup]="formGroup" class="master-content">
+        <div>
+            <label>Machine</label>
+            <mat-form-field>
+                <mat-select formControlName="machine_id">
+                    <mat-option *ngFor="let machine of machineList" [value]="machine.id">{{machine.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="row">   
+            <div class="col-6">
+                <label>Subject</label>
+                <mat-form-field class="input-register-filter">
+                    <input placeholder="Filter" matInput [formControl]="notSelectedFormControl">
+                </mat-form-field>
+                <div>
+                    <button class="ahm-menu-btn" (click)="selectBulk()">
+                        <img src="/assets/icons/arrow-right.svg" alt="arrow right">
+                    </button>
+                </div>
+                <div class="ahm-menu">
+                    <div *ngFor="let subject of filteredNotSelectedSubjectList; let index = index"
+                         [class.selected]="subject.selected"
+                         (dblclick)="selectSubject(index)"
+                         (click)="selectOneMachine(subject)"
+                         class="ahm-menu-item">
+                        {{subject.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <label>Subject</label>
+                <mat-form-field class="input-register-filter">
+                    <input placeholder="Filter" matInput [formControl]="selectedFormControl">
+                </mat-form-field>
+                <div class="d-flex justify-content-end">
+                    <button class="ahm-menu-btn" (click)="unselectBulk()">
+                        <img src="/assets/icons/arrow-left.svg" alt="arrow left">
+                    </button>
+                </div>
+                <div class="ahm-menu">
+                    <div *ngFor="let subject of filteredSelectedSubjectList; let index = index;"
+                         [class.selected]="subject.selected"
+                         (dblclick)="unselectSubject(index)"
+                         (click)="unselectOneMachine(subject)"
+                         class="ahm-menu-item">
+                        {{subject.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="master-footer">
+        <button (click)="submit()"
+                class="ahm-btn ahm-btn-primary">Save
+        </button>
+    </div>
+
+</div>
