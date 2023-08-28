@@ -1,17 +1,27 @@
 <nav>
     <div class="navbar-left-area">
-        <img (click)="toggle()" src="/assets/icons/hamburger.svg">
+        <img (click)="toggle()" src="/assets/icons/hamburger.svg" />
         <h1>Digitalization Welding Frame Body P3</h1>
     </div>
 
     <div class="navbar-right-area">
         <div class="navbar-date">
-            <span> {{todaysDate | date: 'EEEE, dd MMMM y' | uppercase}} </span>
+            <span>
+                {{ todaysDate | date : "EEEE, dd MMMM y" | uppercase }}
+            </span>
             <span> | </span>
-            <span> {{todaysDate| date: 'hh:mm:ss'}} </span>
+            <span> {{ todaysDate | date : "hh:mm:ss" }} </span>
         </div>
         <div class="navbar-notification">
-            <img alt="" src="/assets/icons/notification.svg">
+            <button mat-button [matMenuTriggerFor]="beforeMenu">
+                <img alt="" src="/assets/icons/notification.svg" />
+            </button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+                <br>
+                <button mat-menu-item>See All Notifications</button>
+            </mat-menu>
         </div>
     </div>
 </nav>
