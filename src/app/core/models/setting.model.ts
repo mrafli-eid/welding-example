@@ -3,11 +3,11 @@ export interface Setting {
     machine_name: string;
     subject_name: string;
     unit: string;
-    minimum: number;
-    upper_limit: number;
-    lower_limit: number;
-    medium: number;
-    maximum: number;
+    minimum: number | null;
+    upper_limit: number | null;
+    lower_limit: number | null;
+    medium: number | null;
+    maximum: number | null;
     created_at: string;
 }
 

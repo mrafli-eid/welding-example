@@ -1,14 +1,21 @@
+<div class="dashboard-header">
+    <h5>MTBF</h5>
+    <div class="dashboard-header-nav">
+        <ahm-datepicker
+            (dateChanged)="dateFilter = $event"
+            [hideDayPreset]="true"
+        ></ahm-datepicker>
+        <button class="btn-settings" (click)="goToSettings()">
+            <img alt="settings" src="/assets/icons/setting.svg" />
+        </button>
+    </div>
+</div>
 <div class="dashboard-content">
-    <div class="content-header">
-        <h5>MTBF</h5>
-        <ahm-datepicker (dateChanged)="dateFilter=$event"
-                        [hideDayPreset]="true"></ahm-datepicker>
-    </div>
-    <div class="content-wrapper">
-        <ahm-chart-maintenance-indicator-graph-mtbf [data]="chartData"
-                                               [target]="200"
-                                               dataType="value"></ahm-chart-maintenance-indicator-graph-mtbf>
-    </div>
+    <ahm-chart-maintenance-indicator-graph-mtbf
+        [data]="chartData"
+        [target]="200"
+        dataType="value"
+    ></ahm-chart-maintenance-indicator-graph-mtbf>
 </div>
 <div class="dashboard-footer justify-content-between">
     <div class="chart-legend">
@@ -19,4 +26,3 @@
                     [page]="page"
                     [totalPage]="machineList.length"></ahm-pagination> -->
 </div>
-
