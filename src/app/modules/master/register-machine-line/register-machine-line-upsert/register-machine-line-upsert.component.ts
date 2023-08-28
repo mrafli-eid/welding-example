@@ -5,7 +5,7 @@ import { MasterLine, MasterMachineLine } from '../../../../core/models/master.mo
 import { MachineLine } from "../../../../core/models/register.model";
 import { PureService } from 'src/app/core/services/pure.service';
 import { RegisterService } from 'src/app/core/services/register.service';
-import { DUMMY_LINE_LIST, DUMMY_MACHINE_LIST } from '../../master-robot/master-robot-upsert/master-robot.dummy';
+import { DUMMY_LINE_LIST, DUMMY_MACHINE_LIST } from '../../register-machine-line/register-machine-line-upsert/register-machine-line-upsert.dummy';
 
 @Component({
     selector: 'ahm-register-machine-line-upsert',
