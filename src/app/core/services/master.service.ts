@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MasterLine, MasterMachine, MasterParams, MasterSubject } from '../models/master.model';
+import { MasterLine, MasterMachine, MasterParams, MasterRobot, MasterSubject } from '../models/master.model';
 import { environment } from '../../../environments/environment';
 import { removeEmptyObject } from '../helpers/object.helper';
 import { HttpResponse } from '../models/http.model';
@@ -105,7 +105,7 @@ export class MasterService {
         });
     }
     
-    createRobot(body: any) {
+    createRobot(body: MasterRobot[]) {
         return this.http.post<HttpResponse<any>>(`${ this.baseUrlRobot }/create-robot`, body);
     }
     
@@ -121,8 +121,8 @@ export class MasterService {
         return this.http.delete<HttpResponse<any>>(`${ this.baseUrlRobot }/${ id }`);
     }
     
-    updateRobot(id: string, body: any) {
-        return this.http.put    <HttpResponse<any>>(`${ this.baseUrlRobot }/${ id }`, body);
+    updateRobot(id: string, body: MasterRobot[]) {
+        return this.http.put<HttpResponse<any>>(`${ this.baseUrlRobot }/${ id }`, body);
     }
 
     exportExcelRobot() {

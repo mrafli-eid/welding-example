@@ -6,7 +6,6 @@ import { MatDialog } from "@angular/material/dialog";
 import { debounceTime, take } from "rxjs";
 import { Sort } from "@angular/material/sort";
 import { MasterDataDeleteComponent } from "../../dialogs/master-data-delete/master-data-delete.component";
-// import { SubjectMachine } from "../../../../core/models/register.model";
 import { DUMMY_ROBOT_MACHINE_LIST } from "./master-robot-list.dummy";
 import { MasterService } from "../../../../core/services/master.service";
 
@@ -94,7 +93,7 @@ export class MasterRobotListComponent {
 
     delete(data: MasterRobot) {
         const matDialogRef = this.matDialog.open(MasterDataDeleteComponent, {
-            data: data.machine_name,
+            data: data.name_machine,
         });
 
         matDialogRef.afterClosed().subscribe((resp) => {
@@ -116,6 +115,5 @@ export class MasterRobotListComponent {
     download() {
         this.MasterService.exportExcelRobot();
     }
-
 
 }

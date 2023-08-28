@@ -5,9 +5,11 @@ export interface MasterLine {
 }
 
 export interface MasterRobot {
+    id:string
     name: string;
     machine_id: string;
-    machine_name: string;
+    name_machine: string;
+    description: string;
     created_at: string;
 }[]
 

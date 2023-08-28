@@ -5,7 +5,7 @@ import { take } from 'rxjs';
 import { MasterMachine, MasterSubject } from 'src/app/core/models/master.model';
 import { PureService } from 'src/app/core/services/pure.service';
 import { RegisterService } from 'src/app/core/services/register.service';
-import { DUMMY_MACHINE_LIST, DUMMY_SUBJECT_LIST } from '../../master-robot/master-robot-upsert/master-robot.dummy';
+import { DUMMY_MACHINE_LIST, DUMMY_SUBJECT_LIST } from '../../register-subject-machine/register-subject-machine-upsert/register-subject-machine-upsert.dummy';
 
 @Component({
     selector: 'ahm-register-subject-machine-upsert',
