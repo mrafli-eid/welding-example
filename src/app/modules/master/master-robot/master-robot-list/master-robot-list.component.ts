@@ -16,7 +16,7 @@ import { MasterService } from "../../../../core/services/master.service";
 })
 
 export class MasterRobotListComponent {
-    machineList: MasterRobot[] = DUMMY_ROBOT_MACHINE_LIST;
+    machineRobotList: MasterRobot[] = DUMMY_ROBOT_MACHINE_LIST;
     queryParams: Partial<MasterParams> = {};
     pagination: Pagination = {
         page_number: 1,
@@ -65,7 +65,7 @@ export class MasterRobotListComponent {
             .subscribe({
                 next: (response) => {
                     this.pagination = JSON.parse(response.headers.get('x-pagination'));
-                    this.machineList = response.body.data || [];
+                    this.machineRobotList = response.body.data || [];
                 },  
             });
     }
@@ -98,7 +98,7 @@ export class MasterRobotListComponent {
 
         matDialogRef.afterClosed().subscribe((resp) => {
             if (resp) {
-                this.masterService.deleteLine(masterRobot.id)
+                this.masterService.deleteRobot(masterRobot.id)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
