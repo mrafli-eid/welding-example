@@ -8,7 +8,7 @@ import { MasterRobot } from "../../../../core/models/master.model";
 })
 export class MasterRobotDetailComponent {
 
-  @Input() data: MasterRobot;
+  @Input() masterData: MasterRobot;
   @Output() onFinished = new EventEmitter();
 
   back() {

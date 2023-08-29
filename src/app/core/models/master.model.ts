@@ -5,7 +5,7 @@ export interface MasterLine {
 }
 
 export interface MasterRobot {
-    id:string
+    id: string;
     name: string;
     machine_id: string;
     name_machine: string;
@@ -24,6 +24,7 @@ export interface MasterSubject {
 export interface MasterMachine {
     id: string;
     name: string;
+    description?: string;
     created_at: string;
 }
 
