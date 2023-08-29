@@ -74,6 +74,6 @@ export class DetailMachineServoLoadComponent {
     }
 
     goToSettings() {
-        this.router.navigate([ '/SOMEWHERE' ]);
+        this.router.navigate([ '/settings' ]);
     }
 }
