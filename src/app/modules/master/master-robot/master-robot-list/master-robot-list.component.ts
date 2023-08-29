@@ -87,8 +87,8 @@ export class MasterRobotListComponent {
         this.getRobotList();
     }
 
-    edit(masterLine: MasterRobot) {
-        this.onEdit.emit(masterLine);
+    edit(data: MasterRobot) {
+        this.onEdit.emit(data);
     }
 
     delete(masterLine: MasterRobot) {
