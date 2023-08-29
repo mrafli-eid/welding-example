@@ -7,8 +7,8 @@ export const DUMMY_SETTING_LIST: Setting[] = [
         "subject_name": "Oil Level MC 1",
         "unit": "Liter",
         "minimum": 0,
-        "upper_limit": null,
-        "lower_limit": null,
+        "upper_limit": 0,
+        "lower_limit": 0,
         "medium": 150,
         "maximum": 300,
         "created_at": "2023-06-27 16:03:10"

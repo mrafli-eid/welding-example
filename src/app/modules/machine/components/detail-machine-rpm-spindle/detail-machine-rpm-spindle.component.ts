@@ -66,7 +66,7 @@ export class DetailMachineRpmSpindleComponent {
   }
 
   goToSettings() {
-    this.router.navigate(['/SOMEWHERE']);
+    this.router.navigate(['/settings']);
   }
 
 }

@@ -1,21 +1,22 @@
 import { Component, Input } from '@angular/core';
-import { interval, take } from "rxjs";
-import { DashboardService } from "../../../../../core/services/dashboard.service";
-import { Machine } from "../../../../../core/models/layout-machine.model";
-import { DateFilter } from "../../../../../core/models/date-filter.model";
-import { getDefaultDateFilter } from "../../../../../core/consts/datepicker.const";
-import { DashboardGrafikMttr } from "../../../../../core/models/dashboard.model";
-import { DUMMY_DASHBOARD_MTTR } from "../maintenance-indicator-graph.dummy";
-import { DEFAULT_INTERVAL } from "../../../../../core/consts/app.const";
-import { untilDestroyed } from "../../../../../core/helpers/rxjs.helper";
-import { DUMMY_DASHBOARD_PRODUCTION_GRAPH } from "../../production-graph/production-graph.dummy";
+import { interval, take } from 'rxjs';
+import { DashboardService } from '../../../../../core/services/dashboard.service';
+import { Machine } from '../../../../../core/models/layout-machine.model';
+import { DateFilter } from '../../../../../core/models/date-filter.model';
+import { getDefaultDateFilter } from '../../../../../core/consts/datepicker.const';
+import { DashboardGrafikMttr } from '../../../../../core/models/dashboard.model';
+import { DUMMY_DASHBOARD_MTTR } from '../maintenance-indicator-graph.dummy';
+import { DEFAULT_INTERVAL } from '../../../../../core/consts/app.const';
+import { untilDestroyed } from '../../../../../core/helpers/rxjs.helper';
+import { DUMMY_DASHBOARD_PRODUCTION_GRAPH } from '../../production-graph/production-graph.dummy';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ahm-maintenance-indicator-graph-mttr',
     templateUrl: './maintenance-indicator-graph-mttr.component.html',
-    styleUrls: [ '../maintenance-indicator-graph.component.scss' ],
+    styleUrls: ['../maintenance-indicator-graph.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class MaintenanceIndicatorGraphMTTRComponent {
@@ -23,11 +24,13 @@ export class MaintenanceIndicatorGraphMTTRComponent {
 
     @Input() machineList: Machine[] = [];
     dateFilter: DateFilter = getDefaultDateFilter();
-     chartData: DashboardGrafikMttr = DUMMY_DASHBOARD_MTTR;
+    chartData: DashboardGrafikMttr = DUMMY_DASHBOARD_MTTR;
     page: number = 0;
 
-    constructor(private dashboardService: DashboardService) {
-    }
+    constructor(
+        private dashboardService: DashboardService,
+        private router: Router
+    ) {}
 
     ngOnInit() {
         this.getChartData();
@@ -40,7 +43,8 @@ export class MaintenanceIndicatorGraphMTTRComponent {
 
     getChartData(): void {
         // const machineName = encodeURIComponent(this.machineList[this.page].name);
-        this.dashboardService.getGrafikMttr(this.dateFilter)
+        this.dashboardService
+            .getGrafikMttr(this.dateFilter)
             .pipe(take(1))
             .subscribe({
                 next: (resp) => {
@@ -48,8 +52,7 @@ export class MaintenanceIndicatorGraphMTTRComponent {
                         this.chartData = resp.data;
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 
@@ -63,6 +66,9 @@ export class MaintenanceIndicatorGraphMTTRComponent {
         this.getChartData();
     }
 
-
-    protected readonly DUMMY_DASHBOARD_PRODUCTION_GRAPH = DUMMY_DASHBOARD_PRODUCTION_GRAPH;
+    goToSettings() {
+        this.router.navigate(['/settings']);
+    }
+    protected readonly DUMMY_DASHBOARD_PRODUCTION_GRAPH =
+        DUMMY_DASHBOARD_PRODUCTION_GRAPH;
 }

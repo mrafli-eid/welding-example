@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarService } from '../../core/services/sidebar.service';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [ CommonModule ],
+    imports: [ CommonModule, MatButtonModule, MatMenuModule],
     templateUrl: './navbar.component.html',
     styleUrls: [ './navbar.component.scss' ],
 })

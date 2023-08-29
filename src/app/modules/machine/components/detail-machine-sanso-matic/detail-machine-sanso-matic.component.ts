@@ -68,6 +68,6 @@ export class DetailMachineSansoMaticComponent {
   }
 
   goToSettings() {
-    this.router.navigate(['/SOMEWHERE']);
+    this.router.navigate(['/settings']);
   }
 }

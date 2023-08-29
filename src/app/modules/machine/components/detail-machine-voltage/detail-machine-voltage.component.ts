@@ -67,6 +67,6 @@ export class DetailMachineVoltageComponent {
     }
   
     goToSettings() {
-      this.router.navigate(['/SOMEWHERE']);
+      this.router.navigate(['/settings']);
     }
 }

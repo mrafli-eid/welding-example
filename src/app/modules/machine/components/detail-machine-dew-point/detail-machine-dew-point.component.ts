@@ -68,6 +68,6 @@ export class DetailMachineDewPointComponent {
     }
 
     goToSettings() {
-        this.router.navigate(['/SOMEWHERE']);
+        this.router.navigate(['/settings']);
     }
 }

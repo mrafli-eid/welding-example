@@ -42,8 +42,16 @@ body {
     align-items: center;
 }
 
+.justify-between {
+    justify-content: space-between;
+}
+
 .mb-6 {
     margin-bottom: 6px;
+}
+
+.mr-6 {
+    margin-right: 6px;
 }
 
 .font-semibold {
