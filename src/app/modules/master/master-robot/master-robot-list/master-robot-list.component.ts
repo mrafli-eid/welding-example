@@ -16,7 +16,7 @@ import { MasterService } from "../../../../core/services/master.service";
 })
 
 export class MasterRobotListComponent {
-  robotList: MasterRobot[] = DUMMY_ROBOT_MACHINE_LIST;
+    masterList: MasterRobot[] = DUMMY_ROBOT_MACHINE_LIST;
     queryParams: Partial<MasterParams> = {};
     pagination: Pagination = {
         page_number: 1,
@@ -29,43 +29,43 @@ export class MasterRobotListComponent {
     @Output() onEdit = new EventEmitter<MasterRobot>();
     @Output() onDetail = new EventEmitter<MasterRobot>();
 
-    constructor(private MasterService: MasterService,
+    constructor(private masterService: MasterService,
                 private matDialog: MatDialog) {
     }
 
     ngOnInit() {
         this.addSearchListener();
-        this.getrobotList();
+        this.getMasterList();
     }
 
     onSelectPage(page: number) {
         this.pagination.page_number = page;
-        this.getrobotList();
+        this.getMasterList();
     }
 
     onSelectLimit(limit: number) {
         this.pagination.page_size = limit;
         this.pagination.page_number = 1;
-        this.getrobotList();
+        this.getMasterList();
     }
 
     refreshData() {
         this.pagination.page_number = 1;
-        this.getrobotList();
+        this.getMasterList();
     }
 
-    getrobotList() {
+    getMasterList() {
         this.queryParams = {
             ...this.queryParams,
             page_size: this.pagination.page_size,
             page_number: this.pagination.page_number,
         };
-        this.MasterService.getRobotList(this.queryParams)
+        this.masterService.getLineList(this.queryParams)
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
                     this.pagination = JSON.parse(response.headers.get('x-pagination'));
-                    this.robotList = response.body.data || [];
+                    this.masterList = response.body.data || [];
                 },
             });
     }
@@ -76,7 +76,7 @@ export class MasterRobotListComponent {
             .subscribe((val) => {
                 this.queryParams.search_term = val;
                 this.pagination.page_number = 1;
-                this.getrobotList();
+                this.getMasterList();
             });
     }
 
@@ -84,36 +84,35 @@ export class MasterRobotListComponent {
     sortData(sort: Sort) {
         const order_by = sort.active + ' ' + sort.direction;
         this.queryParams.order_by = order_by;
-        this.getrobotList();
+        this.getMasterList();
     }
 
-    edit(data: MasterRobot) {
-        this.onEdit.emit(data);
+    edit(masterLine: MasterRobot) {
+        this.onEdit.emit(masterLine);
     }
 
-    delete(data: MasterRobot) {
+    delete(masterLine: MasterRobot) {
         const matDialogRef = this.matDialog.open(MasterDataDeleteComponent, {
-            data: data.name_machine,
+            data: masterLine.name,
         });
 
         matDialogRef.afterClosed().subscribe((resp) => {
             if (resp) {
-                this.MasterService.deleteRobot(data.machine_id)
+                this.masterService.deleteLine(masterLine.id)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
-                        this.getrobotList();
+                        this.getMasterList();
                     });
             }
         });
     }
 
-    detail(data: MasterRobot) {
-        this.onDetail.emit(data);
+    detail(masterLine: MasterRobot) {
+        this.onDetail.emit(masterLine);
     }
 
     download() {
-        this.MasterService.exportExcelRobot();
+        this.masterService.exportExcelLine();
     }
-
 }

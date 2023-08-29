@@ -21,7 +21,7 @@ export class MasterService {
 
     getLineList(params: Partial<MasterParams>) {
         params = removeEmptyObject(params);
-        return this.http.get<HttpResponse<MasterLine[]>>(`${ this.baseUrlLine }/get-line-all`, {
+        return this.http.get<HttpResponse<MasterRobot[]>>(`${ this.baseUrlLine }/get-line-all`, {
             observe: 'response',
             params: params,
         });
@@ -103,6 +103,10 @@ export class MasterService {
         }).subscribe((response) => {
             downLoadFile(response);
         });
+    }
+
+    getListMachine() {
+        return this.http.get<HttpResponse<any[]>>(`${ environment.API_URL }/get-list-machine`);
     }
     
     createRobot(body: MasterRobot[]) {
