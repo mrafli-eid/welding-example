@@ -106,7 +106,7 @@ export class MasterService {
     }
 
     getListMachine() {
-        return this.http.get<HttpResponse<MasterMachine[]>>(`${ environment.API_URL }/get-list-machine`);
+        return this.http.get<HttpResponse<MasterMachine[]>>(`${ this.baseUrlMachine }/get-list-machine`);
     }
     
     createRobot(body: MasterRobot[]) {
@@ -115,7 +115,7 @@ export class MasterService {
     
     getRobotList(params: Partial<MasterParams>) {
         params = removeEmptyObject(params);
-        return this.http.get<HttpResponse<MasterRobot>>(`${ this.baseUrlRobot }/get-robot-all`, {
+        return this.http.get<HttpResponse<MasterRobot[]>>(`${ this.baseUrlRobot }/get-robot-all`, {
             observe: 'response',
             params: params,
         });

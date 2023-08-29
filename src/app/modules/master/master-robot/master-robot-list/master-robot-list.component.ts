@@ -35,32 +35,32 @@ export class MasterRobotListComponent {
 
     ngOnInit() {
         this.addSearchListener();
-        this.getMasterList();
+        this.getRobotList();
     }
 
     onSelectPage(page: number) {
         this.pagination.page_number = page;
-        this.getMasterList();
+        this.getRobotList();
     }
 
     onSelectLimit(limit: number) {
         this.pagination.page_size = limit;
         this.pagination.page_number = 1;
-        this.getMasterList();
+        this.getRobotList();
     }
 
     refreshData() {
         this.pagination.page_number = 1;
-        this.getMasterList();
+        this.getRobotList();
     }
 
-    getMasterList() {
+    getRobotList() {
         this.queryParams = {
             ...this.queryParams,
             page_size: this.pagination.page_size,
             page_number: this.pagination.page_number,
         };
-        this.masterService.getLineList(this.queryParams)
+        this.masterService.getRobotList(this.queryParams)
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
@@ -76,7 +76,7 @@ export class MasterRobotListComponent {
             .subscribe((val) => {
                 this.queryParams.search_term = val;
                 this.pagination.page_number = 1;
-                this.getMasterList();
+                this.getRobotList();
             });
     }
 
@@ -84,7 +84,7 @@ export class MasterRobotListComponent {
     sortData(sort: Sort) {
         const order_by = sort.active + ' ' + sort.direction;
         this.queryParams.order_by = order_by;
-        this.getMasterList();
+        this.getRobotList();
     }
 
     edit(masterLine: MasterRobot) {
@@ -102,7 +102,7 @@ export class MasterRobotListComponent {
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
-                        this.getMasterList();
+                        this.getRobotList();
                     });
             }
         });
