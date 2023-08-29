@@ -16,7 +16,7 @@ import { MasterService } from "../../../../core/services/master.service";
 })
 
 export class MasterRobotListComponent {
-    masterList: MasterRobot[] = DUMMY_ROBOT_MACHINE_LIST;
+    machineList: MasterRobot[] = DUMMY_ROBOT_MACHINE_LIST;
     queryParams: Partial<MasterParams> = {};
     pagination: Pagination = {
         page_number: 1,
@@ -65,8 +65,8 @@ export class MasterRobotListComponent {
             .subscribe({
                 next: (response) => {
                     this.pagination = JSON.parse(response.headers.get('x-pagination'));
-                    this.masterList = response.body.data || [];
-                },
+                    this.machineList = response.body.data || [];
+                },  
             });
     }
 
@@ -87,18 +87,18 @@ export class MasterRobotListComponent {
         this.getRobotList();
     }
 
-    edit(data: MasterRobot) {
-        this.onEdit.emit(data);
+    edit(masterRobot: MasterRobot) {
+        this.onEdit.emit(masterRobot);
     }
 
-    delete(masterLine: MasterRobot) {
+    delete(masterRobot: MasterRobot) {
         const matDialogRef = this.matDialog.open(MasterDataDeleteComponent, {
-            data: masterLine.name,
+            data: masterRobot.name,
         });
 
         matDialogRef.afterClosed().subscribe((resp) => {
             if (resp) {
-                this.masterService.deleteLine(masterLine.id)
+                this.masterService.deleteLine(masterRobot.id)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
@@ -108,8 +108,8 @@ export class MasterRobotListComponent {
         });
     }
 
-    detail(masterLine: MasterRobot) {
-        this.onDetail.emit(masterLine);
+    detail(masterRobot: MasterRobot) {
+        this.onDetail.emit(masterRobot);
     }
 
     download() {

@@ -12,8 +12,8 @@
         <div>
             <label>Machine</label>
             <mat-form-field>
-                <mat-select class="machine-option" formControlName="category_line_id">
-                    <mat-option *ngFor="let categoryLine of categoryLineList" [value]="categoryLine.id">{{categoryLine.name}}</mat-option>
+                <mat-select class="machine-option" formControlName="machine_id">
+                    <mat-option *ngFor="let machine of machineList" [value]="machine.id">{{machine.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

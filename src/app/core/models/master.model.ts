@@ -11,6 +11,7 @@ export interface MasterRobot {
     name_machine: string;
     description: string;
     created_at: string;
+    updated_at: string;
 }[]
 
 export interface MasterSubject {
@@ -26,6 +27,7 @@ export interface MasterMachine {
     name: string;
     description?: string;
     created_at: string;
+    updated_at?: string;
 }
 
 export interface MasterMachineLine {
