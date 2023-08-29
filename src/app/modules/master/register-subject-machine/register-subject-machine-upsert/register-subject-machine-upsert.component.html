@@ -12,7 +12,7 @@
         <div>
             <label>Machine</label>
             <mat-form-field>
-                <mat-select formControlName="machine_id">
+                <mat-select formControlName="subject_id">
                     <mat-option *ngFor="let machine of machineList" [value]="machine.id">{{machine.name}}</mat-option>
                 </mat-select>
             </mat-form-field>

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MasterRobot } from '../../../../core/models/master.model';
 import { MasterMachine } from '../../../../core/models/master.model';
-import { DUMMY_MACHINE_LIST, DUMMY_MACHINE } from './master-robot.dummy';
+import { DUMMY_MACHINE_LIST, /*DUMMY_MACHINE */ } from './master-robot.dummy';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MasterService } from '../../../../core/services/master.service';
 import { take } from 'rxjs';
@@ -16,24 +16,23 @@ export class MasterRobotUpsertComponent {
     @Input() masterData: MasterRobot;
     @Output() onSubmit = new EventEmitter();
 
-    categoryLineList: MasterMachine[] = DUMMY_MACHINE_LIST;
+    machineList: MasterMachine[] = DUMMY_MACHINE_LIST;
 
     formGroup: FormGroup = new FormGroup({
-        category_line_id: new FormControl('', [ Validators.required ]),
+        machine_id: new FormControl('', [ Validators.required ]),
         name: new FormControl('', [ Validators.required ]),
     });
 
-    constructor(private masterService: MasterService,
-                ) {
+    constructor(private masterService: MasterService) {
     }
 
     ngOnInit() {
         this.masterService.getListMachine().subscribe((resp) => {
-            this.categoryLineList = resp.data;
-        });
+            this.machineList = resp.data;
+        }); 
     }
 
-
+    
     ngOnChanges() {
         this.formGroup.patchValue(this.masterData);
     }
@@ -50,9 +49,9 @@ export class MasterRobotUpsertComponent {
         }
     }
 
-    edit(body: any) {
+    edit(body: MasterRobot[]) {
         const id = this.masterData.id;
-        this.masterService.updateLine(id, body)
+        this.masterService.updateRobot(id, body)
             .pipe(take(1))
             .subscribe({
                 next: () => {
@@ -64,8 +63,8 @@ export class MasterRobotUpsertComponent {
             });
     }
 
-    create(body: any) {
-        this.masterService.createLine(body)
+    create(body: MasterRobot[]) {
+        this.masterService.createRobot(body)
             .pipe(take(1))
             .subscribe({
                 next: () => {
@@ -82,5 +81,5 @@ export class MasterRobotUpsertComponent {
         this.formGroup.reset();
     }
 
-    protected readonly DUMMY_MACHINE = DUMMY_MACHINE;
+    // protected readonly DUMMY_MACHINE = DUMMY_MACHINE;
 }

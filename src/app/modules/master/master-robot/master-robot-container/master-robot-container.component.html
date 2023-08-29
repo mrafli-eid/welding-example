@@ -5,7 +5,7 @@
     <div *ngIf="!isDetail" class="row">
         <div class="col-4">
             <app-master-robot-upsert (onSubmit)="onFinished()"
-                                    [masterData]="masterLine"></app-master-robot-upsert>
+                                    [masterData]="masterRobot"></app-master-robot-upsert>
         </div>
         <div class="col-8">
             <app-master-robot-list (onDetail)="onDetail($event)"
@@ -14,6 +14,6 @@
     </div>
     <div *ngIf="isDetail" class="row">
         <app-master-robot-detail (onFinished)="onFinished()"
-                                [masterData]="masterLine"></app-master-robot-detail>
+                                [masterData]="masterRobot"></app-master-robot-detail>
     </div>
 </div>

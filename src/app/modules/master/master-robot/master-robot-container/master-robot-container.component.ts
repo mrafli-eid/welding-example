@@ -15,23 +15,23 @@ export class MasterRobotContainerComponent {
         { label: 'Robot', link: '/master/robot' },
     ];
     
-    masterLine: MasterRobot;
+    masterRobot: MasterRobot;
     isDetail = false;
 
     @ViewChild(MasterRobotListComponent) listComponent: MasterRobotListComponent;
 
-    onDetail(masterLine: MasterRobot) {
-        this.masterLine = masterLine;
+    onDetail(masterRobot: MasterRobot) {
+        this.masterRobot = masterRobot;
         this.isDetail = true;
 
     }
 
-    onEdit(masterLine: MasterRobot) {
-        this.masterLine = masterLine;
+    onEdit(masterRobot: MasterRobot) {
+        this.masterRobot = masterRobot;
     }
 
     onFinished() {
-        this.masterLine = null;
+        this.masterRobot = null;
         this.isDetail = false;
         this.listComponent.refreshData();
     }

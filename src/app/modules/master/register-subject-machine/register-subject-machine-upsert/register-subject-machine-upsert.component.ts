@@ -30,7 +30,7 @@ export class RegisterSubjectMachineUpsertComponent {
 
     formGroup: FormGroup = new FormGroup({
         machine_id: new FormControl('', [ Validators.required ]),
-        subject_id: new FormControl(),
+        subject_id: new FormControl('', [ Validators.required ]),
     });
 
 
@@ -52,7 +52,7 @@ export class RegisterSubjectMachineUpsertComponent {
 
 
     ngOnChanges() {
-        this.patchValue();
+        this.formGroup.patchValue(this.masterData)
     }
 
     selectOneMachine(subject: MasterSubject) {
