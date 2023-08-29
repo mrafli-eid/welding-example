@@ -8,7 +8,7 @@ export const DUMMY_SETTING_LIST: Setting[] = [
         "unit": "Liter",
         "minimum": 0,
         "upper_limit": 0,
-        "lower_limit": 0,
+        "lower_limit": null,
         "medium": 150,
         "maximum": 300,
         "created_at": "2023-06-27 16:03:10"
