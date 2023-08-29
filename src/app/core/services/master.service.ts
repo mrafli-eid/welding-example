@@ -106,27 +106,27 @@ export class MasterService {
     }
 
     getListMachine() {
-        return this.http.get<HttpResponse<any[]>>(`${ environment.API_URL }/get-list-machine`);
+        return this.http.get<HttpResponse<MasterMachine[]>>(`${ environment.API_URL }/get-list-machine`);
     }
     
     createRobot(body: MasterRobot[]) {
-        return this.http.post<HttpResponse<any>>(`${ this.baseUrlRobot }/create-robot`, body);
+        return this.http.post<HttpResponse<MasterRobot>>(`${ this.baseUrlRobot }/create-robot`, body);
     }
     
     getRobotList(params: Partial<MasterParams>) {
         params = removeEmptyObject(params);
-        return this.http.get<HttpResponse<any>>(`${ this.baseUrlRobot }/get-robot-all`, {
+        return this.http.get<HttpResponse<MasterRobot>>(`${ this.baseUrlRobot }/get-robot-all`, {
             observe: 'response',
             params: params,
         });
     }
     
     deleteRobot(id: string) {
-        return this.http.delete<HttpResponse<any>>(`${ this.baseUrlRobot }/${ id }`);
+        return this.http.delete<HttpResponse<MasterRobot>>(`${ this.baseUrlRobot }/${ id }`);
     }
     
     updateRobot(id: string, body: MasterRobot[]) {
-        return this.http.put<HttpResponse<any>>(`${ this.baseUrlRobot }/${ id }`, body);
+        return this.http.put<HttpResponse<MasterRobot>>(`${ this.baseUrlRobot }/${ id }`, body);
     }
 
     exportExcelRobot() {
