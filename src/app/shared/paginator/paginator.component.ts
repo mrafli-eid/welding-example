@@ -14,8 +14,8 @@ export class PaginatorComponent implements OnChanges {
     @Input() pagination: Pagination;
     paginationDisplay = [];
 
-    limitList = [ 3, 5, 10, 20, 50, 100 ];
-    limit = 3;
+    limitList = [ 10, 20, 50, 100 ];
+    limit = 200;
 
 
     @Output() public selectedPage: EventEmitter<number> = new EventEmitter();
@@ -37,7 +37,7 @@ export class PaginatorComponent implements OnChanges {
     }
 
     public updatePagination() {
-        this.limit = this.pagination?.page_size || 3;
+        this.limit = this.pagination?.page_size || 20;
         if (!this.pagination) {
             this.paginationDisplay = [];
             return;

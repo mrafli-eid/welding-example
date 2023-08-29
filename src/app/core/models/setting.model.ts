@@ -2,7 +2,7 @@ export interface Setting {
     id: string;
     machine_name: string;
     subject_name: string;
-    unit: string;
+    unit: string | null;
     minimum: number | null;
     upper_limit: number | null;
     lower_limit: number | null;
@@ -14,8 +14,8 @@ export interface Setting {
 export interface SettingUpsertRequest {
     machine_name: string;
     subject_name: string;
-    unit: string;
-    minimum: number;
-    medium: number;
-    maximum: number;
+    unit: string | null;
+    minimum: number | null;
+    medium: number | null;
+    maximum: number | null;
 }

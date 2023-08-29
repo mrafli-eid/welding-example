@@ -15,12 +15,18 @@ export class SettingService {
     constructor(private http: HttpClient) {
     }
 
-    getSettingList(params: Partial<MasterParams>) {
-        params = removeEmptyObject(params);
+    getSettingList(params: Partial<MasterParams> = null) {
+        if (params) {
+            params = removeEmptyObject(params);
+        }
         return this.http.get<HttpResponse<Setting[]>>(`${ this.baseUrl }/get-setting-all`, {
             observe: 'response',
             params: params,
         });
+    }
+
+    getSettingListAll(){
+        return this.http.get<HttpResponse<Setting[]>>(`${ this.baseUrl }/get-setting-alls`);
     }
 
     createSetting(body: SettingUpsertRequest) {

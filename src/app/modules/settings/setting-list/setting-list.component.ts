@@ -46,8 +46,8 @@ export class SettingListComponent {
     getSettingList() {
         this.queryParams = {
             ...this.queryParams,
-            page_size: this.pagination.page_size,
             page_number: this.pagination.page_number,
+            page_size: this.pagination.page_size  + 5,
         };
         this.settingService.getSettingList(this.queryParams)
             .pipe(take(1))
