@@ -1,6 +1,6 @@
-import { MasterMachine, MasterSubject } from '../../../../core/models/master.model';
+import { registerMachine, MasterSubject } from '../../../../core/models/master.model';
 
-export const DUMMY_MACHINE_LIST: MasterMachine[] = [
+export const DUMMY_MACHINE_LIST: registerMachine[] = [
     {
         "id": "9f303dec-17dd-4ec9-acc7-2da687e6527f",
         "name": "KOMATSU#1",
@@ -21,7 +21,7 @@ export const DUMMY_MACHINE_LIST: MasterMachine[] = [
         "name": "KOMATSU#4",
         "created_at": "2023-04-11 11:44:14"
     },
-    {   
+    {
         "id": "53554748-2eb5-4821-892d-0d69ec92c406",
         "name": "KOMATSU#5",
         "created_at": "2023-04-11 11:44:14"

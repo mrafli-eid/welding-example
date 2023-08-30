@@ -22,12 +22,28 @@ export interface MasterSubject {
     created_at: string;
 }
 
+export interface registerMachineList {
+    machine_id: string;
+    subject_id: string[]
+}
+
+export interface MasterMachineRobot {
+    id: string;
+    name: string;
+    description: string;
+    created_at: string;
+    updated_at: string;
+}
+
 export interface MasterMachine {
     id: string;
     name: string;
-    description?: string;
     created_at: string;
-    updated_at?: string;
+}
+export interface registerMachine {
+    id: string;
+    name: string;
+    created_at: string;
 }
 
 export interface MasterMachineLine {
