@@ -38,16 +38,14 @@ export class ChartDetailMachineRurgeCellComponent {
         this.lineChartData.labels = this.data.data.map((res) => res.label);
 
         const maximum = this.data.maximum;
-        if (notNull(maximum || this.maximum)) {
-            // @ts-ignore
-            this.lineChartOptions.plugins.annotation.annotations.maximum = {
-                type: 'line',
-                yMin: this.maximum,
-                yMax: this.maximum,
-                borderColor: '#DC3545',
-                borderWidth: 1,
-            };
-        }
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.maximum = {
+            type: 'line',
+            yMin: maximum == null ? this.maximum : maximum,
+            yMax: maximum == null ? this.maximum : maximum,
+            borderColor: '#DC3545',
+            borderWidth: 1,
+        };
     }
 
     public lineChartData: ChartConfiguration['data'] = {

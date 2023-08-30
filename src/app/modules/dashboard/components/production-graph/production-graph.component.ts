@@ -6,15 +6,16 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
 import { DashboardProductionGraph } from '../../../../core/models/dashboard.model';
 import { DUMMY_DASHBOARD_PRODUCTION_GRAPH } from './production-graph.dummy';
 import { Machine } from '../../../../core/models/layout-machine.model';
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ahm-production-graph',
     templateUrl: './production-graph.component.html',
-    styleUrls: [ './production-graph.component.scss' ],
+    styleUrls: ['./production-graph.component.scss'],
     host: {
-        'class': 'dashboard-card justify-content-between',
+        class: 'dashboard-card justify-content-between',
     },
 })
 export class ProductionGraphComponent {
@@ -22,12 +23,15 @@ export class ProductionGraphComponent {
 
     @Input() machineList: Machine[] = [];
     dateFilter: DateFilter = getDefaultDateFilter();
-    productionGraph: DashboardProductionGraph = DUMMY_DASHBOARD_PRODUCTION_GRAPH;
+    productionGraph: DashboardProductionGraph =
+        DUMMY_DASHBOARD_PRODUCTION_GRAPH;
 
     page: number = 0;
 
-    constructor(private dashboardService: DashboardService) {
-    }
+    constructor(
+        private dashboardService: DashboardService,
+        private router: Router
+    ) {}
 
     ngOnInit() {
         this.getChartData();
@@ -39,8 +43,11 @@ export class ProductionGraphComponent {
     }
 
     getChartData(): void {
-        const machineName = encodeURIComponent(this.machineList[this.page].name);
-        this.dashboardService.getProductionGraph(machineName, this.dateFilter)
+        const machineName = encodeURIComponent(
+            this.machineList[this.page].name
+        );
+        this.dashboardService
+            .getProductionGraph(machineName, this.dateFilter)
             .pipe(take(1))
             .subscribe({
                 next: (resp) => {
@@ -48,8 +55,7 @@ export class ProductionGraphComponent {
                         this.productionGraph = resp.data;
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 
@@ -63,4 +69,7 @@ export class ProductionGraphComponent {
         this.getChartData();
     }
 
+    goToSettings() {
+        this.router.navigate(['/settings']);
+    }
 }

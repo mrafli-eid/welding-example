@@ -1,13 +1,24 @@
 <div class="dashboard-header">
     <h5>
         Production Graph
-        <span *ngIf="productionGraph">({{this.machineList[this.page].name}})</span>
+        <span *ngIf="productionGraph"
+            >({{ this.machineList[this.page].name }})</span
+        >
     </h5>
-    <ahm-datepicker (dateChanged)="onFilterChanged($event)"
-                    [dateFilter]="dateFilter"></ahm-datepicker>
+    <div class="dashboard-header-nav">
+        <ahm-datepicker
+            (dateChanged)="onFilterChanged($event)"
+            [dateFilter]="dateFilter"
+        ></ahm-datepicker>
+        <button class="btn-settings" (click)="goToSettings()">
+            <img alt="settings" src="/assets/icons/setting.svg" />
+        </button>
+    </div>
 </div>
 <div class="dashboard-content">
-    <ahm-chart-production-graph [data]="productionGraph"></ahm-chart-production-graph>
+    <ahm-chart-production-graph
+        [data]="productionGraph"
+    ></ahm-chart-production-graph>
 </div>
 <div class="dashboard-footer justify-content-between">
     <div class="chart-legend">
@@ -18,4 +29,3 @@
                     [page]="page"
                     [totalPage]="machineList.length"></ahm-pagination> -->
 </div>
-
