@@ -44,7 +44,7 @@ export class DetailMachineRpmSpindleComponent {
   }
   
   fetchRpmSpindle(){
-    this.machineService.getRpmSpindle(this.rpmSpindleList.machine_name, this.dateFilter)
+    this.machineService.getRpmSpindle(this.machine_name, this.dateFilter)
     .pipe(take(1))
     .subscribe({
       next: (resp) => {
