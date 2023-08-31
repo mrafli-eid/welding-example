@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
-    MasterMachine,
+    registerMachine,
     MasterParams,
     MasterSubject,
 } from '../../../core/models/master.model';
@@ -22,7 +22,7 @@ import Swal from 'sweetalert2';
 export class SettingUpsertComponent implements OnInit {
     @Output() onSubmit = new EventEmitter();
 
-    machineList: MasterMachine[] = DUMMY_MASTER_MACHINE_LIST;
+    machineList: registerMachine[] = DUMMY_MASTER_MACHINE_LIST;
     subjectList: MasterSubject[] = DUMMY_MASTER_SUBJECT_LIST;
     settingList: Setting[] = DUMMY_SETTING_LIST;
     queryParams: Partial<MasterParams> = {};

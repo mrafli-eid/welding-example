@@ -12,12 +12,12 @@
         <div>
             <label>Machine</label>
             <mat-form-field>
-                <mat-select formControlName="subject_id">
+                <mat-select class="machine-option" formControlName="machine_id">
                     <mat-option *ngFor="let machine of machineList" [value]="machine.id">{{machine.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="row">   
+        <div class="row">
             <div class="col-6">
                 <label>Subject</label>
                 <mat-form-field class="input-register-filter">

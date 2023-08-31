@@ -7,11 +7,11 @@ export const DUMMY_REGISTER_SUBJECT_MACHINE_LIST: SubjectMachine[] = [
         "created_at": "2023-04-11 11:44:14",
         "subjects": [
             {
-                "subject_id": "7c648951-d6b0-4c5b-897c-0d7a51b36e98",
+                "subject_id": "5eb8e3c4-1edf-41cc-9712-5f9a0dbec478",
                 "subject_name": "Time Machine Detail MC 5",
             },
             {
-                "subject_id": "6c12b37a-0e4d-42c8-8a19-37d9816e46bf",
+                "subject_id": "5e8b396c-9a83-4dc7-8c35-0e71b305fe78",
                 "subject_name": "Time Machine Detail MC 5",
 
             },

@@ -71,7 +71,10 @@ mat-form-field {
 /* mat-menu */
 .mdc-menu-surface {
     background-color: #313235;
+    width: 30rem; 
 }
+
+
 /* remove padding from material list */
 .mdc-menu-surface.mat-mdc-select-panel {
     padding: 0!important;

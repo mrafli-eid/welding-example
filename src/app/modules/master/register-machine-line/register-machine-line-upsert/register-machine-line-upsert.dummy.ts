@@ -1,4 +1,4 @@
-import { MasterLine, MasterMachine} from '../../../../core/models/master.model';
+import { MasterLine, registerMachine} from '../../../../core/models/master.model';
 
 export const DUMMY_LINE_LIST: MasterLine[] = [
     {
@@ -23,7 +23,7 @@ export const DUMMY_LINE_LIST: MasterLine[] = [
     }
 ];
 
-export const DUMMY_MACHINE_LIST: MasterMachine[] = [
+export const DUMMY_MACHINE_LIST: registerMachine[] = [
     {
         "id": "9f303dec-17dd-4ec9-acc7-2da687e6527f",
         "name": "KOMATSU#1",

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MasterLine, MasterMachine, MasterParams, MasterRobot, MasterSubject } from '../models/master.model';
+import { MasterMachine, MasterParams, MasterRobot, MasterSubject } from '../models/master.model';
 import { environment } from '../../../environments/environment';
 import { removeEmptyObject } from '../helpers/object.helper';
 import { HttpResponse } from '../models/http.model';

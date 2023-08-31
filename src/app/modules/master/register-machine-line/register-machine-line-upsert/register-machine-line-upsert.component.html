@@ -12,7 +12,7 @@
         <div>
             <label>Line</label>
             <mat-form-field>
-                <mat-select formControlName="line_id">
+                <mat-select class="machine-option" formControlName="line_id">
                     <mat-option *ngFor="let line of lineList" [value]="line.id">{{line.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
