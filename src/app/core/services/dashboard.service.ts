@@ -142,7 +142,7 @@ export class DashboardService {
     }
 
     createProductionPlan(body: any) {
-        return this.http.post<HttpResponse<any>>(
+        return this.http.post<HttpResponse<ProductionGraphPlan[]>>(
             `${environment.API_URL}/api/set-plan-production/create-set-plan`,
             body
         );

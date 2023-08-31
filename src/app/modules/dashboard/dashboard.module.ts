@@ -53,6 +53,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { OnlyNumberDirective } from 'src/app/shared/directives/number-only.directive';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { OnlyNumberDirective } from 'src/app/shared/directives/number-only.direc
         ReactiveFormsModule,
         MatDialogModule,
         MatInputModule,
+        MatFormFieldModule,
         MatDatepickerModule,
         MatNativeDateModule,
         OnlyNumberDirective

@@ -13,6 +13,8 @@
         <div>
             <label>Date</label>
             <mat-form-field>
+                <mat-label>Pilih Tanggal</mat-label>
+                <mat-hint>MM/DD/YYYY</mat-hint>
                 <input matInput [matDatepicker]="picker" formControlName="date_time">
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>

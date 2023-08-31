@@ -134,8 +134,8 @@ export class SettingUpsertComponent implements OnInit {
             delete body['upper_limit_toggle'];
             this.create(body);
             this.tinyAlert();
+            this.fetchSettingList();
         }
-        this.fetchSettingList();
     }
 
     create(body: any) {

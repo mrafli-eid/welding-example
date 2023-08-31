@@ -24,7 +24,7 @@ export class DialogEditProductionGraphComponent {
     ) {
         this.formGroup.patchValue({
             plan: data.plan,
-            date_time: moment(data.date_time, 'DD-MM-YYYY hh:mm:ss').toDate(),
+            date_time: moment(data.date_time).toDate(),
         });
     }
 
@@ -32,7 +32,7 @@ export class DialogEditProductionGraphComponent {
         this.formGroup.markAllAsTouched();
         if (this.formGroup.valid) {
             const body = {
-                plan: +this.formGroup.get('plan').value,
+                plan: this.formGroup.get('plan').value,
                 date_time: toIsoString(this.formGroup.get('date_time').value),
             };
             this.dashboardService
