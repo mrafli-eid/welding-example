@@ -12,7 +12,6 @@ import { SettingService } from '../../../core/services/setting.service';
 import { Setting } from 'src/app/core/models/setting.model';
 import { DUMMY_SETTING_LIST } from '../setting-list/setting-list.dummy';
 import { Pagination } from 'src/app/core/models/pagination.model';
-import Swal from 'sweetalert2';
 
 @Component({
     selector: 'ahm-setting-upsert',
@@ -113,16 +112,6 @@ export class SettingUpsertComponent implements OnInit {
         });
     }
 
-    tinyAlert() {
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Berhasil create data!',
-            showConfirmButton: false,
-            timer: 1000,
-        });
-    }
-
     submit() {
         this.formGroup.markAllAsTouched();
         if (this.formGroup.valid) {
@@ -133,7 +122,6 @@ export class SettingUpsertComponent implements OnInit {
             delete body['lower_limit_toggle'];
             delete body['upper_limit_toggle'];
             this.create(body);
-            this.tinyAlert();
         }
     }
 
