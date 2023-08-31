@@ -70,6 +70,6 @@ export class ProductionGraphComponent {
     }
 
     goToSettings() {
-        this.router.navigate(['/settings']);
+        this.router.navigate(['/dashboard/setting-production-graph']);
     }
 }
