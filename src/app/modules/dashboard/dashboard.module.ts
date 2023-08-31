@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './pages/dashboard.component';
@@ -41,6 +41,19 @@ import { CycleTimeComponent } from './components/cycle-time/cycle-time.component
 import { ChartCycleTimeComponent } from './components/cycle-time/chart-cycle-time.component';
 import { TimeMachineWrapperComponent } from './components/time-machine-wrapper/time-machine-wrapper.component';
 import { ThousandPipe } from '../../shared/pipes/thousand.pipe';
+import { SettingProductionGraphComponent } from './pages/setting-production-graph/setting-production-graph.component';
+import { DialogAddProductionGraphComponent } from './dialogs/dialog-add-production-graph/dialog-add-production-graph.component';
+import { DialogEditProductionGraphComponent } from './dialogs/dialog-edit-production-graph/dialog-edit-production-graph.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { OnlyNumberDirective } from 'src/app/shared/directives/number-only.directive';
+
 
 @NgModule({
     declarations: [
@@ -57,6 +70,9 @@ import { ThousandPipe } from '../../shared/pipes/thousand.pipe';
         OilLevelComponent,
         CycleTimeComponent,
         TimeMachineWrapperComponent,
+        SettingProductionGraphComponent,
+        DialogAddProductionGraphComponent,
+        DialogEditProductionGraphComponent,
     ],
     imports: [
         CommonModule,
@@ -74,7 +90,18 @@ import { ThousandPipe } from '../../shared/pipes/thousand.pipe';
         DotComponent,
         ChartTimeMachineDetailComponent,
         ChartCycleTimeComponent,
-        ThousandPipe
+        ThousandPipe,
+        MatSelectModule,
+        FormsModule,
+        MatSortModule,
+        NgOptimizedImage,
+        PaginatorComponent,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        OnlyNumberDirective
     ],
 })
 export class DashboardModule {

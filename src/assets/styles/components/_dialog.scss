@@ -26,3 +26,42 @@
         gap: 12px;
     }
 }
+
+.ahm-dialog {
+    width: 708px;
+    padding: 24px;
+    background: #1B1C22;
+    color: white;
+
+    .ahm-dialog-header {
+        padding-bottom: 12px;
+        border-bottom: 0.2px solid #E5E5EF;
+
+        h2 {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 27px;
+            letter-spacing: 0;
+            text-align: left;
+            margin-bottom: 4px;
+        }
+        p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 17px;
+            text-align: left;
+            color: #C4C4C4;
+            margin-bottom: 0;
+        }
+    }
+
+    .ahm-dialog-content {
+        padding-block: 24px;
+    }
+
+    .ahm-dialog-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+}
