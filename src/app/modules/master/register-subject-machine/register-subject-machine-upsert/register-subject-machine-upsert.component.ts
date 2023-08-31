@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SubjectMachine } from "../../../../core/models/register.model";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
-import { MasterMachine, MasterSubject } from 'src/app/core/models/master.model';
+import { registerMachine, MasterSubject, registerMachineList } from 'src/app/core/models/master.model';
 import { PureService } from 'src/app/core/services/pure.service';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { DUMMY_MACHINE_LIST, DUMMY_SUBJECT_LIST } from '../../register-subject-machine/register-subject-machine-upsert/register-subject-machine-upsert.dummy';
@@ -16,7 +16,7 @@ export class RegisterSubjectMachineUpsertComponent {
     @Input() masterData: SubjectMachine;
     @Output() onSubmit = new EventEmitter();
 
-    machineList: MasterMachine[] = DUMMY_MACHINE_LIST;
+    machineList: registerMachine[] = DUMMY_MACHINE_LIST;
     subjectList: MasterSubject[] = DUMMY_SUBJECT_LIST;
 
     notSelectedSubjectList: MasterSubject[] = []
@@ -30,7 +30,7 @@ export class RegisterSubjectMachineUpsertComponent {
 
     formGroup: FormGroup = new FormGroup({
         machine_id: new FormControl('', [ Validators.required ]),
-        subject_id: new FormControl('', [ Validators.required ]),
+        subject_id: new FormControl(),
     });
 
 
@@ -52,7 +52,7 @@ export class RegisterSubjectMachineUpsertComponent {
 
 
     ngOnChanges() {
-        this.formGroup.patchValue(this.masterData)
+        this.patchValue();
     }
 
     selectOneMachine(subject: MasterSubject) {
@@ -116,11 +116,11 @@ export class RegisterSubjectMachineUpsertComponent {
         this.pureService.getMachineList().subscribe((resp) => {
             this.machineList = resp.data;
         });
-        // this.pureService.getSubjectList().subscribe((resp) => {
-        //     this.subjectList = resp.data;
-        //     this.notSelectedSubjectList = this.subjectList.filter(m => true);
-        //     this.refreshData();
-        // });  
+        this.pureService.getSubjectList().subscribe((resp) => {
+            this.subjectList = resp.data;
+            this.notSelectedSubjectList = this.subjectList.filter(m => true);
+            this.refreshData();
+        });
     }
 
     patchValue() {
@@ -158,7 +158,8 @@ export class RegisterSubjectMachineUpsertComponent {
         }
     }
 
-    edit(body: any) {
+    edit(body: registerMachineList) {
+        console.log(body);
         const id = this.masterData.machine_id;
         this.registerService.updateSubjectMachine(id, body)
             .pipe(take(1))
@@ -172,7 +173,7 @@ export class RegisterSubjectMachineUpsertComponent {
             });
     }
 
-    create(body: any) {
+    create(body: registerMachineList) {
         this.registerService.createSubjectMachine(body)
             .pipe(take(1))
             .subscribe({

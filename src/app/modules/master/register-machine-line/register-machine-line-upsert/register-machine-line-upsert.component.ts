@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
-import { MasterLine, MasterMachineLine } from '../../../../core/models/master.model';
+import { MasterLine, MasterMachineLine, registerMachineList } from '../../../../core/models/master.model';
 import { MachineLine } from "../../../../core/models/register.model";
 import { PureService } from 'src/app/core/services/pure.service';
 import { RegisterService } from 'src/app/core/services/register.service';
@@ -113,9 +113,9 @@ export class RegisterMachineLineUpsertComponent {
 
     initList() {
         this.notSelectedMachineList = this.machineList.filter(m => true);
-        // this.pureService.getLineList().subscribe((resp) => {
-        //     this.lineList = resp.data;
-        // });
+        this.pureService.getLineList().subscribe((resp) => {
+            this.lineList = resp.data;
+        });
         this.pureService.getMachineList().subscribe((resp) => {
             this.machineList = resp.data;
             this.notSelectedMachineList = this.machineList.filter(m => true);
@@ -158,7 +158,7 @@ export class RegisterMachineLineUpsertComponent {
         }
     }
 
-    edit(body: any) {
+    edit(body: registerMachineList) {
         const id = this.masterData.line_id;
         this.registerService.updateMachineLine(id, body)
             .pipe(take(1))
@@ -172,7 +172,7 @@ export class RegisterMachineLineUpsertComponent {
             });
     }
 
-    create(body: any) {
+    create(body: registerMachineList) {
         this.registerService.createMachineLine(body)
             .pipe(take(1))
             .subscribe({
