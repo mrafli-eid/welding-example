@@ -134,7 +134,6 @@ export class SettingUpsertComponent implements OnInit {
             delete body['upper_limit_toggle'];
             this.create(body);
             this.tinyAlert();
-            this.fetchSettingList();
         }
     }
 
@@ -145,6 +144,7 @@ export class SettingUpsertComponent implements OnInit {
             .subscribe({
                 next: () => {
                     this.finish();
+                    this.fetchSettingList();
                 },
                 error: () => {
                     this.finish();
@@ -155,6 +155,5 @@ export class SettingUpsertComponent implements OnInit {
     finish() {
         this.onSubmit.emit();
         this.formGroup.reset();
-        this.fetchSettingList();
     }
 }

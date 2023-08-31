@@ -38,7 +38,7 @@ export class DetailMachineServoLoadComponent {
     ngOnInit() {
       this.robot_name = "MASTER";
       this.fetchServoLoad();
-      interval(DEFAULT_INTERVAL)
+      interval(1 * 60 * 1000)
         .pipe(this.untilDestroyed())
         .subscribe(() => {
           this.fetchServoLoad();

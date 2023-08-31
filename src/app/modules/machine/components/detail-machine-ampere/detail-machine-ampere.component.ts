@@ -33,6 +33,11 @@ export class DetailMachineAmpereComponent {
     
   ngOnInit() {
     this.fetchAmpere();
+    interval(1 * 60 * 1000)
+      .pipe(this.untilDestroyed())
+      .subscribe(() => {
+        this.fetchAmpere();
+      });
   }
 
   ngOnChanges() {
