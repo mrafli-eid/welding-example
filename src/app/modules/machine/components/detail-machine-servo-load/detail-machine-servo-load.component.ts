@@ -25,11 +25,11 @@ export class DetailMachineServoLoadComponent {
     @Input() robot_name = '';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    servoLoadList: DetailMachineServoLoad = DUMMY_DETAIL_MACHINE_SERVO_LOAD;
+    servoLoadList: DetailMachineServoLoad;
 
-    standard = 13;
-    warning = 20;
-    breakdown = 25;
+    standard = 10;
+    warning = 15;
+    breakdown = 20;
 
     constructor(private machineService: MachineService,
       private router: Router) {
