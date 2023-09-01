@@ -1,19 +1,20 @@
 <div class="ahm-dialog">
     <div class="ahm-dialog-header">
         <h2>Setting Production Graph</h2>
-        <p>Edit Production Graph</p>
+        <p>Add Production Graph</p>
     </div>
     <div class="ahm-dialog-content" [formGroup]="formGroup">
-        <div>
-            <label>Plan</label>
-            <mat-form-field>
-                <input matInput formControlName="plan" appOnlyNumber>
-            </mat-form-field>
+        <div class="row">
+            <div class="col-4">
+                <label>Shift 1</label>
+                <mat-form-field>
+                    <input matInput formControlName="plan" appOnlyNumber>
+                </mat-form-field>
+            </div>
         </div>
         <div>
             <label>Date</label>
             <mat-form-field>
-                <mat-hint>MM/DD/YYYY</mat-hint>
                 <input matInput [matDatepicker]="picker" formControlName="date_time">
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
