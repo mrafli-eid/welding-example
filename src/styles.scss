@@ -43,6 +43,32 @@ body {
     align-items: center;
 }
 
+.justify-between {
+    justify-content: space-between;
+}
+
+.mb-6 {
+    margin-bottom: 6px;
+}
+
+.mr-6 {
+    margin-right: 6px;
+}
+
+.font-semibold {
+  font-weight: 700;
+}
+
+.text-white {
+    color: white;
+    text-decoration: none;
+}
+
+.text-center {
+    text-align: center;
+    margin: 0 auto;
+}
+
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
     color: white !important;
     margin-bottom: 0 !important;

@@ -43,17 +43,16 @@ export class ChartDetailMachineRpmSpindleComponent {
             (res) => res.label
         );
 
-        const maximum = this.data.maximum;
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.maximum = {
             type: 'line',
-            yMin: maximum == null ? this.maximum : maximum,
-            yMax: maximum == null ? this.maximum : maximum,
+            yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
+            yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
             borderColor: '#DC3545',
             borderWidth: 1,
         };
 
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {

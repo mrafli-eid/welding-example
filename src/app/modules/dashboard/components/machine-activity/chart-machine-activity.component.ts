@@ -29,7 +29,7 @@ export class ChartMachineActivityComponent implements OnChanges {
         this.lineChartData.datasets = this.data;
         this.lineChartData.labels = ChartMachineActivityComponent.machineActivity.machine_list.map((m) => m.machine_name);
 
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {

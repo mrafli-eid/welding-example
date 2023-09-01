@@ -33,39 +33,36 @@ export class ChartDetailMachineServoLoadComponent {
         );
         this.lineChartData.labels = this.data.data.map((d) => d.label);
 
-        // const standard = this.data.minimum;
         console.log(this.data.minimum);
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.minimum = {
             type: 'line',
-            yMin: this.data.minimum,
-            yMax: this.data.minimum,
+            yMin: this.data.minimum == null ? this.standard : this.data.minimum,
+            yMax: this.data.minimum == null ? this.standard : this.data.minimum,
             borderColor: '#28A745',
             borderWidth: 1,
         };
 
-        // const warning = this.data.medium;
         console.log(this.data.medium);
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.warning = {
             type: 'line',
-            yMin: this.data.medium,
-            yMax: this.data.medium,
+            yMin: this.data.medium == null ? this.warning : this.data.medium,
+            yMax: this.data.medium == null ? this.warning : this.data.medium,
             borderColor: '#F1BE42',
             borderWidth: 1,
         };
 
-        // const breakdown = this.data.maximum;
         console.log(this.data.maximum);
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.breakdown = {
             type: 'line',
-            yMin: this.data.maximum,
-            yMax: this.data.maximum,
+            yMin: this.data.maximum == null ? this.breakdown : this.data.maximum,
+            yMax: this.data.maximum == null ? this.breakdown : this.data.maximum,
             borderColor: '#DC3545',
             borderWidth: 1,
         };
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {

@@ -25,7 +25,7 @@ export class DetailMachineServoLoadComponent {
     @Input() robot_name = '';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    servoLoadList: DetailMachineServoLoad;
+    servoLoadList: DetailMachineServoLoad = DUMMY_DETAIL_MACHINE_SERVO_LOAD;
 
     standard = 10;
     warning = 15;

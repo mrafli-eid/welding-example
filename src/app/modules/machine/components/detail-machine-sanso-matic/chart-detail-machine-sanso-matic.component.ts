@@ -36,32 +36,29 @@ export class ChartDetailMachineSansoMaticComponent {
         );
         this.lineChartData.labels = this.data.data_label.map((d) => d.label);
 
-        const minimum = this.data.minimum;
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.minimum = {
             type: 'line',
-            yMin: minimum == null ? this.minimum : minimum,
-            yMax: minimum == null ? this.minimum : minimum,
+            yMin: this.data.minimum == null ? this.minimum : this.data.minimum,
+            yMax: this.data.minimum == null ? this.minimum : this.data.minimum,
             borderColor: '#28A745',
             borderWidth: 1,
         };
 
-        const medium = this.data.medium;
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.medium = {
             type: 'line',
-            yMin: medium == null ? this.medium : medium,
-            yMax: medium == null ? this.medium : medium,
+            yMin: this.data.medium == null ? this.medium : this.data.medium,
+            yMax: this.data.medium == null ? this.medium : this.data.medium,
             borderColor: '#F1BE42',
             borderWidth: 1,
         };
 
-        const maximum = this.data.maximum;
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.maximum = {
             type: 'line',
-            yMin: maximum == null ? this.maximum : maximum,
-            yMax: maximum == null ? this.maximum : maximum,
+            yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
+            yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
             borderColor: '#DC3545',
             borderWidth: 1,
         };
