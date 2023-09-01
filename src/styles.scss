@@ -1,9 +1,10 @@
 @import "src/assets/styles/main";
 
-html, body {
+html,
+body {
     height: 100%;
     padding: 0;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 html {
@@ -17,10 +18,10 @@ body {
 }
 
 .datepicker-container {
-    display: flex!important;
+    display: flex !important;
     width: 100%;
-    max-width: 100%!important;
-    background: #2E3034;
+    max-width: 100% !important;
+    background: #2e3034;
 }
 
 .cdk-overlay-connected-position-bounding-box {
@@ -28,11 +29,11 @@ body {
 }
 
 .mat-mdc-menu-content {
-    display: flex!important;
+    display: flex !important;
     width: 100%;
-    max-width: 100%!important;
+    max-width: 100% !important;
     height: 100% !important;
-    padding: 28px 12px!important;
+    padding: 28px 12px !important;
     flex-direction: column;
 }
 
@@ -43,17 +44,22 @@ body {
 }
 
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
-    color: white!important;
-    margin-bottom: 0!important;
+    color: white !important;
+    margin-bottom: 0 !important;
 }
+
+// .mdc-text-field {
+//     border: 0.5px solid rgb(110, 110, 110);
+//     border-radius: 6px;
+// }
 
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
     padding-top: 12px;
     padding-bottom: 12px;
 }
 
-.mat-mdc-icon-button  {
-    color: white!important;
+.mat-mdc-icon-button {
+    color: white !important;
 }
 
 .mat-mdc-form-field-infix {
@@ -68,7 +74,6 @@ body {
 }
 
 .mat-mdc-form-field-icon-suffix {
-    scale: 0.75!important;
-    min-height: 0!important;
+    scale: 0.75 !important;
+    min-height: 0 !important;
 }
-
