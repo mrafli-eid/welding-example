@@ -27,7 +27,7 @@ export class DialogAddProductionGraphComponent {
                 this.formGroup.get('date_time').value
             );
             body.push({
-                plan: this.formGroup.get('plan').value,
+                plan: +this.formGroup.get('plan').value,
                 date_time,
             });
             console.log("sini");
