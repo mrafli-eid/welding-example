@@ -49,7 +49,6 @@ export class DetailMachineRpmSpindleComponent {
     .subscribe({
       next: (resp) => {
         if (resp.success) {
-          console.log(resp.data)
           this.rpmSpindleList = resp.data;
         }
       }

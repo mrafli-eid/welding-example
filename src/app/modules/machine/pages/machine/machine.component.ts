@@ -36,7 +36,6 @@ export class MachineComponent implements OnInit {
         this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
       });
     this.showComponent();
-    console.log(this.machine);
   }
 
   showComponent() {
@@ -56,12 +55,10 @@ export class MachineComponent implements OnInit {
 
   changeRobotToSlave() {
     this.robot_name = 'SLAVE';
-    console.log(this.robot_name);
   }
 
   changeRobotToMaster() {
     this.robot_name = 'MASTER';
-    console.log(this.robot_name);
   }
     
 }

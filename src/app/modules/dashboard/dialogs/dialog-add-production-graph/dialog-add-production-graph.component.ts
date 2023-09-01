@@ -30,8 +30,6 @@ export class DialogAddProductionGraphComponent {
                 plan: +this.formGroup.get('plan').value,
                 date_time,
             });
-            console.log("sini");
-            console.log(body[0]);
             this.matDialogRef.close(true);
             this.dashboardService
                 .createProductionPlan(body[0])

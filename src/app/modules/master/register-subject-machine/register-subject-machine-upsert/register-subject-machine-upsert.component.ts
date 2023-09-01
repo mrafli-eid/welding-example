@@ -159,7 +159,6 @@ export class RegisterSubjectMachineUpsertComponent {
     }
 
     edit(body: registerMachineList) {
-        console.log(body);
         const id = this.masterData.machine_id;
         this.registerService.updateSubjectMachine(id, body)
             .pipe(take(1))
