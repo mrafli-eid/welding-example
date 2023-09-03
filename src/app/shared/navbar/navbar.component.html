@@ -18,24 +18,69 @@
             </button>
             <mat-menu #beforeMenu="matMenu" xPosition="before">
                 <div class="wrapper-notification">
-                    <div class="notification-msg" mat-menu-item>
-                        <img alt="" src="/assets/icons/notification.svg" />
-                        <div class="left-span">
-                            <span class="lable-title">1 Notification</span>
-                            <span class="lable-info">Alarm List</span>
+                    <div *ngFor="let msg of tempMiror">
+                        <div class="notification-msg" mat-menu-item>
+                            <img alt="" src="/assets/icons/notification.svg" />
+                            <div class="left-span">
+                                <span class="lable-title">Temperatur Miror</span>
+                                <span class="lable-info"
+                                *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
+                            <span class="lable-info"
+                                *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>                            </div>
+                            <span class="right-span">{{msg.label}}</span>
                         </div>
-                        <span class="right-span">10:30</span>
                     </div>
-                    <div class="notification-msg" mat-menu-item>
-                        <img alt="" src="/assets/icons/notification.svg" />
-                        <div class="left-span">
-                            <span class="lable-title">1 Notification</span>
-                            <span class="lable-info">Alarm List</span>
+                    <div *ngFor="let msg of rurgeCell ">
+                        <div class="notification-msg" mat-menu-item>
+                            <img alt="" src="/assets/icons/notification.svg" />
+                            <div class="left-span">
+                                <span class="lable-title">Rurge Cell</span>
+                                <span class="lable-info"
+                                *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
+                            <span class="lable-info"
+                                *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>                            </div>
+                            <span class="right-span">{{msg.label}}</span>
                         </div>
-                        <span class="right-span">10:30</span>
+                    </div>
+                    <div *ngFor="let msg of dewPoint">
+                        <div class="notification-msg" mat-menu-item>
+                            <img alt="" src="/assets/icons/notification.svg" />
+                            <div class="left-span">
+                                <span class="lable-title">Dew Poinnt</span>
+                                <span class="lable-info"
+                                *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
+                            <span class="lable-info"
+                                *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>                            </div>
+                            <span class="right-span">{{msg.label}}</span>
+                        </div>
+                    </div>
+                    <div *ngFor="let msg of sansoMantic ">
+                        <div class="notification-msg" mat-menu-item>
+                            <img alt="" src="/assets/icons/notification.svg" />
+                            <div class="left-span">
+                                <span class="lable-title">Sanso Matic</span>
+                                <span class="lable-info"
+                                *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
+                            <span class="lable-info"
+                                *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>                            </div>
+                            <span class="right-span">{{msg.label}}</span>
+                        </div>
+                    </div>
+                    <div *ngFor="let msg of rpmSpindle">
+                        <div class="notification-msg" mat-menu-item>
+                            <img alt="" src="/assets/icons/notification.svg" />
+                            <div class="left-span">
+                                <span class="lable-title">RPM Spindle</span>
+                                <span class="lable-info"
+                                    *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
+                                <span class="lable-info"
+                                    *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>
+                            </div>
+                            <span class="right-span">{{msg.label}}</span>
+                        </div>
                     </div>
                 </div>
-                <button mat-menu-item>See All Notifications</button>
+                <button mat-menu-item (click)="seeAllNotification()">See All Notifications</button>
             </mat-menu>
 
         </div>

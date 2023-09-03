@@ -52,7 +52,7 @@ registerLocaleData(localeId, 'id');
                     }
                 },
             }
-        })
+        }), 
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: DatefilterInterceptor, multi: true },

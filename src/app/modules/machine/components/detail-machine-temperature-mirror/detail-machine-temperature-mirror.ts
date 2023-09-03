@@ -29,12 +29,17 @@ export const DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR: DetailMachineTemperatureMi
     "data_label": [
         {
             "label": "00:27",
-            "message": null,
+            "message": 'Maximum Air Flow',
             "date_time": "2023-08-15 00:27:45"
         },
         {
-            "label": "00:27",
-            "message": null,
+            "label": "00:28",
+            "message": 'Maximum Air Flow',
+            "date_time": "2023-08-15 00:27:47"
+        },
+        {
+            "label": "00:28",
+            "message": null ,
             "date_time": "2023-08-15 00:27:47"
         }
     ]

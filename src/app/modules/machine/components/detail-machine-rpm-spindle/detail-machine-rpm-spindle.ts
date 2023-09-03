@@ -79,11 +79,11 @@ export const DUMMY_DETAIL_MACHINE_RPM_SPINDLE : DetailMachineRpmSpindle =
                 "date_time": '2023-08-15 20:27:46',
             },{
                 "label": 'Fri',
-                "message": null,
+                "message": 'Maximum Rpm Spindle(A1 & B1)',
                 "date_time": '2023-08-15 20:27:46',
             },{
                 "label": 'Sat',
-                "message": null,
+                "message": 'Maximum Rpm Spindle(A1 & B1)',
                 "date_time": '2023-08-15 20:27:46',
             },{
                 "label": 'Sun',

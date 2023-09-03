@@ -1,0 +1,19 @@
+<div>
+  <div class="row">
+    <ahm-breadcrumbs [breadcrumbs]="breadcrumbs"></ahm-breadcrumbs>
+  </div>
+  <table class="ahm-table">
+    <tr>
+      <th>No</th>
+      <th>Machine</th>
+      <th>Datetime</th>
+      <th class="msg-notification">Message</th>
+    </tr>
+    <tr *ngFor="let msg of dataTableNotification;let index = index">
+      <td>{{index + 1}}</td>
+      <td>{{msg.machine_name}}</td>
+      <td>{{msg.date_time}}</td>
+      <td class="msg-notification">{{msg.message}}</td>
+    </tr>
+  </table>
+</div>
