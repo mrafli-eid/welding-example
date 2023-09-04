@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DateFilter } from '../../../../core/models/date-filter.model';
 import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
 import { MachineService } from '../../../../core/services/machine.service';
