@@ -110,7 +110,7 @@ export class MachineService {
         }else{
           return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${this.baseUrl}/get-history-alarm-all/${machine_name}/${robot_name}`, {
             observe: 'response',
-             
+             params
           });
         }
     }
