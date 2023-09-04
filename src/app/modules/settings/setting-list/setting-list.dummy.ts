@@ -3,7 +3,7 @@ import { Setting } from "../../../core/models/setting.model";
 export const DUMMY_SETTING_LIST: Setting[] = [
     {
         "id": "32a1e3a4-2e98-46f0-84eb-fab02c4619f9",
-        "machine_name": "KOMATSU#1",
+        "machine_name": "FRONT 1, 2",
         "subject_name": "Oil Level MC 1",
         "unit": "Liter",
         "minimum": 0,
