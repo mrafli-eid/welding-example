@@ -12,7 +12,7 @@ import {
     DetailMachineSansoMatic,
     DetailMachineRpmSpindle,
 } from '../../../core/models/machine.model';
-import {NotificationService} from "../../../core/services/notification.service"
+import {MachineService} from "../../../core/services/machine.service"
 import { take } from 'rxjs';
 
 
@@ -27,7 +27,7 @@ export class AllNotificationComponent implements OnInit {
         { label: 'Dashboard', link: '/dashboard' },
         { label: 'Notification', link: '/notification' },
     ];
-    constructor(private notificationService:NotificationService) {}
+    constructor(private machineService:MachineService) {}
 
     tempMiror: DetailMachineTemperatureMirror =
         DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR;
@@ -72,12 +72,11 @@ export class AllNotificationComponent implements OnInit {
             (data) => data.message !== null
         );
 
-        console.log(this.dataTableNotification);
     }
 
     getTempMirorMsg() {
-        this.notificationService
-            .getTempMirorMsg()
+        this.machineService
+            .getTemperatureMirror('LASER')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
@@ -85,10 +84,10 @@ export class AllNotificationComponent implements OnInit {
                 },
             });
     }
-
+                                
     getDewPointMsg() {
-        this.notificationService
-            .getDewPointMsg()
+        this.machineService
+            .getDewPoint('LASER')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
@@ -98,8 +97,8 @@ export class AllNotificationComponent implements OnInit {
     }
 
     getRurgeCellMsg() {
-        this.notificationService
-            .getRurgeCellMsg()
+        this.machineService
+            .getRurgeCell('LASER')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
@@ -109,19 +108,19 @@ export class AllNotificationComponent implements OnInit {
     }
 
     getSansoMaticMsg() {
-        this.notificationService
-            .getSansoMaticMsg()
+        this.machineService
+            .getSansoMatic('BORING')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
                     this.sansoMantic = response.data
-                },
+                },                                           
             });
     }
 
     getRpmSpindleMsg() {
-        this.notificationService
-            .getRpmSpindleMsg()
+        this.machineService
+            .getRpmSpindle('BORING')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {

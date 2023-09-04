@@ -110,7 +110,7 @@ export class MachineService {
         }else{
           return this.http.get<HttpResponse<DetailMachineHistoryAlarm[]>>(`${this.baseUrl}/get-history-alarm-all/${machine_name}/${robot_name}`, {
             observe: 'response',
-            params
+             
           });
         }
     }
@@ -202,24 +202,24 @@ export class MachineService {
   }
   
   // INTEGRASI API LASER
-  getTemperatureMirror(machine_name: string, params: Partial<DateFilter>){
+  getTemperatureMirror(machine_name: string, params?: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineTemperatureMirror>>(`${this.baseUrl}/get-temp-mirror-all/${machine_name}`, { params })
   }
   
-  getDewPoint(machine_name: string, params: Partial<DateFilter>){
+  getDewPoint(machine_name: string, params?: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineDewPoint>>(`${this.baseUrl}/get-dew-point-all/${machine_name}`, { params })
   }
   
-  getRurgeCell(machine_name: string, params: Partial<DateFilter>){
+  getRurgeCell(machine_name: string, params?: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineRurgeCell>>(`${this.baseUrl}/get-rurge-cell-all/${machine_name}`, { params })
   }
   
-  getRpmSpindle(machine_name: string, params: Partial<DateFilter>){
+  getRpmSpindle(machine_name: string, params?: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineRpmSpindle>>(`${this.baseUrl}/get-rpm-spindle-all/${machine_name}`, { params })
   }
 
   // INTEGRASI API BORING
-  getSansoMatic(machine_name: string, params: Partial<DateFilter>){
+  getSansoMatic(machine_name: string, params?: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineSansoMatic>>(`${this.baseUrl}/get-sanso-matic-all/${machine_name}`, { params })
   }
 }

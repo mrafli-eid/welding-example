@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SidebarService } from '../../core/services/sidebar.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { NotificationService } from 'src/app/core/services/notification.service';
+import {MachineService} from "../../core/services/machine.service"
 import { take } from 'rxjs';
 import { notification } from 'src/app/core/models/notification.model';
 import { DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR } from '../../modules/machine/components/detail-machine-temperature-mirror/detail-machine-temperature-mirror';
@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     todaysDate = new Date();
     constructor(
         private sidebarService: SidebarService,
-        private notificationService: NotificationService,
+        private machineService: MachineService,
         private router: Router
     ) {}
     
@@ -64,8 +64,8 @@ export class NavbarComponent implements OnInit {
     }
 
     getTempMirorMsg() {
-        this.notificationService
-            .getTempMirorMsg()
+        this.machineService
+            .getTemperatureMirror('LASER')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
@@ -77,8 +77,8 @@ export class NavbarComponent implements OnInit {
     }
 
     getDewPointMsg() {
-        this.notificationService
-            .getDewPointMsg()
+        this.machineService
+            .getDewPoint('LASER')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
@@ -90,8 +90,8 @@ export class NavbarComponent implements OnInit {
     }
 
     getRurgeCellMsg() {
-        this.notificationService
-            .getRurgeCellMsg()
+        this.machineService
+            .getRurgeCell('LASER')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
@@ -103,8 +103,8 @@ export class NavbarComponent implements OnInit {
     }
 
     getSansoMaticMsg() {
-        this.notificationService
-            .getSansoMaticMsg()
+        this.machineService
+            .getSansoMatic('BORING')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
@@ -116,8 +116,8 @@ export class NavbarComponent implements OnInit {
     }
 
     getRpmSpindleMsg() {
-        this.notificationService
-            .getRpmSpindleMsg()
+        this.machineService
+            .getRpmSpindle('BORING')
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
