@@ -37,4 +37,5 @@ import { StringPipe } from "../../shared/pipes/string.pipe";
     ],
 })
 export class SettingsModule {
+    
 }
