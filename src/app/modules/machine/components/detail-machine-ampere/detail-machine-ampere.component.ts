@@ -25,6 +25,8 @@ export class DetailMachineAmpereComponent {
   @Input() robot_name = '';
   
   setting = 950;
+  minimum = 900;
+  maximum = 1000;
 
   ampereList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_AMPERE;
 

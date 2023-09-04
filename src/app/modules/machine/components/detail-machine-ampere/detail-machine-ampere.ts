@@ -4,6 +4,8 @@ export const DUMMY_DETAIL_MACHINE_AMPERE: DetailMachineAmpereAndVoltage = {
         "machine_name": "FRONT 1, 2",
         "subject_name": "Ampere ROBOT MASTER FRONT 1, 2",
         "robot_name": "ROBOT MASTER FRONT 1, 2",
+        "minimum": null,
+        "maximum": null,
         "data_actual": [
             {
                 "actual": 202.1

@@ -25,6 +25,8 @@ export class DetailMachineVoltageComponent {
   
   dateFilter: DateFilter = getDefaultDateFilter();
   setting = 950;
+  minimum = 900;
+  maximum = 1000;
 
   voltageList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_VOLTAGE;
 

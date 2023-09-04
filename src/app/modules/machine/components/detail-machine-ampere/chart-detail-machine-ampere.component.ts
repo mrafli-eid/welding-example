@@ -20,6 +20,8 @@ export class ChartDetailMachineAmpereComponent {
 
   @Input() data: DetailMachineAmpereAndVoltage;
   @Input() setting: number;
+  @Input() minimum: number;
+  @Input() maximum: number;
   
   constructor() {
     Chart.register(Annotation);
@@ -30,7 +32,25 @@ export class ChartDetailMachineAmpereComponent {
     this.lineChartData.datasets[1].data = this.data.data_setting.map((res) => res.setting);
     this.lineChartData.labels = this.data.data_label.map((res) => res.label);
 
-    this.chart?.update();
+    // @ts-ignore
+    this.lineChartOptions.plugins.annotation.annotations.minimum = {
+      type: 'line',
+      yMin: this.data.minimum == null ? this.minimum : this.data.minimum,
+      yMax: this.data.minimum == null ? this.minimum : this.data.minimum,
+      borderColor: '#28A745',
+      borderWidth: 1,
+    };
+
+    // @ts-ignore
+    this.lineChartOptions.plugins.annotation.annotations.maximum = {
+      type: 'line',
+      yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
+      yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
+      borderColor: '#DC3545',
+      borderWidth: 1,
+    };
+    
+    this.chart?.render();
   }
 
   public lineChartData: ChartConfiguration['data'] = {
