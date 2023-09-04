@@ -54,16 +54,12 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
         this.robot_name = "MASTER";
         this.addSearchListener();
         this.fetchList();
-        this.fetchDescription();
+        // this.fetchDescription();
         interval(DEFAULT_INTERVAL)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchList();
             });
-    }
-
-    ngOnChanges() {
-        this.fetchList();
     }
 
     addSearchListener() {
@@ -85,13 +81,13 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
             })
     }
 
-    fetchDescription() {
-        this.machineService.getDescription()
-            .pipe(take(1))
-            .subscribe((response) => {
-                this.descriptionList = response.data || [];
-            })
-    }
+    // fetchDescription() {
+    //     this.machineService.getDescription()
+    //         .pipe(take(1))
+    //         .subscribe((response) => {
+    //             this.descriptionList = response.data || [];
+    //         })
+    // }
 
     changePage(page: number) {
         this.pagination.page_number = page;

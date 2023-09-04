@@ -41,10 +41,6 @@ export class DetailMachineVoltageComponent {
       });
     }
 
-    ngOnChanges() {
-      this.fetchVoltage();
-    }
-
     fetchVoltage(){
       this.machineService.getVoltage(this.machine_name, this.robot_name, this.dateFilter)
       .pipe(take(1))

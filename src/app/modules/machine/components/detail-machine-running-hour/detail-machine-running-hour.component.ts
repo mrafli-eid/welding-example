@@ -18,7 +18,7 @@ import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
   }
 })
   
-export class DetailMachineRunningHourComponent implements OnInit, OnChanges {
+export class DetailMachineRunningHourComponent implements OnInit {
   untilDestroyed = untilDestroyed();
   
   dateFilter: DateFilter = getDefaultDateFilter();
@@ -39,10 +39,6 @@ export class DetailMachineRunningHourComponent implements OnInit, OnChanges {
     .subscribe(() => {
       this.fetchRunningHour();
     });
-  }
-
-  ngOnChanges() {
-    this.fetchRunningHour();
   }
   
   fetchRunningHour(){

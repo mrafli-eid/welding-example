@@ -33,7 +33,6 @@ export class ChartDetailMachineServoLoadComponent {
         );
         this.lineChartData.labels = this.data.data.map((d) => d.label);
 
-        console.log(this.data.minimum);
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.minimum = {
             type: 'line',
@@ -43,7 +42,6 @@ export class ChartDetailMachineServoLoadComponent {
             borderWidth: 1,
         };
 
-        console.log(this.data.medium);
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.warning = {
             type: 'line',
@@ -53,7 +51,6 @@ export class ChartDetailMachineServoLoadComponent {
             borderWidth: 1,
         };
 
-        console.log(this.data.maximum);
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.breakdown = {
             type: 'line',
