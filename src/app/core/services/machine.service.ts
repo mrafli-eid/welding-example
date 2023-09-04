@@ -129,9 +129,9 @@ export class MachineService {
         });
     }
 
-    getDescription() {
-        return this.http.get<HttpResponse<DetailMachineDescription[]>>(`${ this.baseUrl }/get-list-description-history-alarm-all`);
-    }
+    // getDescription() {
+    //     return this.http.get<HttpResponse<DetailMachineDescription[]>>(`${ this.baseUrl }/get-list-description-history-alarm-all`);
+    // }
 
     /** Production Graph **/
     getProductionGraph(machine_name: string, params: Partial<DateFilter>) {

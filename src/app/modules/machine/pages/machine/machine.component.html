@@ -7,14 +7,14 @@
         <div class="content-flex">
             <a
                 [routerLink]="'/machine/' + machine.name + '/MASTER'"
-                class="text-white"
+                class="{{ this.robot_name == 'MASTER' ? 'text-white' : 'text-gray' }} no-underline"
                 (click)="changeRobotToMaster()"
                 >MC {{ machine.name }} ROBOT MASTER</a
             >
             <p>|</p>
             <a
                 [routerLink]="'/machine/' + machine.name + '/SLAVE'"
-                class="text-white"
+                class="{{ this.robot_name == 'SLAVE' ? 'text-white' : 'text-gray' }} no-underline"
                 (click)="changeRobotToSlave()"
                 >MC {{ machine.name }} ROBOT SLAVE</a
             >
