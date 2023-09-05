@@ -37,6 +37,10 @@ export class DetailMachineAlarmComponent implements OnInit {
             });
     }
 
+    ngOnChanges() {
+        this.fetchAlarm();
+    }
+
     fetchAlarm() {
         this.machineService.getAlarm(this.machine_name, this.robot_name,  this.dateFilter)
             .pipe(take(1))

@@ -42,6 +42,10 @@ export class DetailMachineAmpereComponent {
       });
   }
 
+  ngOnChanges() {
+    this.fetchAmpere();
+  }
+
   fetchAmpere(){
     this.machineService.getAmpere(this.machine_name, this.robot_name, this.dateFilter)
     .pipe(take(1))

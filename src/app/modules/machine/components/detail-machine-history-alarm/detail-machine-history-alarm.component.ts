@@ -62,6 +62,10 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
             });
     }
 
+    ngOnChanges() {
+        this.fetchList();
+    }
+
     addSearchListener() {
         this.searchTerm.valueChanges
             .pipe(debounceTime(350))

@@ -40,6 +40,10 @@ export class DetailMachineRunningHourComponent implements OnInit {
       this.fetchRunningHour();
     });
   }
+
+  ngOnChanges() {
+    this.fetchRunningHour();
+  }
   
   fetchRunningHour(){
     this.machineService.getRunningHour(this.machine_name, this.robot_name, this.dateFilter)
