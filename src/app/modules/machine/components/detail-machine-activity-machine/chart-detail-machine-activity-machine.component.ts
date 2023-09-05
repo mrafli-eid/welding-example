@@ -98,7 +98,10 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
                 font: {
                     size: 12,
                     weight: 300,
-                }
+                },
+                formatter: function (value, context) {
+                    return value + ' %';
+                },
             },
             legend: { display: false },
             annotation: {
