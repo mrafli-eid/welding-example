@@ -30,7 +30,7 @@ export class DetailMachineProductionGraphComponent {
 
     ngOnInit() {
         this.fetchProductionGraph();
-        interval(DEFAULT_INTERVAL)
+        interval(1 * 60 * 1000)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchProductionGraph();

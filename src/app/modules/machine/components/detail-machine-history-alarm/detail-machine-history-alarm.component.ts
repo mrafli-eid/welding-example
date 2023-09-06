@@ -55,7 +55,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
         this.addSearchListener();
         this.fetchList();
         // this.fetchDescription();
-        interval(DEFAULT_INTERVAL)
+        interval(30 * 1000)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchList();

@@ -29,7 +29,7 @@ export class DetailMachineActivityMachineComponent {
 
     ngOnInit() {
         this.fetchActivityMachine();
-        interval(DEFAULT_INTERVAL)
+        interval(1 * 60 * 1000)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchActivityMachine();

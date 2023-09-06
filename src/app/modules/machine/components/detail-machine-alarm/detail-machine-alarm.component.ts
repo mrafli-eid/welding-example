@@ -30,7 +30,7 @@ export class DetailMachineAlarmComponent implements OnInit {
 
     ngOnInit() {
         this.fetchAlarm();
-        interval(DEFAULT_INTERVAL)
+        interval(30 * 1000)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchAlarm();
