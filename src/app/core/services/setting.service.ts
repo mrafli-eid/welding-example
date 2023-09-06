@@ -37,10 +37,6 @@ export class SettingService {
     return this.http.get<HttpResponse<Setting[]>>(`${this.baseUrl}/get-setting-alls`);
   }
 
-  // createSetting(body: SettingUpsertRequest) {
-  //   return this.http.post<HttpResponse<null>>(`${this.baseUrl}/create-setting`, body);
-  // }
-
   getSubjectList() {
     return this.http.get<HttpResponse<MasterSubject[]>>(`${environment.API_URL}/api/subject/get-list-subject`);
   }
