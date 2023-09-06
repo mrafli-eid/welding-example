@@ -46,8 +46,8 @@ export class ChartDetailMachineVoltageComponent {
             borderColor: '#28A745',
             borderWidth: 1,
         };
-    this.chart?.render();
-  }
+        this.chart?.render();
+    }
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
@@ -66,34 +66,6 @@ export class ChartDetailMachineVoltageComponent {
     ],
     labels: [],
   };
-
-        // @ts-ignore
-        this.lineChartOptions.plugins.annotation.annotations.maximum = {
-            type: 'line',
-            yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
-            yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
-            borderColor: '#DC3545',
-            borderWidth: 1,
-        };
-
-        this.chart?.render();
-    }
-
-    public lineChartData: ChartConfiguration['data'] = {
-        datasets: [
-            {
-                data: [],
-                borderColor: '#0177FB',
-                fill: 'origin',
-            },
-            {
-                data: [],
-                borderColor: '#DC3545',
-                fill: 'origin',
-            },
-        ],
-        labels: [],
-    };
 
     public lineChartOptions: ChartConfiguration['options'] = {
         responsive: true,
