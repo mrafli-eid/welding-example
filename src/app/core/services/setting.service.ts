@@ -5,36 +5,54 @@ import { HttpResponse } from "../models/http.model";
 import { MasterMachine, MasterParams, MasterSubject } from "../models/master.model";
 import { removeEmptyObject } from "../helpers/object.helper";
 import { Setting, SettingUpsertRequest } from "../models/setting.model";
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class SettingService {
-    baseUrl = `${ environment.API_URL }/api/setting`;
+  baseUrl = `${environment.API_URL}/api/setting`;
+  private fetch = new BehaviorSubject<boolean>(false);
 
-    constructor(private http: HttpClient) {
-    }
+  fetch$ = this.fetch.asObservable();
 
-    getSettingList(params: Partial<MasterParams> = null) {
-        if (params) {
-            params = removeEmptyObject(params);
-        }
-        return this.http.get<HttpResponse<Setting[]>>(`${ this.baseUrl }/get-setting-all`, {
-            observe: 'response',
-            params: params,
-        });
-    }
+  updateFetch(newValue: boolean) {
+    this.fetch.next(newValue);
+  }
 
-    createSetting(body: SettingUpsertRequest) {
-        return this.http.post<HttpResponse<null>>(`${ this.baseUrl }/create-setting`, body);
-    }
+  constructor(private http: HttpClient) {
+  }
 
-    getSubjectList() {
-        return this.http.get<HttpResponse<MasterSubject[]>>(`${ environment.API_URL }/api/subject/get-list-subject`);
+  getSettingList(params: Partial<MasterParams> = null) {
+    if (params) {
+      params = removeEmptyObject(params);
     }
+    return this.http.get<HttpResponse<Setting[]>>(`${this.baseUrl}/get-setting-all`, {
+      observe: 'response',
+      params: params,
+    });
+  }
 
-    getMachineList() {
-        return this.http.get<HttpResponse<MasterMachine[]>>(`${ environment.API_URL }/api/machine/get-list-machine`);
-    }
+  createSetting(body: SettingUpsertRequest) {
+    return this.http.post<HttpResponse<null>>(`${this.baseUrl}/create-setting`, body);
+  }
+  //   
+  // }
+
+  getSettingListAll() {
+    return this.http.get<HttpResponse<Setting[]>>(`${this.baseUrl}/get-setting-alls`);
+  }
+
+  // createSetting(body: SettingUpsertRequest) {
+  //   return this.http.post<HttpResponse<null>>(`${this.baseUrl}/create-setting`, body);
+  // }
+
+  getSubjectList() {
+    return this.http.get<HttpResponse<MasterSubject[]>>(`${environment.API_URL}/api/subject/get-list-subject`);
+  }
+
+  getMachineList() {
+    return this.http.get<HttpResponse<MasterMachine[]>>(`${environment.API_URL}/api/machine/get-list-machine`);
+  }
 
 }

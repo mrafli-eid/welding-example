@@ -113,6 +113,7 @@ export class SettingUpsertComponent implements OnInit {
             delete body['lower_limit_toggle'];
             delete body['upper_limit_toggle'];
             this.create(body);
+          this.settingService.updateFetch(true)
         }
     }
 
