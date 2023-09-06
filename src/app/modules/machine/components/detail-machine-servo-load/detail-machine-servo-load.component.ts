@@ -44,6 +44,10 @@ export class DetailMachineServoLoadComponent {
           this.fetchServoLoad();
         });
     }
+
+    ngOnChanges() {
+      this.fetchServoLoad();
+    }
     
     fetchServoLoad() {
       this.machineService.getServoLoad(this.machine_name, this.robot_name, this.dateFilter)

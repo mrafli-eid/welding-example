@@ -27,19 +27,19 @@ export class SettingService {
     if (params) {
       params = removeEmptyObject(params);
     }
-    return this.http.get<HttpResponse<Setting[]>>(`${this.baseUrl}/get-setting-all`, {
-      observe: 'response',
-      params: params,
-    });
   }
+
+    createSetting(body: SettingUpsertRequest) {
+        return this.http.post<HttpResponse<null>>(`${ this.baseUrl }/create-setting`, body);
+    }
 
   getSettingListAll() {
     return this.http.get<HttpResponse<Setting[]>>(`${this.baseUrl}/get-setting-alls`);
   }
 
-  createSetting(body: SettingUpsertRequest) {
-    return this.http.post<HttpResponse<null>>(`${this.baseUrl}/create-setting`, body);
-  }
+  // createSetting(body: SettingUpsertRequest) {
+  //   return this.http.post<HttpResponse<null>>(`${this.baseUrl}/create-setting`, body);
+  // }
 
   getSubjectList() {
     return this.http.get<HttpResponse<MasterSubject[]>>(`${environment.API_URL}/api/subject/get-list-subject`);

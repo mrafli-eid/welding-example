@@ -34,11 +34,15 @@ export class DetailMachineRunningHourComponent implements OnInit {
     
   ngOnInit() { 
     this.fetchRunningHour();
-    interval(DEFAULT_INTERVAL)
+    interval(30 * 1000)
     .pipe(this.untilDestroyed())
     .subscribe(() => {
       this.fetchRunningHour();
     });
+  }
+
+  ngOnChanges() {
+    this.fetchRunningHour();
   }
   
   fetchRunningHour(){
