@@ -74,15 +74,6 @@ export class SettingUpsertComponent implements OnInit {
             });
     }
 
-    fetchSettingList() {
-        this.settingService
-            .getSettingListAll()
-            .pipe(take(1))
-            .subscribe((resp) => {
-                this.settingList = resp.data || [];
-            });
-    }
-
     initValidators() {
         const options = [
             'minimum',
@@ -132,7 +123,6 @@ export class SettingUpsertComponent implements OnInit {
             .subscribe({
                 next: () => {
                     this.finish();
-                    this.fetchSettingList();
                 },
                 error: () => {
                     this.finish();

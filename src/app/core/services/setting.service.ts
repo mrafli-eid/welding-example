@@ -25,10 +25,6 @@ export class SettingService {
         });
     }
 
-    getSettingListAll(){
-        return this.http.get<HttpResponse<Setting[]>>(`${ this.baseUrl }/get-setting-alls`);
-    }
-
     createSetting(body: SettingUpsertRequest) {
         return this.http.post<HttpResponse<null>>(`${ this.baseUrl }/create-setting`, body);
     }
