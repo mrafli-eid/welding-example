@@ -21,7 +21,7 @@ export class ChartTimeMachineDetailComponent implements OnChanges {
         this.pieChartData.datasets[0].data = this.data.map(row => row.value);
         this.pieChartData.datasets[0].backgroundColor = this.data.map(row => row.color);
 
-        this.chart?.update();
+        this.chart?.render();
     }
 
 
@@ -30,7 +30,6 @@ export class ChartTimeMachineDetailComponent implements OnChanges {
             {
                 data: [],
                 backgroundColor: [],
-                borderWidth: 1,
                 borderColor: 'white'
             }
         ]

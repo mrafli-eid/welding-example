@@ -40,15 +40,14 @@ export class ChartMaintenanceIndicatorGraphMTBFComponent implements OnChanges {
                 borderWidth: 1,
             }
         }
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
         datasets: [
             {
                 data: [],
-                pointRadius: 0,
-                borderWidth: 2,
+                pointRadius: 4,
                 borderColor: '#28A745',
                 fill: 'origin',
             },

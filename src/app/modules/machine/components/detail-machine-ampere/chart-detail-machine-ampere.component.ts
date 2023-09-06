@@ -57,11 +57,13 @@ export class ChartDetailMachineAmpereComponent {
     datasets: [
       {
         data: [],
+        pointRadius: 4,
         borderColor: '#0177FB',
         fill: 'origin',
       },
       {
         data: [],
+        pointRadius: 4,
         borderColor: '#DC3545',
         fill: 'origin',
       },

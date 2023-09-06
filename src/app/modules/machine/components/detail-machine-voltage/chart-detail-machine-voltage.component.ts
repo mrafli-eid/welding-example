@@ -46,6 +46,26 @@ export class ChartDetailMachineVoltageComponent {
             borderColor: '#28A745',
             borderWidth: 1,
         };
+    this.chart?.render();
+  }
+
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [],
+        pointRadius: 4,
+        borderColor: '#0177FB',
+        fill: 'origin',
+      },
+      {
+        data: [],
+        pointRadius: 4,
+        borderColor: '#DC3545',
+        fill: 'origin',
+      },
+    ],
+    labels: [],
+  };
 
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.maximum = {

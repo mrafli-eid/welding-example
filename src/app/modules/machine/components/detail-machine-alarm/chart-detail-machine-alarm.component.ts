@@ -25,13 +25,14 @@ export class ChartDetailMachineAlarmComponent implements OnChanges {
     ngOnChanges() {
         this.lineChartData.datasets[0].data = this.data.data.map((d) => d.value);
         this.lineChartData.labels = this.data.data.map((d) => d.label);
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
         datasets: [
             {
                 data: [],
+                pointRadius: 4,
                 backgroundColor: function (context) {
                     return getGradient(context, [ 'rgba(220, 53, 69)', 'rgba(21, 22, 24)' ]);
                 },

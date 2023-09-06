@@ -66,6 +66,7 @@ export class ChartDetailMachineServoLoadComponent {
         datasets: [
             {
                 data: [],
+                pointRadius: 4,
                 borderColor: '#0177FB',
                 fill: 'origin',
             },

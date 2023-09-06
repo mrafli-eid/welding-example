@@ -50,13 +50,14 @@ export class ChartCycleTimeComponent implements OnChanges {
             }
         }
 
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
         datasets: [
             {
                 data: [],
+                pointRadius: 4,
                 borderColor: '#0177FB',
                 fill: 'origin',
             },

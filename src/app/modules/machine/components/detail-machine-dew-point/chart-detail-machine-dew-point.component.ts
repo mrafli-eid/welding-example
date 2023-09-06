@@ -53,6 +53,7 @@ export class ChartDetailMachineDewPointComponent {
         datasets: [
             {
                 data: [],
+                pointRadius: 4,
                 borderColor: '#28A745',
                 fill: 'origin',
             },

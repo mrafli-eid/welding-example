@@ -40,15 +40,14 @@ export class ChartMaintenanceIndicatorGraphMTTRComponent implements OnChanges {
                 borderWidth: 1,
             }
         }
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
         datasets: [
             {
                 data: [],
-                pointRadius: 0,
-                borderWidth: 2,
+                pointRadius: 4,
                 borderColor: '#28A745',
                 fill: 'origin',
             },
@@ -61,11 +60,11 @@ export class ChartMaintenanceIndicatorGraphMTTRComponent implements OnChanges {
         maintainAspectRatio: false,
         elements: {
             line: {
-                tension: 0.5
+                tension: 0.7
             }
         },
         layout: {
-            padding: { top: 0, left: -4 }
+            padding: { left: -4 }
         },
         scales: {
             y: {
@@ -99,6 +98,7 @@ export class ChartMaintenanceIndicatorGraphMTTRComponent implements OnChanges {
             annotation: {
                 annotations: {}
             },
+
         }
     };
 

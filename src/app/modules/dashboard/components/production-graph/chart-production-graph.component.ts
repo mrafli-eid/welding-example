@@ -28,19 +28,21 @@ export class ChartProductionGraphComponent implements OnChanges {
         this.lineChartData.datasets[0].data = this.data.data.map((d) => d.plan);
         this.lineChartData.datasets[1].data = this.data.data.map((d) => d.actual);
         this.lineChartData.labels = this.data.data.map((d) => d.label);
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
         datasets: [
             {
                 data: [],
+                pointRadius: 4,
                 backgroundColor: function (context) {
                     return getGradient(context, [ 'rgba(1, 119, 251, 1)', 'rgba(1, 119, 251, .3)' ]);
                 }
             },
             {
                 data: [],
+                pointRadius: 4,
                 backgroundColor: function (context) {
                     return getGradient(context, [ 'rgba(40, 167, 69, 1)', 'rgba(40, 167, 69, .3)' ]);
                 }

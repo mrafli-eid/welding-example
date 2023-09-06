@@ -29,25 +29,28 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
         this.lineChartData.datasets[2].data = this.data.data.map((d) => d.value_stop);
         this.lineChartData.labels = this.data.data.map((d) => d.label);
 
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
         datasets: [
             {
                 data: [],
+                pointRadius: 4,
                 backgroundColor: '#28A745',
                 fill: 'origin',
                 stack: 'a',
             },
             {
                 data: [],
+                pointRadius: 4,
                 backgroundColor: '#E3C053',
                 fill: 'origin',
                 stack: 'a',
             },
             {
                 data: [],
+                pointRadius: 4,
                 backgroundColor: '#DC3545',
                 fill: 'origin',
                 stack: 'a',

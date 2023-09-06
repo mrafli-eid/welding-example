@@ -62,18 +62,20 @@ export class ChartDetailMachineSansoMaticComponent {
             borderColor: '#DC3545',
             borderWidth: 1,
         };
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
         datasets: [
             {
                 data: [],
+                pointRadius: 4,
                 borderColor: '#0177FB',
                 fill: 'origin',
             },
             {
                 data: [],
+                pointRadius: 4,
                 borderColor: '#28A745',
                 fill: 'origin',
             },

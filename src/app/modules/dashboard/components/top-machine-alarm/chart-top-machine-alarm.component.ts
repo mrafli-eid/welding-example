@@ -27,7 +27,7 @@ export class ChartTopMachineAlarmComponent implements OnChanges {
         this.lineChartData.datasets[0].data = this.data.map((d) => d.value);
         this.lineChartData.labels = this.data.map((d) => d.label);
 
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
@@ -35,6 +35,7 @@ export class ChartTopMachineAlarmComponent implements OnChanges {
             {
                 data: [],
                 backgroundColor: '#DC3545',
+                pointRadius: 4,
                 fill: 'origin',
             },
         ],
