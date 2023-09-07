@@ -54,6 +54,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { OnlyNumberDirective } from 'src/app/shared/directives/number-only.directive';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v2.component';
 
 
 @NgModule({
@@ -103,7 +104,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         MatFormFieldModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        OnlyNumberDirective
+        OnlyNumberDirective,
+        DatepickerV2Component
     ],
 })
 export class DashboardModule {

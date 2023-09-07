@@ -29,7 +29,6 @@ export class SettingListComponent {
 
   ngOnInit() {
     this.addSearchListener();
-    // this.getSettingList();
     this.settingService.fetch$.subscribe((resp) => {
       this.getSettingList()
     })

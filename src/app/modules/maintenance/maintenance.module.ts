@@ -44,6 +44,7 @@ import {
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v2.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatDatepickerModule,
         MatInputModule,
         MatNativeDateModule,
+        DatepickerV2Component
     ],
 })
 export class MaintenanceModule {

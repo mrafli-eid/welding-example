@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { DateFilter } from '../../core/models/date-filter.model';
 
 @Component({
-    selector: 'ahm-datepicker',
+    selector: 'ahm-datepicker-legacy',
     templateUrl: './datepicker.component.html',
     styleUrls: [ './datepicker.component.scss' ],
     standalone: true,

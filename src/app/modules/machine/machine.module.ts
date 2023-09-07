@@ -64,6 +64,7 @@ import { DetailMachineSansoMaticComponent } from './components/detail-machine-sa
 import { ChartDetailMachineSansoMaticComponent } from './components/detail-machine-sanso-matic/chart-detail-machine-sanso-matic.component';
 import { DetailMachineDewPointComponent } from './components/detail-machine-dew-point/detail-machine-dew-point.component';
 import { ChartDetailMachineDewPointComponent } from './components/detail-machine-dew-point/chart-detail-machine-dew-point.component';
+import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v2.component';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { ChartDetailMachineDewPointComponent } from './components/detail-machine
         MatDatepickerModule,
         MatNativeDateModule,
         MatSelectModule,
+        DatepickerV2Component
     ],
 })
 export class MachineModule {

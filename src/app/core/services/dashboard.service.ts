@@ -42,7 +42,7 @@ export class DashboardService {
 
     getTimeMachineDetail(dateFilter: any) {
         return this.http.get<HttpResponse<TimeMachineDetail>>(
-            `${environment.API_URL}/api/device-data/time-machine-detail/`,
+            `${environment.API_URL}/api/device-data/time-machine-detail`,
             {
                 params: dateFilter,
             }
@@ -51,7 +51,7 @@ export class DashboardService {
 
     getMachineActivity(dateFilter: any) {
         return this.http.get<HttpResponse<DashboardMachineActivity>>(
-            `${environment.API_URL}/api/device-data/get-machine-activity-all/`,
+            `${environment.API_URL}/api/device-data/get-machine-activity-all`,
             {
                 params: dateFilter,
             }
