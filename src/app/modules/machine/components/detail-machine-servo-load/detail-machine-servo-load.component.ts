@@ -3,9 +3,9 @@ import { DateFilter } from '../../../../core/models/date-filter.model';
 import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
 import { MachineService } from '../../../../core/services/machine.service';
 import { Router } from '@angular/router';
-import { interval, take } from 'rxjs';
+import { debounceTime, interval, take } from 'rxjs';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DEFAULT_INTERVAL, ONE_MINUTE_INTERVAL } from "../../../../core/consts/app.const";
 import { DetailMachineServoLoad } from 'src/app/core/models/machine.model';
 import { DUMMY_DETAIL_MACHINE_SERVO_LOAD } from './detail-machine-servo-load';
 
@@ -37,21 +37,21 @@ export class DetailMachineServoLoadComponent {
     
     ngOnInit() {
       this.robot_name = "MASTER";
+    }
+
+    ngOnChanges() {
       this.fetchServoLoad();
-      interval(1 * 60 * 1000)
+      interval(ONE_MINUTE_INTERVAL)
         .pipe(this.untilDestroyed())
         .subscribe(() => {
           this.fetchServoLoad();
         });
     }
-
-    ngOnChanges() {
-      this.fetchServoLoad();
-    }
     
     fetchServoLoad() {
       this.machineService.getServoLoad(this.machine_name, this.robot_name, this.dateFilter)
       .pipe(take(1))
+      .pipe(debounceTime(1000))
       .subscribe({
         next: (resp) => {
           if (resp.success) {
@@ -74,6 +74,6 @@ export class DetailMachineServoLoadComponent {
     }
 
     goToSettings() {
-        this.router.navigate([ '/settings' ]);
+        this.router.navigate([ '/settings' ], { queryParams: {name: "Servo Load", machine: this.machine_name, robot: this.robot_name } });
     }
 }

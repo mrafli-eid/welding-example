@@ -16,7 +16,7 @@ import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
         'class': 'dashboard-card',
     },
 })
-export class DetailMachineAlarmComponent implements OnInit {
+export class DetailMachineAlarmComponent {
     untilDestroyed = untilDestroyed();
 
     @Input() machine_name = '';
@@ -28,17 +28,13 @@ export class DetailMachineAlarmComponent implements OnInit {
     constructor(private machineService: MachineService) {
     }
 
-    ngOnInit() {
+    ngOnChanges() {
         this.fetchAlarm();
         interval(30 * 1000)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchAlarm();
             });
-    }
-
-    ngOnChanges() {
-        this.fetchAlarm();
     }
 
     fetchAlarm() {

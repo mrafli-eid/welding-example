@@ -32,17 +32,13 @@ export class DetailMachineSansoMaticComponent {
     private router: Router) {
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.fetchSansoMatic();
     interval(DEFAULT_INTERVAL)
       .pipe(this.untilDestroyed())
       .subscribe(() => {
         this.fetchSansoMatic();
       })
-  }
-
-  ngOnChanges() {
-    this.fetchSansoMatic();
   }
 
   fetchSansoMatic() {
@@ -68,6 +64,6 @@ export class DetailMachineSansoMaticComponent {
   }
 
   goToSettings() {
-    this.router.navigate(['/settings']);
+    this.router.navigate(['/settings'], { queryParams: { name: "Sanso Matic A", machine: this.machine_name } });
   }
 }

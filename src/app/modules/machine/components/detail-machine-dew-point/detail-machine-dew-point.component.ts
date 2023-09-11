@@ -32,17 +32,13 @@ export class DetailMachineDewPointComponent {
         private router: Router
     ) {}
 
-    ngOnInit() {
+    ngOnChanges() {
         this.fetchDewPoint();
         interval(DEFAULT_INTERVAL)
           .pipe(this.untilDestroyed())
           .subscribe(() => {
             this.fetchDewPoint();
           });
-    }
-
-    ngOnChanges() {
-        this.fetchDewPoint();
     }
 
     fetchDewPoint() {
@@ -68,6 +64,6 @@ export class DetailMachineDewPointComponent {
     }
 
     goToSettings() {
-        this.router.navigate(['/settings']);
+        this.router.navigate(['/settings'], { queryParams: {name: "Dew Point", machine: this.machine_name } });
     }
 }

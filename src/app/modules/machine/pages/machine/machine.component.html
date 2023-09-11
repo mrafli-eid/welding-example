@@ -117,6 +117,11 @@
             [machine_name]="machine_name"
         ></ahm-detail-machine-rurge-cell>
     </div>
+    <div class="grid-item" *ngIf="showComponentBoring">
+        <ahm-detail-machine-running-hour
+            [machine_name]="machine_name"
+        ></ahm-detail-machine-running-hour>
+    </div>
     <!-- <div class="grid-item">
         <ahm-detail-machine-lub-oil-pressure [id]="machine_name"></ahm-detail-machine-lub-oil-pressure>
     </div> -->

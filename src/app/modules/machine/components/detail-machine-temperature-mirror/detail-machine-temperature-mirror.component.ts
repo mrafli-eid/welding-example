@@ -64,6 +64,6 @@ export class DetailMachineTemperatureMirrorComponent {
   }
 
   goToSettings() {
-      this.router.navigate([ '/settings' ]);
+      this.router.navigate([ '/settings' ], { queryParams: { name: "Temp Mirror", machine: this.machine_name } });
   }
 }

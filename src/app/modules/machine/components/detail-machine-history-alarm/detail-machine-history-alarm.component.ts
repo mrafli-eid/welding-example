@@ -1,23 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MachineService } from "../../../../core/services/machine.service";
-import { Pagination } from "../../../../core/models/pagination.model";
-import { FormControl } from "@angular/forms";
+import { MachineService } from '../../../../core/services/machine.service';
+import { Pagination } from '../../../../core/models/pagination.model';
+import { FormControl } from '@angular/forms';
 import {
     DetailMachineDescription,
     DetailMachineHistoryAlarm,
-    DetailMachineHistoryAlarmParams
-} from "../../../../core/models/machine.model";
-import { DUMMY_DETAIL_MACHINE_HISTORY_ALARM } from "./detail-machine-history-alarm.dummy";
-import { debounceTime, interval, take } from "rxjs";
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+    DetailMachineHistoryAlarmParams,
+} from '../../../../core/models/machine.model';
+import { DUMMY_DETAIL_MACHINE_HISTORY_ALARM } from './detail-machine-history-alarm.dummy';
+import { debounceTime, interval, take } from 'rxjs';
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 
 @Component({
     selector: 'ahm-detail-machine-history-alarm',
     templateUrl: './detail-machine-history-alarm.component.html',
-    styleUrls: [ './detail-machine-history-alarm.component.scss' ],
+    styleUrls: ['./detail-machine-history-alarm.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class DetailMachineHistoryAlarmComponent implements OnInit {
@@ -25,7 +25,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
 
     @Input() machine_name: string;
     @Input() robot_name: string;
-    
+
     pagination: Pagination = {
         page_number: 1,
         page_size: 10,
@@ -34,36 +34,36 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     };
     queryParams: Partial<DetailMachineHistoryAlarmParams> = {
         page_size: this.pagination.page_size,
-        page_number: this.pagination.page_number
-    }
+        page_number: this.pagination.page_number,
+    };
 
-    descriptionList: DetailMachineDescription[] = [ {
-        "description": "Error"
-    } ];
+    descriptionList: DetailMachineDescription[] = [
+        {
+            description: 'Error',
+        },
+    ];
     searchTerm = new FormControl('');
     actDate = new FormControl(null);
     description = new FormControl(null);
 
-    historyAlarmList: DetailMachineHistoryAlarm[] = DUMMY_DETAIL_MACHINE_HISTORY_ALARM;
+    historyAlarmList: DetailMachineHistoryAlarm[] =
+        DUMMY_DETAIL_MACHINE_HISTORY_ALARM;
 
-    constructor(private machineService: MachineService) {
-
-    }
+    constructor(private machineService: MachineService) {}
 
     ngOnInit() {
-        this.robot_name = "MASTER";
-        this.addSearchListener();
+        this.robot_name = 'MASTER';
+    }
+
+    ngOnChanges() {
         this.fetchList();
+        this.addSearchListener();
         // this.fetchDescription();
         interval(30 * 1000)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchList();
             });
-    }
-
-    ngOnChanges() {
-        this.fetchList();
     }
 
     addSearchListener() {
@@ -77,12 +77,19 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     }
 
     fetchList() {
-        this.machineService.getHistoryAlarm(this.machine_name, this.robot_name, this.queryParams)
+        this.machineService
+            .getHistoryAlarm(
+                this.machine_name,
+                this.robot_name,
+                this.queryParams
+            )
             .pipe(take(1))
             .subscribe((response) => {
-                this.pagination = JSON.parse(response.headers.get('x-pagination'));
+                this.pagination = JSON.parse(
+                    response.headers.get('x-pagination')
+                );
                 this.historyAlarmList = response.body.data || [];
-            })
+            });
     }
 
     // fetchDescription() {
@@ -130,6 +137,9 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     }
 
     download() {
-        this.machineService.downloadHistoryAlarm(this.machine_name, this.queryParams);
+        this.machineService.downloadHistoryAlarm(
+            this.machine_name,
+            this.queryParams
+        );
     }
 }

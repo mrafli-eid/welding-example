@@ -185,7 +185,10 @@ export class MachineService {
         });
     }
 
-  getRunningHour(machine_name: string, robot_name: string, params: Partial<DateFilter>){
+  getRunningHour(machine_name: string, robot_name?: string, params?: Partial<DateFilter>){
+    if(machine_name == "BORRING"){
+      return this.http.get<HttpResponse<DetailMachineRunningHour>>(`${this.baseUrl}/get-running-hour-all/${machine_name}`, { params });
+    }
     return this.http.get<HttpResponse<DetailMachineRunningHour>>(`${this.baseUrl}/get-running-hour-all/${machine_name}/${robot_name}`, { params })
   }
   

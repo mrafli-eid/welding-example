@@ -12,6 +12,7 @@ import { SettingService } from '../../../core/services/setting.service';
 import { Setting } from 'src/app/core/models/setting.model';
 import { DUMMY_SETTING_LIST } from '../setting-list/setting-list.dummy';
 import { Pagination } from 'src/app/core/models/pagination.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'ahm-setting-upsert',
@@ -21,6 +22,10 @@ import { Pagination } from 'src/app/core/models/pagination.model';
 export class SettingUpsertComponent implements OnInit {
     @Output() onSubmit = new EventEmitter();
 
+    machine_name = '';
+    robot_name = ''; 
+    name = '';
+    robot_fullname = '';
     machineList: registerMachine[] = DUMMY_MASTER_MACHINE_LIST;
     subjectList: MasterSubject[] = DUMMY_MASTER_SUBJECT_LIST;
     settingList: Setting[] = DUMMY_SETTING_LIST;
@@ -48,7 +53,19 @@ export class SettingUpsertComponent implements OnInit {
         upper_limit_toggle: new FormControl(false),
     });
 
-    constructor(private settingService: SettingService) {}
+    constructor(private settingService: SettingService, 
+                private activatedRoute: ActivatedRoute,) {
+                    // get by params
+                    this.machine_name = this.activatedRoute.snapshot.queryParams['machine'];
+                    this.robot_name = this.activatedRoute.snapshot.queryParams['robot'];
+                    this.robot_fullname = this.robot_name ? ` ROBOT ${this.robot_name}` : "";
+                    this.name = this.activatedRoute.snapshot.queryParams['name'];
+                    
+                    // set value to form
+                    this.formGroup.get('machine_name').patchValue(this.machine_name);
+                    this.formGroup.get('subject_name').patchValue(this.name + this.robot_fullname + " " + this.machine_name);
+                    console.log(this.formGroup.get('subject_name').value);
+                }
 
     ngOnInit() {
         this.initValidators();
@@ -113,7 +130,6 @@ export class SettingUpsertComponent implements OnInit {
             delete body['lower_limit_toggle'];
             delete body['upper_limit_toggle'];
             this.create(body);
-          this.settingService.updateFetch(true)
         }
     }
 

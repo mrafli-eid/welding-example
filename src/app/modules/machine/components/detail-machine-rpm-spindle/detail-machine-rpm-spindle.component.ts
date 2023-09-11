@@ -29,18 +29,14 @@ export class DetailMachineRpmSpindleComponent {
   constructor(private machineService: MachineService,
                 private router: Router) {
     }
-    
-  ngOnInit() { 
+  
+  ngOnChanges() {
     this.fetchRpmSpindle();
     interval(DEFAULT_INTERVAL)
     .pipe(this.untilDestroyed())
     .subscribe(() => {
       this.fetchRpmSpindle();
     });
-  }
-  
-  ngOnChanges() {
-    this.fetchRpmSpindle();
   }
   
   fetchRpmSpindle(){
@@ -65,7 +61,7 @@ export class DetailMachineRpmSpindleComponent {
   }
 
   goToSettings() {
-    this.router.navigate(['/settings']);
+    this.router.navigate(['/settings'], { queryParams: {name: "RPM A", machine: this.machine_name } });
   }
 
 }

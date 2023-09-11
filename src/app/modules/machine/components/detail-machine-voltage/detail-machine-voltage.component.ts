@@ -7,7 +7,7 @@ import { DetailMachineAmpereAndVoltage } from 'src/app/core/models/machine.model
 import { MachineService } from 'src/app/core/services/machine.service';
 import { interval, take } from 'rxjs';
 import { DUMMY_DETAIL_MACHINE_VOLTAGE } from './detail-machine-voltage';
-import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
+import { DEFAULT_INTERVAL, ONE_MINUTE_INTERVAL } from 'src/app/core/consts/app.const';
 
 @Component({
   selector: 'ahm-detail-machine-voltage',
@@ -35,16 +35,15 @@ export class DetailMachineVoltageComponent {
     
     ngOnInit() {
       this.robot_name = "MASTER";
-      this.fetchVoltage();
-      interval(1 * 60 * 1000)
-        .pipe(this.untilDestroyed())
-        .subscribe(() => {
-          this.fetchVoltage();
-      });
     }
 
     ngOnChanges() {
       this.fetchVoltage();
+      interval(ONE_MINUTE_INTERVAL)
+        .pipe(this.untilDestroyed())
+        .subscribe(() => {
+          this.fetchVoltage();
+      });
     }
 
     fetchVoltage(){
@@ -69,6 +68,6 @@ export class DetailMachineVoltageComponent {
     }
   
     goToSettings() {
-      this.router.navigate(['/settings']);
+      this.router.navigate(['/settings'], { queryParams: {name: "Voltage", machine: this.machine_name, robot: this.robot_name } });
     }
 }

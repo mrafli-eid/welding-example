@@ -7,7 +7,7 @@ import { DetailMachineRunningHour } from 'src/app/core/models/machine.model';
 import { MachineService } from '../../../../core/services/machine.service';
 import { interval, take } from 'rxjs';
 import { DUMMY_DETAIL_MACHINE_RUNNING_HOUR } from './detail-machine-running-hour';
-import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
+import { DEFAULT_INTERVAL, HALF_MINUTE_INTERVAL } from 'src/app/core/consts/app.const';
 
 @Component({
   selector: 'ahm-detail-machine-running-hour',
@@ -18,7 +18,7 @@ import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
   }
 })
   
-export class DetailMachineRunningHourComponent implements OnInit {
+export class DetailMachineRunningHourComponent {
   untilDestroyed = untilDestroyed();
   
   dateFilter: DateFilter = getDefaultDateFilter();
@@ -31,18 +31,14 @@ export class DetailMachineRunningHourComponent implements OnInit {
   constructor(private machineService: MachineService,
                 private router: Router) {
     }
-    
-  ngOnInit() { 
+
+  ngOnChanges() {
     this.fetchRunningHour();
-    interval(30 * 1000)
+    interval(HALF_MINUTE_INTERVAL)
     .pipe(this.untilDestroyed())
     .subscribe(() => {
       this.fetchRunningHour();
     });
-  }
-
-  ngOnChanges() {
-    this.fetchRunningHour();
   }
   
   fetchRunningHour(){
@@ -67,6 +63,6 @@ export class DetailMachineRunningHourComponent implements OnInit {
   }
 
   goToSettings() {
-    this.router.navigate(['/settings']);
+    this.router.navigate(['/settings'], { queryParams: {name: "Running Hour", machine: this.machine_name, robot: this.robot_name } });
   }
 }

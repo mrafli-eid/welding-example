@@ -32,18 +32,14 @@ export class DetailMachineAmpereComponent {
 
   constructor(private machineService: MachineService,
     private router: Router) {}
-    
-  ngOnInit() {
+
+  ngOnChanges() {
     this.fetchAmpere();
     interval(1 * 60 * 1000)
       .pipe(this.untilDestroyed())
       .subscribe(() => {
         this.fetchAmpere();
       });
-  }
-
-  ngOnChanges() {
-    this.fetchAmpere();
   }
 
   fetchAmpere(){
@@ -68,6 +64,6 @@ export class DetailMachineAmpereComponent {
   }
 
   goToSettings() {
-    this.router.navigate(['/settings']);
+    this.router.navigate(['/settings'], { queryParams: { name: "Ampere" ,machine: this.machine_name, robot: this.robot_name } });
   }
 }

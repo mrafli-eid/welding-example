@@ -30,17 +30,13 @@ export class DetailMachineRurgeCellComponent {
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.fetchRurgeCell();
     interval(DEFAULT_INTERVAL)
       .pipe(this.untilDestroyed())
       .subscribe(() => {
         this.fetchRurgeCell();
       });
-  }
-
-  ngOnChanges() {
-    this.fetchRurgeCell();
   }
 
   fetchRurgeCell() {
@@ -65,6 +61,6 @@ export class DetailMachineRurgeCellComponent {
   }
 
   goToSettings() {
-    this.router.navigate(['/settings']);
+    this.router.navigate(['/settings'], { queryParams: {name: "Rurge Cell", machine: this.machine_name } });
   }
 }
