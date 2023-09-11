@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
-import { MaintenancePreventive } from '../../../../core/models/maintenance.model';
+import { MaintenancePreventive } from '../../../../core/models/maintenance-preventive.model';
 import { MaintenancePreventiveService } from '../../../../core/services/maintenance-preventive.service';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
-  selector: 'ahm-preventive-maintenance-upsert',
-  templateUrl: './preventive-maintenance-upsert.component.html',
-  styleUrls: ['./preventive-maintenance-upsert.component.scss']
+    selector: 'ahm-preventive-maintenance-upsert',
+    templateUrl: './preventive-maintenance-upsert.component.html',
+    styleUrls: [ './preventive-maintenance-upsert.component.scss' ]
 })
 export class PreventiveMaintenanceUpsertComponent {
     machineId = '';
@@ -35,9 +36,10 @@ export class PreventiveMaintenanceUpsertComponent {
         this.formGroup.patchValue(this.data);
         this.isOk = this.data?.ok || false;
         if (this.isOk) {
-            this.formGroup.addControl('actual', new FormControl('', [Validators.required]));
+            this.formGroup.addControl('actual', new FormControl('', [ Validators.required ]));
+            this.formGroup.addControl('end_date', new FormControl([ Validators.required ]));
         } else if (this.data?.actual) {
-            this.formGroup.addControl('actual', new FormControl('', [Validators.required]));
+            this.formGroup.addControl('actual', new FormControl('', [ Validators.required ]));
         }
     }
 
@@ -45,6 +47,12 @@ export class PreventiveMaintenanceUpsertComponent {
         this.formGroup.markAllAsTouched();
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
+            if (body.start_date) {
+                body.start_date = moment(body.start_date).format('YYYY-MM-DD');
+            }
+            if (body.end_date) {
+                body.end_date = moment(body.end_date).format('YYYY-MM-DD');
+            }
             if (this.data) {
                 if (this.isOk) {
                     this.ok(body);

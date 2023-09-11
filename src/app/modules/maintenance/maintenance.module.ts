@@ -45,6 +45,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v2.component';
+import { CorrectiveMaintenanceContainerComponent } from './corrective-maintenance/corrective-maintenance-container/corrective-maintenance-container.component';
+import { CorrectiveMaintenanceGraphComponent } from './corrective-maintenance/corrective-maintenance-graph/corrective-maintenance-graph.component';
+import { CorrectiveMaintenanceListComponent } from './corrective-maintenance/corrective-maintenance-list/corrective-maintenance-list.component';
+import { CorrectiveMaintenanceUpsertComponent } from './corrective-maintenance/corrective-maintenance-upsert/corrective-maintenance-upsert.component';
+import { CorrectiveMaintenanceDetailComponent } from './corrective-maintenance/corrective-maintenance-detail/corrective-maintenance-detail.component';
 
 
 @NgModule({
@@ -57,7 +62,12 @@ import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v
     ChartMaintenanceComponent,
     MaintenanceDetailComponent,
     PreventiveMaintenanceUpsertComponent,
-    PreventiveMaintenanceDetailComponent
+    PreventiveMaintenanceDetailComponent,
+    CorrectiveMaintenanceContainerComponent,
+    CorrectiveMaintenanceGraphComponent,
+    CorrectiveMaintenanceListComponent,
+    CorrectiveMaintenanceUpsertComponent,
+    CorrectiveMaintenanceDetailComponent
   ],
     imports: [
         CommonModule,

@@ -5,6 +5,7 @@ import {
     PreventiveMaintenanceContainerComponent
 } from "./preventive-maintenance/preventive-maintenance-container/preventive-maintenance-container.component";
 import { MaintenanceDetailComponent } from './maintenance-detail/maintenance-detail.component';
+import { CorrectiveMaintenanceContainerComponent } from './corrective-maintenance/corrective-maintenance-container/corrective-maintenance-container.component';
 
 const routes: Routes = [
     {
@@ -12,7 +13,7 @@ const routes: Routes = [
         component: MaintenanceListComponent,
     },
     {
-        path: ':id',
+        path: ':name',
         component: MaintenanceDetailComponent,
         children: [
             {
@@ -26,7 +27,7 @@ const routes: Routes = [
             },
             {
                 path: 'corrective',
-                component: PreventiveMaintenanceContainerComponent
+                component: CorrectiveMaintenanceContainerComponent
             },
         ]
     },

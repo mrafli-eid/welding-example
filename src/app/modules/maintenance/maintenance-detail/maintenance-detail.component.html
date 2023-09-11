@@ -1,7 +1,7 @@
 <div class="breadcrumb">
-    <a routerLink="/maintenance/{{id}}/preventive" routerLinkActive="active">Maintenance Preventive</a>
+    <a (click)="navigateToDetailPreventive()" routerLinkActive="active">Maintenance Preventive</a>
     <span>|</span>
-    <a routerLink="/maintenance/{{id}}/corrective" routerLinkActive="active">Maintenance corrective</a>
+    <a (click)="navigateToDetailCorrective()" routerLinkActive="active">Maintenance Corrective</a>
 </div>
 <div>
     <router-outlet></router-outlet>

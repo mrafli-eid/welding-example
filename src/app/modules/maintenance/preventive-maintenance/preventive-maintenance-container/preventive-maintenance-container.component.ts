@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MaintenancePage } from '../../../../core/consts/maintenance.const';
-import { MaintenancePreventive } from '../../../../core/models/maintenance.model';
+import { MaintenancePreventive } from '../../../../core/models/maintenance-preventive.model';
 import {
     PreventiveMaintenanceListComponent
 } from '../preventive-maintenance-list/preventive-maintenance-list.component';
@@ -30,6 +30,7 @@ export class PreventiveMaintenanceContainerComponent {
 
     openList() {
         this.page = MaintenancePage.LIST;
+        this.listComponent.refreshData();
     }
 
 }

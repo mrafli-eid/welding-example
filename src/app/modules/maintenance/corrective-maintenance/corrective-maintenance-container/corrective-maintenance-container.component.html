@@ -1,0 +1,27 @@
+<ng-container [ngSwitch]="page">
+
+    <ng-container *ngSwitchCase="MaintenancePage.LIST">
+        <div class="grid">
+            <div class="grid-item-top">
+                <ahm-corrective-maintenance-graph></ahm-corrective-maintenance-graph>
+            </div>
+            <div class="grid-item-bottom">
+                <ahm-corrective-maintenance-list (onDetail)="openDetail($event)"
+                                                 (onEdit)="openUpsert($event)"></ahm-corrective-maintenance-list>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="MaintenancePage.DETAIL">
+        <ahm-corrective-maintenance-detail (onFinished)="openList()" [data]="data"></ahm-corrective-maintenance-detail>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="MaintenancePage.UPSERT">
+        <div class="grid grid-hide">
+            <div class="grid-item-top">
+                <ahm-corrective-maintenance-upsert (onSubmit)="openList()"
+                                                   [data]="data"></ahm-corrective-maintenance-upsert>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

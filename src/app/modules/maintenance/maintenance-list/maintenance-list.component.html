@@ -1,7 +1,7 @@
 <div class="master-data-container">
     <a *ngFor="let machine of machineList"
-       routerLink="/maintenance/{{machine.id}}"
-       class="master-data-item">
+       class="master-data-item"
+       (click)="navigateToDetail(machine)">
         {{machine.name}}
     </a>
 </div>

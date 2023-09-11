@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Schedule } from '../../../../core/models/schedule.model';
 import { DUMMY_SCHEDULE_LIST } from '../../../dashboard/components/maintenance-schedule/maintenance-schedule.dummy';
-import { ScheduleService } from '../../../../core/services/schedule.service';
 import { interval, take } from 'rxjs';
 import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import * as moment from 'moment/moment';
@@ -18,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
     },
 })
 export class PreventiveMaintenanceCalendarComponent {
-    id = '';
+    machine_name = '';
     untilDestroyed = untilDestroyed();
 
     scheduleList: Schedule[] = DUMMY_SCHEDULE_LIST;
@@ -27,7 +26,7 @@ export class PreventiveMaintenanceCalendarComponent {
 
     constructor(private maintenanceService: MaintenancePreventiveService,
                 private activatedRoute: ActivatedRoute) {
-        this.id = this.activatedRoute.snapshot.paramMap.get('id');
+        this.machine_name = this.activatedRoute.snapshot.paramMap.get('name');
     }
 
     ngOnInit() {
@@ -42,7 +41,7 @@ export class PreventiveMaintenanceCalendarComponent {
     getScheduleList() {
         const start = new Date(this.currentYear, this.currentMonth, 1, 0, 0, 0);
         const end = new Date(this.currentYear, this.currentMonth + 1, 0, 23, 59, 59);
-        this.maintenanceService.getSchedule(this.id, start, end)
+        this.maintenanceService.getSchedule(this.machine_name, start, end)
             .pipe(take(1))
             .subscribe((resp) => {
                 if (resp.data && resp.data?.length > 0) {

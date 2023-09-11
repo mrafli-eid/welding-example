@@ -9,10 +9,11 @@ interface Breadcrumb {
     label: string;
     link: string;
 }
+
 @Component({
-  selector: 'ahm-maintenance-list',
-  templateUrl: './maintenance-list.component.html',
-  styleUrls: ['./maintenance-list.component.scss']
+    selector: 'ahm-maintenance-list',
+    templateUrl: './maintenance-list.component.html',
+    styleUrls: [ './maintenance-list.component.scss' ]
 })
 export class MaintenanceListComponent implements OnInit {
     destroyRef = inject(DestroyRef);
@@ -26,11 +27,19 @@ export class MaintenanceListComponent implements OnInit {
         this.fetchMachineList();
     }
 
+    navigateToDetail(machine: MasterMachine) {
+        this.router.navigate([ `/maintenance/${machine.name}` ], {
+            queryParams: {
+                id: machine.id,
+            },
+        });
+    }
+
     fetchMachineList() {
         this.pureService.getMachineList()
             .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe((resp) => {
-               this.machineList = resp.data;
+                this.machineList = resp.data;
             });
     }
 }

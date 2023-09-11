@@ -4,7 +4,7 @@ import { MasterParams } from '../models/master.model';
 import { environment } from '../../../environments/environment';
 import { removeEmptyObject } from '../helpers/object.helper';
 import { HttpResponse } from '../models/http.model';
-import { MaintenancePreventive, MaintenancePreventiveChart } from '../models/maintenance.model';
+import { MaintenancePreventive, MaintenancePreventiveChart } from '../models/maintenance-preventive.model';
 import { downLoadFile } from '../helpers/http.helper';
 import { Schedule } from '../models/schedule.model';
 import { DateFilter } from '../models/date-filter.model';
@@ -19,21 +19,21 @@ export class MaintenancePreventiveService {
     constructor(private http: HttpClient) {
     }
 
-    getList(id: string, params: Partial<MasterParams>) {
+    getList(machine_name: string, params: Partial<MasterParams>) {
         params = removeEmptyObject(params);
-        return this.http.get<HttpResponse<MaintenancePreventive[]>>(`${ this.baseUrl }/get-maintenance-preventive-all/${id}`, {
+        return this.http.get<HttpResponse<MaintenancePreventive[]>>(`${ this.baseUrl }/get-maintenance-preventive-all/${machine_name}`, {
             observe: 'response',
             params: params,
         });
     }
 
-    getChart(id: string, params: Partial<DateFilter>) {
-        return this.http.get<HttpResponse<MaintenancePreventiveChart[]>>(`${ this.baseUrl }/get-maintenance-preventive-grafik-all/${id}`, { params });
+    getChart(machine_name: string, params: Partial<DateFilter>) {
+        return this.http.get<HttpResponse<MaintenancePreventiveChart[]>>(`${ this.baseUrl }/get-maintenance-preventive-grafik-all/${machine_name}`, { params });
     }
 
-    getSchedule(id: string, start: Date, end: Date) {
+    getSchedule(machine_name: string, start: Date, end: Date) {
         const params = { start: start.toUTCString(), end: end.toUTCString() };
-        return this.http.get<HttpResponse<Schedule[]>>(`${ this.baseUrl }/get-schedule/${id}`, { params });
+        return this.http.get<HttpResponse<Schedule[]>>(`${ this.baseUrl }/get-schedule/${machine_name}`, { params });
     }
 
     create(body: any) {
@@ -52,10 +52,10 @@ export class MaintenancePreventiveService {
         return this.http.put<HttpResponse<any>>(`${ this.baseUrl }/ok/${id}`, body);
     }
 
-    exportExcel(id: string, params: Partial<MasterParams>) {
+    exportExcel(machine_name: string, params: Partial<MasterParams>) {
         const queryParams = {
             ...params,
-            machine: id
+            machine: machine_name
         }
 
         this.http.get(`${ this.baseUrl }/download-excel-preventive`, {

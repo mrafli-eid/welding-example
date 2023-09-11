@@ -1,23 +1,25 @@
 import { Component } from '@angular/core';
 import { DateFilter } from '../../../../core/models/date-filter.model';
 import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
+import { MaintenancePreventiveChart } from '../../../../core/models/maintenance-preventive.model';
+import {
+    DUMMY_MAINTENANCE_PREVENTIVE_CHART_LIST
+} from '../../preventive-maintenance/preventive-maintenance-graph/preventive-maintenance-graph.dummy';
+import { ActivatedRoute } from '@angular/router';
 import { interval, take } from 'rxjs';
 import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
-import { ActivatedRoute } from '@angular/router';
-import { MaintenancePreventiveChart } from '../../../../core/models/maintenance-preventive.model';
-import { DUMMY_MAINTENANCE_PREVENTIVE_CHART_LIST } from './preventive-maintenance-graph.dummy';
-import { MaintenancePreventiveService } from '../../../../core/services/maintenance-preventive.service';
+import { MaintenanceCorrectiveService } from '../../../../core/services/maintenance-corrective.service';
 
 @Component({
-    selector: 'ahm-preventive-maintenance-graph',
-    templateUrl: './preventive-maintenance-graph.component.html',
-    styleUrls: [ './preventive-maintenance-graph.component.scss' ],
+    selector: 'ahm-corrective-maintenance-graph',
+    templateUrl: './corrective-maintenance-graph.component.html',
+    styleUrls: [ './corrective-maintenance-graph.component.scss' ],
     host: {
         'class': 'dashboard-card',
     },
 })
-export class PreventiveMaintenanceGraphComponent {
+export class CorrectiveMaintenanceGraphComponent {
     untilDestroyed = untilDestroyed();
     machine_name = '';
 
@@ -26,7 +28,7 @@ export class PreventiveMaintenanceGraphComponent {
 
     page: number = 0;
 
-    constructor(private maintenanceService: MaintenancePreventiveService,
+    constructor(private maintenanceService: MaintenanceCorrectiveService,
                 private activatedRoute: ActivatedRoute) {
         this.machine_name = this.activatedRoute.snapshot.paramMap.get('name');
     }

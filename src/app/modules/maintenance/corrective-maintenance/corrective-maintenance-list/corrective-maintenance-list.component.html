@@ -1,15 +1,11 @@
 <div class="master-list">
     <div class="master-header">
-        <h2>List Schedule Maintenance</h2>
+        <h2>List Maintenance Corrective</h2>
     </div>
     <div class="master-content">
         <div class="master-content-filter">
             <div class="content-flex">
-                <button (click)="create()" class="ahm-btn ahm-btn-primary">+ Add Schedule</button>
-                <input #inputFile (change)="upload($event)" id="input-upload-file" type="file">
-                <button (click)="inputFile.click()" class="ahm-btn ahm-btn-warning">
-                    <img alt="search" src="/assets/icons/upload.svg">
-                </button>
+                <button (click)="create()" class="ahm-btn ahm-btn-primary">+ Add</button>
             </div>
             <div class="content-flex">
                 <div class="ahm-input-wrapper">
@@ -25,24 +21,19 @@
                 <tr>
                     <th>No</th>
                     <th mat-sort-header="name">Name</th>
-                    <th mat-sort-header="plan">Plan</th>
-                    <th mat-sort-header="startdate">Start Date</th>
                     <th mat-sort-header="actual">Actual</th>
+                    <th mat-sort-header="startdate">Start Date</th>
                     <th mat-sort-header="enddate">End Date</th>
                     <th>Action</th>
                 </tr>
                 <tr *ngFor="let data of maintenanceList; let index = index">
                     <td>{{(index + 1)}}</td>
                     <td>{{data.name | string}}</td>
-                    <td>{{data.plan | string}}</td>
-                    <td>{{data.start_date | string}}</td>
                     <td>{{data.actual | string}}</td>
+                    <td>{{data.start_date | string}}</td>
                     <td>{{data.end_date | string}}</td>
                     <td>
                         <div class="ahm-table-action">
-                            <button (click)="ok(data)" class="ahm-table-btn ahm-btn-primary">
-                                Ok
-                            </button>
                             <button (click)="detail(data)" class="ahm-table-btn ahm-btn-success">
                                 <img alt="Detail" src="/assets/icons/eye.svg">
                             </button>

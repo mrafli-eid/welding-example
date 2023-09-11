@@ -2,26 +2,23 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MasterParams } from '../../../../core/models/master.model';
 import { Pagination } from '../../../../core/models/pagination.model';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { debounceTime, take } from 'rxjs';
 import { Sort } from '@angular/material/sort';
 import { MasterDataDeleteComponent } from '../../../master/dialogs/master-data-delete/master-data-delete.component';
-import { DUMMY_PREVENTIVE_MAINTENANCE } from './preventive-maintenance-list.dummy';
-import { MaintenancePreventive } from '../../../../core/models/maintenance-preventive.model';
-import { MaintenancePreventiveService } from '../../../../core/services/maintenance-preventive.service';
-import { ActivatedRoute } from '@angular/router';
+import { MaintenanceCorrectiveService } from '../../../../core/services/maintenance-corrective.service';
+import { MaintenanceCorrective } from '../../../../core/models/maintenance-corrective.model';
+import { DUMMY_MAINTENANCE_CORRECTIVE_LIST } from './corrective-maintenance-list.dummy';
 
 @Component({
-    selector: 'ahm-preventive-maintenance-list',
-    templateUrl: './preventive-maintenance-list.component.html',
-    styleUrls: [ './preventive-maintenance-list.component.scss' ],
-    host: {
-        'class': 'dashboard-card',
-    },
+    selector: 'ahm-corrective-maintenance-list',
+    templateUrl: './corrective-maintenance-list.component.html',
+    styleUrls: [ './corrective-maintenance-list.component.scss' ]
 })
-export class PreventiveMaintenanceListComponent {
+export class CorrectiveMaintenanceListComponent {
     machine_name = '';
-    maintenanceList: MaintenancePreventive[] = DUMMY_PREVENTIVE_MAINTENANCE;
+    maintenanceList: MaintenanceCorrective[] = DUMMY_MAINTENANCE_CORRECTIVE_LIST;
     queryParams: Partial<MasterParams> = {};
     pagination: Pagination = {
         page_number: 1,
@@ -32,10 +29,10 @@ export class PreventiveMaintenanceListComponent {
     searchTerm = new FormControl('');
 
 
-    @Output() onEdit = new EventEmitter<MaintenancePreventive>();
-    @Output() onDetail = new EventEmitter<MaintenancePreventive>();
+    @Output() onEdit = new EventEmitter<MaintenanceCorrective>();
+    @Output() onDetail = new EventEmitter<MaintenanceCorrective>();
 
-    constructor(private maintenanceService: MaintenancePreventiveService,
+    constructor(private maintenanceService: MaintenanceCorrectiveService,
                 private activatedRoute: ActivatedRoute,
                 private matDialog: MatDialog) {
         this.machine_name = this.activatedRoute.snapshot.paramMap.get('name');
@@ -95,18 +92,18 @@ export class PreventiveMaintenanceListComponent {
         this.fetchList();
     }
 
-    edit(data: MaintenancePreventive) {
+    edit(data: MaintenanceCorrective) {
         this.onEdit.emit(data);
     }
 
-    delete(data: MaintenancePreventive) {
+    delete(data: MaintenanceCorrective) {
         const matDialogRef = this.matDialog.open(MasterDataDeleteComponent, {
             data: data.name,
         });
 
         matDialogRef.afterClosed().subscribe((resp) => {
             if (resp) {
-                this.maintenanceService.delete(data.machine_name)
+                this.maintenanceService.delete(data.id)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
@@ -116,20 +113,12 @@ export class PreventiveMaintenanceListComponent {
         });
     }
 
-    detail(data: MaintenancePreventive) {
+    detail(data: MaintenanceCorrective) {
         this.onDetail.emit(data);
     }
 
     create() {
         this.onEdit.emit(null);
-    }
-
-    ok(data: MaintenancePreventive) {
-        const temp: MaintenancePreventive = {
-            ...data,
-            ok: true,
-        }
-        this.onEdit.emit(temp);
     }
 
     download() {
@@ -139,11 +128,5 @@ export class PreventiveMaintenanceListComponent {
             page_number: this.pagination.page_number,
         };
         this.maintenanceService.exportExcel(this.machine_name, this.queryParams);
-    }
-
-    upload(event) {
-        this.maintenanceService.upload(event.target.files[0]).subscribe((resp) => {
-            this.fetchList();
-        });
     }
 }
