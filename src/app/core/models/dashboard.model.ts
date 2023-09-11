@@ -58,6 +58,7 @@ export interface DashboardMachineAlarm {
     value: number;
     label: string;
     date_time: string;
+    date: string;
 }
 
 export interface DashboardMttr {

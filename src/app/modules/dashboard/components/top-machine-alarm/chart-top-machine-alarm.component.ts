@@ -43,6 +43,7 @@ export class ChartTopMachineAlarmComponent implements OnChanges {
     };
 
     public lineChartOptions: ChartConfiguration['options'] = {
+        
         responsive: true,
         maintainAspectRatio: false,
         indexAxis: 'y',
@@ -82,5 +83,5 @@ export class ChartTopMachineAlarmComponent implements OnChanges {
                 annotations: {}
             },
         }
-    };
+    }
 }
