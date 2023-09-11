@@ -29,9 +29,6 @@ export class SettingListComponent {
 
   ngOnInit() {
     this.addSearchListener();
-    this.settingService.fetch$.subscribe((resp) => {
-      this.getSettingList()
-    })
   }
 
   onSelectPage(page: number) {
