@@ -9,7 +9,7 @@ import {
 } from '../../../../core/models/machine.model';
 import { DUMMY_DETAIL_MACHINE_HISTORY_ALARM } from './detail-machine-history-alarm.dummy';
 import { debounceTime, interval, take } from 'rxjs';
-import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
+import { DEFAULT_INTERVAL, HALF_MINUTE_INTERVAL } from '../../../../core/consts/app.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 
 @Component({
@@ -59,12 +59,12 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
         this.fetchList();
         this.addSearchListener();
         // this.fetchDescription();
-        interval(30 * 1000)
+        interval(HALF_MINUTE_INTERVAL)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.fetchList();
             });
-    }
+    } 
 
     addSearchListener() {
         this.searchTerm.valueChanges
