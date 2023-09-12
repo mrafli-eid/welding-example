@@ -84,7 +84,7 @@ export class ChartTopMachineAlarmComponent implements OnChanges {
             },
             tooltip: {
                 callbacks: {
-                    footer: (tooltipItems) => {
+                    footer: () => {
                         return this.data[0].date;
                     }
                 }
