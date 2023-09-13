@@ -35,21 +35,22 @@ export class MachineComponent implements OnInit {
         this.machineList = resp.data;
         this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
       });
-    this.showComponent();
+    this.showComponent(this.machine_name);
   }
 
-  showComponent() {
-    if (this.machine.id == '8') {
+  changeMachineName(name: string) {
+    this.machine_name = name;
+    this.showComponent(this.machine_name);
+    this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
+  }
+
+  showComponent(machine_name: string) {
+    if (this.machine_name == 'BORRING') {
       this.imageDetailMachine = "/assets/images/detail-machine-boring.png";
-      this.showComponentBoring = true;
-      this.showTitleMachine = true;
-    } else if (this.machine.name == 'LASER'){
+    } else if (this.machine_name == 'LASER'){
       this.imageDetailMachine = "/assets/images/detail-machine-laser.png";
-      this.showTitleMachine = true;
-      this.showComponentLaser = true;
     }else{
       this.imageDetailMachine = "/assets/images/detail-machine.png";
-      this.showComponentNotLaserAndBoring = true;
     }
   }
 

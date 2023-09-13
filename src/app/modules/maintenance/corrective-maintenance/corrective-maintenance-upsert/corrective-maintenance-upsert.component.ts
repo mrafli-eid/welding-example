@@ -30,7 +30,6 @@ export class CorrectiveMaintenanceUpsertComponent {
                 private activatedRoute: ActivatedRoute,
                 private dashboardService: DashboardService) {
         this.machineId = this.activatedRoute.snapshot.queryParamMap.get('id');
-        console.log(this.machineId);
     }
 
 
@@ -59,8 +58,6 @@ export class CorrectiveMaintenanceUpsertComponent {
             } else {
                 this.create(body);
             }
-
-            console.log(body);
         }
     }
 

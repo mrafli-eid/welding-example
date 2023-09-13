@@ -23,6 +23,14 @@
     color: #707070;
 }
 
+.mx-auto {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.machine-list {
+    cursor: pointer;
+}
 
 @media (max-width: 1100px) {
     .grid-item {

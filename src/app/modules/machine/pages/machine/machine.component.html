@@ -1,25 +1,54 @@
-<div class="content-flex mb-6" *ngIf="showTitleMachine; else showRobot">
-    <h3>MC {{ machine.name }}</h3>
+<div
+    class="content-flex justify-between mb-6 font-semibold mx-auto"
+    *ngIf="machine_name === 'BORRING' || machine_name === 'LASER'; else showRobot"
+>
+    <div class="content-flex">
+        <h3>MC {{ machine.name }}</h3>
+    </div>
+    <div class="content-flex">
+        <div
+            *ngFor="let machine of machineList; let index = index"
+            [routerLink]="'/machine/' + machine.name + '/MASTER'"
+            (click)="changeMachineName(machine.name)"
+            class="machine-list"
+        >
+            <a>{{ machine.name }}</a>
+        </div>
+    </div>
 </div>
 
 <ng-template #showRobot>
-    <div class="content-flex justify-between mb-6 font-semibold">
+    <div class="content-flex justify-between mb-6 font-semibold mx-auto">
         <div class="content-flex">
             <a
                 [routerLink]="'/machine/' + machine.name + '/MASTER'"
-                class="{{ this.robot_name == 'MASTER' ? 'text-white' : 'text-gray' }} no-underline"
+                class="{{
+                    this.robot_name == 'MASTER' ? 'text-white' : 'text-gray'
+                }} no-underline"
                 (click)="changeRobotToMaster()"
                 >MC {{ machine.name }} ROBOT MASTER</a
             >
             <p>|</p>
             <a
                 [routerLink]="'/machine/' + machine.name + '/SLAVE'"
-                class="{{ this.robot_name == 'SLAVE' ? 'text-white' : 'text-gray' }} no-underline"
+                class="{{
+                    this.robot_name == 'SLAVE' ? 'text-white' : 'text-gray'
+                }} no-underline"
                 (click)="changeRobotToSlave()"
                 >MC {{ machine.name }} ROBOT SLAVE</a
             >
         </div>
-        <div class="mr-6">ROBOT {{ robot_name }}</div>
+        <div class="content-flex">
+            <div
+                *ngFor="let machine of machineList; let index = index"
+                [routerLink]="'/machine/' + machine.name + '/MASTER'"
+                (click)="changeMachineName(machine.name)"
+                class="machine-list"
+            >
+                <a>{{ machine.name }}</a>
+            </div>
+        </div>
+        <!-- <div class="mr-6">ROBOT {{ robot_name }}</div> -->
     </div>
 </ng-template>
 
@@ -38,18 +67,18 @@
             [robot_name]="robot_name"
         ></ahm-detail-top-machine-alarm>
     </div>
-    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
+    <div class="grid-item" *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')">
         <ahm-detail-machine-ampere
             [machine_name]="machine_name"
             [robot_name]="robot_name"
         ></ahm-detail-machine-ampere>
     </div>
-    <div class="grid-item" *ngIf="showComponentLaser">
+    <div class="grid-item" *ngIf="machine_name === 'LASER'">
         <ahm-detail-machine-temperature-mirror
             [machine_name]="machine_name"
         ></ahm-detail-machine-temperature-mirror>
     </div>
-    <div class="grid-item" *ngIf="showComponentBoring">
+    <div class="grid-item" *ngIf="machine_name === 'BORRING'">
         <ahm-detail-machine-sanso-matic
             [machine_name]="machine_name"
         ></ahm-detail-machine-sanso-matic>
@@ -67,18 +96,18 @@
             [robot_name]="robot_name"
         ></ahm-detail-machine-history-alarm>
     </div>
-    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
+    <div class="grid-item" *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')">
         <ahm-detail-machine-voltage
             [machine_name]="machine_name"
             [robot_name]="robot_name"
         ></ahm-detail-machine-voltage>
     </div>
-    <div class="grid-item" *ngIf="showComponentLaser">
+    <div class="grid-item" *ngIf="machine_name === 'LASER'">
         <ahm-detail-machine-dew-point
             [machine_name]="machine_name"
         ></ahm-detail-machine-dew-point>
     </div>
-    <div class="grid-item" *ngIf="showComponentBoring">
+    <div class="grid-item" *ngIf="machine_name === 'BORRING'">
         <ahm-detail-machine-rpm-spindle
             [machine_name]="machine_name"
         ></ahm-detail-machine-rpm-spindle>
@@ -90,34 +119,34 @@
             [machine_name]="machine_name"
         ></ahm-detail-machine-production-graph>
     </div>
-    <div class="grid-item" *ngIf="showComponentLaser">
+    <div class="grid-item" *ngIf="machine_name === 'LASER'">
         <ahm-detail-machine-actual-maintenance
             [machine_name]="machine_name"
         ></ahm-detail-machine-actual-maintenance>
     </div>
-    <div class="grid-item" *ngIf="showComponentBoring">
+    <div class="grid-item" *ngIf="machine_name === 'BORRING'">
         <ahm-detail-machine-actual-maintenance
             [machine_name]="machine_name"
         ></ahm-detail-machine-actual-maintenance>
     </div>
-    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
+    <div class="grid-item" *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')">
         <ahm-detail-machine-running-hour
             [machine_name]="machine_name"
             [robot_name]="robot_name"
         ></ahm-detail-machine-running-hour>
     </div>
-    <div class="grid-item" *ngIf="showComponentNotLaserAndBoring">
+    <div class="grid-item" *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')">
         <ahm-detail-machine-servo-load
             [machine_name]="machine_name"
             [robot_name]="robot_name"
         ></ahm-detail-machine-servo-load>
     </div>
-    <div class="grid-item" *ngIf="showComponentLaser">
+    <div class="grid-item" *ngIf="machine_name === 'LASER'">
         <ahm-detail-machine-rurge-cell
             [machine_name]="machine_name"
         ></ahm-detail-machine-rurge-cell>
     </div>
-    <div class="grid-item" *ngIf="showComponentBoring">
+    <div class="grid-item" *ngIf="machine_name === 'BORRING'">
         <ahm-detail-machine-running-hour
             [machine_name]="machine_name"
         ></ahm-detail-machine-running-hour>

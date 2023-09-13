@@ -64,7 +64,6 @@ export class SettingUpsertComponent implements OnInit {
                     // set value to form
                     this.formGroup.get('machine_name').patchValue(this.machine_name);
                     this.formGroup.get('subject_name').patchValue(this.name + this.robot_fullname + " " + this.machine_name);
-                    console.log(this.formGroup.get('subject_name').value);
                 }
 
     ngOnInit() {
