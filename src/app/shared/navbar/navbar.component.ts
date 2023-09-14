@@ -52,6 +52,10 @@ export class NavbarComponent implements OnInit {
         setInterval(() => {
             this.todaysDate = new Date();
         }, 1000);
+    }
+
+    // Fetch API when user click notification icon
+    fetchApiNotification(){
         this.getTempMirorMsg();
         this.getDewPointMsg();
         this.getRurgeCellMsg();

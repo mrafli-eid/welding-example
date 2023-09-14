@@ -24,6 +24,7 @@ export class MachineComponent implements OnInit {
 
     constructor(private activatedRoute: ActivatedRoute, private dashboardService: DashboardService){
         this.machine_name = this.activatedRoute.snapshot.paramMap.get('name') || '';
+        this.robot_name = this.activatedRoute.snapshot.paramMap.get('robot') || '';
     }
 
   ngOnInit() {
@@ -36,6 +37,10 @@ export class MachineComponent implements OnInit {
         this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
       });
     this.showComponent(this.machine_name);
+
+    if (this.machine_name === "BORRING" || this.machine_name === "LASER") {
+      this.activatedRoute.snapshot.paramMap.has('');
+    }
   }
 
   changeMachineName(name: string) {

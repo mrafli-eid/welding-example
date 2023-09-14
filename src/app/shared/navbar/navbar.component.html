@@ -13,7 +13,7 @@
             <span> {{ todaysDate | date : "hh:mm:ss" }} </span>
         </div>
         <div class="navbar-notification">
-            <button mat-button [matMenuTriggerFor]="beforeMenu">
+            <button mat-button [matMenuTriggerFor]="beforeMenu" (click)="fetchApiNotification()">
                 <img alt="" src="/assets/icons/notification.svg" />
             </button>
             <mat-menu #beforeMenu="matMenu" xPosition="before">
