@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import {
     registerMachine,
     MasterParams,
@@ -20,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./setting-upsert.component.scss'],
 })
 export class SettingUpsertComponent implements OnInit {
+    @Input () setting: Setting[];
     @Output() onSubmit = new EventEmitter();
 
     machine_name = '';
@@ -48,7 +49,7 @@ export class SettingUpsertComponent implements OnInit {
         upper_limit: new FormControl({ value: null, disabled: true }),
         minimum_toggle: new FormControl(false),
         medium_toggle: new FormControl(false),
-        maximum_toggle: new FormControl(false),
+        maximum_toggle: new     FormControl(false),
         lower_limit_toggle: new FormControl(false),
         upper_limit_toggle: new FormControl(false),
     });
