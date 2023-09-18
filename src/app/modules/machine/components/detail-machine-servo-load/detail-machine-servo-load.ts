@@ -13,7 +13,7 @@ export const DUMMY_DETAIL_MACHINE_SERVO_LOAD: DetailMachineServoLoad = {
             "value": 14,
             "label": "20:00",
             "date_time": "2023-07-26 20:00:00",
-            "message": null
+            "message": 'ok'
         },
         {
             "value": 19,

@@ -200,7 +200,7 @@ export class MachineService {
     return this.http.get<HttpResponse<DetailMachineAmpereAndVoltage>>(`${this.baseUrl}/get-voltage-all/${machine_name}/${robot_name}`, { params })
   }
   
-  getServoLoad(machine_name: string, robot_name: string, params: Partial<DateFilter>){
+  getServoLoad(machine_name: string, robot_name: string, params?: Partial<DateFilter>){
     return this.http.get<HttpResponse<DetailMachineServoLoad>>(`${this.baseUrl}/get-servo-load-all/${machine_name}/${robot_name}`, { params })
   }
   
