@@ -114,10 +114,11 @@ export interface DetailMachineRunningHour {
     maximum: number | null;
     vid?: string;
     data: {
+        machine_name?: string;
         value: number;
         label: string;
-        date_time?: string;
-        message?: string | null;
+        date_time: string;
+        message: string | null;
     }[];
 }
 
@@ -149,10 +150,11 @@ export interface DetailMachineServoLoad {
     minimum: number | null;
     vid?: string;
     data: {
+        machine_name?: string
         value: number;
         label: string;
-        date_time?: string;
-        message?: string;
+        date_time: string;
+        message: string;
     }[];
 }
 

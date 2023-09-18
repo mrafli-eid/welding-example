@@ -1,0 +1,27 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';  
+import { HttpResponse } from '../models/http.model';
+import { environment } from '../../../environments/environment';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class NotificationService {
+  baseUrl = `${ environment.API_URL }/api/notification`;
+
+
+  constructor(private http: HttpClient) {
+  }
+
+  getListNotification(){
+    return this.http.get<HttpResponse<any>>(`${this.baseUrl}/get-list-notif`)
+  }
+  getAllNotification(params:any){
+    return this.http.get<HttpResponse<any>>(`${this.baseUrl}/get-all-notif`,{params})
+  }
+  updateNotification(id:string){
+    return this.http.put<HttpResponse<any>>(`${this.baseUrl}/${id}`,{"status": true})
+  }
+
+}

@@ -54,43 +54,157 @@ nav {
         cursor: pointer;
     }
 }
-.wrapper-notification {
-    overflow: auto;
-    max-height: 15rem;
 
-    .notification-msg {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
+.navbar-notification {
+    button {
+        background-color: #141517;
+        color: inherit;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline: inherit;
+    }
 
-        img {
+    .dropbtn {
+        color: white;
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+        // font-size: 16px;
+        border: none;
+        cursor: pointer;
+
+        span{
+            position: absolute;
+            background-color: red;
             border-radius: 100%;
-        }
-
-        .left-span {
-            position: absolute;
-            left: 4rem;
-            top: 3px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-
-            .label-title {
-                font-weight: 800;
-            }
-
-            .lable-info {
-                font-size: 0.9rem;
-            }
-        }
-
-        .right-span {
-            position: absolute;
-            right: .5rem;
-            top: 1rem;
+            text-align: center;
+            width: fit-content;
+            min-width: 1.4rem;
+            // height: 1rem;
+            padding: .4rem;
+            font-size: .6rem;
+            top: 0;
+            right: 0;
         }
     }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #2B2D31;
+        width: 20rem;
+        height: 20rem;
+        max-height: 20rem;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        right: 1rem;
+        border-radius: .2rem;
+    }
+
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: flex;
+        background-color: #2B2D31;
+        justify-content:space-between;
+        align-items: center;
+        gap: 1rem;
+
+        .cover-msg{
+            height: 70%;
+            overflow: auto;
+        }
+
+        .notif-info{
+
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+
+            .icon-notif{
+                cursor: default;
+            }
+            
+            .msg-notif{
+                display: flex;
+                flex-direction: column;
+                margin: 0 1rem 0 0 ;
+                width: 60%;
+            }
+        }
+
+        .action-notif{
+            display: flex;
+            flex-direction: row;
+            align-items:flex-start;
+            gap: 1rem;
+            position: relative;
+            right: 0;
+
+            button{
+                background-color: black;
+                border-radius: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: .4rem;
+                font-size: 1rem;
+            }
+            
+        }
+
+    }
+
+
+    .lable-notif{
+        position: sticky;
+        width: 100%;
+        text-align: center;
+    }
+    .all-notif{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid white ;
+        cursor: pointer;
+    }
+
+    .cover-msg:hover{
+        background-color: #2B2D31;
+    }
+
+    .cover-msg::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .cover-msg::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+    }
+    
+    .cover-msg::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+    }
+    
+    .cover-msg::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    .show {
+        display: block;
+    }
 }
+
 
 .wrapper-notification::-webkit-scrollbar {
     width: 8px;

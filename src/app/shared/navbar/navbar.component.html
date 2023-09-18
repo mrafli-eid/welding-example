@@ -13,76 +13,56 @@
             <span> {{ todaysDate | date : "hh:mm:ss" }} </span>
         </div>
         <div class="navbar-notification">
-            <button mat-button [matMenuTriggerFor]="beforeMenu" (click)="fetchApiNotification()">
-                <img alt="" src="/assets/icons/notification.svg" />
-            </button>
-            <mat-menu #beforeMenu="matMenu" xPosition="before">
-                <div class="wrapper-notification">
-                    <div *ngFor="let msg of tempMiror">
-                        <div class="notification-msg" mat-menu-item>
-                            <img alt="" src="/assets/icons/notification.svg" />
-                            <div class="left-span">
-                                <span class="lable-title">Temperatur Miror</span>
-                                <span class="lable-info"
-                                *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
-                            <span class="lable-info"
-                                *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>                            </div>
-                            <span class="right-span">{{msg.label}}</span>
-                        </div>
-                    </div>
-                    <div *ngFor="let msg of rurgeCell ">
-                        <div class="notification-msg" mat-menu-item>
-                            <img alt="" src="/assets/icons/notification.svg" />
-                            <div class="left-span">
-                                <span class="lable-title">Rurge Cell</span>
-                                <span class="lable-info"
-                                *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
-                            <span class="lable-info"
-                                *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>                            </div>
-                            <span class="right-span">{{msg.label}}</span>
-                        </div>
-                    </div>
-                    <div *ngFor="let msg of dewPoint">
-                        <div class="notification-msg" mat-menu-item>
-                            <img alt="" src="/assets/icons/notification.svg" />
-                            <div class="left-span">
-                                <span class="lable-title">Dew Poinnt</span>
-                                <span class="lable-info"
-                                *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
-                            <span class="lable-info"
-                                *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>                            </div>
-                            <span class="right-span">{{msg.label}}</span>
-                        </div>
-                    </div>
-                    <div *ngFor="let msg of sansoMantic ">
-                        <div class="notification-msg" mat-menu-item>
-                            <img alt="" src="/assets/icons/notification.svg" />
-                            <div class="left-span">
-                                <span class="lable-title">Sanso Matic</span>
-                                <span class="lable-info"
-                                *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
-                            <span class="lable-info"
-                                *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>                            </div>
-                            <span class="right-span">{{msg.label}}</span>
-                        </div>
-                    </div>
-                    <div *ngFor="let msg of rpmSpindle">
-                        <div class="notification-msg" mat-menu-item>
-                            <img alt="" src="/assets/icons/notification.svg" />
-                            <div class="left-span">
-                                <span class="lable-title">RPM Spindle</span>
-                                <span class="lable-info"
-                                    *ngIf="msg.message.length < 10 ">{{msg.message.slice(0,10)}}</span>
-                                <span class="lable-info"
-                                    *ngIf="msg.message.length > 10">{{msg.message.slice(0,10)}}...</span>
+            <div class="dropdown">
+                <button (click)="toggleDropdown()" class="dropbtn">
+                    <span *ngIf="listNotif.length >= 1">{{listNotif.length}}</span>
+                    <img alt="" src="/assets/icons/notif-deactivate.svg" />
+                </button>
+                <div
+                    id="myDropdown"
+                    class="dropdown-content"
+                    [ngClass]="{ show: isDropdownOpen }"
+                >
+                <a class="lable-notif">See All Notifications</a>
+                <div class="cover-msg">
+                        <a *ngFor="let msg of listNotif"> 
+                            <div class="notif-info">
+                                <img
+                                    class="icon-notif"
+                                    alt=""
+                                    src="/assets/icons/notification.svg"
+                                />
+                                <div class="msg-notif">
+                                    <div *ngIf="msg.machine_name.length < 15">
+                                        {{ msg.machine_name }}
+                                    </div>
+                                    <div *ngIf="msg.machine_name.length > 15">
+                                        {{ msg.machine_name.slice(0, 15) }}..
+                                    </div>
+                                    <div *ngIf="msg.message.length < 12">
+                                        {{ msg.message }}
+                                    </div>
+                                    <div *ngIf="msg.message.length > 12">
+                                        {{ msg.message.slice(0, 12) }}..
+                                    </div>
+                                </div>
                             </div>
-                            <span class="right-span">{{msg.label}}</span>
-                        </div>
+                            <div class="action-notif">
+                                <div>{{ msg.date_time.slice(10, 16) }}</div>
+                                <button (click)="notifDisablled(msg.id)">
+                                    <img src="/assets/icons/exit.svg" alt="">
+                                </button>
+                            </div>
+                        </a>
                     </div>
+                    <a
+                        class="all-notif"
+                        (click)="seeAllNotification()"
+                        (click)="toggleDropdown()"
+                        >See All Notifications</a
+                    >
                 </div>
-                <button mat-menu-item (click)="seeAllNotification()">See All Notifications</button>
-            </mat-menu>
-
+            </div>
         </div>
     </div>
 </nav>

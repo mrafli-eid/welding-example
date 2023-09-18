@@ -1,21 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Breadcrumb } from 'src/app/core/models/breadcrumbs.model';
-import { DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR } from '../../machine/components/detail-machine-temperature-mirror/detail-machine-temperature-mirror';
-import { DUMMY_DETAIL_MACHINE_DEW_POINT } from '../../machine/components/detail-machine-dew-point/detail-machine-dew-point';
-import { DUMMY_DETAIL_MACHINE_RURGE_CELL } from '../../machine/components/detail-machine-rurge-cell/detail-machine-rurge-cell';
-import { DUMMY_DETAIL_MACHINE_SANSO_MATIC } from '../../machine/components/detail-machine-sanso-matic/detail-machine-sanso-matic';
-import { DUMMY_DETAIL_MACHINE_RPM_SPINDLE } from '../../machine/components/detail-machine-rpm-spindle/detail-machine-rpm-spindle';
-import {
-    DetailMachineTemperatureMirror,
-    DetailMachineDewPoint,
-    DetailMachineRurgeCell,
-    DetailMachineSansoMatic,
-    DetailMachineRpmSpindle,
-} from '../../../core/models/machine.model';
-import {MachineService} from "../../../core/services/machine.service"
+import { NotificationService } from '../../../core/services/notification.service';
 import { take } from 'rxjs';
-
-
+import { NOTIF_DUMMY } from './notification.dummy';
+import { notification } from '../../../core/models/notification.model';
 
 @Component({
     selector: 'app-all-notification',
@@ -27,106 +15,55 @@ export class AllNotificationComponent implements OnInit {
         { label: 'Dashboard', link: '/dashboard' },
         { label: 'Notification', link: '/notification' },
     ];
-    constructor(private machineService:MachineService) {}
+    constructor(private notificationService: NotificationService) {}
+    allNotifications = NOTIF_DUMMY
+    queryParams: Partial<any> = {};
+    pagination: any = {
+        page_number: 1,
+        page_size: 10,
+        total_count: 100,
+        total_pages: 10,
+    };
 
-    tempMiror: DetailMachineTemperatureMirror =
-        DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR;
-    dewPoint: DetailMachineDewPoint = DUMMY_DETAIL_MACHINE_DEW_POINT;
-    rurgeCell: DetailMachineRurgeCell = DUMMY_DETAIL_MACHINE_RURGE_CELL;
-    sansoMantic: DetailMachineSansoMatic = DUMMY_DETAIL_MACHINE_SANSO_MATIC;
-    rpmSpindle: DetailMachineRpmSpindle = DUMMY_DETAIL_MACHINE_RPM_SPINDLE;
-
-    dataTableNotification = [];
     ngOnInit() {
-        this.getTempMirorMsg();
-        this.getDewPointMsg();
-        this.getRurgeCellMsg();
-        this.getSansoMaticMsg();
-        this.getRpmSpindleMsg();
-             
-        this.tempMiror.data_label.forEach((item) => {
-            item.machine_name = this.tempMiror.machine_name;
-        });
-        this.dewPoint.data.forEach((item) => {
-            item.machine_name = this.tempMiror.machine_name;
-        });
-        this.rurgeCell.data.forEach((item) => {
-            item.machine_name = this.rurgeCell.machine_name;
-        });
-        this.sansoMantic.data_label.forEach((item) => {
-            item.machine_name = this.sansoMantic.machine_name;
-        });
-        this.rpmSpindle.data_label.forEach((item) => {
-            item.machine_name = this.rpmSpindle.machine_name;
-        });
-
-        const allData = [
-            ...this.tempMiror.data_label,
-            ...this.dewPoint.data,
-            ...this.rurgeCell.data,
-            ...this.sansoMantic.data_label,
-            ...this.rpmSpindle.data_label,
-        ];
-
-        this.dataTableNotification = allData.filter(
-            (data) => data.message !== null
-        );
-
+        this.getAllNotif();
     }
 
-    getTempMirorMsg() {
-        this.machineService
-            .getTemperatureMirror('LASER')
-            .pipe(take(1))
-            .subscribe({
-                next: (response) => {
-                    this.tempMiror = response.data
-                },
-            });
+    onSelectPage(page: number) {
+        this.pagination.page_number = page;
+        this.getAllNotif();
     }
-                                
-    getDewPointMsg() {
-        this.machineService
-            .getDewPoint('LASER')
+
+    onSelectLimit(limit: number) {
+        this.pagination.page_size = limit;
+        this.pagination.page_number = 1;
+        this.getAllNotif();
+    }
+
+    updateNotif(idNotif: string){
+        this.notificationService
+            .updateNotification(idNotif)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
-                    this.dewPoint = response.data
+                next: () => {
+                    this.getAllNotif()
                 },
             });
     }
 
-    getRurgeCellMsg() {
-        this.machineService
-            .getRurgeCell('LASER')
+    getAllNotif() {
+        this.queryParams = {
+            ...this.queryParams,
+            page_number: this.pagination.page_number,
+            page_size: this.pagination.page_size,
+        };
+        this.notificationService.getAllNotification(this.queryParams)
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
-                    this.rurgeCell = response.data
+                    this.pagination = JSON.parse(response.data.get('x-pagination'));
+                    this.allNotifications = response.data || [];
                 },
             });
     }
-
-    getSansoMaticMsg() {
-        this.machineService
-            .getSansoMatic('BORING')
-            .pipe(take(1))
-            .subscribe({
-                next: (response) => {
-                    this.sansoMantic = response.data
-                },                                           
-            });
-    }
-
-    getRpmSpindleMsg() {
-        this.machineService
-            .getRpmSpindle('BORING')
-            .pipe(take(1))
-            .subscribe({
-                next: (response) => {
-                    this.rpmSpindle = response.data
-                },
-            });
-    }
-
 }

@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarService } from '../../core/services/sidebar.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import {MachineService} from "../../core/services/machine.service"
+import { NotificationService } from '../../core/services/notification.service';
+import { MachineService } from '../../core/services/machine.service';
 import { take } from 'rxjs';
 import { notification } from 'src/app/core/models/notification.model';
-import { DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR } from '../../modules/machine/components/detail-machine-temperature-mirror/detail-machine-temperature-mirror';
-import { DUMMY_DETAIL_MACHINE_DEW_POINT } from '../../modules/machine/components/detail-machine-dew-point/detail-machine-dew-point';
-import { DUMMY_DETAIL_MACHINE_RURGE_CELL } from '../../modules/machine/components/detail-machine-rurge-cell/detail-machine-rurge-cell';
-import { DUMMY_DETAIL_MACHINE_SANSO_MATIC } from '../../modules/machine/components/detail-machine-sanso-matic/detail-machine-sanso-matic';
-import { DUMMY_DETAIL_MACHINE_RPM_SPINDLE } from '../../modules/machine/components/detail-machine-rpm-spindle/detail-machine-rpm-spindle';
+import { NOTIF_DUMMY } from '../../modules/notification/all-notification/notification.dummy';
 import { Router } from '@angular/router';
+import { HALF_MINUTE_INTERVAL } from '../../core/consts/app.const';
+import { ROBOT_PARAMS } from './robot-params';
 
 @Component({
     selector: 'app-navbar',
@@ -24,115 +23,128 @@ export class NavbarComponent implements OnInit {
     todaysDate = new Date();
     constructor(
         private sidebarService: SidebarService,
+        private notificationService: NotificationService,
         private machineService: MachineService,
-        private router: Router
+        private router: Router,
+        private elRef: ElementRef
     ) {}
-    
-    tempMiror: notification[] =
-        DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR.data_label.filter(
-            (data) => data.message != null
-        );
-    dewPoint: notification[] = DUMMY_DETAIL_MACHINE_DEW_POINT.data.filter(
-        (data) => data.message != null
-    );
-    rurgeCell: notification[] = DUMMY_DETAIL_MACHINE_RURGE_CELL.data.filter(
-        (data) => data.message != null
-    );
-    sansoMantic: notification[] =
-        DUMMY_DETAIL_MACHINE_SANSO_MATIC.data_label.filter(
-            (data) => data.message != null
-        );
-    rpmSpindle: notification[] =
-        DUMMY_DETAIL_MACHINE_RPM_SPINDLE.data_label.filter(
-            (data) => data.message != null
-        );
 
+    listNotif = NOTIF_DUMMY.filter((data) => data.status !== true);
+
+    isDropdownOpen = false;
+
+    toggleDropdown() {
+        this.isDropdownOpen = !this.isDropdownOpen;
+    }
+
+    @HostListener('document:click', ['$event'])
+    onDocumentClick(event: Event) {
+        if (!this.elRef.nativeElement.contains(event.target)) {
+            this.isDropdownOpen = false;
+        }
+    }
 
     ngOnInit() {
         setInterval(() => {
             this.todaysDate = new Date();
         }, 1000);
+
+        this.temperatureMirror();
+        this.dewPoint();
+        this.rurgeCell();
+        this.sansoMatic();
+        this.rpmSpindle();
+        this.servoLoad();
+        this.runningHour();
+
+        setInterval(() => {
+            this.temperatureMirror()
+            this.dewPoint();
+            this.rurgeCell();
+            this.sansoMatic();
+            this.rpmSpindle();
+            this.servoLoad();
+            this.runningHour();
+        }, HALF_MINUTE_INTERVAL);
+
+        this.getListNotif();
     }
 
-    // Fetch API when user click notification icon
-    fetchApiNotification(){
-        this.getTempMirorMsg();
-        this.getDewPointMsg();
-        this.getRurgeCellMsg();
-        this.getSansoMaticMsg();
-        this.getRpmSpindleMsg();
+    temperatureMirror() {
+        this.machineService.getTemperatureMirror('LASER')
+        .pipe(take(1))
+            .subscribe();
+    }
+    dewPoint() {
+        this.machineService.getDewPoint('LASER')
+        .pipe(take(1))
+        .subscribe();
+    }
+    rurgeCell() {
+        this.machineService.getRurgeCell('LASER')
+        .pipe(take(1))
+        .subscribe();
+    }
+    sansoMatic() {
+        this.machineService.getSansoMatic('BORING')
+        .pipe(take(1))
+        .subscribe();
+    }
+    rpmSpindle() {
+        this.machineService.getRpmSpindle('BORING')
+        .pipe(take(1))
+        .subscribe();
+    }
+    servoLoad() {
+        ROBOT_PARAMS.map((item) => {
+            this.machineService.getServoLoad(
+                item.machine_name,
+                item.robot_name
+            )
+            .pipe(take(1))
+            .subscribe();
+        });
+    }
+    runningHour() {
+        ROBOT_PARAMS.map((item) => {
+            this.machineService.getRunningHour(
+                item.machine_name,
+                item.robot_name
+            )
+            .pipe(take(1))
+            .subscribe();
+        });
     }
 
     toggle() {
         this.sidebarService.toggle();
     }
 
-    getTempMirorMsg() {
-        this.machineService
-            .getTemperatureMirror('LASER')
+    notifDisablled(notifId: string) {
+        this.notificationService
+            .updateNotification(notifId)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
-                    this.tempMiror = response.data.data_label.filter(
-                        (data: notification) => data.message != null
-                    );
+                next: () => {
+                    this.getListNotif();
                 },
             });
     }
 
-    getDewPointMsg() {
-        this.machineService
-            .getDewPoint('LASER')
+    getListNotif() {
+        this.notificationService
+            .getListNotification()
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
-                    this.dewPoint = response.data.data.filter(
-                        (data: notification) => data.message != null
-                    );
-                },
-            });
-    }
-
-    getRurgeCellMsg() {
-        this.machineService
-            .getRurgeCell('LASER')
-            .pipe(take(1))
-            .subscribe({
-                next: (response) => {
-                    this.rurgeCell = response.data.data.filter(
-                        (data: notification) => data.message != null
-                    );
-                },
-            });
-    }
-
-    getSansoMaticMsg() {
-        this.machineService
-            .getSansoMatic('BORING')
-            .pipe(take(1))
-            .subscribe({
-                next: (response) => {
-                    this.sansoMantic = response.data.data_label.filter(
-                        (data: notification) => data.message != null
-                    );
-                },
-            });
-    }
-
-    getRpmSpindleMsg() {
-        this.machineService
-            .getRpmSpindle('BORING')
-            .pipe(take(1))
-            .subscribe({
-                next: (response) => {
-                    this.rpmSpindle = response.data.data_label.filter(
-                        (data: notification) => data.message != null
+                    this.listNotif = response.data.filter(
+                        (data) => data.status !== true
                     );
                 },
             });
     }
 
     seeAllNotification() {
-        this.router.navigate(['/notification'])
+        this.router.navigate(['/notification']);
     }
 }
