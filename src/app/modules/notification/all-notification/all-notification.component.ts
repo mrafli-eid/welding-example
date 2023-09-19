@@ -16,9 +16,9 @@ export class AllNotificationComponent implements OnInit {
         { label: 'Notification', link: '/notification' },
     ];
     constructor(private notificationService: NotificationService) {}
-    allNotifications = NOTIF_DUMMY
+    allNotifications:notification[] = NOTIF_DUMMY
     queryParams: Partial<any> = {};
-    pagination: any = {
+    pagination = {
         page_number: 1,
         page_size: 10,
         total_count: 100,
@@ -60,9 +60,9 @@ export class AllNotificationComponent implements OnInit {
         this.notificationService.getAllNotification(this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
+                next: (response) => {   
+                    this.allNotifications = response.data;
                     this.pagination = JSON.parse(response.data.get('x-pagination'));
-                    this.allNotifications = response.data || [];
                 },
             });
     }
