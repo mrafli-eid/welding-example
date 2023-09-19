@@ -9,7 +9,7 @@ import { take } from 'rxjs';
 import { notification } from 'src/app/core/models/notification.model';
 import { NOTIF_DUMMY } from '../../modules/notification/all-notification/notification.dummy';
 import { Router } from '@angular/router';
-import { HALF_MINUTE_INTERVAL } from '../../core/consts/app.const';
+import { HALF_MINUTE_INTERVAL, TEN_SECOND_INTERVAL } from '../../core/consts/app.const';
 import { ROBOT_PARAMS } from './robot-params';
 
 @Component({
@@ -29,7 +29,12 @@ export class NavbarComponent implements OnInit {
         private elRef: ElementRef
     ) {}
 
-    listNotif = NOTIF_DUMMY.filter((data) => data.status !== true);
+    listNotif: notification[] = NOTIF_DUMMY.filter((data) => data.status !== true);
+    params = {
+        start: null,
+        end: null,
+        type: 'default'
+    }
 
     isDropdownOpen = false;
 
@@ -67,31 +72,34 @@ export class NavbarComponent implements OnInit {
             this.runningHour();
         }, HALF_MINUTE_INTERVAL);
 
-        this.getListNotif();
+        setInterval(() => {
+            this.getListNotif();
+        }, TEN_SECOND_INTERVAL);
+
     }
 
     temperatureMirror() {
-        this.machineService.getTemperatureMirror('LASER')
+        this.machineService.getTemperatureMirror('LASER', this.params)
         .pipe(take(1))
             .subscribe();
     }
     dewPoint() {
-        this.machineService.getDewPoint('LASER')
+        this.machineService.getDewPoint('LASER', this.params)
         .pipe(take(1))
         .subscribe();
     }
     rurgeCell() {
-        this.machineService.getRurgeCell('LASER')
+        this.machineService.getRurgeCell('LASER', this.params)
         .pipe(take(1))
         .subscribe();
     }
     sansoMatic() {
-        this.machineService.getSansoMatic('BORING')
+        this.machineService.getSansoMatic('BORING', this.params)
         .pipe(take(1))
         .subscribe();
     }
     rpmSpindle() {
-        this.machineService.getRpmSpindle('BORING')
+        this.machineService.getRpmSpindle('BORING', this.params)
         .pipe(take(1))
         .subscribe();
     }
@@ -99,7 +107,8 @@ export class NavbarComponent implements OnInit {
         ROBOT_PARAMS.map((item) => {
             this.machineService.getServoLoad(
                 item.machine_name,
-                item.robot_name
+                item.robot_name,
+                this.params
             )
             .pipe(take(1))
             .subscribe();
@@ -109,7 +118,8 @@ export class NavbarComponent implements OnInit {
         ROBOT_PARAMS.map((item) => {
             this.machineService.getRunningHour(
                 item.machine_name,
-                item.robot_name
+                item.robot_name,
+                this.params
             )
             .pipe(take(1))
             .subscribe();
@@ -124,10 +134,8 @@ export class NavbarComponent implements OnInit {
         this.notificationService
             .updateNotification(notifId)
             .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.getListNotif();
-                },
+            .subscribe(() => {
+                this.getListNotif()
             });
     }
 
@@ -138,7 +146,7 @@ export class NavbarComponent implements OnInit {
             .subscribe({
                 next: (response) => {
                     this.listNotif = response.data.filter(
-                        (data) => data.status !== true
+                        (data:notification) => data.status !== true
                     );
                 },
             });

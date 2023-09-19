@@ -1,7 +1,7 @@
 export interface notification {
-    value?: number;
-    label: string;
+    id: string;
+    status: boolean;
     date_time: string;
-    machine_name?: string;
+    machine_name: string;
     message: string | null;
-}[];
+};
