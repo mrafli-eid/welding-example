@@ -45,7 +45,6 @@ export class CorrectiveMaintenanceUpsertComponent {
 
     submit() {
         this.formGroup.markAllAsTouched();
-        console.log("belum valid");
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
 
@@ -62,7 +61,6 @@ export class CorrectiveMaintenanceUpsertComponent {
             } else {
                 this.create(body);
             }
-            console.log(body);
         }
     }
 

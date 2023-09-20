@@ -469,7 +469,6 @@ export class MachineService {
             })
             .subscribe((response) => {
                 const fileName = response.headers.get('x-download');
-                console.log(fileName);
                 downLoadFile(response.body, fileName);
             });
     }

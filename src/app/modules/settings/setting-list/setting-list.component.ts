@@ -46,7 +46,6 @@ export class SettingListComponent {
   refreshData() {
     this.pagination.page_number = 1;
     this.getSettingList();
-    console.log('refresh data');
   }
 
   getSettingList() {

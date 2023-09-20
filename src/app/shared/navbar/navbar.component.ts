@@ -40,7 +40,6 @@ export class NavbarComponent implements OnInit {
 
     toggleDropdown() {
         this.isDropdownOpen = !this.isDropdownOpen;
-        console.log("toggle dropdown");
     }
 
     @HostListener('document:click', ['$event'])
@@ -155,6 +154,5 @@ export class NavbarComponent implements OnInit {
 
     seeAllNotification() {
         this.router.navigate(['/notification']);
-        console.log("see all notif");
     }
 }

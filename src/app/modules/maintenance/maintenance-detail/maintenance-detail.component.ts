@@ -17,7 +17,6 @@ export class MaintenanceDetailComponent {
         this.id = activatedRoute.snapshot.queryParamMap.get('id');
         // get preventive or corrective
         this.maintenance = router.url.split('/')[3].split('?')[0];
-        console.log(this.maintenance);
     }
 
     navigateToDetailPreventive(){
