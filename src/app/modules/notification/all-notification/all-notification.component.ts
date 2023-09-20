@@ -4,6 +4,7 @@ import { NotificationService } from '../../../core/services/notification.service
 import { take } from 'rxjs';
 import { NOTIF_DUMMY } from './notification.dummy';
 import { notification } from '../../../core/models/notification.model';
+import { Pagination } from 'src/app/core/models/pagination.model';
 
 @Component({
     selector: 'app-all-notification',
@@ -17,7 +18,7 @@ export class AllNotificationComponent implements OnInit {
     ];
     constructor(private notificationService: NotificationService) {}
     allNotifications:notification[] = NOTIF_DUMMY
-    queryParams: Partial<any> = {};
+    queryParams: Partial<Pagination> = {};
     pagination = {
         page_number: 1,
         page_size: 10,
@@ -61,8 +62,8 @@ export class AllNotificationComponent implements OnInit {
             .pipe(take(1))
             .subscribe({
                 next: (response) => {   
-                    this.allNotifications = response.data;
-                    this.pagination = JSON.parse(response.data.get('x-pagination'));
+                    this.allNotifications = response.body.data
+                    this.pagination = JSON.parse(response.headers.get('x-pagination'));
                 },
             });
     }
