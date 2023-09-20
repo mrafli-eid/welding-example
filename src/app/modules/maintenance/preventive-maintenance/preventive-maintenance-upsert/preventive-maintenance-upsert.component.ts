@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { MaintenancePreventive } from '../../../../core/models/maintenance-preventive.model';
 import { MaintenancePreventiveService } from '../../../../core/services/maintenance-preventive.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -28,9 +28,12 @@ export class PreventiveMaintenanceUpsertComponent {
     });
 
     constructor(private maintenanceService: MaintenancePreventiveService,
-                private activatedRoute: ActivatedRoute,) {
+                private activatedRoute: ActivatedRoute,
+                private router: Router) {
         this.machineId = this.activatedRoute.snapshot.queryParamMap.get('id');
+        this.machine_name = decodeURIComponent(router.url.split('/')[2]);
         this.formGroup.patchValue({
+            name: this.machine_name,
             machine_id: this.machineId,
         });
     }

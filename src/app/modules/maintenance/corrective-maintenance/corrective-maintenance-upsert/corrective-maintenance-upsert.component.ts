@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { MaintenanceCorrective } from '../../../../core/models/maintenance-corrective.model';
 import { MaintenanceCorrectiveService } from '../../../../core/services/maintenance-corrective.service';
@@ -14,6 +14,7 @@ import { DashboardService } from 'src/app/core/services/dashboard.service';
 })
 export class CorrectiveMaintenanceUpsertComponent {
     machineId = '';
+    machine_name = '';
 
     @Input() data: MaintenanceCorrective;
     @Output() onSubmit = new EventEmitter();
@@ -28,10 +29,13 @@ export class CorrectiveMaintenanceUpsertComponent {
 
     constructor(private maintenanceService: MaintenanceCorrectiveService,
                 private activatedRoute: ActivatedRoute,
-                private dashboardService: DashboardService) {
+                private dashboardService: DashboardService,
+                private router: Router) {
         this.machineId = this.activatedRoute.snapshot.queryParamMap.get('id');
+        this.machine_name = decodeURIComponent(router.url.split('/')[2]);
         this.formGroup.patchValue({
             machine_id: this.machineId,
+            name: this.machine_name,
         });
     }
 
