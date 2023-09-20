@@ -1,7 +1,15 @@
 <div class="breadcrumb">
-    <a (click)="navigateToDetailPreventive()" routerLinkActive="active">Maintenance Preventive</a>
+    <a
+        (click)="navigateToDetailPreventive()"
+        class="cursor-pointer {{this.maintenance == 'preventive' ? 'text-white' : 'text-gray'}}"
+        >Maintenance Preventive</a
+    >
     <span>|</span>
-    <a (click)="navigateToDetailCorrective()" routerLinkActive="active">Maintenance Corrective</a>
+    <a
+        (click)="navigateToDetailCorrective()"
+        class="cursor-pointer {{this.maintenance == 'corrective' ? 'text-white' : 'text-gray'}}"
+        >Maintenance Corrective</a
+    >
 </div>
 <div>
     <router-outlet></router-outlet>

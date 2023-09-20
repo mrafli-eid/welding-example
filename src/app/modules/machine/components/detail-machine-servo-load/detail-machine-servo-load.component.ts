@@ -70,7 +70,7 @@ export class DetailMachineServoLoadComponent {
     }
 
     download() {
-        // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+        this.machineService.downloadServoLoad(this.machine_name, this.robot_name, this.dateFilter);
     }
 
     goToSettings() {

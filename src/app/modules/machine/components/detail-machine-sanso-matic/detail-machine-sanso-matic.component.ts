@@ -60,7 +60,7 @@ export class DetailMachineSansoMaticComponent {
   }
 
   download() {
-    // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+    this.machineService.downloadSansoMatic(this.machine_name, this.dateFilter);
   }
 
   goToSettings() {

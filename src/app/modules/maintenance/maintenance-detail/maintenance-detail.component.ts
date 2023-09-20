@@ -9,11 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MaintenanceDetailComponent {
     machine_name: string = '';
     id = '';
+    maintenance = '';
 
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router) {
-        this.machine_name = activatedRoute.snapshot.paramMap.get('name')
+        this.machine_name = activatedRoute.snapshot.paramMap.get('name');
         this.id = activatedRoute.snapshot.queryParamMap.get('id');
+        // get preventive or corrective
+        this.maintenance = router.url.split('/')[3].split('?')[0];
+        console.log(this.maintenance);
     }
 
     navigateToDetailPreventive(){
@@ -22,6 +26,7 @@ export class MaintenanceDetailComponent {
                 id: this.id,
             },
         });
+        this.maintenance = 'preventive';
     }
 
     navigateToDetailCorrective(){
@@ -30,5 +35,6 @@ export class MaintenanceDetailComponent {
                 id: this.id,
             },
         });
+        this.maintenance = 'corrective';
     }
 }

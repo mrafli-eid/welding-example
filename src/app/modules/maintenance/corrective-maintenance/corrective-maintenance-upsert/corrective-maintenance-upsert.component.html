@@ -1,44 +1,66 @@
 <div class="master-upsert">
     <div class="master-header">
         <div>
-            <h2>{{data ? 'Edit' : 'Add'}}</h2>
-            <p>Please {{data ? 'edit' : 'add'}} input form maintenance</p>
+            <h2>{{ data ? "Edit" : "Add" }}</h2>
+            <p>Please {{ data ? "edit" : "add" }} input form maintenance</p>
         </div>
         <div>
-            <img alt="file" height="53" ngSrc="/assets/icons/file.svg" width="53">
+            <img
+                alt="file"
+                height="53"
+                ngSrc="/assets/icons/file.svg"
+                width="53"
+            />
         </div>
     </div>
     <div [formGroup]="formGroup" class="master-content">
         <div class="row">
             <div class="col-lg-6 col-12">
                 <label>Name</label>
-            <mat-form-field>
-                <input formControlName="name" matInput type="text">
-            </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="name" matInput type="text" />
+                </mat-form-field>
             </div>
-            
-                <div class="col-lg-6 col-12">
-                    <label>Actual</label>
-                    <mat-form-field>
-                        <input formControlName="actual" matInput type="text">
-                    </mat-form-field>
-                </div>
-                <div class="col-lg-6 col-12">
-                    <label>Start Date</label>
-                    <mat-form-field>
-                        <input [matDatepicker]="picker" formControlName="start_date" matInput>
-                        <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                </div>
-                <div class="col-lg-6 col-12">
-                    <label>End Date</label>
-                    <mat-form-field>
-                        <input [matDatepicker]="endPicker" formControlName="end_date" matInput>
-                        <mat-datepicker-toggle [for]="endPicker" matIconSuffix></mat-datepicker-toggle>
-                        <mat-datepicker #endPicker style="width: 0.1em"></mat-datepicker>
-                    </mat-form-field>
-                </div>
+
+            <div class="col-lg-6 col-12">
+                <label>Actual</label>
+                <mat-form-field>
+                    <input formControlName="actual" matInput type="text" />
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-12">
+                <label>Start Date</label>
+                <mat-form-field>
+                    <input
+                        [matDatepicker]="picker"
+                        formControlName="start_date"
+                        matInput
+                    />
+                    <mat-datepicker-toggle
+                        [for]="picker"
+                        matIconSuffix
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-12">
+                <label>End Date</label>
+                <mat-form-field>
+                    <input
+                        [matDatepicker]="endPicker"
+                        formControlName="end_date"
+                        matInput
+                    />
+                    <mat-datepicker-toggle
+                        [for]="endPicker"
+                        matIconSuffix
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker
+                        #endPicker
+                        style="width: 0.1em"
+                    ></mat-datepicker>
+                </mat-form-field>
+            </div>
 
             <!-- <ng-container *ngIf="data">
                 <div class="col-12">
@@ -64,14 +86,9 @@
                     </mat-form-field>
                 </div>
             </ng-container> -->
-
-
         </div>
     </div>
     <div class="master-footer">
-        <button (click)="submit()"
-                class="ahm-btn ahm-btn-primary">Save
-        </button>
+        <button (click)="submit()" class="ahm-btn ahm-btn-primary">Save</button>
     </div>
-
 </div>

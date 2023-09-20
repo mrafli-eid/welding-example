@@ -57,7 +57,7 @@ export class DetailMachineRurgeCellComponent {
   }
 
   download() {
-    // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+    this.machineService.downloadRurgeCell(this.machine_name, this.dateFilter);
   }
 
   goToSettings() {

@@ -29,6 +29,7 @@ export class SettingListComponent {
 
   ngOnInit() {
     this.addSearchListener();
+    this.getSettingList();
   }
 
   onSelectPage(page: number) {

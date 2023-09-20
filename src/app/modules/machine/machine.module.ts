@@ -18,9 +18,6 @@ import {
     DetailMachineActualMaintenanceComponent
 } from './components/detail-machine-actual-maintenance/detail-machine-actual-maintenance.component';
 import {
-    DetailMachineLubOilPressureComponent
-} from './components/detail-machine-lub-oil-pressure/detail-machine-lub-oil-pressure.component';
-import {
     ChartTopMachineAlarmComponent
 } from '../dashboard/components/top-machine-alarm/chart-top-machine-alarm.component';
 import { DatepickerComponent } from '../../shared/datepicker/datepicker.component';
@@ -35,9 +32,6 @@ import {
 import {
     ChartDetailMachineProductionGraphComponent
 } from "./components/detail-machine-production-graph/chart-detail-machine-production-graph.component";
-import {
-    ChartDetailMachineLubOilPressureComponent
-} from "./components/detail-machine-lub-oil-pressure/chart-detail-machine-lub-oil-pressure.component";
 import {
     ChartDetailMachineActivityMachineComponent
 } from "./components/detail-machine-activity-machine/chart-detail-machine-activity-machine.component";
@@ -76,7 +70,6 @@ import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v
         DetailMachineHistoryAlarmComponent,
         DetailMachineProductionGraphComponent,
         DetailMachineActualMaintenanceComponent,
-        DetailMachineLubOilPressureComponent,
         DetailMachineTemperatureMirrorComponent,
         DetailMachineRunningHourComponent,
         DetailMachineAmpereComponent,
@@ -100,7 +93,6 @@ import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v
         ChartTopMachineAlarmComponent,
         ChartDetailMachineAlarmComponent,
         ChartDetailMachineProductionGraphComponent,
-        ChartDetailMachineLubOilPressureComponent,
         ChartDetailMachineActivityMachineComponent,
         ChartDetailMachineRunningHourComponent,
         ChartDetailMachineAmpereComponent,

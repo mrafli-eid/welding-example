@@ -30,6 +30,9 @@ export class CorrectiveMaintenanceUpsertComponent {
                 private activatedRoute: ActivatedRoute,
                 private dashboardService: DashboardService) {
         this.machineId = this.activatedRoute.snapshot.queryParamMap.get('id');
+        this.formGroup.patchValue({
+            machine_id: this.machineId,
+        });
     }
 
 
@@ -42,6 +45,7 @@ export class CorrectiveMaintenanceUpsertComponent {
 
     submit() {
         this.formGroup.markAllAsTouched();
+        console.log("belum valid");
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
 
@@ -58,6 +62,7 @@ export class CorrectiveMaintenanceUpsertComponent {
             } else {
                 this.create(body);
             }
+            console.log(body);
         }
     }
 

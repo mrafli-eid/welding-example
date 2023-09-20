@@ -11,6 +11,7 @@ import { downLoadFile } from '../helpers/http.helper';
     providedIn: 'root',
 })
 export class RegisterService {
+    baseUrl = `${ environment.API_URL }/api/activity`;
 
     constructor(private http: HttpClient) {
     }

@@ -1,1 +1,76 @@
-<p>user-activity-list works!</p>
+<div class="user-activity row mb-6 mx-auto">
+    <div class="col-12 col-md-4">
+        <label class="mb-6">Username</label>
+        <mat-form-field>
+            <mat-select formControlName="machine_name">
+                <mat-option
+                    *ngFor="let username of usernameList"
+                    [value]="username.username"
+                    >{{ username.username }}</mat-option
+                >
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-12 col-md-4">
+        <label class="mb-6">Log Type</label>
+        <mat-form-field>
+            <mat-select formControlName="machine_name">
+                <mat-option
+                    *ngFor="let logType of logTypeList"
+                    [value]="logType.log_type"
+                    >{{ logType.log_type }}</mat-option
+                >
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-12 col-md-4">
+        <label class="mb-6">Datetime</label>
+    </div>
+</div>
+<div class="master-list">
+    <div class="master-header">
+        <h2>List Machine</h2>
+        <div class="ahm-input-wrapper">
+            <img
+                alt="search"
+                src="/assets/icons/search.svg"
+                height="27"
+                width="26"
+            />
+            <input
+                [formControl]="searchTerm"
+                placeholder="Search"
+                type="text"
+            />
+        </div>
+    </div>
+    <div class="master-content">
+        <div class="ahm-table">
+            <table (matSortChange)="sortData($event)" matSort>
+                <tr>
+                    <th>No</th>
+                    <th mat-sort-header="subject">Username</th>
+                    <th mat-sort-header="unit">Log Type</th>
+                    <th mat-sort-header="createddate">Datetime</th>
+                </tr>
+                <tr *ngFor="let data of userActivityList; let index = index">
+                    <td>
+                        {{
+                            (pagination.page_number - 1) *
+                                pagination.page_size +
+                                (index + 1)
+                        }}
+                    </td>
+                    <td>{{ data.username }}</td>
+                    <td>{{ data.log_type }}</td>
+                    <td>{{ data.date_time }}</td>
+                </tr>
+            </table>
+        </div>
+        <ahm-paginator
+            (selectedLimit)="onSelectLimit($event)"
+            (selectedPage)="onSelectPage($event)"
+            [pagination]="pagination"
+        ></ahm-paginator>
+    </div>
+</div>

@@ -57,7 +57,7 @@ export class DetailMachineRpmSpindleComponent {
   }
 
   download() {
-    // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+    this.machineService.downloadRpmSpindle(this.machine_name, this.dateFilter);
   }
 
   goToSettings() {

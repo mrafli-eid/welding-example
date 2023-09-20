@@ -61,7 +61,7 @@ export class MachineActivityComponent {
     convertToDatasets(machineActivity: DashboardMachineActivity): ChartDatasets {
         const chartDatasets: ChartDatasets = [];
 
-        for (let y = 0; y < machineActivity.machine_list[0].data.length; y++) {
+        for (let y = 0; y < machineActivity?.machine_list[0]?.data.length; y++) {
             const data: number[] = [];
             const backgroundColor: string[] = [];
             chartDatasets.push({ data, backgroundColor });

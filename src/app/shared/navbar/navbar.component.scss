@@ -73,7 +73,7 @@ nav {
         border: none;
         cursor: pointer;
 
-        span{
+        span {
             position: absolute;
             background-color: red;
             border-radius: 100%;
@@ -95,7 +95,7 @@ nav {
     .dropdown-content {
         display: none;
         position: absolute;
-        background-color: #2B2D31;
+        background-color: #2b2d31;
         width: 20rem;
         height: 20rem;
         max-height: 20rem;
@@ -103,7 +103,7 @@ nav {
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
         right: 1rem;
-        border-radius: .2rem;
+        border-radius: 0.2rem;
     }
 
     .dropdown-content a {
@@ -116,22 +116,21 @@ nav {
         align-items: center;
         gap: 1rem;
 
-        .cover-msg{
+        .cover-msg {
             height: 70%;
             overflow: auto;
         }
 
-        .notif-info{
-
+        .notif-info {
             display: flex;
             flex-direction: row;
             gap: 1rem;
 
-            .icon-notif{
+            .icon-notif {
                 cursor: default;
             }
-            
-            .msg-notif{
+
+            .msg-notif {
                 display: flex;
                 flex-direction: column;
                 margin: 0 1rem 0 0 ;
@@ -139,45 +138,41 @@ nav {
             }
         }
 
-        .action-notif{
+        .action-notif {
             display: flex;
             flex-direction: row;
-            align-items:flex-start;
+            align-items: flex-start;
             gap: 1rem;
             position: relative;
             right: 0;
 
-            button{
+            button {
                 background-color: black;
                 border-radius: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: .4rem;
+                padding: 0.4rem;
                 font-size: 1rem;
             }
-            
         }
-
     }
 
-
-    .lable-notif{
+    .lable-notif {
         position: sticky;
         width: 100%;
-        text-align: center;
     }
     .all-notif{
         position: sticky;
-        bottom: -2px;
+        bottom: 0px;
         width: 100%;
         text-align: center;
-        border-top: 1px solid white ;
+        border-top: 1px solid white;
         cursor: pointer;
     }
 
-    .cover-msg:hover{
-        background-color: #2B2D31;
+    .cover-msg:hover {
+        background-color: #2b2d31;
     }
 
     .dropdown-content::-webkit-scrollbar {

@@ -13,6 +13,8 @@ import * as moment from 'moment';
 })
 export class PreventiveMaintenanceUpsertComponent {
     machineId = '';
+    machine_name = '';
+    maintenance = 'preventive' || 'corrective';
 
     @Input() data: MaintenancePreventive;
     @Output() onSubmit = new EventEmitter();
@@ -27,8 +29,10 @@ export class PreventiveMaintenanceUpsertComponent {
 
     constructor(private maintenanceService: MaintenancePreventiveService,
                 private activatedRoute: ActivatedRoute,) {
-        this.machineId = this.activatedRoute.snapshot.paramMap.get('id');
-        this.formGroup.get('machine_id').patchValue(this.machineId);
+        this.machineId = this.activatedRoute.snapshot.queryParamMap.get('id');
+        this.formGroup.patchValue({
+            machine_id: this.machineId,
+        });
     }
 
 
@@ -37,7 +41,7 @@ export class PreventiveMaintenanceUpsertComponent {
         this.isOk = this.data?.ok || false;
         if (this.isOk) {
             this.formGroup.addControl('actual', new FormControl('', [ Validators.required ]));
-            this.formGroup.addControl('end_date', new FormControl([ Validators.required ]));
+            // this.formGroup.addControl('end_date', new FormControl([ Validators.required ]));
         } else if (this.data?.actual) {
             this.formGroup.addControl('actual', new FormControl('', [ Validators.required ]));
         }
@@ -50,9 +54,9 @@ export class PreventiveMaintenanceUpsertComponent {
             if (body.start_date) {
                 body.start_date = moment(body.start_date).format('YYYY-MM-DD');
             }
-            if (body.end_date) {
-                body.end_date = moment(body.end_date).format('YYYY-MM-DD');
-            }
+            // if (body.end_date) {
+            //     body.end_date = moment(body.end_date).format('YYYY-MM-DD');
+            // }
             if (this.data) {
                 if (this.isOk) {
                     this.ok(body);

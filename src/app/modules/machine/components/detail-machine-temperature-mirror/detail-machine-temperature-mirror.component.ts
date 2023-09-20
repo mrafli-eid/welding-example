@@ -60,7 +60,7 @@ export class DetailMachineTemperatureMirrorComponent {
   }
 
   download() {
-      // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+      // this.machineService.downloadTemperatureMirror(this.machine_name, this.dateFilter);
   }
 
   goToSettings() {

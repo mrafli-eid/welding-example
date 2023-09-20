@@ -60,7 +60,7 @@ export class DetailMachineDewPointComponent {
     }
 
     download() {
-        // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+        this.machineService.downloadDewPoint(this.machine_name, this.dateFilter);
     }
 
     goToSettings() {
