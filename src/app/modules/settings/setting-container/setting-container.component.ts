@@ -14,7 +14,6 @@ export class SettingContainerComponent {
     ];
     data: Setting[];
 
-
     @ViewChild(SettingListComponent) settingList: SettingListComponent;
 
     onFinished() {

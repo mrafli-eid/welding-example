@@ -24,10 +24,10 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data.map((d) => d.value_run);
-        this.lineChartData.datasets[1].data = this.data.data.map((d) => d.value_idle);
-        this.lineChartData.datasets[2].data = this.data.data.map((d) => d.value_stop);
-        this.lineChartData.labels = this.data.data.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data?.data?.map((d) => d.value_run);
+        this.lineChartData.datasets[2].data = this.data?.data?.map((d) => d.value_stop);
+        this.lineChartData.datasets[1].data = this.data?.data?.map((d) => d.value_idle);
+        this.lineChartData.labels = this.data?.data?.map((d) => d.label);
 
         this.chart?.render();
     }
