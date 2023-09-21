@@ -9,6 +9,8 @@ import { PaginatorComponent } from "../../shared/paginator/paginator.component";
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { MatSelectModule } from '@angular/material/select';
         PaginatorComponent,
         MatFormFieldModule,
         MatInputModule,
-        MatSelectModule,
+        MatSelectModule,           // <----- this module will be deprecated in the future version.
+        MatDatepickerModule,        // <----- import(must)
+        MatNativeDateModule 
     ]
 })
 export class UserActivityModule {

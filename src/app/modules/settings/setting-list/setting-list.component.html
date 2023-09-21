@@ -1,12 +1,12 @@
-<div class="master-list">
-    <div class="master-header">
+<div class="setting-list">
+    <div class="setting-header">
         <h2>List Machine</h2>
         <div class="ahm-input-wrapper">
             <img alt="search" ngSrc="/assets/icons/search.svg" height="27" width="26">
             <input [formControl]="searchTerm" placeholder="Search" type="text">
         </div>
     </div>
-    <div class="master-content">
+    <div class="setting-content">
         <div class="ahm-table">
             <table (matSortChange)="sortData($event)" matSort>
                 <tr>

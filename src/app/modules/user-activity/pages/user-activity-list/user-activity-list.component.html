@@ -25,6 +25,11 @@
     </div>
     <div class="col-12 col-md-4">
         <label class="label">Datetime</label>
+        <mat-form-field>
+            <input class="input" matInput [matDatepicker]="picker" formControlName="date_time">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
     </div>
 </div>
 <div class="master-list">

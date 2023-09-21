@@ -295,7 +295,7 @@ export class MachineService {
                 ...params,
             };
 
-            this.http.get(`${this.baseUrl}/get-download-excel-running-hour-all`, {
+            this.http.get(`${this.baseUrl}/get-download-excel-running-hours-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
                 observe: 'response'

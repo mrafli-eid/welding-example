@@ -24,11 +24,11 @@ import { StringPipe } from "../../shared/pipes/string.pipe";
     imports: [
         CommonModule,
         SettingsRoutingModule,
-        BreadcrumbsComponent,
+        ReactiveFormsModule,
         FormsModule,
+        BreadcrumbsComponent,
         MatSortModule,
         PaginatorComponent,
-        ReactiveFormsModule,
         NgOptimizedImage,
         MatSelectModule,
         MatInputModule,
