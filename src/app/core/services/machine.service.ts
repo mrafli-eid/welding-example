@@ -243,14 +243,16 @@ export class MachineService {
         };
 
         this.http
-            .get(`${this.baseUrl}/get-download-production-all`, {
+            .get(`${this.baseUrl}/get-download-excel-production-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
                 observe: 'response'
             })
             .subscribe((response) => {
                 const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
+                console.log(fileName);
+                downLoadFile(response.body, fileName);
+                console.log(response.body);
             });
     }
 
@@ -394,7 +396,9 @@ export class MachineService {
             })
             .subscribe((response) => {
                 const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
+                console.log(fileName);
+                downLoadFile(response.body, fileName);
+                console.log(response.body);
             });
     }
 
