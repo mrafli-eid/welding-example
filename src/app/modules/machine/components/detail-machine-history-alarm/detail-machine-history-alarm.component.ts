@@ -29,6 +29,10 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     @Input() machine_name: string;
     @Input() robot_name: string;
 
+    actDate = new FormControl('');
+    searchTerm = new FormControl('');
+    description = new FormControl('');
+
     pagination: Pagination = {
         page_number: 1,
         page_size: 10,
@@ -38,6 +42,8 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     queryParams: Partial<DetailMachineHistoryAlarmParams> = {
         page_size: this.pagination.page_size,
         page_number: this.pagination.page_number,
+        description: this.description.value,
+        act_date: this.actDate.value,
     };
 
     descriptionList: DetailMachineDescription[] = [
@@ -45,9 +51,6 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
             description: 'Error',
         },
     ];
-    searchTerm = new FormControl('');
-    actDate = new FormControl(null);
-    description = new FormControl(null);
 
     historyAlarmList: DetailMachineHistoryAlarm[] =
         DUMMY_DETAIL_MACHINE_HISTORY_ALARM;
@@ -61,7 +64,6 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     ngOnChanges() {
         this.fetchList();
         this.addSearchListener();
-        // this.fetchDescription();
         interval(HALF_MINUTE_INTERVAL)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
@@ -95,14 +97,6 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
             });
     }
 
-    // fetchDescription() {
-    //     this.machineService.getDescription()
-    //         .pipe(take(1))
-    //         .subscribe((response) => {
-    //             this.descriptionList = response.data || [];
-    //         })
-    // }
-
     changePage(page: number) {
         this.pagination.page_number = page;
         this.queryParams.page_number = page;
@@ -132,6 +126,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
             this.pagination.page_number = 1;
             this.fetchList();
         }
+
     }
 
     openFilter() {

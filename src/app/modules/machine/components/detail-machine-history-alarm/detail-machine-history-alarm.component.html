@@ -45,14 +45,11 @@
 <mat-menu #menu="matMenu" class="menu-request">
     <label (click)="$event.stopPropagation()">Desc</label>
     <mat-form-field (click)="$event.stopPropagation()">
-        <mat-select placeholder="-- Desc --" [formControl]="description">
-            <mat-option *ngFor="let desc of descriptionList"
-                        [value]="desc.description">{{desc.description}}</mat-option>
-        </mat-select>
+        <input type="text" matInput [formControl]="description">
     </mat-form-field>
     <label (click)="$event.stopPropagation()">Date</label>
     <mat-form-field (click)="$event.stopPropagation()">
-        <input matInput [matDatepicker]="picker" placeholder="-- dd-mm-yyyy --" [formControl]="actDate">
+        <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY" [formControl]="actDate">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
