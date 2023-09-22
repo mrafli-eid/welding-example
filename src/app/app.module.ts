@@ -15,6 +15,7 @@ import localeId from '@angular/common/locales/id';
 import { MAT_SLIDE_TOGGLE_DEFAULT_OPTIONS } from "@angular/material/slide-toggle";
 import {MatMenuModule} from '@angular/material/menu';
 import { DatepickerV3Component } from './shared/datepicker-v3/datepicker-v3.component';
+import { DatepickerCalendarV3Component } from './shared/datepicker-v3/datepicker-calendar-v3/datepicker-calendar-v3.component';
 
 Chart.register(annotationPlugin);
 Chart.register(ChartDataLabels);
@@ -36,7 +37,6 @@ registerLocaleData(localeId, 'id');
 @NgModule({
     declarations: [
         AppComponent,
-        DatepickerV3Component,
     ],
     imports: [
         BrowserModule,
