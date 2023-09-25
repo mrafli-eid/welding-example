@@ -2,7 +2,7 @@
     <div class="col-12 col-md-4">
         <label class="label">Username</label>
         <mat-form-field>
-            <mat-select formControlName="machine_name">
+            <mat-select [formControl]="user_name">
                 <mat-option
                     *ngFor="let username of usernameList"
                     [value]="username.username"
@@ -14,7 +14,7 @@
     <div class="col-12 col-md-4">
         <label class="label">Log Type</label>
         <mat-form-field>
-            <mat-select formControlName="machine_name">
+            <mat-select [formControl]="log_type">
                 <mat-option
                     *ngFor="let logType of logTypeList"
                     [value]="logType.log_type"
@@ -26,7 +26,7 @@
     <div class="col-12 col-md-4">
         <label class="label">Datetime</label>
         <mat-form-field>
-            <input class="input" matInput [matDatepicker]="picker" formControlName="date_time">
+            <input class="input" matInput [matDatepicker]="picker" [formControl]="date_time">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

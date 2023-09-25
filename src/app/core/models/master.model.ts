@@ -58,6 +58,9 @@ export interface MasterParams {
     page_number: number;
     page_size: number;
     order_by: string;
+    user_name: string;
+    log_type: string;
+    date_time: string;
 }
 
 export interface RegisterMachine {

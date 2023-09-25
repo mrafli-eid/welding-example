@@ -29,9 +29,9 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     @Input() machine_name: string;
     @Input() robot_name: string;
 
-    actDate = new FormControl('');
-    searchTerm = new FormControl('');
+    searchTerm = new FormControl(null);
     description = new FormControl('');
+    actDate = new FormControl('');
 
     pagination: Pagination = {
         page_number: 1,
@@ -40,6 +40,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
         total_pages: 1,
     };
     queryParams: Partial<DetailMachineHistoryAlarmParams> = {
+        search_term: this.searchTerm.value,
         page_size: this.pagination.page_size,
         page_number: this.pagination.page_number,
         description: this.description.value,
@@ -122,11 +123,16 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
             isChanged = true;
         }
 
+        if(this.searchTerm.value) {
+            this.queryParams.search_term = this.searchTerm.value;
+            isChanged = true;
+        }
+
         if (isChanged) {
             this.pagination.page_number = 1;
             this.fetchList();
         }
-
+        console.log(this.queryParams);
     }
 
     openFilter() {
