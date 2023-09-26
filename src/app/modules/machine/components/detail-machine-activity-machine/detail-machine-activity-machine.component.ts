@@ -19,7 +19,7 @@ import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
 export class DetailMachineActivityMachineComponent {
     untilDestroyed = untilDestroyed();
 
-    @Input() id = '';
+    @Input() machine_name = '';
 
     dateFilter: DateFilter = getDefaultDateFilter();
     activityMachineList: DetailMachineActivityMachine = DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE;
@@ -37,7 +37,7 @@ export class DetailMachineActivityMachineComponent {
     }
 
     fetchActivityMachine() {
-        this.machineService.getActivityMachine(this.id, this.dateFilter)
+        this.machineService.getActivityMachine(this.machine_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
                 next: (resp) => {
@@ -56,6 +56,6 @@ export class DetailMachineActivityMachineComponent {
     }
 
     download() {
-        this.machineService.downloadActivityMachine(this.id, this.dateFilter);
+        this.machineService.downloadActivityMachine(this.machine_name, this.dateFilter);
     }
 }
