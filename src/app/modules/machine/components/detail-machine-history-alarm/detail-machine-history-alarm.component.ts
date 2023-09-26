@@ -29,7 +29,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     @Input() machine_name: string;
     @Input() robot_name: string;
 
-    searchTerm = new FormControl(null);
+    searchTerm = new FormControl('');
     description = new FormControl('');
     actDate = new FormControl('');
 
