@@ -26,10 +26,10 @@
     <div class="col-12 col-md-4">
         <label class="label">Datetime</label>
         <mat-form-field>
-            <input class="input" matInput [matDatepicker]="picker" [formControl]="date_time">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="date_time">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+          </mat-form-field>
     </div>
 </div>
 <div class="master-list">

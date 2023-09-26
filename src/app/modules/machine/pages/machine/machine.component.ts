@@ -55,7 +55,7 @@ export class MachineComponent implements OnInit {
     } else if (this.machine_name == 'LASER'){
       this.imageDetailMachine = "/assets/images/detail-machine-laser.png";
     }else{
-      this.imageDetailMachine = "/assets/images/detail-machine.png";
+      this.imageDetailMachine = "/assets/images/detail-machine.jpeg";
     }
   }
 

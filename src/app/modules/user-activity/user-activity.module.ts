@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule  } from '@angular-material-components/datetime-picker';
 import { UserActivityRoutingModule } from './user-activity-routing.module';
 import { UserActivityListComponent } from './pages/user-activity-list/user-activity-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +28,10 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatInputModule,
         MatSelectModule,           // <----- this module will be deprecated in the future version.
         MatDatepickerModule,        // <----- import(must)
-        MatNativeDateModule 
+        MatNativeDateModule ,
+        NgxMatDatetimePickerModule,
+        NgxMatTimepickerModule,
+        NgxMatNativeDateModule
     ]
 })
 export class UserActivityModule {
