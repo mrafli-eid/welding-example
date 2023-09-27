@@ -15,6 +15,14 @@ import { UserContainerComponent } from './user/user-container/user-container.com
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserUpsertComponent } from './user/user-upsert/user-upsert.component';
+import { RoleListComponent } from './role/role-list/role-list.component';
+import { RoleContainerComponent } from './role/role-container/role-container.component';
+import { RoleDetailComponent } from './role/role-detail/role-detail.component';
+import { RoleUpsertComponent } from './role/role-upsert/role-upsert.component';
+import { PermissionsUpsertComponent } from './permissions/permissions-upsert/permissions-upsert.component';
+import { PermissionsDetailComponent } from './permissions/permissions-detail/permissions-detail.component';
+import { PermissionsListComponent } from './permissions/permissions-list/permissions-list.component';
+import { PermissionsContainerComponent } from './permissions/permissions-container/permissions-container.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +31,14 @@ import { UserUpsertComponent } from './user/user-upsert/user-upsert.component';
         UserListComponent,
         UserDetailComponent,
         UserUpsertComponent,
+        RoleListComponent,
+        RoleContainerComponent,
+        RoleDetailComponent,
+        RoleUpsertComponent,
+        PermissionsUpsertComponent,
+        PermissionsDetailComponent,
+        PermissionsListComponent,
+        PermissionsContainerComponent,
     ],
     imports: [
         CommonModule,

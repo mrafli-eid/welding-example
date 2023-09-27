@@ -1,1 +1,11 @@
-<p>user-management-list works!</p>
+<h1 class="user-management-title">
+    Management User
+</h1>
+<div class="user-management-container">
+    <div (click)="navigateTo(userManagement.link)"
+         *ngFor="let userManagement of userManagementList"
+         class="user-management-item">
+        {{userManagement.label}}
+    </div>
+</div>
+
