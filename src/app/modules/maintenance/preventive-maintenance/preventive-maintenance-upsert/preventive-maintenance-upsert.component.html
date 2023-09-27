@@ -16,7 +16,7 @@
             </mat-form-field>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-12">
+            <div class="col-12">
                 <label>Plan</label>
                 <mat-form-field>
                     <input formControlName="plan" matInput type="text">
@@ -49,7 +49,7 @@
             </ng-container>
 
             <ng-container *ngIf="!isOk">
-                <div class="col-lg-6 col-12">
+                <div class="col-12">
                     <label>Start Date</label>
                     <mat-form-field>
                         <input [matDatepicker]="picker" formControlName="start_date" matInput>

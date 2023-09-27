@@ -9,7 +9,7 @@ import { take } from 'rxjs';
 import { notification } from 'src/app/core/models/notification.model';
 import { NOTIF_DUMMY } from '../../modules/notification/all-notification/notification.dummy';
 import { Router } from '@angular/router';
-import { HALF_MINUTE_INTERVAL, TEN_SECOND_INTERVAL } from '../../core/consts/app.const';
+import { HALF_MINUTE_INTERVAL, TEN_MINUTE_INTERVAL, TEN_SECOND_INTERVAL } from '../../core/consts/app.const';
 import { ROBOT_PARAMS } from './robot-params';
 
 @Component({
@@ -70,7 +70,7 @@ export class NavbarComponent implements OnInit {
             this.rpmSpindle();
             this.servoLoad();
             this.runningHour();
-        }, HALF_MINUTE_INTERVAL);
+        }, TEN_MINUTE_INTERVAL);
 
         setInterval(() => {
             this.getListNotif();
