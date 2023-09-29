@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Breadcrumb } from '../../../../core/models/breadcrumbs.model';
-import { UserManagement } from 'src/app/core/models/user-management';
+// import { UserManagement } from 'src/app/core/models/user-management';
 
 @Component({
     selector: 'ahm-permissions-container',
@@ -13,19 +13,19 @@ export class PermissionsContainerComponent {
         { label: 'Permissions', link: '/permissions' },
     ];
     isDetail = false;
-    permissions: UserManagement[];
+    // permissions: UserManagement[];
 
-    onDetail(permissions: UserManagement[]) {
-        this.permissions = permissions;
-        this.isDetail = true;
-    }
+    // onDetail(permissions: UserManagement[]) {
+    //     this.permissions = permissions;
+    //     this.isDetail = true;
+    // }
 
-    onEdit(permissions: UserManagement[]) {
-        this.permissions = permissions;
-    }
+    // onEdit(permissions: UserManagement[]) {
+    //     this.permissions = permissions;
+    // }
 
-    onFinished() {
-        this.permissions = null;
-        this.isDetail = false;
-    }
+    // onFinished() {
+    //     this.permissions = null;
+    //     this.isDetail = false;
+    // }
 }
