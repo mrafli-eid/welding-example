@@ -1,4 +1,4 @@
-export interface UserManagement {
+export interface UserList {
     id: string;
     username: string;
     password: string;
@@ -14,7 +14,13 @@ export interface UserManagementUpsertRequest {
     role: Array<string>;
 }
 
-export interface RolesList {
+export interface RolesManagementUpsertRequest {
+    name: string;
+}
+
+
+
+export interface RoleList {
     id: string;
     name: string;
     last_created: string;

@@ -1,1 +1,39 @@
-<p>user-upsert works!</p>
+<div class="user-management-upsert">
+    <div class="user-management-header">
+        <div>
+            <h2>{{userManagement ? 'Edit' : 'Add'}}</h2>
+            <p>Please {{userManagement ? 'edit' : 'add'}} subject data</p>
+        </div>
+        <div>
+            <img alt="file" height="53" ngSrc="/assets/icons/file.svg" width="53">
+        </div>
+    </div>
+    <div [formGroup]="formGroup" class="user-management-content">
+        <div>
+            <label>Username</label>
+            <input formControlName="username" type="text">
+        </div>
+        <div>
+            <label>Email</label>
+            <input formControlName="email" type="email">
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role" multiple>
+                  <mat-option *ngFor="let role of roleList" [value]="role">{{role}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <label>Password</label>
+            <input formControlName="password" type="password">
+        </div>
+    </div>
+    <div class="user-management-footer">
+        <button (click)="submit()"
+                class="ahm-btn ahm-btn-primary">Save
+        </button>
+    </div>
+
+</div>

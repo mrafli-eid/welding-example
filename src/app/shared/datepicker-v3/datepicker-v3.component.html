@@ -14,10 +14,9 @@
                 </span>
             </div>
             <div class="datepicker-shortcut">
-                <span [class.disabled]="!isDay()" (click)="shortcutLast30Days()">Last 30 days</span>
-                <span [class.disabled]="!isDay()" (click)="shortcutLast90Days()">Last 90 days</span>
-                <span [class.disabled]="!isDay()" (click)="shortcutLastYear()">Last year</span>
-                <span [class.disabled]="!isDay()" (click)="shortcutToday()">Today</span>
+                <span (click)="shortcutLast30Days()">X 3</span>
+                <span (click)="shortcutLast90Days()">X 6 </span>
+                <span (click)="shortcutLastYear()">X 9</span>
             </div>
             <div class="datepicker-input">
                 <input
@@ -35,16 +34,16 @@
                     type="time"
                     formControlName="endTime">
             </div>
-            <div class="datepicker-checkbox">
+            <!-- <div class="datepicker-checkbox">
                 <input type="checkbox" formControlName="realtime"/>
                 <span>Realtime</span>
-            </div>
+            </div> -->
             <div class="datepicker-button">
                 <button class="btn-apply" (click)="apply()">Apply</button>
                 <button class="btn-cancel" (click)="cancel()">Cancel</button>
             </div>
         </div>
-        <div class="datepicker-range">
+        <!-- <div class="datepicker-range">
             <ahm-datepicker-calendar-v3
                 label="Start"
                 [calendarType]="formGroup.get('type').value"
@@ -60,7 +59,7 @@
                 [startDate]="formGroup.get('start').value"
                 (onSelectedDate)="onSelectedDate('end', $event)"
             ></ahm-datepicker-calendar-v3>
-        </div>
+        </div> -->
     </div>
 
 </ng-template>
