@@ -5,6 +5,7 @@ import { HttpResponse } from "../models/http.model";
 import { MasterMachine, MasterParams, MasterSubject } from "../models/master.model";
 import { removeEmptyObject } from "../helpers/object.helper";
 import { Setting, SettingUpsertRequest } from "../models/setting.model";
+import { RoleList } from '../models/user-management';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,12 @@ export class UserManagementService {
   baseUrl = `${environment.API_URL}/api}`
 
   constructor(private http: HttpClient) { }
+
+  getRoleList(){
+    return this.http.get<HttpResponse<RoleList[]>>(`${this.baseUrl}/permission/get-list-role`);
+  }
+
+  
 
   // getUserManagementList(params: Partial<MasterParams> = null) {
   //   if (params) {

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { UserListUserManagement } from 'src/app/core/models/user-management';
 
 @Component({
   selector: 'ahm-user-detail',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent {
+    @Input() userManagement: UserListUserManagement[];
+    @Output() onFinished = new EventEmitter();
+
+    back() {
+        this.onFinished.emit();
+    }
 
 }
