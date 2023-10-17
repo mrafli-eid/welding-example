@@ -91,6 +91,6 @@ export class UserManagementService {
   }
   
   deletePermission(id: number){
-    return this.http.delete<HttpResponse<any>>(`${ this.baseUrlPermission }/${ id }`);
+    return this.http.delete<HttpResponse<any>>(`${ this.baseUrlPermission }/delete-permission/${ id }`);
   }
 }

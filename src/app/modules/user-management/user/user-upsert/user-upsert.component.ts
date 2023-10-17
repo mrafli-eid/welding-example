@@ -41,12 +41,6 @@ export class UserUpsertComponent {
 
     ngOnChanges() {
         this.formGroup.patchValue(this.userManagement);
-        // set password string ''
-        this.formGroup.get('password').setValue('');
-        this.roleList.map((role) => {
-            this.roleListMultiple.push(role.role);
-        });
-        console.log(this.roleListMultiple);
     }
 
     submit() {
