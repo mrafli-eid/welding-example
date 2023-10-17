@@ -1,1 +1,19 @@
-<p>role-container works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <ahm-breadcrumbs [breadcrumbs]="breadcrumbs"></ahm-breadcrumbs>
+    </div>
+    <div *ngIf="!isDetail" class="row">
+        <div class="col-4">
+            <ahm-role-upsert (onSubmit)="onFinished()"
+                                       [roleManagement]="roleManagement"></ahm-role-upsert>
+        </div>
+        <div class="col-8">
+            <ahm-role-list (onDetail)="onDetail($event)"
+                                     (onEdit)="onEdit($event)"></ahm-role-list>
+        </div>
+    </div>
+    <div *ngIf="isDetail" class="row">
+        <ahm-role-detail (onFinished)="onFinished()"
+                        [roleManagement]="roleManagement"></ahm-role-detail>
+    </div>
+</div>

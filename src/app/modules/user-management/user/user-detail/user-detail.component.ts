@@ -7,7 +7,7 @@ import { UserListUserManagement } from 'src/app/core/models/user-management';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent {
-    @Input() userManagement: UserListUserManagement[];
+    @Input() userManagement: UserListUserManagement;
     @Output() onFinished = new EventEmitter();
 
     back() {

@@ -1,1 +1,29 @@
-<p>user-detail works!</p>
+<div class="user-management-list">
+    <div class="user-management-header">
+        <h2>List View Line</h2>
+    </div>
+    <div class="user-management-content">
+        <table class="ahm-table">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Password</th>
+                <th>Date Joined</th>
+            </tr>
+            <tr>
+                <td>{{userManagement.username}}</td>
+                <td>{{userManagement.email}}</td>
+                <td>{{userManagement.role}}</td>
+                <td>{{userManagement.password}}</td>
+                <td>{{userManagement.last_created}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="user-management-footer">
+        <button (click)="back()" class="ahm-btn ahm-btn-primary">
+            Back
+        </button>
+    </div>
+</div>
+

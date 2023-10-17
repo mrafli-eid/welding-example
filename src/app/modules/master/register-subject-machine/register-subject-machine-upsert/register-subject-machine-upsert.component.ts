@@ -33,7 +33,6 @@ export class RegisterSubjectMachineUpsertComponent {
         subject_id: new FormControl(),
     });
 
-
     constructor(private registerService: RegisterService,
                 private pureService: PureService,) {
     }

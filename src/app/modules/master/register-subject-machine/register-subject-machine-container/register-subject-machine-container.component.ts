@@ -18,7 +18,6 @@ export class RegisterSubjectMachineContainerComponent {
     onDetail(data: SubjectMachine) {
         this.data = data;
         this.isDetail = true;
-
     }
 
     onEdit(data: SubjectMachine) {

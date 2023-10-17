@@ -1,1 +1,27 @@
-<p>permissions-detail works!</p>
+<div class="user-management-list">
+    <div class="user-management-header">
+        <h2>List View Line</h2>
+    </div>
+    <div class="user-management-content">
+        <table class="ahm-table">
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Permissions</th>
+                <th>Date Joined</th>
+            </tr>
+            <tr>
+                <td>{{permissionManagement.user_name}}</td>
+                <td>{{permissionManagement.role_name}}</td>
+                <td>{{permissionManagement.claim_type}}</td>
+                <td>{{permissionManagement.last_created}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="user-management-footer">
+        <button (click)="back()" class="ahm-btn ahm-btn-primary">
+            Back
+        </button>
+    </div>
+</div>
+

@@ -1,15 +1,23 @@
 import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
 } from '@angular/core';
+import { take } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RoleList, UserManagementUpsertRequest } from 'src/app/core/models/user-management';
+import {
+    RoleList,
+    UserListUserManagement,
+    UserManagementUpsertRequest,
+} from 'src/app/core/models/user-management';
 import { UserManagementService } from 'src/app/core/services/user-management.service';
 import { ROLE_LIST_DUMMY } from '../../role/role-list/role-list.dummy';
-
+import {
+    DUMMY_LIST_ROLE,
+    DUMMY_SELECT_MULTIPLE,
+} from '../user-list/user-list.dummy';
 
 @Component({
     selector: 'ahm-user-upsert',
@@ -17,7 +25,7 @@ import { ROLE_LIST_DUMMY } from '../../role/role-list/role-list.dummy';
     styleUrls: ['./user-upsert.component.scss'],
 })
 export class UserUpsertComponent {
-    @Input() userManagement: UserManagementUpsertRequest[];
+    @Input() userManagement: UserListUserManagement;
     @Output() onSubmit = new EventEmitter();
 
     formGroup: FormGroup = new FormGroup({
@@ -26,7 +34,8 @@ export class UserUpsertComponent {
         role: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),
     });
-    roleList: RoleList[] = ROLE_LIST_DUMMY;
+    roleList = DUMMY_LIST_ROLE;
+    roleListMultiple = DUMMY_SELECT_MULTIPLE;
 
     constructor(private userManagementService: UserManagementService) {}
 
@@ -39,41 +48,57 @@ export class UserUpsertComponent {
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
             if (this.userManagement) {
-                // this.edit(body);
+                this.edit(body);
             } else {
-                // this.create(body);
+                this.create(body);
             }
         }
     }
 
-    // edit(body: any) {
-    //     const id = this.masterData.id;
-    //     this.userManagementService
-    //         .updateSubject(id, body)
-    //         .pipe(take(1))
-    //         .subscribe({
-    //             next: () => {
-    //                 this.finish();
-    //             },
-    //             error: () => {
-    //                 this.finish();
-    //             },
-    //         });
-    // }
+    getRoleList() {
+        this.userManagementService
+            .getRoleList()
+            .pipe(take(1))
+            .subscribe({
+                next: (response) => {
+                    response.data.forEach((role) => {
+                        this.roleListMultiple.push(role.role);
+                    });
+                },
+                error: () => {
+                    console.log('error');
+                },
+            });
+    }
 
-    // create(body: any) {
-    //     this.masterService
-    //         .createSubject(body)
-    //         .pipe(take(1))
-    //         .subscribe({
-    //             next: () => {
-    //                 this.finish();
-    //             },
-    //             error: () => {
-    //                 this.finish();
-    //             },
-    //         });
-    // }
+    edit(body: any) {
+        const id = this.userManagement.id;
+        this.userManagementService
+            .updateUser(id, body)
+            .pipe(take(1))
+            .subscribe({
+                next: () => {
+                    this.finish();
+                },
+                error: () => {
+                    this.finish();
+                },
+            });
+    }
+
+    create(body: any) {
+        this.userManagementService
+            .createUser(body)
+            .pipe(take(1))
+            .subscribe({
+                next: () => {
+                    this.finish();
+                },
+                error: () => {
+                    this.finish();
+                },
+            });
+    }
 
     finish() {
         this.onSubmit.emit();

@@ -18,11 +18,18 @@ export interface UserListUserManagement {
 }
 
 export interface PermissionListUserManagement {
-    username: string;
-    role: string;
+    id: number;
+    user_name: string;
+    role_name: string;
     email: string;
-    permission: string;
+    claim_type: string;
     last_created: string;
+}
+
+export interface ClaimTypeListUserManagement {
+    selected?: boolean;
+    id: number;
+    claim_type: string;
 }
 
 export interface UserManagementUpsertRequest {
@@ -34,4 +41,9 @@ export interface UserManagementUpsertRequest {
 
 export interface RoleManagementUpsertRequest {
     name: string;
+}
+
+export interface PermissionList {
+    role: string;
+    claim_type: string[];
 }

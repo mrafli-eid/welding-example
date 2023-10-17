@@ -23,6 +23,8 @@ import { PermissionsUpsertComponent } from './permissions/permissions-upsert/per
 import { PermissionsDetailComponent } from './permissions/permissions-detail/permissions-detail.component';
 import { PermissionsListComponent } from './permissions/permissions-list/permissions-list.component';
 import { PermissionsContainerComponent } from './permissions/permissions-container/permissions-container.component';
+import { UserManagementDeleteComponent } from './dialogs/user-management-delete/user-management-delete.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -39,12 +41,14 @@ import { PermissionsContainerComponent } from './permissions/permissions-contain
         PermissionsDetailComponent,
         PermissionsListComponent,
         PermissionsContainerComponent,
+        UserManagementDeleteComponent,
     ],
     imports: [
         CommonModule,
         UserManagementRoutingModule,
         ReactiveFormsModule,
         FormsModule,
+        MatDialogModule,
         BreadcrumbsComponent,
         MatSortModule,
         PaginatorComponent,

@@ -6,21 +6,21 @@ import { UserListUserManagement } from 'src/app/core/models/user-management';
     selector: 'ahm-user-container',
     templateUrl: './user-container.component.html',
     styleUrls: ['./user-container.component.scss'],
-}) 
+})
 export class UserContainerComponent {
     breadcrumbs: Breadcrumb[] = [
-        { label: 'Data Master', link: '/master' },
-        { label: 'Subject', link: '/master/subject' },
+        { label: 'User Management', link: '/user-management' },
+        { label: 'User', link: '/user-management/user' },
     ];
-    userManagement: UserListUserManagement[];
+    userManagement: UserListUserManagement;
     isDetail = false;
 
-    onDetail(userManagement: UserListUserManagement[]) {
+    onDetail(userManagement: UserListUserManagement) {
         this.userManagement = userManagement;
         this.isDetail = true;
     }
 
-    onEdit(userManagement: UserListUserManagement[]) {
+    onEdit(userManagement: UserListUserManagement) {
         this.userManagement = userManagement;
     }
 

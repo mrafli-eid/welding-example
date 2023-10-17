@@ -1,4 +1,4 @@
-<!-- <div class="user-management-list">
+<div class="user-management-list">
     <div class="user-management-header">
         <h2>List Machine</h2>
     </div>
@@ -8,24 +8,25 @@
                 <img alt="search" ngSrc="/assets/icons/search.svg" height="27" width="26">
                 <input [formControl]="searchTerm" placeholder="Search" type="text">
             </div>
-            <button class="ahm-table-btn ahm-btn-primary" (click)="download()">
-                <img alt="download" src="/assets/icons/download.svg">
-            </button>
         </div>
         <div class="ahm-table">
             <table (matSortChange)="sortData($event)" matSort>
                 <tr>
                     <th>No</th>
-                    <th mat-sort-header="bid">VID</th>
-                    <th mat-sort-header="name">Subject</th>
+                    <th mat-sort-header="bid">Username</th>
+                    <th mat-sort-header="name">Email</th>
+                    <th mat-sort-header="createdat">Role</th>
+                    <th mat-sort-header="createdat">Password</th>
                     <th mat-sort-header="createdat">Last Created</th>
                     <th>Action</th>
                 </tr>
                 <tr *ngFor="let data of userList; let index = index">
                     <td>{{(index + 1)}}</td>
-                    <td>{{data.vid}}</td>
-                    <td>{{data.name}}</td>
-                    <td>{{data.created_at}}</td>
+                    <td>{{data.username}}</td>
+                    <td>{{data.email}}</td>
+                    <td>{{data.role}}</td>
+                    <td>{{data.password}}</td>
+                    <td>{{data.last_created}}</td>
                     <td>
                         <div class="ahm-table-action">
                             <button (click)="detail(data)" class="ahm-table-btn ahm-btn-success">
@@ -47,4 +48,4 @@
                        [pagination]="pagination"></ahm-paginator>
     </div>
 </div>
- -->
+

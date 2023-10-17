@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Breadcrumb } from '../../../../core/models/breadcrumbs.model';
+import { PermissionListUserManagement } from 'src/app/core/models/user-management';
 // import { UserManagement } from 'src/app/core/models/user-management';
 
 @Component({
@@ -10,22 +11,22 @@ import { Breadcrumb } from '../../../../core/models/breadcrumbs.model';
 export class PermissionsContainerComponent {
     breadcrumbs: Breadcrumb[] = [
         { label: 'Management User', link: '/user-management' },
-        { label: 'Permissions', link: '/permissions' },
+        { label: 'Permissions', link: '/user-management/permissions' },
     ];
+    permissionManagement: PermissionListUserManagement;
     isDetail = false;
-    // permissions: UserManagement[];
 
-    // onDetail(permissions: UserManagement[]) {
-    //     this.permissions = permissions;
-    //     this.isDetail = true;
-    // }
+    onDetail(permissionManagement: PermissionListUserManagement) {
+        this.permissionManagement = permissionManagement;
+        this.isDetail = true;
+    }
 
-    // onEdit(permissions: UserManagement[]) {
-    //     this.permissions = permissions;
-    // }
+    onEdit(permissionManagement: PermissionListUserManagement) {
+        this.permissionManagement = permissionManagement;
+    }
 
-    // onFinished() {
-    //     this.permissions = null;
-    //     this.isDetail = false;
-    // }
+    onFinished() {
+        this.permissionManagement = null;
+        this.isDetail = false;
+    }
 }
