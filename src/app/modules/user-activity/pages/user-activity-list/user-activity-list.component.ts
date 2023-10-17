@@ -5,6 +5,7 @@ import { MasterParams } from 'src/app/core/models/master.model';
 import { Pagination } from 'src/app/core/models/pagination.model';
 import { ActivityUserService } from 'src/app/core/services/user-activity.service';
 import { debounceTime, take } from 'rxjs';
+import * as dayjs from 'dayjs';
 import {
     LogTypeList,
     UserActivity,
@@ -134,7 +135,7 @@ export class UserActivityListComponent {
             .subscribe((val) => {
                 this.pagination.page_number = 1;
                 this.getActivityUserList();
-                this.queryParams.date_time = new Date(val).toISOString().slice(0, 19).replace('T', ' ');
+                this.queryParams.date_time = dayjs(val).format('YYYY-MM-DD HH:mm:ss');
                 console.log(this.queryParams.date_time);
             });
     }
