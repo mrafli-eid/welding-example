@@ -100,7 +100,7 @@ export class RoleListComponent {
         matDialogRef.afterClosed().subscribe((resp) => {
             if (resp) {
                 this.userManagementService
-                    .deleteUser(roleManagement.id)
+                    .deleteRole(roleManagement.id)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;

@@ -49,7 +49,7 @@ export class UserManagementService {
     if (params) {
       params = removeEmptyObject(params);
     }
-    return this.http.get<HttpResponse<RoleListUserManagement[]>>(`${this.baseUrlRole}`, {
+    return this.http.get<HttpResponse<RoleListUserManagement[]>>(`${this.baseUrlRole}/get-list-role`, {
       observe: 'response',
       params: params,
     });
@@ -60,7 +60,7 @@ export class UserManagementService {
   }
 
   updateRole(id: string, body: any){
-    return this.http.post<HttpResponse<any>>(`${this.baseUrlRole}/${ id }`, body);
+    return this.http.put<HttpResponse<any>>(`${this.baseUrlRole}/${ id }`, body);
   }
 
   deleteRole(id: string){

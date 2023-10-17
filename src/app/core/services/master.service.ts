@@ -39,7 +39,7 @@ export class MasterService {
         return this.http.post<HttpResponse<any>>(`${ this.baseUrlLine }/${ id }`, body);
     }
 
-    exportExcelLine() {
+    exportExcelLine() {  
         this.http.get(`${ this.baseUrlLine }/download-excel-line`, {
             responseType: "arraybuffer",
         }).subscribe((response) => {
