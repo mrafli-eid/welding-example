@@ -18,8 +18,8 @@
             <input formControlName="email" type="email">
         </div>
         <div>
+            <label>Role</label>
             <mat-form-field>
-                <mat-label>Role</mat-label>
                 <mat-select formControlName="role" multiple>
                   <mat-option *ngFor="let role of roleListMultiple" [value]="role">{{role}}</mat-option>
                 </mat-select>
@@ -27,7 +27,7 @@
         </div>
         <div>
             <label>Password</label>
-            <input formControlName="password" type="password">
+            <input formControlName="password" type="password" >
         </div>
     </div>
     <div class="user-management-footer">

@@ -43,97 +43,97 @@ body {
 //     background: #2e3034;
 // }
 
-.mat-datepicker-toggle {
-    pointer-events: auto;
-    color: var(--mat-datepicker-toggle-icon-color);
-}
+// .mat-datepicker-toggle {
+//     pointer-events: auto;
+//     color: var(--mat-datepicker-toggle-icon-color);
+// }
 
-.mat-datepicker-toggle-active {
-    color: var(--mat-datepicker-toggle-active-state-icon-color);
-}
+// .mat-datepicker-toggle-active {
+//     color: var(--mat-datepicker-toggle-active-state-icon-color);
+// }
 
-.cdk-high-contrast-active .mat-datepicker-toggle-default-icon {
-    color: canvastext;
-}
+// .cdk-high-contrast-active .mat-datepicker-toggle-default-icon {
+//     color: canvastext;
+// }
 
-.mat-datepicker-content {
-    box-shadow:
-        rgb(0 0 0 / 20%) 0 2px 4px -1px,
-        rgb(0 0 0 / 14%) 0 4px 5px 0,
-        rgb(0 0 0 / 12%) 0 1px 10px 0;
-    display: block;
-    border-radius: 4px;
-    background-color: var(--mat-datepicker-calendar-container-background-color);
-    color: var(--mat-datepicker-calendar-container-text-color);
-}
+// .mat-datepicker-content {
+//     box-shadow:
+//         rgb(0 0 0 / 20%) 0 2px 4px -1px,
+//         rgb(0 0 0 / 14%) 0 4px 5px 0,
+//         rgb(0 0 0 / 12%) 0 1px 10px 0;
+//     display: block;
+//     border-radius: 4px;
+//     background-color: var(--mat-datepicker-calendar-container-background-color);
+//     color: var(--mat-datepicker-calendar-container-text-color);
+// }
 
-.mat-datepicker-content .mat-calendar {
-    width: 296px;
-    height: 354px;
-}
+// .mat-datepicker-content .mat-calendar {
+//     width: 296px;
+//     height: 354px;
+// }
 
-.mat-datepicker-content
-    .mat-datepicker-content-container-with-custom-header
-    .mat-calendar {
-    height: auto;
-}
+// .mat-datepicker-content
+//     .mat-datepicker-content-container-with-custom-header
+//     .mat-calendar {
+//     height: auto;
+// }
 
-.mat-datepicker-content .mat-datepicker-close-button {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 8px;
-}
+// .mat-datepicker-content .mat-datepicker-close-button {
+//     position: absolute;
+//     top: 100%;
+//     left: 0;
+//     margin-top: 8px;
+// }
 
-.ng-animating .mat-datepicker-content .mat-datepicker-close-button {
-    display: none;
-}
+// .ng-animating .mat-datepicker-content .mat-datepicker-close-button {
+//     display: none;
+// }
 
-.mat-datepicker-content-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+// .mat-datepicker-content-container {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+// }
 
-.mat-datepicker-content-touch {
-    box-shadow:
-        rgb(0 0 0 / 20%) 0 11px 15px -7px,
-        rgb(0 0 0 / 14%) 0 24px 38px 3px,
-        rgb(0 0 0 / 12%) 0 9px 46px 8px;
-    display: block;
-    max-height: 80vh;
-    position: relative;
-    overflow: visible;
-}
+// .mat-datepicker-content-touch {
+//     box-shadow:
+//         rgb(0 0 0 / 20%) 0 11px 15px -7px,
+//         rgb(0 0 0 / 14%) 0 24px 38px 3px,
+//         rgb(0 0 0 / 12%) 0 9px 46px 8px;
+//     display: block;
+//     max-height: 80vh;
+//     position: relative;
+//     overflow: visible;
+// }
 
-.mat-datepicker-content-touch .mat-datepicker-content-container {
-    min-height: 312px;
-    max-height: 788px;
-    min-width: 250px;
-    max-width: 750px;
-}
+// .mat-datepicker-content-touch .mat-datepicker-content-container {
+//     min-height: 312px;
+//     max-height: 788px;
+//     min-width: 250px;
+//     max-width: 750px;
+// }
 
-.mat-datepicker-content-touch .mat-calendar {
-    width: 100%;
-    height: auto;
-}
-@media (orientation: landscape) {
-    .mat-datepicker-content-touch .mat-datepicker-content-container {
-        width: 64vh;
-        height: 80vh;
-    }
-}
-@media (orientation: portrait) {
-    .mat-datepicker-content-touch .mat-datepicker-content-container {
-        width: 80vw;
-        height: 100vw;
-    }
+// .mat-datepicker-content-touch .mat-calendar {
+//     width: 100%;
+//     height: auto;
+// }
+// @media (orientation: landscape) {
+//     .mat-datepicker-content-touch .mat-datepicker-content-container {
+//         width: 64vh;
+//         height: 80vh;
+//     }
+// }
+// @media (orientation: portrait) {
+//     .mat-datepicker-content-touch .mat-datepicker-content-container {
+//         width: 80vw;
+//         height: 100vw;
+//     }
 
-    .mat-datepicker-content-touch
-        .mat-datepicker-content-container-with-actions {
-        height: 115vw;
-    }
-}
+//     .mat-datepicker-content-touch
+//         .mat-datepicker-content-container-with-actions {
+//         height: 115vw;
+//     }
+// }
 
 .mat-calendar {
     display: block;

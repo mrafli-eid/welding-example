@@ -58,13 +58,14 @@ export class UserListComponent {
         };
         this.userManagementService
             .getListUser(this.queryParams)
-            .pipe(take(1))
+            .pipe(debounceTime(300))
             .subscribe({
                 next: (response) => {
                     this.pagination = JSON.parse(
                         response.headers.get('x-pagination')
                     );
-                    this.userList = response.body.data;
+                    this.userList = response.body.data || [];
+                    console.log(response.body.data);
                 },
             });
     }

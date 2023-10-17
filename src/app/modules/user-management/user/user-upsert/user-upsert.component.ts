@@ -35,12 +35,18 @@ export class UserUpsertComponent {
         password: new FormControl('', [Validators.required]),
     });
     roleList = DUMMY_LIST_ROLE;
-    roleListMultiple = DUMMY_SELECT_MULTIPLE;
+    roleListMultiple = [];
 
     constructor(private userManagementService: UserManagementService) {}
 
     ngOnChanges() {
         this.formGroup.patchValue(this.userManagement);
+        // set password string ''
+        this.formGroup.get('password').setValue('');
+        this.roleList.map((role) => {
+            this.roleListMultiple.push(role.role);
+        });
+        console.log(this.roleListMultiple);
     }
 
     submit() {
@@ -61,7 +67,7 @@ export class UserUpsertComponent {
             .pipe(take(1))
             .subscribe({
                 next: (response) => {
-                    response.data.forEach((role) => {
+                    response.data.map((role) => {
                         this.roleListMultiple.push(role.role);
                     });
                 },

@@ -1,6 +1,6 @@
 <div class="user-management-list">
     <div class="user-management-header">
-        <h2>List Machine</h2>
+        <h2>List User</h2>
     </div>
     <div class="user-management-content">
         <div class="user-management-content-filter">
@@ -15,8 +15,8 @@
                     <th>No</th>
                     <th mat-sort-header="bid">Username</th>
                     <th mat-sort-header="name">Email</th>
-                    <th mat-sort-header="createdat">Role</th>
-                    <th mat-sort-header="createdat">Password</th>
+                    <th mat-sort-header="role">Role</th>
+                    <th mat-sort-header="password">Password</th>
                     <th mat-sort-header="createdat">Last Created</th>
                     <th>Action</th>
                 </tr>
@@ -27,7 +27,7 @@
                     <td>{{data.role}}</td>
                     <td>{{data.password}}</td>
                     <td>{{data.last_created}}</td>
-                    <td>
+                    <!-- <td>
                         <div class="ahm-table-action">
                             <button (click)="detail(data)" class="ahm-table-btn ahm-btn-success">
                                 <img alt="Detail" src="/assets/icons/eye.svg">
@@ -39,7 +39,7 @@
                                 <img alt="Delete" src="/assets/icons/delete.svg">
                             </button>
                         </div>
-                    </td>
+                    </td> -->
                 </tr>
             </table>
         </div>
