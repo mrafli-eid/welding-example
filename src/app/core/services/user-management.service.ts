@@ -37,7 +37,7 @@ export class UserManagementService {
   }
 
   updateUser(id: string, body: any){
-    return this.http.post<HttpResponse<any>>(`${this.baseUrlUser}/${ id }`, body);
+    return this.http.put<HttpResponse<any>>(`${this.baseUrlUser}/${ id }`, body);
   }
 
   deleteUser(id: string){
@@ -87,7 +87,7 @@ export class UserManagementService {
   }
 
   updatePermission(id: number, body: any){
-    return this.http.post<HttpResponse<any>>(`${this.baseUrlPermission}/update-permission/${ id }`, body);
+    return this.http.put<HttpResponse<any>>(`${this.baseUrlPermission}/update-permission/${ id }`, body);
   }
   
   deletePermission(id: number){
