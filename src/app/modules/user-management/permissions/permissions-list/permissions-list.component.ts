@@ -60,6 +60,11 @@ export class PermissionsListComponent {
         this.getListPermission();
     }
 
+    refreshData() {
+        this.pagination.page_number = 1;
+        this.getListPermission();
+    }
+
     sortData(sort: Sort) {
         const order_by = sort.active + ' ' + sort.direction;
         this.queryParams.order_by = order_by;

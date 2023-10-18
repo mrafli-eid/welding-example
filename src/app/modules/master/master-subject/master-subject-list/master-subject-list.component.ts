@@ -48,6 +48,11 @@ export class MasterSubjectListComponent {
         this.getMasterList();
     }
 
+    refreshData() {
+        this.pagination.page_number = 1;
+        this.getMasterList();
+    }
+
     getMasterList() {
         this.queryParams = {
             ...this.queryParams,

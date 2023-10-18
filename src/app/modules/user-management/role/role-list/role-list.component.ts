@@ -50,6 +50,11 @@ export class RoleListComponent {
         this.getListRole();
     }
 
+    refreshData() {
+        this.pagination.page_number = 1;
+        this.getListRole();
+    }
+
     getListRole() {
         this.queryParams = {
             ...this.queryParams,

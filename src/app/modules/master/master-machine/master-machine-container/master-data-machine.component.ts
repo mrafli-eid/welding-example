@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Breadcrumb } from '../../../../core/models/breadcrumbs.model';
 import { MasterMachine } from '../../../../core/models/master.model';
+import { MasterMachineListComponent } from '../master-machine-list/master-machine-list.component';
 
 @Component({
     selector: 'ahm-master-machine-container',
@@ -15,10 +16,11 @@ export class MasterDataMachineComponent {
     masterMachine: MasterMachine;
     isDetail = false;
 
+    @ViewChild (MasterMachineListComponent) listComponent: MasterMachineListComponent;
+
     onDetail(masterMachine: MasterMachine) {
         this.masterMachine = masterMachine;
         this.isDetail = true;
-
     }
 
     onEdit(masterMachine: MasterMachine) {
@@ -28,6 +30,7 @@ export class MasterDataMachineComponent {
     onFinished() {
         this.masterMachine = null;
         this.isDetail = false;
+        this.listComponent.refreshData();
     }
 
 }

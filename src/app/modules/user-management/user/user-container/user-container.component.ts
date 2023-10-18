@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Breadcrumb } from 'src/app/core/models/breadcrumbs.model';
 import { UserListUserManagement } from 'src/app/core/models/user-management';
+import { UserListComponent } from '../user-list/user-list.component';
 
 @Component({
     selector: 'ahm-user-container',
@@ -15,6 +16,8 @@ export class UserContainerComponent {
     userManagement: UserListUserManagement;
     isDetail = false;
 
+    @ViewChild (UserListComponent) listComponent: UserListComponent;
+
     onDetail(userManagement: UserListUserManagement) {
         this.userManagement = userManagement;
         this.isDetail = true;
@@ -27,5 +30,6 @@ export class UserContainerComponent {
     onFinished() {
         this.userManagement = null;
         this.isDetail = false;
+        this.listComponent.refreshData();
     }
 }

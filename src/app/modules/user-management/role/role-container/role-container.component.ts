@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Breadcrumb } from 'src/app/core/models/breadcrumbs.model';
 import { RoleListUserManagement } from 'src/app/core/models/user-management';
+import { RoleListComponent } from '../role-list/role-list.component';
 
 @Component({
   selector: 'ahm-role-container',
@@ -16,6 +17,8 @@ export class RoleContainerComponent {
   roleManagement: RoleListUserManagement;
   isDetail = false;
 
+  @ViewChild (RoleListComponent) listComponent: RoleListComponent;
+
   onDetail(roleManagement: RoleListUserManagement) {
     this.roleManagement = roleManagement;
     this.isDetail = true;
@@ -28,6 +31,7 @@ export class RoleContainerComponent {
   onFinished() {
       this.roleManagement = null;
       this.isDetail = false;
+      this.listComponent.refreshData();
   }
 
 }

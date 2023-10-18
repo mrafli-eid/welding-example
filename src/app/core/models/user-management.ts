@@ -45,6 +45,6 @@ export interface RoleManagementUpsertRequest {
 }
 
 export interface PermissionList {
-    role: string;
+    role_name: string;
     claim_type: string[];
 }

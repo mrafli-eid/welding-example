@@ -50,6 +50,11 @@ export class UserListComponent {
         this.getListUser();
     }
 
+    refreshData() {
+        this.pagination.page_number = 1;
+        this.getListUser();
+    }
+
     getListUser() {
         this.queryParams = {
             ...this.queryParams,

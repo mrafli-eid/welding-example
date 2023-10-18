@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Breadcrumb } from "../../../../core/models/breadcrumbs.model";
 import { MachineLine } from "../../../../core/models/register.model";
+import { RegisterMachineLineListComponent } from '../register-machine-line-list/register-machine-line-list.component';
 
 @Component({
     selector: 'ahm-register-machine-line-container',
@@ -15,10 +16,11 @@ export class RegisterMachineLineContainerComponent {
     data: MachineLine;
     isDetail = false;
 
+    @ViewChild (RegisterMachineLineListComponent) listComponent: RegisterMachineLineListComponent;
+
     onDetail(data: MachineLine) {
         this.data = data;
         this.isDetail = true;
-
     }
 
     onEdit(data: MachineLine) {
@@ -28,5 +30,6 @@ export class RegisterMachineLineContainerComponent {
     onFinished() {
         this.data = null;
         this.isDetail = false;
+        this.listComponent.refreshData();
     }
 }

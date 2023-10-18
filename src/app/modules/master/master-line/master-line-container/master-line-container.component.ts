@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Breadcrumb } from '../../../../core/models/breadcrumbs.model';
 import { MasterLine } from '../../../../core/models/master.model';
+import { MasterLineListComponent } from '../master-line-list/master-line-list.component';
 
 @Component({
     selector: 'ahm-master-line-container',
@@ -15,6 +16,8 @@ export class MasterLineContainerComponent {
     masterLine: MasterLine;
     isDetail = false;
 
+    @ViewChild (MasterLineListComponent) listComponent: MasterLineListComponent;
+
     onDetail(masterLine: MasterLine) {
         this.masterLine = masterLine;
         this.isDetail = true;
@@ -28,6 +31,7 @@ export class MasterLineContainerComponent {
     onFinished() {
         this.masterLine = null;
         this.isDetail = false;
+        this.listComponent.refreshData();
     }
 
 }

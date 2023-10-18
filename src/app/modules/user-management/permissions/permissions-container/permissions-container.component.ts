@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Breadcrumb } from '../../../../core/models/breadcrumbs.model';
 import { PermissionListUserManagement } from 'src/app/core/models/user-management';
+import { PermissionsListComponent } from '../permissions-list/permissions-list.component';
 // import { UserManagement } from 'src/app/core/models/user-management';
 
 @Component({
@@ -16,6 +17,8 @@ export class PermissionsContainerComponent {
     permissionManagement: PermissionListUserManagement;
     isDetail = false;
 
+    @ViewChild (PermissionsListComponent) listComponent: PermissionsListComponent;
+
     onDetail(permissionManagement: PermissionListUserManagement) {
         this.permissionManagement = permissionManagement;
         this.isDetail = true;
@@ -28,5 +31,6 @@ export class PermissionsContainerComponent {
     onFinished() {
         this.permissionManagement = null;
         this.isDetail = false;
+        this.listComponent.refreshData();
     }
 }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Breadcrumb } from "../../../../core/models/breadcrumbs.model";
 import { SubjectMachine } from "../../../../core/models/register.model";
+import { RegisterSubjectMachineListComponent } from '../register-subject-machine-list/register-subject-machine-list.component';
 
 @Component({
     selector: 'ahm-register-subject-machine-container',
@@ -15,6 +16,8 @@ export class RegisterSubjectMachineContainerComponent {
     data: SubjectMachine;
     isDetail = false;
 
+    @ViewChild (RegisterSubjectMachineListComponent) listComponent: RegisterSubjectMachineListComponent;
+
     onDetail(data: SubjectMachine) {
         this.data = data;
         this.isDetail = true;
@@ -27,6 +30,7 @@ export class RegisterSubjectMachineContainerComponent {
     onFinished() {
         this.data = null;
         this.isDetail = false;
+        this.listComponent.refreshData();
     }
 
 }

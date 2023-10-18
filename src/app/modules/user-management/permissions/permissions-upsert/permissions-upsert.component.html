@@ -13,7 +13,7 @@
             <label>Role</label>
             <mat-form-field>
                 <mat-select class="permissions-option" formControlName="role">
-                    <mat-option *ngFor="let role of roleList" [value]="role.role">{{role.role}}</mat-option>
+                    <mat-option *ngFor="let role of roleList" [value]="role.name">{{role.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
