@@ -41,6 +41,7 @@ export class UserUpsertComponent {
 
     ngOnChanges() {
         this.formGroup.patchValue(this.userManagement);
+        this.getRoleList();
     }
 
     submit() {
@@ -62,7 +63,7 @@ export class UserUpsertComponent {
             .subscribe({
                 next: (response) => {
                     response.data.map((role) => {
-                        this.roleListMultiple.push(role.role);
+                        this.roleListMultiple.push(role.name);
                     });
                 },
                 error: () => {

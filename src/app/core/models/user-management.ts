@@ -1,5 +1,6 @@
 export interface RoleList {
-    role: string;
+    id: string;
+    name: string;
 }
 
 export interface RoleListUserManagement {
