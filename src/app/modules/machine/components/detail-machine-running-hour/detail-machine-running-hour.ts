@@ -8,16 +8,64 @@ export const DUMMY_DETAIL_MACHINE_RUNNING_HOUR: DetailMachineRunningHour = {
     "vid": "1300,PEC,PEC2,P3WEA0,FRONT_1_2,SLAVE_RUNNING_HOUR",
     "data": [
       {
-        "value": 1169,
-        "label": "Sunday",
+        "value": 1593,
+        "label": "01:00",
         "date_time": "2023-01-01 00:00:00",
         "message": 'ok'
       },
       {
-        "value": 1300,
-        "label": "Monday",
-        "date_time": "2023-07-26 13:00:00",
-        "message": 'machine orror'
+        "value": 1594,
+        "label": "02:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
+      },
+      {
+        "value": 1595,
+        "label": "03:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
+      },
+      {
+        "value": 1594,
+        "label": "04:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
+      },
+      {
+        "value": 1595,
+        "label": "05:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
+      },
+      {
+        "value": 1596,
+        "label": "06:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
+      },
+      {
+        "value": 1597,
+        "label": "07:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
+      },
+      {
+        "value": 1598,
+        "label": "08:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
+      },
+      {
+        "value": 1599,
+        "label": "09:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
+      },
+      {
+        "value": 1600,
+        "label": "10:00",
+        "date_time": "2023-01-01 00:00:00",
+        "message": 'ok'
       }
     ]
   }
