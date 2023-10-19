@@ -39,7 +39,7 @@ export class PermissionsUpsertComponent {
 
     formGroup: FormGroup = new FormGroup({
         role: new FormControl('', [Validators.required]),
-        permissions: new FormControl(),
+        claim_type: new FormControl(),
     });
 
     constructor(private userManagementService: UserManagementService) {}
@@ -66,18 +66,27 @@ export class PermissionsUpsertComponent {
         this.patchValue();
     }
 
-    selectOneMachine(permissions: ClaimTypeListUserManagement) {
+    selectOneClaimType(permissions: ClaimTypeListUserManagement) {
         permissions.selected = !permissions.selected;
-        this.selectedPermissionList.find(
-            (m) => m.id == permissions.id
-        ).selected = permissions.selected;
+        this.selectedPermissionList.find((m) => m.id == permissions.id).selected = permissions.selected;
     }
 
-    unselectOneMachine(permissions: ClaimTypeListUserManagement) {
+    unselectOneClaimType(permissions: ClaimTypeListUserManagement) {
         permissions.selected = !permissions.selected;
-        this.selectedPermissionList.find(
-            (m) => m.id == permissions.id
-        ).selected = permissions.selected;
+        this.selectedPermissionList.find((m) => m.id == permissions.id).selected = permissions.selected;
+    }
+
+    unselectBulk() {
+        const selected = this.selectedPermissionList.filter((m) => m.selected);
+        selected.forEach((m) => {
+            m.selected = false;
+            this.notSelectedPermissionList.push(m);
+            const index = this.selectedPermissionList.findIndex(
+                (o) => o.id === m.id
+            );
+            this.selectedPermissionList.splice(index, 1);
+        });
+        this.refreshData();
     }
 
     selectBulk() {
@@ -91,19 +100,6 @@ export class PermissionsUpsertComponent {
                 (o) => o.id === m.id
             );
             this.notSelectedPermissionList.splice(index, 1);
-        });
-        this.refreshData();
-    }
-
-    unselectBulk() {
-        const selected = this.selectedPermissionList.filter((m) => m.selected);
-        selected.forEach((m) => {
-            m.selected = false;
-            this.notSelectedPermissionList.push(m);
-            const index = this.selectedPermissionList.findIndex(
-                (o) => o.id === m.id
-            );
-            this.selectedPermissionList.splice(index, 1);
         });
         this.refreshData();
     }
@@ -125,18 +121,10 @@ export class PermissionsUpsertComponent {
     }
 
     refreshData() {
-        this.filteredNotSelectedPermissionList =
-            this.notSelectedPermissionList.filter((m) =>
-                m.claim_type
-                    .toLowerCase()
-                    .includes(this.notSelectedFormControl.value.toLowerCase())
-            );
-        this.filteredSelectedPermissionList =
-            this.selectedPermissionList.filter((m) =>
-                m.claim_type
-                    .toLowerCase()
-                    .includes(this.selectedFormControl.value.toLowerCase())
-            );
+        this.filteredNotSelectedPermissionList = this.notSelectedPermissionList.filter((m) =>
+            m.claim_type.toLowerCase().includes(this.notSelectedFormControl.value.toLowerCase()));
+        this.filteredSelectedPermissionList = this.selectedPermissionList.filter((m) =>
+            m.claim_type.toLowerCase().includes(this.selectedFormControl.value.toLowerCase()));
     }
 
     initList() {
@@ -157,19 +145,10 @@ export class PermissionsUpsertComponent {
 
     patchValue() {
         if (this.permissions) {
-            this.formGroup.get('role').setValue(this.permissions.claim_type);
-            // const permission_id = [];
-            // this.permissions..forEach((m) => {
-            //   permission_id.push(m.permission_id);
-            //     const subject = this.notSelectedSubjectList.find(o => o.id === m.subject_id);
-            //     if (subject) {
-            //         subject.selected = true;
-            //     }
-            // });
+            this.formGroup.get('role').setValue(this.permissions.role_name);
             this.selectBulk();
-            this.formGroup
-                .get('permissions')
-                .setValue(this.permissions.claim_type);
+            this.formGroup.get('claim_type').setValue(this.permissions.claim_type);
+
         }
     }
 

@@ -7,7 +7,7 @@ import { PermissionListUserManagement } from 'src/app/core/models/user-managemen
   styleUrls: ['./permissions-detail.component.scss']
 })
 export class PermissionsDetailComponent {
-    @Input() permissionManagement: PermissionListUserManagement;
+    @Input() data: PermissionListUserManagement;
     @Output() onFinished = new EventEmitter();
 
     back() {

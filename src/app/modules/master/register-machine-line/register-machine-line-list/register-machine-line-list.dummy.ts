@@ -9,7 +9,7 @@ export const DUMMY_REGISTER_MACHINE_LINE_LIST: MachineLine[] = [
             {
                 "machine_id": "5d67120a-8b29-4788-9ef6-d9166bbc06fb",
                 "machine_name": "KOMATSU#1",
-            }
+            },
         ]
     }
 ];

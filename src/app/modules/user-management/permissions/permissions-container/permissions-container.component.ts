@@ -14,22 +14,22 @@ export class PermissionsContainerComponent {
         { label: 'Management User', link: '/user-management' },
         { label: 'Permissions', link: '/user-management/permissions' },
     ];
-    permissionManagement: PermissionListUserManagement;
+    data: PermissionListUserManagement;
     isDetail = false;
 
     @ViewChild (PermissionsListComponent) listComponent: PermissionsListComponent;
 
-    onDetail(permissionManagement: PermissionListUserManagement) {
-        this.permissionManagement = permissionManagement;
+    onDetail(data: PermissionListUserManagement) {
+        this.data = data;
         this.isDetail = true;
     }
 
-    onEdit(permissionManagement: PermissionListUserManagement) {
-        this.permissionManagement = permissionManagement;
+    onEdit(data: PermissionListUserManagement) {
+        this.data = data;
     }
 
     onFinished() {
-        this.permissionManagement = null;
+        this.data = null;
         this.isDetail = false;
         this.listComponent.refreshData();
     }

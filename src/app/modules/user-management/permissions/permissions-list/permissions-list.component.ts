@@ -39,16 +39,6 @@ export class PermissionsListComponent {
         this.getListPermission();
     }
 
-    addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.pagination.page_number = 1;
-                this.getListPermission();
-            });
-    }
-
     onSelectPage(page: number) {
         this.pagination.page_number = page;
         this.getListPermission();
@@ -58,6 +48,16 @@ export class PermissionsListComponent {
         this.pagination.page_size = limit;
         this.pagination.page_number = 1;
         this.getListPermission();
+    }
+    
+    addSearchListener() {
+        this.searchTerm.valueChanges
+            .pipe(debounceTime(300))
+            .subscribe((val) => {
+                this.queryParams.search_term = val;
+                this.pagination.page_number = 1;
+                this.getListPermission();
+            });
     }
 
     refreshData() {
@@ -85,27 +85,27 @@ export class PermissionsListComponent {
                     this.pagination = JSON.parse(
                         response.headers.get('x-pagination')
                     );
-                    this.permissionList = response.body.data;
+                    this.permissionList = response.body.data || [];
                 },
             });
     }
 
-    edit(permissionManagement: PermissionListUserManagement) {
-        this.onEdit.emit(permissionManagement);
+    edit(data: PermissionListUserManagement) {
+        this.onEdit.emit(data);
     }
 
-    delete(permissionManagement: PermissionListUserManagement) {
+    delete(data: PermissionListUserManagement) {
         const matDialogRef = this.matDialog.open(
             UserManagementDeleteComponent,
             {
-                data: permissionManagement.user_name,
+                data: data.user_name,
             }
         );
 
         matDialogRef.afterClosed().subscribe((resp) => {
             if (resp) {
                 this.userManagementService
-                    .deletePermission(permissionManagement.id)
+                    .deletePermission(data.id)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
@@ -115,7 +115,7 @@ export class PermissionsListComponent {
         });
     }
 
-    detail(permissionManagement: PermissionListUserManagement) {
-        this.onDetail.emit(permissionManagement);
+    detail(data: PermissionListUserManagement) {
+        this.onDetail.emit(data);
     }
 }

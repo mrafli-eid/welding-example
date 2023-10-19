@@ -5,7 +5,7 @@
     <div *ngIf="!isDetail" class="row">
         <div class="col-4">
             <ahm-permissions-upsert (onSubmit)="onFinished()"
-                [permissions]="permissionManagement"></ahm-permissions-upsert>
+                [permissions]="data"></ahm-permissions-upsert>
         </div>
         <div class="col-8">
             <ahm-permissions-list (onDetail)="onDetail($event)"
@@ -14,6 +14,6 @@
     </div>
     <div *ngIf="isDetail" class="row">
         <ahm-permissions-detail (onFinished)="onFinished()"
-            [permissionManagement]="permissionManagement"></ahm-permissions-detail>
+            [data]="data"></ahm-permissions-detail>
     </div>
 </div>

@@ -32,7 +32,7 @@
                     <div *ngFor="let permission of filteredNotSelectedPermissionList; let index = index"
                          [class.selected]="permission.selected"
                          (dblclick)="selectPermission(index)"
-                         (click)="selectOneMachine(permission)"
+                         (click)="selectOneClaimType(permission)"
                          class="ahm-menu-item">
                         {{permission.claim_type}}
                     </div>
@@ -52,7 +52,7 @@
                     <div *ngFor="let permission of filteredSelectedPermissionList; let index = index;"
                          [class.selected]="permission.selected"
                          (dblclick)="unselectPermission(index)"
-                         (click)="unselectOneMachine(permission)"
+                         (click)="unselectOneClaimType(permission)"
                          class="ahm-menu-item">
                         {{permission.claim_type}}
                     </div>
