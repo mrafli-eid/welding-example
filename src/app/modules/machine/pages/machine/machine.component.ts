@@ -28,7 +28,6 @@ export class MachineComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.robot_name = 'MASTER';
     this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
     this.dashboardService.getMachineList()
       .pipe(take(1))
@@ -60,11 +59,11 @@ export class MachineComponent implements OnInit {
   }
 
   changeRobotToSlave() {
-    this.robot_name = 'SLAVE';
+    window.location.href = '/machine/' + this.machine_name + '/SLAVE';
   }
 
   changeRobotToMaster() {
-    this.robot_name = 'MASTER';
+    window.location.href = '/machine/' + this.machine_name + '/MASTER';
   }
     
 }
