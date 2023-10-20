@@ -86,11 +86,11 @@ export class UserManagementService {
     return this.http.post<HttpResponse<any>>(`${this.baseUrlPermission}/create-permission`, body);
   }
 
-  updatePermission(id: number, body: any){
+  updatePermission(id: string, body: any){
     return this.http.put<HttpResponse<any>>(`${this.baseUrlPermission}/update-permission/${ id }`, body);
   }
   
-  deletePermission(id: number){
+  deletePermission(id: string){
     return this.http.delete<HttpResponse<any>>(`${ this.baseUrlPermission }/delete-permission/${ id }`);
   }
 }

@@ -128,9 +128,7 @@ export class PermissionsUpsertComponent {
     }
 
     initList() {
-        this.notSelectedPermissionList = this.claimPermissionList.filter(
-            (m) => true
-        );
+        this.notSelectedPermissionList = this.claimPermissionList.filter((m) => true);
         this.userManagementService.getRoleList().subscribe((resp) => {
             this.roleList = resp.data;
         });
@@ -146,9 +144,16 @@ export class PermissionsUpsertComponent {
     patchValue() {
         if (this.permissions) {
             this.formGroup.get('role').setValue(this.permissions.role_name);
+            const claim_type = [];
+            this.permissions.claim_type.forEach((m) => {
+                claim_type.push(m.claim);
+                const permissions = this.notSelectedPermissionList.find(o => o.id === m.id)
+                if (permissions){
+                    permissions.selected = true;
+                }
+            })
             this.selectBulk();
-            this.formGroup.get('claim_type').setValue(this.permissions.claim_type);
-
+            this.formGroup.get('claim_type').setValue(claim_type);
         }
     }
 
@@ -157,11 +162,11 @@ export class PermissionsUpsertComponent {
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
 
-            const subject_id = [];
+            const claim_type = [];
             this.selectedPermissionList.forEach((m) => {
-                subject_id.push(m.id);
+                claim_type.push(m.id);
             });
-            body.subject_id = subject_id;
+            body.claim_type = claim_type;
 
             if (this.permissions) {
                 this.edit(body);

@@ -19,11 +19,14 @@ export interface UserListUserManagement {
 }
 
 export interface PermissionListUserManagement {
-    id: number;
+    id: string;
     user_name: string;
     role_name: string;
     email: string;
-    claim_type: string;
+    claim_type: {
+        id: number;
+        claim: string;
+    }[];
     last_created: string;
 }
 

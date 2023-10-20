@@ -1,43 +1,58 @@
 export const DUMMY_PERMISSIONS_LIST = [
     {
-        "id": 114,
+        "id": "38e74d49-50ed-45ce-bff0-613aaecf3094",
         "user_name": "ade",
         "role_name": "Admin",
-        "claim_type": "View",
         "email": "ade@gmail.com",
+        "claim_type": [
+            {
+                "id": 114,
+                "claim": "View"
+            }
+        ],
         "last_created": "2023-10-13 11:00:06"
     },
     {
-        "id": 116,
+        "id": "8a367adb-877e-41b3-93c2-db32d0ca6dd6",
         "user_name": "Bowo",
         "role_name": "Manager",
-        "claim_type": "View",
         "email": "Bowo@gmail.com",
-        "last_created": "2023-10-13 11:04:31"
+        "claim_type": [
+            {
+                "id": 134,
+                "claim": "Delete"
+            },
+            {
+                "id": 133,
+                "claim": "Create"
+            },
+            {
+                "id": 132,
+                "claim": "Edit"
+            }
+        ],
+        "last_created": "2023-10-18 16:10:47"
     },
     {
-        "id": 116,
+        "id": "8a367adb-877e-41b3-93c2-db32d0ca6dd6",
         "user_name": "Lela",
         "role_name": "Manager",
-        "claim_type": "View",
         "email": "lelaff@Gmail.com",
-        "last_created": "2023-10-13 11:04:31"
-    },
-    {
-        "id": 117,
-        "user_name": "Bowo",
-        "role_name": "Manager",
-        "claim_type": "Create",
-        "email": "Bowo@gmail.com",
-        "last_created": "2023-10-13 11:04:31"
-    },
-    {
-        "id": 117,
-        "user_name": "Lela",
-        "role_name": "Manager",
-        "claim_type": "Create",
-        "email": "lelaff@Gmail.com",
-        "last_created": "2023-10-13 11:04:31"
+        "claim_type": [
+            {
+                "id": 134,
+                "claim": "Delete"
+            },
+            {
+                "id": 133,
+                "claim": "Create"
+            },
+            {
+                "id": 132,
+                "claim": "Edit"
+            }
+        ],
+        "last_created": "2023-10-18 16:10:47"
     }
 ];
 
