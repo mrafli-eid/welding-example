@@ -147,7 +147,7 @@ export class PermissionsUpsertComponent {
             const claim_type = [];
             this.permissions.claim_type.forEach((m) => {
                 claim_type.push(m.claim);
-                const permissions = this.notSelectedPermissionList.find(o => o.id === m.id)
+                const permissions = this.notSelectedPermissionList.find(o => o.claim_type === m.claim)
                 if (permissions){
                     permissions.selected = true;
                 }
@@ -164,7 +164,7 @@ export class PermissionsUpsertComponent {
 
             const claim_type = [];
             this.selectedPermissionList.forEach((m) => {
-                claim_type.push(m.id);
+                claim_type.push(m.claim_type);
             });
             body.claim_type = claim_type;
 
@@ -192,8 +192,7 @@ export class PermissionsUpsertComponent {
     }
 
     create(body: PermissionList) {
-        this.userManagementService
-            .createPermission(body)
+        this.userManagementService.createPermission(body)
             .pipe(take(1))
             .subscribe({
                 next: () => {

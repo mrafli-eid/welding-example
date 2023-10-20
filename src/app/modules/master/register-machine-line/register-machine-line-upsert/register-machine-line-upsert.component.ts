@@ -14,7 +14,7 @@ import { DUMMY_LINE_LIST, DUMMY_MACHINE_LIST } from '../../register-machine-line
 })
 export class RegisterMachineLineUpsertComponent {
     @Input() masterData: MachineLine;
-    @Output() onSubmit = new EventEmitter();
+    @Output() onSubmit  = new EventEmitter();
 
     lineList: MasterLine[] = DUMMY_LINE_LIST;
     machineList: MasterMachineLine[] = DUMMY_MACHINE_LIST;
