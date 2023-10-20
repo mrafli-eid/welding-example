@@ -25,7 +25,11 @@
                     <td>{{data.user_name}}</td>
                     <td>{{data.email}}</td>
                     <td>{{data.role_name}}</td>
-                    <td>{{data.claim_type}}</td>
+                    <td>
+                        <div *ngFor="let data of data.claim_type">
+                            {{data.claim}}
+                        </div>
+                    </td>
                     <td>{{data.last_created}}</td>
                     <td>
                         <div class="ahm-table-action">
