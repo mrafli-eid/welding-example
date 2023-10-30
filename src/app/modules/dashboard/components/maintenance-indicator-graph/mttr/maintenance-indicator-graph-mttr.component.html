@@ -2,8 +2,9 @@
     <h5>MTTR</h5>
     <div class="dashboard-header-nav">
         <ahm-datepicker
-            (dateChanged)="dateFilter = $event"
+            (dateChanged)="onFilterChanged($event)"
             [hideDayPreset]="true"
+            [dateFilter]="dateFilter"
         ></ahm-datepicker>
         <button class="btn-settings" (click)="goToSettings()">
             <img alt="settings" src="/assets/icons/setting.svg" />
