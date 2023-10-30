@@ -35,7 +35,7 @@ export class UserUpsertComponent {
         password: new FormControl('', [Validators.required]),
     });
     roleList = DUMMY_LIST_ROLE;
-    roleListMultiple = [];
+    roleListMultiple = ["Admin", "User"];
 
     constructor(private userManagementService: UserManagementService) {}
 

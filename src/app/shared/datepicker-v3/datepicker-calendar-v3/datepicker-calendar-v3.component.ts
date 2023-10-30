@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [
       CommonModule,
-      FormsModule,
+      FormsModule,     
   ]
 })
 export class DatepickerCalendarV3Component implements OnChanges {
@@ -21,7 +21,6 @@ export class DatepickerCalendarV3Component implements OnChanges {
   @Input() endDate;
 
   @Output() onSelectedDate = new EventEmitter<Date>();
-
   showedDate = new Date();
 
   @Input() calendarType: string = 'day';

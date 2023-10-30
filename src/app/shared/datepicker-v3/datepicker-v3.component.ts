@@ -8,7 +8,7 @@ import {
   OnChanges,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
@@ -19,6 +19,7 @@ import * as moment from 'moment';
 import { getDefaultDateFilter } from '../../core/consts/datepicker.const';
 import { untilDestroyed } from '../../core/helpers/rxjs.helper';
 import { RANGE_PRESET_OPTIONS } from '../datepicker/date-range-preset/date-range-preset.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'ahm-datepicker-v3',
@@ -31,6 +32,7 @@ import { RANGE_PRESET_OPTIONS } from '../datepicker/date-range-preset/date-range
       DatepickerCalendarV3Component,
       FormsModule,
       ReactiveFormsModule,
+      MatFormFieldModule
   ]
 })
 export class DatepickerV3Component implements OnInit, OnChanges {
@@ -49,10 +51,14 @@ export class DatepickerV3Component implements OnInit, OnChanges {
       endTime: new FormControl({ value: null, disabled: true}),
       startDate: new FormControl(),
       endDate: new FormControl( { value: null, disabled: true}),
-      realtime: new FormControl(true),
-      type: new FormControl('default'),
+      date: new FormControl(),
+      customRange: new FormControl(),
+      type: new FormControl('day'),
   });
-  realtime = true;
+  
+  isActiveX3 = false;
+  isActiveX6 = false;
+  isActiveX12 = false;
 
   showing = false;
 
@@ -64,7 +70,6 @@ export class DatepickerV3Component implements OnInit, OnChanges {
   constructor(private overlay: Overlay,) {}
 
   ngOnInit() {
-      this.addRealtimeListener();
       if (!this.dateFilter) {
           const todayDateFilter = getDefaultDateFilter();
           this.initTemp(todayDateFilter);
@@ -81,31 +86,10 @@ export class DatepickerV3Component implements OnInit, OnChanges {
 
   ngOnChanges() {
       if (this.hideDayPreset) {
-          this.dateTypeList = ['default', 'week', 'month', 'year'];
+          this.dateTypeList = ['week', 'month', 'year'];
       } else {
-          this.dateTypeList = ['default','day', 'week', 'month', 'year'];
+          this.dateTypeList = ['day', 'week', 'month', 'year'];
       }
-  }
-
-  addRealtimeListener() {
-      this.formGroup.get('realtime')
-          .valueChanges
-          .pipe(this.untilDestroyed())
-          .subscribe((val) => {
-              this.realtime = val;
-              if (val) {
-                  this.formGroup.get('endTime').disable();
-                  this.formGroup.get('endDate').disable();
-                  const dateNow = getDefaultDateFilter();
-                  this.formGroup.patchValue({
-                      endTime: moment(dateNow.end).format('HH:mm'),
-                      endDate: moment(dateNow.end).format('DD/MM/YYYY')
-                  });
-              } else{
-                  this.formGroup.get('endTime').enable();
-                  this.formGroup.get('endDate').enable();
-              }
-          });
   }
 
   initTemp(dateFilter: DateFilter) {
@@ -118,7 +102,7 @@ export class DatepickerV3Component implements OnInit, OnChanges {
           endTime: moment(end).format('HH:mm'),
           startDate: moment(start).format('DD/MM/YYYY'),
           endDate: moment(end).format('DD/MM/YYYY'),
-          type: dateFilter?.type || 'default'
+          type: dateFilter?.type || 'day'
       })
   }
 
@@ -169,6 +153,24 @@ export class DatepickerV3Component implements OnInit, OnChanges {
       this.formGroup.get('type').setValue(type);
   }
 
+  setActive(activeOption: string) {
+    // Reset all active states to false
+    this.isActiveX3 = false;
+    this.isActiveX6 = false;
+    this.isActiveX12 = false;
+
+    if (activeOption === 'X3') {
+      this.isActiveX3 = true;
+      // Add your logic for X3 here
+    } else if (activeOption === 'X6') {
+      this.isActiveX6 = true;
+      // Add your logic for X6 here
+    } else if (activeOption === 'X12') {
+      this.isActiveX12 = true;
+      // Add your logic for X12 here
+    }
+  }
+
   shortcutToday() {
       if (!this.isDay()) { return; }
 
@@ -176,7 +178,6 @@ export class DatepickerV3Component implements OnInit, OnChanges {
           start: moment(new Date()).set('hour', 0).set('minute', 0).set('second', 0).toDate(),
           end: new Date(),
           type: RANGE_PRESET_OPTIONS.DAY,
-          realtime: true,
       };
       this.initTemp(todayDateFilter);
   }
@@ -188,7 +189,6 @@ export class DatepickerV3Component implements OnInit, OnChanges {
       const dateFilter: DateFilter = {
           start: moment(now).subtract(30, 'day').toDate(),
           end: moment(now).set('h',23).set('minute',59).set('second',59).toDate(),
-          realtime: true,
           type: 'day',
       };
       this.initTemp(dateFilter);
@@ -201,7 +201,6 @@ export class DatepickerV3Component implements OnInit, OnChanges {
       const dateFilter: DateFilter = {
           start: moment(now).subtract(90, 'day').toDate(),
           end: moment(now).set('h',23).set('minute',59).set('second',59).toDate(),
-          realtime: true,
           type: 'day',
       };
       this.initTemp(dateFilter);
@@ -214,7 +213,6 @@ export class DatepickerV3Component implements OnInit, OnChanges {
       const dateFilter: DateFilter = {
           start: moment(now).subtract(365, 'day').toDate(),
           end: moment(now).set('h',23).set('minute',59).set('second',59).toDate(),
-          realtime: true,
           type: 'day',
       };
       this.initTemp(dateFilter);
@@ -232,7 +230,6 @@ export class DatepickerV3Component implements OnInit, OnChanges {
           start: moment(formValue.startDate + ' ' +formValue.startTime, 'DD/MM/YYYY hh:mm').toDate(),
           end: moment(formValue.endDate + ' ' +formValue.endTime, 'DD/MM/YYYY hh:mm').toDate(),
           type: formValue.type,
-          realtime: formValue.realtime,
       };
       this.dateChanged.emit(dateFilter);
       this.showing = false;
@@ -240,10 +237,10 @@ export class DatepickerV3Component implements OnInit, OnChanges {
   }
 
   cancel() {
-      this.hide();
+    this.hide();
   }
 
   isDay() {
-      return this.formGroup.get('type').value === RANGE_PRESET_OPTIONS.DAY;
+    return this.formGroup.get('type').value === RANGE_PRESET_OPTIONS.DAY;
   }
 }
