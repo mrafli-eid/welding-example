@@ -15,6 +15,7 @@ export class PreventiveMaintenanceUpsertComponent {
     machineId = '';
     machine_name = '';
     maintenance = 'preventive' || 'corrective';
+    dateTypeList = ['day', 'week', 'month', 'year'];
 
     @Input() data: MaintenancePreventive;
     @Output() onSubmit = new EventEmitter();
@@ -25,6 +26,8 @@ export class PreventiveMaintenanceUpsertComponent {
         plan: new FormControl('', [ Validators.required ]),
         start_date: new FormControl('', [ Validators.required ]),
         machine_id: new FormControl('', [ Validators.required ]),
+        date_type: new FormControl('', [ Validators.required ]),
+        custom_range: new FormControl('', [ Validators.required ]),
     });
 
     constructor(private maintenanceService: MaintenancePreventiveService,
@@ -35,6 +38,8 @@ export class PreventiveMaintenanceUpsertComponent {
         this.formGroup.patchValue({
             name: this.machine_name,
             machine_id: this.machineId,
+            actual: null,
+            end_date: null,
         });
     }
 
@@ -69,6 +74,7 @@ export class PreventiveMaintenanceUpsertComponent {
             } else {
                 this.create(body);
             }
+            console.log(body);
         }
     }
 

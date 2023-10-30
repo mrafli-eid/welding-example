@@ -50,6 +50,8 @@ import { CorrectiveMaintenanceGraphComponent } from './corrective-maintenance/co
 import { CorrectiveMaintenanceListComponent } from './corrective-maintenance/corrective-maintenance-list/corrective-maintenance-list.component';
 import { CorrectiveMaintenanceUpsertComponent } from './corrective-maintenance/corrective-maintenance-upsert/corrective-maintenance-upsert.component';
 import { CorrectiveMaintenanceDetailComponent } from './corrective-maintenance/corrective-maintenance-detail/corrective-maintenance-detail.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -89,7 +91,9 @@ import { CorrectiveMaintenanceDetailComponent } from './corrective-maintenance/c
         MatDatepickerModule,
         MatInputModule,
         MatNativeDateModule,
-        DatepickerV2Component
+        DatepickerV2Component,
+        MatSelectModule,
+        MatFormFieldModule,
     ],
 })
 export class MaintenanceModule {

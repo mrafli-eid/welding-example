@@ -45,13 +45,7 @@ export class DatepickerV3Component implements OnInit, OnChanges {
   @Output() dateChanged = new EventEmitter<DateFilter>();
 
   formGroup = new FormGroup({
-      start: new FormControl(),
-      end: new FormControl(),
       startTime: new FormControl(),
-      endTime: new FormControl({ value: null, disabled: true}),
-      startDate: new FormControl(),
-      endDate: new FormControl( { value: null, disabled: true}),
-      date: new FormControl(),
       customRange: new FormControl(),
       type: new FormControl('day'),
   });
@@ -96,12 +90,7 @@ export class DatepickerV3Component implements OnInit, OnChanges {
       const start = dateFilter.start;
       const end = dateFilter.end;
       this.formGroup.patchValue({
-          start: dateFilter.start,
-          end: dateFilter.end,
           startTime: moment(start).format('HH:mm'),
-          endTime: moment(end).format('HH:mm'),
-          startDate: moment(start).format('DD/MM/YYYY'),
-          endDate: moment(end).format('DD/MM/YYYY'),
           type: dateFilter?.type || 'day'
       })
   }
@@ -227,8 +216,6 @@ export class DatepickerV3Component implements OnInit, OnChanges {
   apply() {
       const formValue = this.formGroup.getRawValue();
       const dateFilter: DateFilter = {
-          start: moment(formValue.startDate + ' ' +formValue.startTime, 'DD/MM/YYYY hh:mm').toDate(),
-          end: moment(formValue.endDate + ' ' +formValue.endTime, 'DD/MM/YYYY hh:mm').toDate(),
           type: formValue.type,
       };
       this.dateChanged.emit(dateFilter);

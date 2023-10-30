@@ -63,21 +63,11 @@ export class MachineComponent implements OnInit {
   }
 
   changeRobotToSlave() {
-<<<<<<< Updated upstream
     window.location.href = '/machine/' + this.machine_name + '/SLAVE';
   }
 
   changeRobotToMaster() {
     window.location.href = '/machine/' + this.machine_name + '/MASTER';
-=======
-    this.reloadPage();
-    this.robot_name = 'SLAVE';
-  }
-
-  changeRobotToMaster() {
-    this.reloadPage();
-    this.robot_name = 'MASTER';
->>>>>>> Stashed changes
   }
     
 }
