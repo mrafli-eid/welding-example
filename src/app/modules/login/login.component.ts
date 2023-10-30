@@ -10,7 +10,7 @@ import { UserService } from '../../core/services/user.service';
 })
 export class LoginComponent {
     formGroup: FormGroup = new FormGroup({
-        email: new FormControl('', [ Validators.required, Validators.email ]),
+        username: new FormControl('', [ Validators.required, Validators.email ]),
         password: new FormControl('', [ Validators.required ]),
     });
 
@@ -19,19 +19,27 @@ export class LoginComponent {
     }
 
     login() {
-        this.router.navigate([ '/dashboard' ]);
         this.formGroup.markAllAsTouched();
+        console.log(this.formGroup.value);
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
             console.log(body);
-            this.userService.login(body).subscribe({
-                next: () => {
-                    this.router.navigate(['/dashboard']);
-                },
-                error: () => {
-                    this.router.navigate(['/dashboard']);
-                }
-            });
+            if(body.username && body.password){
+                this.userService.login(body.username, body.password).subscribe({
+                    next: (response) => {
+                        // Simpan token ke penyimpanan lokal (localStorage)
+                        localStorage.setItem('accessToken', response.accessToken);
+                        localStorage.setItem('refreshToken', response.refreshToken);
+
+                        console.log(response.accessToken, response.refreshToken);
+                        
+                        this.router.navigate(['/dashboard']);
+                    },
+                    error: () => {
+                        console.log('error');
+                    }
+                });
+            }
         }
     }
 }

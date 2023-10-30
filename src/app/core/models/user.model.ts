@@ -13,6 +13,5 @@ export interface UserUpsertRequest {
 export interface UserLoginResponse {
     'accessToken': string;
     'refreshToken': string;
-
 }
 
