@@ -10,7 +10,7 @@ import { UserService } from '../../core/services/user.service';
 })
 export class LoginComponent {
     formGroup: FormGroup = new FormGroup({
-        username: new FormControl('', [ Validators.required, Validators.email ]),
+        username: new FormControl('', [ Validators.required ]),
         password: new FormControl('', [ Validators.required ]),
     });
 
@@ -20,13 +20,11 @@ export class LoginComponent {
 
     login() {
         this.formGroup.markAllAsTouched();
-        console.log(this.formGroup.value);
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
-            console.log(body);
             if(body.username && body.password){
                 this.userService.login(body.username, body.password).subscribe({
-                    next: (response) => {
+                    next: (response) => { 
                         // Simpan token ke penyimpanan lokal (localStorage)
                         localStorage.setItem('accessToken', response.accessToken);
                         localStorage.setItem('refreshToken', response.refreshToken);

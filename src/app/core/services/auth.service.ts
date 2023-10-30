@@ -21,6 +21,9 @@ export class AuthService {
     }
 
     logout() {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        
         this.token = '';
         this.authData = null;
         this.router.navigate([ '/login' ]);
