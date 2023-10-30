@@ -12,8 +12,8 @@ export class UserService {
     constructor(private httpClient: HttpClient) {
     }
 
-    create(userUpsertRequest: UserUpsertRequest) {
-        const url = `${ environment.API_URL }/api/authentication`;
-        return this.httpClient.post<HttpResponse<any>>(url, userUpsertRequest);
+    login(body: any) {
+        const url = `${ environment.API_URL }/api/authentication/login`;
+        return this.httpClient.post<HttpResponse<any>>(url, body);
     }
 }
