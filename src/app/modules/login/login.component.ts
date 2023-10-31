@@ -9,49 +9,47 @@ import { DialogErrorLoginComponent } from './dialogs/dialog-error-login/dialog-e
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: [ './login.component.scss' ],
+    styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
     formGroup: FormGroup = new FormGroup({
-        username: new FormControl('', [ Validators.required ]),
-        password: new FormControl('', [ Validators.required ]),
+        username: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required]),
     });
 
     constructor(
         private router: Router,
         private userService: UserService,
-        private matDialog: MatDialog) {}
+        private matDialog: MatDialog
+    ) {}
 
     login() {
         this.formGroup.markAllAsTouched();
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
-            if(body.username && body.password){
-                this.userService.login(body.username, body.password).subscribe({
-                    next: (response) => {
-                        this.matDialog.open(
-                            DialogSuccessLoginComponent
-                        );
-                        
-                        // save token (localStorage)
-                        localStorage.setItem('accessToken', response.accessToken);
-                        localStorage.setItem('refreshToken', response.refreshToken);
-                        
-                        this.router.navigate(['/dashboard']);
-                    },
-                    error: () => {
+            this.userService.login(body.username, body.password).subscribe({
+                next: (response) => {
+                    const matDialogRef = this.matDialog.open(
+                        DialogSuccessLoginComponent
+                    );
 
-                    }
-                });
-            }
+                    // save token (localStorage)
+                    localStorage.setItem('accessToken', response.accessToken);
+                    localStorage.setItem('refreshToken', response.refreshToken);
+
+                    this.router.navigate(['/dashboard']);
+                    matDialogRef.close();
+                    console.log(body);
+                },
+                error: () => {
+                },
+            });
+        }else{
+            this.matDialog.open(DialogErrorLoginComponent);
+            this.formGroup.patchValue({
+                username: '',
+                password: '',
+            });
         }
-        
-        this.matDialog.open(
-            DialogErrorLoginComponent
-        )
-        this.formGroup.patchValue({
-            username: '',
-            password: '',
-        })
     }
 }
