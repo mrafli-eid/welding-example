@@ -1,0 +1,23 @@
+:host {
+    color: #28A745;
+    font-family: 'Inter';
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 30.375rem;
+    height: 18.125rem;
+}
+
+.dialog-success-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.body-dialog-success {
+    margin: 0 auto;
+    text-align: center;
+}
