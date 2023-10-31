@@ -1,0 +1,32 @@
+:host {
+    color: #B51919;
+    font-family: 'Inter';
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 30.375rem;
+    height: 18.125rem;
+}
+
+.dialog-error-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.body-dialog-login {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ahm-btn {
+    padding: 8px 12px;
+    height: 33px;
+    font-weight: 500;
+    font-size: 14px;
+    background: #B51919;
+    border-radius: 4px;
+}

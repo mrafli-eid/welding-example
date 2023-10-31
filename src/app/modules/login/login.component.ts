@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../core/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogSuccessLoginComponent } from './dialogs/dialog-success-login/dialog-success-login.component';
+import { DialogErrorLoginComponent } from './dialogs/dialog-error-login/dialog-error-login.component';
 
 @Component({
     selector: 'app-login',
@@ -14,9 +17,10 @@ export class LoginComponent {
         password: new FormControl('', [ Validators.required ]),
     });
 
-    constructor(private router: Router,
-                private userService: UserService) {
-    }
+    constructor(
+        private router: Router,
+        private userService: UserService,
+        private matDialog: MatDialog) {}
 
     login() {
         this.formGroup.markAllAsTouched();
@@ -24,20 +28,30 @@ export class LoginComponent {
             const body = this.formGroup.value;
             if(body.username && body.password){
                 this.userService.login(body.username, body.password).subscribe({
-                    next: (response) => { 
-                        // Simpan token ke penyimpanan lokal (localStorage)
+                    next: (response) => {
+                        this.matDialog.open(
+                            DialogSuccessLoginComponent
+                        );
+                        
+                        // save token (localStorage)
                         localStorage.setItem('accessToken', response.accessToken);
                         localStorage.setItem('refreshToken', response.refreshToken);
-
-                        console.log(response.accessToken, response.refreshToken);
                         
                         this.router.navigate(['/dashboard']);
                     },
                     error: () => {
-                        console.log('error');
+
                     }
                 });
             }
         }
+        
+        this.matDialog.open(
+            DialogErrorLoginComponent
+        )
+        this.formGroup.patchValue({
+            username: '',
+            password: '',
+        })
     }
 }

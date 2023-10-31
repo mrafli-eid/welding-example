@@ -7,11 +7,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogSuccessLoginComponent } from './dialogs/dialog-success-login/dialog-success-login.component';
+import { DialogErrorLoginComponent } from './dialogs/dialog-error-login/dialog-error-login.component';
 
 
 @NgModule({
     declarations: [
         LoginComponent,
+        DialogSuccessLoginComponent,
+        DialogErrorLoginComponent,
     ],
     imports: [
         CommonModule,
@@ -19,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatButtonModule,
         MatInputModule,
         MatFormFieldModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule,
     ],
 })
 export class LoginModule {
