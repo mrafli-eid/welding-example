@@ -27,24 +27,31 @@ export class LoginComponent {
         this.formGroup.markAllAsTouched();
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
-            this.userService.login(body.username, body.password).subscribe({
-                next: (response) => {
-                    const matDialogRef = this.matDialog.open(
-                        DialogSuccessLoginComponent
-                    );
+            if (body.username && body.password) {
+                this.userService.login(body.username, body.password).subscribe({
+                    next: (response) => {
+                        const matDialogRef = this.matDialog.open(
+                            DialogSuccessLoginComponent
+                        );
 
-                    // save token (localStorage)
-                    localStorage.setItem('accessToken', response.accessToken);
-                    localStorage.setItem('refreshToken', response.refreshToken);
+                        // save token (localStorage)
+                        localStorage.setItem(
+                            'accessToken',
+                            response.accessToken
+                        );
+                        localStorage.setItem(
+                            'refreshToken',
+                            response.refreshToken
+                        );
 
-                    this.router.navigate(['/dashboard']);
-                    matDialogRef.close();
-                    console.log(body);
-                },
-                error: () => {
-                },
-            });
-        }else{
+                        this.router.navigate(['/dashboard']);
+                        matDialogRef.close();
+                        console.log(body);
+                    },
+                    error: () => {},
+                });
+            }
+        } else {
             this.matDialog.open(DialogErrorLoginComponent);
             this.formGroup.patchValue({
                 username: '',
