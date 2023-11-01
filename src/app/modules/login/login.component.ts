@@ -13,45 +13,46 @@ import { DialogErrorLoginComponent } from './dialogs/dialog-error-login/dialog-e
 })
 export class LoginComponent {
     formGroup: FormGroup = new FormGroup({
-        username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
+        username: new FormControl(''),
+        password: new FormControl(''),
     });
 
     constructor(
         private router: Router,
         private userService: UserService,
-        private matDialog: MatDialog
+        private matDialog: MatDialog,
     ) {}
 
     login() {
         this.formGroup.markAllAsTouched();
-        if (this.formGroup.valid) {
-            const body = this.formGroup.value;
-            if (body.username && body.password) {
-                this.userService.login(body.username, body.password).subscribe({
-                    next: (response) => {
-                        const matDialogRef = this.matDialog.open(
-                            DialogSuccessLoginComponent
-                        );
+        const body = this.formGroup.value;
 
-                        // save token (localStorage)
-                        localStorage.setItem(
-                            'accessToken',
-                            response.accessToken
-                        );
-                        localStorage.setItem(
-                            'refreshToken',
-                            response.refreshToken
-                        );
+        if (body.username || body.password) {
+            this.userService.login(body.username, body.password).subscribe({
+                next: (response) => {
+                    const matDialogRef = this.matDialog.open(
+                        DialogSuccessLoginComponent
+                    );
 
-                        this.router.navigate(['/dashboard']);
+                    // save token (localStorage)
+                    localStorage.setItem('accessToken', response.accessToken);
+                    localStorage.setItem('refreshToken', response.refreshToken);
+
+                    setTimeout(() => {
                         matDialogRef.close();
-                        console.log(body);
-                    },
-                    error: () => {},
-                });
-            }
-        } else {
+                    }, 3000);
+                    this.router.navigate(['/dashboard']);
+                },
+                error: () => {
+                    this.matDialog.open(DialogErrorLoginComponent);
+                    this.formGroup.patchValue({
+                        username: '',
+                        password: '',
+                    });
+                },
+            });
+        }
+        else if(body.username == '' || body.password == ''){
             this.matDialog.open(DialogErrorLoginComponent);
             this.formGroup.patchValue({
                 username: '',
