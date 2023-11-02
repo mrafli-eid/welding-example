@@ -32,8 +32,7 @@ export class NotificationService {
     }
     updateNotification(id: string) {
         return this.http.put<HttpResponse<notification[]>>(
-            `${this.baseUrl}/${id}`,
-            { status: true }
+            `${this.baseUrl}/${id}`, { status: true }
         );
     }
 }

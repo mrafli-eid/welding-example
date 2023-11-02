@@ -85,7 +85,7 @@ export class UserManagementService {
   createPermission(body: any){
     return this.http.post<HttpResponse<any>>(`${this.baseUrlPermission}/create-permission`, body);
   }
-
+   
   updatePermission(id: string, body: any){
     return this.http.put<HttpResponse<any>>(`${this.baseUrlPermission}/update-permission/${ id }`, body);
   }
