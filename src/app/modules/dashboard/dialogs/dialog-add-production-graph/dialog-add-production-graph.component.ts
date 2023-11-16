@@ -30,6 +30,7 @@ export class DialogAddProductionGraphComponent {
                 plan: +this.formGroup.get('plan').value,
                 date_time,
             });
+            console.log(body);
             this.matDialogRef.close(true);
             this.dashboardService
                 .createProductionPlan(body[0])

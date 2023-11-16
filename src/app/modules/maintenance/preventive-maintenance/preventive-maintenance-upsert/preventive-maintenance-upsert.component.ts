@@ -26,9 +26,16 @@ export class PreventiveMaintenanceUpsertComponent {
         plan: new FormControl('', [ Validators.required ]),
         start_date: new FormControl('', [ Validators.required ]),
         machine_id: new FormControl('', [ Validators.required ]),
-        date_type: new FormControl('', [ Validators.required ]),
-        custom_range: new FormControl('', [ Validators.required ]),
     });
+
+    
+    date_type = new FormControl('');
+    custom_range = new FormControl(0);
+
+    queryParams = {
+        date_type: '',
+        custom_range: 0,
+    };
 
     constructor(private maintenanceService: MaintenancePreventiveService,
                 private activatedRoute: ActivatedRoute,
@@ -59,12 +66,14 @@ export class PreventiveMaintenanceUpsertComponent {
         this.formGroup.markAllAsTouched();
         if (this.formGroup.valid) {
             const body = this.formGroup.value;
+            this.queryParams = {
+                date_type: this.date_type.value,
+                custom_range: this.custom_range.value,
+            };
+
             if (body.start_date) {
                 body.start_date = moment(body.start_date).format('YYYY-MM-DD');
             }
-            // if (body.end_date) {
-            //     body.end_date = moment(body.end_date).format('YYYY-MM-DD');
-            // }
             if (this.data) {
                 if (this.isOk) {
                     this.ok(body);
@@ -72,10 +81,23 @@ export class PreventiveMaintenanceUpsertComponent {
                     this.edit(body);
                 }
             } else {
-                this.create(body);
+                this.create(body, this.queryParams);
+                console.log(body, this.queryParams);
             }
-            console.log(body);
         }
+    }
+
+    create(body: any, params?: any) {
+        this.maintenanceService.create(body, params)
+            .pipe(take(1))
+            .subscribe({
+                next: () => {
+                    this.finish();
+                },
+                error: () => {
+                    this.finish();
+                },
+            });
     }
 
     edit(body: any) {
@@ -95,19 +117,6 @@ export class PreventiveMaintenanceUpsertComponent {
     ok(body: any) {
         const id = this.data.id;
         this.maintenanceService.ok(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
-    }
-
-    create(body: any) {
-        this.maintenanceService.create(body)
             .pipe(take(1))
             .subscribe({
                 next: () => {

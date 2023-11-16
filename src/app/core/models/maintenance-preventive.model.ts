@@ -17,3 +17,8 @@ export interface MaintenancePreventiveChart {
     label: string;
     date_time: string;
 }
+
+export interface MaintenancePreventiveParams {
+    date_type: string;
+    custom_range: number;
+}

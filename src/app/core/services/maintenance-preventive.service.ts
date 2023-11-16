@@ -4,7 +4,7 @@ import { MasterParams } from '../models/master.model';
 import { environment } from '../../../environments/environment';
 import { removeEmptyObject } from '../helpers/object.helper';
 import { HttpResponse } from '../models/http.model';
-import { MaintenancePreventive, MaintenancePreventiveChart } from '../models/maintenance-preventive.model';
+import { MaintenancePreventive, MaintenancePreventiveChart, MaintenancePreventiveParams } from '../models/maintenance-preventive.model';
 import { downLoadFile } from '../helpers/http.helper';
 import { Schedule } from '../models/schedule.model';
 import { DateFilter } from '../models/date-filter.model';
@@ -36,8 +36,10 @@ export class MaintenancePreventiveService {
         return this.http.get<HttpResponse<Schedule[]>>(`${ this.baseUrl }/get-schedule/${machine_name}`, { params });
     }
 
-    create(body: any) {
-        return this.http.post<HttpResponse<any>>(`${ this.baseUrl }/create-maintenance-preventive`, body);
+    create(body: any, params?: Partial<MaintenancePreventiveParams>) {
+        return this.http.post<HttpResponse<any>>(`${ this.baseUrl }/create-maintenance-preventive`, body, {
+            params: params,
+        });
     }
 
     delete(id: string) {

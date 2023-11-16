@@ -26,7 +26,7 @@
             <div>
                 <label>Date Type</label>
                 <mat-form-field>
-                    <mat-select class="machine-option" formControlName="date_type">
+                    <mat-select class="machine-option" [formControl]="date_type">
                         <mat-option *ngFor="let data of dateTypeList" [value]="data">{{data.charAt(0).toUpperCase() + data.slice(1)}}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -35,7 +35,7 @@
             <div class="col-12">
                 <label>Custom Range</label>
                 <mat-form-field>
-                    <input formControlName="custom_range" matInput type="number" min="1" max="15">
+                    <input [formControl]="custom_range" matInput type="number" min="1" max="15">
                 </mat-form-field>
             </div>
 
