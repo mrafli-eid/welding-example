@@ -1,9 +1,11 @@
-FROM node:lts
-RUN mkdir /home/node/app && chown node:node /home/node/app
-RUN mkdir /home/node/app/node_modules && chown node:node /home/node/app/node_modules
-WORKDIR  /home/node/app
-USER node
-COPY --chown=node:node package.json package-lock.json ./
-RUN npm ci --quiet
-COPY --chown=node:node src .
-EXPOSE 4200
+FROM node:lts as build-stage
+WORKDIR ./app
+COPY ./package*.json /app/
+RUN npm ci
+COPY ./ /app/
+
+RUN npm run build -- --output-path=./dist/out --output-hashing=all
+# Stage 2: Serve it using Ngnix
+FROM nginx:stable-alpine
+COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
+
