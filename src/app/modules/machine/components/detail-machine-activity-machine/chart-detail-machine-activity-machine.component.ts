@@ -29,7 +29,7 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
         this.lineChartData.datasets[1].data = this.data?.data?.map((d) => d.value_idle);
         this.lineChartData.labels = this.data?.data?.map((d) => d.label);
 
-        this.chart?.render();
+        this.chart?.update();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
