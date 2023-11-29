@@ -6,7 +6,7 @@ import { MasterMachineListComponent } from '../master-machine-list/master-machin
 @Component({
     selector: 'ahm-master-machine-container',
     templateUrl: './master-data-machine.component.html',
-    styleUrls: [ './master-data-machine.component.scss' ],
+    styleUrls: ['./master-data-machine.component.scss'],
 })
 export class MasterDataMachineComponent {
     breadcrumbs: Breadcrumb[] = [
@@ -16,7 +16,8 @@ export class MasterDataMachineComponent {
     masterMachine: MasterMachine;
     isDetail = false;
 
-    @ViewChild (MasterMachineListComponent) listComponent: MasterMachineListComponent;
+    @ViewChild(MasterMachineListComponent)
+    listComponent: MasterMachineListComponent;
 
     onDetail(masterMachine: MasterMachine) {
         this.masterMachine = masterMachine;
@@ -32,5 +33,4 @@ export class MasterDataMachineComponent {
         this.isDetail = false;
         this.listComponent.refreshData();
     }
-
 }

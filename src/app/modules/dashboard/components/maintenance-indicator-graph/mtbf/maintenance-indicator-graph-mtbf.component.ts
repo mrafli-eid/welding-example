@@ -47,7 +47,7 @@ export class MaintenanceIndicatorGraphMTBFComponent {
             .getGrafikMtbf(this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.chartData = resp.data;
                     }

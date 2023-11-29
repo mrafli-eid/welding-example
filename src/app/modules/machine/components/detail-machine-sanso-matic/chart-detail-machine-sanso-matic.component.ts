@@ -29,12 +29,12 @@ export class ChartDetailMachineSansoMaticComponent {
 
     ngOnChanges() {
         this.lineChartData.datasets[0].data = this.data.data_sanso_matic_a.map(
-            (d) => d.value
+            d => d.value
         );
         this.lineChartData.datasets[1].data = this.data.data_sanso_matic_b.map(
-            (d) => d.value
+            d => d.value
         );
-        this.lineChartData.labels = this.data.data_label.map((d) => d.label);
+        this.lineChartData.labels = this.data.data_label.map(d => d.label);
 
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.minimum = {

@@ -7,14 +7,14 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
 import { DUMMY_DASHBOARD_OIL_LEVEL } from './oil-level.dummy';
 import { Machine } from '../../../../core/models/layout-machine.model';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 
 @Component({
     selector: 'ahm-oil-level',
     templateUrl: './oil-level.component.html',
-    styleUrls: [ './oil-level.component.scss' ],
+    styleUrls: ['./oil-level.component.scss'],
     host: {
-        'class': 'dashboard-card justify-content-between',
+        class: 'dashboard-card justify-content-between',
     },
 })
 export class OilLevelComponent implements OnInit {
@@ -30,8 +30,7 @@ export class OilLevelComponent implements OnInit {
     warning = 150;
     minimum = 0;
 
-    constructor(private dashboardService: DashboardService) {
-    }
+    constructor(private dashboardService: DashboardService) {}
 
     ngOnInit() {
         this.getChartData();
@@ -43,17 +42,19 @@ export class OilLevelComponent implements OnInit {
     }
 
     getChartData(): void {
-        const machineName = encodeURIComponent(this.machineList[this.page].name);
-        this.dashboardService.getOilLevel(machineName, this.dateFilter)
+        const machineName = encodeURIComponent(
+            this.machineList[this.page].name
+        );
+        this.dashboardService
+            .getOilLevel(machineName, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.oilLevel = resp.data;
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 

@@ -1,4 +1,4 @@
-import { MasterMachine } from "../../../../core/models/master.model";
+import { MasterMachine } from '../../../../core/models/master.model';
 
 export const DUMMY_MASTER_MACHINE_LIST: MasterMachine[] = [
     {

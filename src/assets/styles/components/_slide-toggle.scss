@@ -22,30 +22,30 @@
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .2s;
-    transition: .2s;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
     border-radius: 34px;
 }
 
 .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 13px;
     width: 13px;
     left: 4px;
     bottom: 2px;
     background-color: white;
-    -webkit-transition: .2s;
-    transition: .2s;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
     border-radius: 50%;
 }
 
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #2196f3;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {

@@ -4,16 +4,22 @@
     </div>
     <div *ngIf="!isDetail" class="row">
         <div class="col-4">
-            <ahm-user-upsert (onSubmit)="onFinished()"
-                                       [userManagement]="userManagement"></ahm-user-upsert>
+            <ahm-user-upsert
+                (onSubmit)="onFinished()"
+                [userManagement]="userManagement"
+            ></ahm-user-upsert>
         </div>
         <div class="col-8">
-            <ahm-user-list (onDetail)="onDetail($event)"
-                                     (onEdit)="onEdit($event)"></ahm-user-list>
+            <ahm-user-list
+                (onDetail)="onDetail($event)"
+                (onEdit)="onEdit($event)"
+            ></ahm-user-list>
         </div>
     </div>
     <div *ngIf="isDetail" class="row">
-        <ahm-user-detail (onFinished)="onFinished()"
-                        [userManagement]="userManagement"></ahm-user-detail>
+        <ahm-user-detail
+            (onFinished)="onFinished()"
+            [userManagement]="userManagement"
+        ></ahm-user-detail>
     </div>
 </div>

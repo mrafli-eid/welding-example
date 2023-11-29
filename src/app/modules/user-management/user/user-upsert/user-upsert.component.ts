@@ -35,7 +35,7 @@ export class UserUpsertComponent {
         password: new FormControl('', [Validators.required]),
     });
     roleList = DUMMY_LIST_ROLE;
-    roleListMultiple = ["Admin", "User"];
+    roleListMultiple = ['Admin', 'User'];
 
     constructor(private userManagementService: UserManagementService) {}
 
@@ -61,8 +61,8 @@ export class UserUpsertComponent {
             .getRoleList()
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
-                    response.data.map((role) => {
+                next: response => {
+                    response.data.map(role => {
                         this.roleListMultiple.push(role.name);
                     });
                 },

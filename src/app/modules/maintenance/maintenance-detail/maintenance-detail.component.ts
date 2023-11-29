@@ -4,23 +4,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'ahm-maintenance-detail',
     templateUrl: './maintenance-detail.component.html',
-    styleUrls: [ './maintenance-detail.component.scss' ]
+    styleUrls: ['./maintenance-detail.component.scss'],
 })
 export class MaintenanceDetailComponent {
     machine_name: string = '';
     id = '';
     maintenance = '';
 
-    constructor(private activatedRoute: ActivatedRoute,
-                private router: Router) {
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private router: Router
+    ) {
         this.machine_name = activatedRoute.snapshot.paramMap.get('name');
         this.id = activatedRoute.snapshot.queryParamMap.get('id');
         // get preventive or corrective
         this.maintenance = router.url.split('/')[3].split('?')[0];
     }
 
-    navigateToDetailPreventive(){
-        this.router.navigate([ `/maintenance/${this.machine_name}/preventive` ], {
+    navigateToDetailPreventive() {
+        this.router.navigate([`/maintenance/${this.machine_name}/preventive`], {
             queryParams: {
                 id: this.id,
             },
@@ -28,8 +30,8 @@ export class MaintenanceDetailComponent {
         this.maintenance = 'preventive';
     }
 
-    navigateToDetailCorrective(){
-        this.router.navigate([ `/maintenance/${this.machine_name}/corrective` ], {
+    navigateToDetailCorrective() {
+        this.router.navigate([`/maintenance/${this.machine_name}/corrective`], {
             queryParams: {
                 id: this.id,
             },

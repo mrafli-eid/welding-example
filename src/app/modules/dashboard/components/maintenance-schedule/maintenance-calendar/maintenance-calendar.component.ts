@@ -1,16 +1,21 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+} from '@angular/core';
 import { DAYS, MONTHS, MONTHS_FULL } from './maintenance-calendar.const';
 import { CommonModule } from '@angular/common';
-import { Schedule } from "../../../../../core/models/schedule.model";
+import { Schedule } from '../../../../../core/models/schedule.model';
 
 @Component({
     selector: 'ahm-maintenance-calendar',
     templateUrl: './maintenance-calendar.component.html',
-    styleUrls: [ './maintenance-calendar.component.scss' ],
+    styleUrls: ['./maintenance-calendar.component.scss'],
     standalone: true,
-    imports: [
-        CommonModule,
-    ],
+    imports: [CommonModule],
 })
 export class MaintenanceCalendarComponent implements OnInit, OnChanges {
     @Input() scheduleList: Schedule[] = [];
@@ -30,11 +35,9 @@ export class MaintenanceCalendarComponent implements OnInit, OnChanges {
     startYear: number = this.selected.getFullYear() + 1 - 16;
     endYear: number = this.selected.getFullYear();
 
-
     currentEvent = {};
 
-    constructor() {
-    }
+    constructor() {}
 
     _currentState = 'month-view';
 
@@ -44,7 +47,7 @@ export class MaintenanceCalendarComponent implements OnInit, OnChanges {
 
     set currentState(input: string) {
         this._currentState = input;
-        this.contentClass = `calendar-content ${ input }`;
+        this.contentClass = `calendar-content ${input}`;
         if (input === 'year-view') {
             this.generateYearViewData();
         }
@@ -63,11 +66,14 @@ export class MaintenanceCalendarComponent implements OnInit, OnChanges {
         const todayYear = this.today.getFullYear();
         this.currentEvent = {};
 
-        if (todayMonth === this.selectedMonth && todayYear === this.selectedYear) {
+        if (
+            todayMonth === this.selectedMonth &&
+            todayYear === this.selectedYear
+        ) {
             this.currentEvent[todayDate] = 0;
         }
 
-        this.scheduleList.forEach((s) => {
+        this.scheduleList.forEach(s => {
             if (s.start_date.getMonth() === this.selectedMonth) {
                 const date = s.start_date.getDate();
                 this.currentEvent[date] = 1;
@@ -155,7 +161,11 @@ export class MaintenanceCalendarComponent implements OnInit, OnChanges {
     clickItem(value: string): void {
         if (this.currentState === 'month-view') {
             this.selectedDate = value;
-            this.selected = new Date(this.selectedYear, this.selectedMonth, this.selectedDate);
+            this.selected = new Date(
+                this.selectedYear,
+                this.selectedMonth,
+                this.selectedDate
+            );
             // close
         } else if (this.currentState === 'multi-year-view') {
             this.selectedYear = value;
@@ -177,20 +187,31 @@ export class MaintenanceCalendarComponent implements OnInit, OnChanges {
         this.clearItems();
         const date = new Date(this.selectedYear, this.selectedMonth, 1);
 
-        const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+        const lastDay = new Date(
+            date.getFullYear(),
+            date.getMonth() + 1,
+            0
+        ).getDate();
 
         for (let i = 1; i <= lastDay; i++) {
             this.items.push(i);
         }
 
-        const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+        const prevLastDay = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            0
+        ).getDate();
         const firstDayIndex = date.getDay();
         for (let i = firstDayIndex; i > 0; i--) {
             this.prevDays.push(prevLastDay - i + 1);
         }
 
-
-        const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 1).getDay();
+        const lastDayIndex = new Date(
+            date.getFullYear(),
+            date.getMonth() + 1,
+            1
+        ).getDay();
         const nextDays = 7 - lastDayIndex;
         for (let i = 1; i <= nextDays; i++) {
             this.nextDays.push(i);
@@ -210,14 +231,13 @@ export class MaintenanceCalendarComponent implements OnInit, OnChanges {
 
     generateLabel(): void {
         if (this.currentState === 'month-view') {
-            this.calendarLabel = MONTHS_FULL[this.selectedMonth] + ' ' + this.selectedYear;
+            this.calendarLabel =
+                MONTHS_FULL[this.selectedMonth] + ' ' + this.selectedYear;
         } else if (this.currentState === 'multi-year-view') {
-            this.calendarLabel = `${ this.startYear } - ${ this.endYear }`;
+            this.calendarLabel = `${this.startYear} - ${this.endYear}`;
         } else if (this.currentState === 'year-view') {
-            this.calendarLabel = `${ this.selectedYear }`;
+            this.calendarLabel = `${this.selectedYear}`;
         }
         this.setCurrentEvent();
     }
-
-
 }

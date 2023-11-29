@@ -1,6 +1,6 @@
 <div (click)="openDatepicker()" class="btn-datepicker" #btn>
-    <span>{{dateFilter?.type | titlecase}}</span>
-    <img alt="calendar" src="/assets/icons/calendar.svg">
+    <span>{{ dateFilter?.type | titlecase }}</span>
+    <img alt="calendar" src="/assets/icons/calendar.svg" />
 </div>
 
 <ng-template cdkPortal>
@@ -9,34 +9,36 @@
             <div class="datepicker-type">
                 <span
                     *ngFor="let type of dateTypeList"
-                    [class.active]="type === formGroup.get('type').value" (click)="selectType(type)">
-                    {{type | titlecase}}
+                    [class.active]="type === formGroup.get('type').value"
+                    (click)="selectType(type)"
+                >
+                    {{ type | titlecase }}
                 </span>
             </div>
             <div class="datepicker-shortcut">
-                <span [class.disabled]="!isDay()" (click)="shortcutLast30Days()">Last 30 days</span>
-                <span [class.disabled]="!isDay()" (click)="shortcutLast90Days()">Last 90 days</span>
-                <span [class.disabled]="!isDay()" (click)="shortcutLastYear()">Last year</span>
-                <span [class.disabled]="!isDay()" (click)="shortcutToday()">Today</span>
+                <span [class.disabled]="!isDay()" (click)="shortcutLast30Days()"
+                    >Last 30 days</span
+                >
+                <span [class.disabled]="!isDay()" (click)="shortcutLast90Days()"
+                    >Last 90 days</span
+                >
+                <span [class.disabled]="!isDay()" (click)="shortcutLastYear()"
+                    >Last year</span
+                >
+                <span [class.disabled]="!isDay()" (click)="shortcutToday()"
+                    >Today</span
+                >
             </div>
             <div class="datepicker-input">
-                <input
-                    type="text"
-                    formControlName="startDate">
-                <input
-                    type="text"
-                    formControlName="endDate">
+                <input type="text" formControlName="startDate" />
+                <input type="text" formControlName="endDate" />
             </div>
             <div class="datepicker-input">
-                <input
-                    type="time"
-                    formControlName="startTime">
-                <input
-                    type="time"
-                    formControlName="endTime">
+                <input type="time" formControlName="startTime" />
+                <input type="time" formControlName="endTime" />
             </div>
             <div class="datepicker-checkbox">
-                <input type="checkbox" formControlName="realtime"/>
+                <input type="checkbox" formControlName="realtime" />
                 <span>Realtime</span>
             </div>
             <div class="datepicker-button">
@@ -51,7 +53,8 @@
                 [date]="formGroup.get('start').value"
                 [endDate]="formGroup.get('end').value"
                 (onSelectedDate)="onSelectedDate('start', $event)"
-            ></ahm-datepicker-calendar-v2>-
+            ></ahm-datepicker-calendar-v2
+            >-
             <ahm-datepicker-calendar-v2
                 *ngIf="!formGroup.get('realtime').value"
                 label="End"
@@ -62,5 +65,4 @@
             ></ahm-datepicker-calendar-v2>
         </div>
     </div>
-
 </ng-template>

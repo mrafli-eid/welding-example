@@ -1,7 +1,11 @@
 <div class="dashboard-header">
-    <h5>Cycle Time <span>({{this.machineList[this.page].name}})</span></h5>
-    <ahm-datepicker (dateChanged)="onFilterChanged($event)"
-                    [dateFilter]="dateFilter"></ahm-datepicker>
+    <h5>
+        Cycle Time <span>({{ this.machineList[this.page].name }})</span>
+    </h5>
+    <ahm-datepicker
+        (dateChanged)="onFilterChanged($event)"
+        [dateFilter]="dateFilter"
+    ></ahm-datepicker>
 </div>
 <div class="dashboard-content">
     <ahm-chart-cycle-time [data]="cycleTime"></ahm-chart-cycle-time>
@@ -12,7 +16,9 @@
         <ahm-dot color="success" type="line">Minimum</ahm-dot>
         <ahm-dot color="primary">Actual</ahm-dot>
     </div>
-    <ahm-pagination (onPageChange)="onPageChange($event)"
-                    [page]="page"
-                    [totalPage]="machineList.length"></ahm-pagination>
+    <ahm-pagination
+        (onPageChange)="onPageChange($event)"
+        [page]="page"
+        [totalPage]="machineList.length"
+    ></ahm-pagination>
 </div>

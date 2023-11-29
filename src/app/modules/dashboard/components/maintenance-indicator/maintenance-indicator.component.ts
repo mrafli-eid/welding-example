@@ -1,23 +1,23 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { DateFilter } from "../../../../core/models/date-filter.model";
-import { DashboardService } from "../../../../core/services/dashboard.service";
-import { interval, take } from "rxjs";
+import { DateFilter } from '../../../../core/models/date-filter.model';
+import { DashboardService } from '../../../../core/services/dashboard.service';
+import { interval, take } from 'rxjs';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'ahm-maintenance-indicator',
     templateUrl: './maintenance-indicator.component.html',
-    styleUrls: [ './maintenance-indicator.component.scss' ],
+    styleUrls: ['./maintenance-indicator.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
-    providers: [ DatePipe ],
+    providers: [DatePipe],
 })
-  export class MaintenanceIndicatorComponent implements OnChanges, OnInit {
-      untilDestroyed = untilDestroyed();
-      todaysDate = new Date();
+export class MaintenanceIndicatorComponent implements OnChanges, OnInit {
+    untilDestroyed = untilDestroyed();
+    todaysDate = new Date();
 
     @Input() dateFilter: DateFilter;
 
@@ -27,9 +27,10 @@ import { DatePipe } from '@angular/common';
     targetMttr = 1.33;
     mttr = 1.4;
 
-  constructor(private dashboardService: DashboardService, private datePipe: DatePipe) {
-
-    }
+    constructor(
+        private dashboardService: DashboardService,
+        private datePipe: DatePipe
+    ) {}
 
     ngOnInit() {
         interval(DEFAULT_INTERVAL)
@@ -44,35 +45,34 @@ import { DatePipe } from '@angular/common';
     }
 
     getData() {
-        this.dashboardService.getMttr(this.dateFilter)
+        this.dashboardService
+            .getMttr(this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.mttr = resp.data.value;
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
 
-
-        this.dashboardService.getMtbf(this.dateFilter)
+        this.dashboardService
+            .getMtbf(this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.mtbf = resp.data.value;
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 
     getPreviousMonth(): string {
-      const previousMonth = new Date(this.todaysDate);
-      previousMonth.setMonth(previousMonth.getMonth() - 1);
-      return this.datePipe.transform(previousMonth, 'MMMM');
+        const previousMonth = new Date(this.todaysDate);
+        previousMonth.setMonth(previousMonth.getMonth() - 1);
+        return this.datePipe.transform(previousMonth, 'MMMM');
     }
 }

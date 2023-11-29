@@ -1,6 +1,9 @@
 <div
     class="content-flex justify-between mb-6 font-semibold mx-auto"
-    *ngIf="machine_name === 'BORRING' || machine_name === 'LASER'; else showRobot"
+    *ngIf="
+        machine_name === 'BORRING' || machine_name === 'LASER';
+        else showRobot
+    "
 >
     <div class="content-flex">
         <h3>MC {{ machine.name }}</h3>
@@ -67,7 +70,10 @@
             [robot_name]="robot_name"
         ></ahm-detail-top-machine-alarm>
     </div>
-    <div class="grid-item" *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')">
+    <div
+        class="grid-item"
+        *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')"
+    >
         <ahm-detail-machine-ampere
             [machine_name]="machine_name"
             [robot_name]="robot_name"
@@ -96,7 +102,10 @@
             [robot_name]="robot_name"
         ></ahm-detail-machine-history-alarm>
     </div>
-    <div class="grid-item" *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')">
+    <div
+        class="grid-item"
+        *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')"
+    >
         <ahm-detail-machine-voltage
             [machine_name]="machine_name"
             [robot_name]="robot_name"
@@ -129,13 +138,19 @@
             [machine_name]="machine_name"
         ></ahm-detail-machine-actual-maintenance>
     </div>
-    <div class="grid-item" *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')">
+    <div
+        class="grid-item"
+        *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')"
+    >
         <ahm-detail-machine-running-hour
             [machine_name]="machine_name"
             [robot_name]="robot_name"
         ></ahm-detail-machine-running-hour>
     </div>
-    <div class="grid-item" *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')">
+    <div
+        class="grid-item"
+        *ngIf="!(machine_name === 'BORRING' || machine_name === 'LASER')"
+    >
         <ahm-detail-machine-servo-load
             [machine_name]="machine_name"
             [robot_name]="robot_name"

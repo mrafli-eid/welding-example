@@ -1,12 +1,18 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'ahm-pagination',
     standalone: true,
-    imports: [ CommonModule ],
+    imports: [CommonModule],
     templateUrl: './pagination.component.html',
-    styleUrls: [ './pagination.component.scss' ],
+    styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnChanges {
     pageList: number[] = [];
@@ -19,7 +25,7 @@ export class PaginationComponent implements OnChanges {
     }
 
     generatePages() {
-        this.pageList = [ ...Array(this.totalPage).keys() ];
+        this.pageList = [...Array(this.totalPage).keys()];
     }
 
     selectPage(index: number): void {

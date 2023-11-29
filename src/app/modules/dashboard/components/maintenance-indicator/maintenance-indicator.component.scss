@@ -24,7 +24,11 @@
     justify-content: space-around;
     gap: 13px;
     min-height: calc(50% - 12px);
-    background: linear-gradient(180deg, #33A02C 0%, rgba(51, 160, 44, 0.34) 100%);
+    background: linear-gradient(
+        180deg,
+        #33a02c 0%,
+        rgba(51, 160, 44, 0.34) 100%
+    );
 
     h6 {
         font-family: 'Inter';
@@ -32,7 +36,7 @@
         font-weight: 400;
         font-size: 12px;
         line-height: 131.9%;
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
     .indicator-hour {
@@ -53,7 +57,7 @@
         margin-bottom: 8px;
         align-items: center;
         border-radius: 2px;
-        color: rgba(255,255,255,0.8);
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .indicator-info-number {
@@ -63,23 +67,32 @@
     }
 
     &.down-mtbf {
-        background: linear-gradient(180deg, #0177FB 0%, rgba(1, 114, 240, 0.33) 100%);
+        background: linear-gradient(
+            180deg,
+            #0177fb 0%,
+            rgba(1, 114, 240, 0.33) 100%
+        );
 
         svg {
             rotate: 180deg;
         }
 
         path {
-            fill: #DC3545;
+            fill: #dc3545;
         }
 
-        .indicator-info, .indicator-hour {
-            color: #DC3545;
+        .indicator-info,
+        .indicator-hour {
+            color: #dc3545;
         }
     }
 
     &.down-mttr {
-        background: linear-gradient(180deg, #33A02C 0%, rgba(51, 160, 44, 0.34) 100%);
+        background: linear-gradient(
+            180deg,
+            #33a02c 0%,
+            rgba(51, 160, 44, 0.34) 100%
+        );
         svg {
             rotate: 180deg;
         }
@@ -88,21 +101,25 @@
             fill: rgb(34, 252, 20);
         }
 
-        .indicator-info, .indicator-hour {
-            color: rgba(255,255,255,0.8);
+        .indicator-info,
+        .indicator-hour {
+            color: rgba(255, 255, 255, 0.8);
         }
-
     }
 }
 
 .mttr {
-    background: linear-gradient(180deg, #0177FB 0%, rgba(1, 114, 240, 0.33) 100%);
+    background: linear-gradient(
+        180deg,
+        #0177fb 0%,
+        rgba(1, 114, 240, 0.33) 100%
+    );
     path {
-        fill: #DC3545;
+        fill: #dc3545;
     }
 
-    .indicator-info, .indicator-hour {
-        color: #DC3545;
+    .indicator-info,
+    .indicator-hour {
+        color: #dc3545;
     }
 }
-

@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Breadcrumb } from "../../../../core/models/breadcrumbs.model";
-import { SubjectMachine } from "../../../../core/models/register.model";
+import { Breadcrumb } from '../../../../core/models/breadcrumbs.model';
+import { SubjectMachine } from '../../../../core/models/register.model';
 import { RegisterSubjectMachineListComponent } from '../register-subject-machine-list/register-subject-machine-list.component';
 
 @Component({
     selector: 'ahm-register-subject-machine-container',
     templateUrl: './register-subject-machine-container.component.html',
-    styleUrls: [ './register-subject-machine-container.component.scss' ]
+    styleUrls: ['./register-subject-machine-container.component.scss'],
 })
 export class RegisterSubjectMachineContainerComponent {
     breadcrumbs: Breadcrumb[] = [
@@ -16,7 +16,8 @@ export class RegisterSubjectMachineContainerComponent {
     data: SubjectMachine;
     isDetail = false;
 
-    @ViewChild (RegisterSubjectMachineListComponent) listComponent: RegisterSubjectMachineListComponent;
+    @ViewChild(RegisterSubjectMachineListComponent)
+    listComponent: RegisterSubjectMachineListComponent;
 
     onDetail(data: SubjectMachine) {
         this.data = data;
@@ -32,5 +33,4 @@ export class RegisterSubjectMachineContainerComponent {
         this.isDetail = false;
         this.listComponent.refreshData();
     }
-
 }

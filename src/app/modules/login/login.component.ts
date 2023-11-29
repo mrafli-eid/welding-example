@@ -20,7 +20,7 @@ export class LoginComponent {
     constructor(
         private router: Router,
         private userService: UserService,
-        private matDialog: MatDialog,
+        private matDialog: MatDialog
     ) {}
 
     login() {
@@ -29,7 +29,7 @@ export class LoginComponent {
 
         if (body.username || body.password) {
             this.userService.login(body.username, body.password).subscribe({
-                next: (response) => {
+                next: response => {
                     const matDialogRef = this.matDialog.open(
                         DialogSuccessLoginComponent
                     );
@@ -51,8 +51,7 @@ export class LoginComponent {
                     });
                 },
             });
-        }
-        else if(body.username == '' || body.password == ''){
+        } else if (body.username == '' || body.password == '') {
             this.matDialog.open(DialogErrorLoginComponent);
             this.formGroup.patchValue({
                 username: '',

@@ -1,4 +1,4 @@
-import { MasterSubject } from "../../../../core/models/master.model";
+import { MasterSubject } from '../../../../core/models/master.model';
 
 export const DUMMY_MASTER_SUBJECT_LIST: MasterSubject[] = [
     {

@@ -8,8 +8,8 @@
         text-align: center;
     }
 
-
-    th, td {
+    th,
+    td {
         padding: 16px 8px;
         font-style: normal;
         font-weight: 400;
@@ -23,16 +23,16 @@
     }
 
     th {
-        border-block: 0.5px solid #FFFFFF;
+        border-block: 0.5px solid #ffffff;
     }
 
-    tr:nth-child(2) td{
+    tr:nth-child(2) td {
         padding-top: 36px;
     }
 
-    tr:last-child td{
+    tr:last-child td {
         padding-bottom: 36px;
-        border-bottom: 0.5px solid #FFFFFF;
+        border-bottom: 0.5px solid #ffffff;
     }
 }
 

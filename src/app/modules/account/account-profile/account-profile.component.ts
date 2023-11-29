@@ -15,15 +15,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['./account-profile.component.scss'],
 })
 export class AccountProfileComponent {
-
     formGroup: FormGroup = new FormGroup({
         username: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required]),
     });
 
-    ngOnChanges() {
-        
-    }
+    ngOnChanges() {}
 
     // <input type="file" (change)="onFileSelected($event)">
     onFileSelected(event) {

@@ -1,13 +1,17 @@
 <div class="dashboard-header">
     <h5>Alarm</h5>
     <div class="dashboard-header-nav">
-        <ahm-datepicker-v3 (dateChanged)="onFilterChanged($event)"
-                        [dateFilter]="dateFilter"></ahm-datepicker-v3>
+        <ahm-datepicker-v3
+            (dateChanged)="onFilterChanged($event)"
+            [dateFilter]="dateFilter"
+        ></ahm-datepicker-v3>
         <button class="btn-download" (click)="download()">
-            <img alt="download" src="/assets/icons/download.svg">
+            <img alt="download" src="/assets/icons/download.svg" />
         </button>
     </div>
 </div>
 <div class="dashboard-content">
-    <ahm-chart-detail-machine-alarm [data]="alarmList"></ahm-chart-detail-machine-alarm>
+    <ahm-chart-detail-machine-alarm
+        [data]="alarmList"
+    ></ahm-chart-detail-machine-alarm>
 </div>

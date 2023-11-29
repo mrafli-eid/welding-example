@@ -16,22 +16,22 @@
 
     .number {
         cursor: pointer;
-        transition: .2s;
+        transition: 0.2s;
 
         &:hover {
             color: cornflowerblue;
-            transition: .2s;
+            transition: 0.2s;
         }
 
         &.active {
             color: cornflowerblue;
-            transition: .2s;
+            transition: 0.2s;
         }
     }
 
     .arrow {
         cursor: pointer;
-        transition: .2s;
+        transition: 0.2s;
     }
 }
 
@@ -50,5 +50,3 @@ select {
 option {
     color: black;
 }
-
-

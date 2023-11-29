@@ -1,39 +1,45 @@
 <div class="user-management-upsert">
     <div class="user-management-header">
         <div>
-            <h2>{{userManagement ? 'Edit' : 'Add'}}</h2>
-            <p>Please {{userManagement ? 'edit' : 'add'}} subject data</p>
+            <h2>{{ userManagement ? 'Edit' : 'Add' }}</h2>
+            <p>Please {{ userManagement ? 'edit' : 'add' }} subject data</p>
         </div>
         <div>
-            <img alt="file" height="53" ngSrc="/assets/icons/file.svg" width="53">
+            <img
+                alt="file"
+                height="53"
+                ngSrc="/assets/icons/file.svg"
+                width="53"
+            />
         </div>
     </div>
     <div [formGroup]="formGroup" class="user-management-content">
         <div>
             <label>Username</label>
-            <input formControlName="username" type="text">
+            <input formControlName="username" type="text" />
         </div>
         <div>
             <label>Email</label>
-            <input formControlName="email" type="email">
+            <input formControlName="email" type="email" />
         </div>
         <div>
             <label>Role</label>
             <mat-form-field>
                 <mat-select formControlName="role" multiple>
-                  <mat-option *ngFor="let role of roleListMultiple" [value]="role">{{role}}</mat-option>
+                    <mat-option
+                        *ngFor="let role of roleListMultiple"
+                        [value]="role"
+                        >{{ role }}</mat-option
+                    >
                 </mat-select>
             </mat-form-field>
         </div>
         <div>
             <label>Password</label>
-            <input formControlName="password" type="password" >
+            <input formControlName="password" type="password" />
         </div>
     </div>
     <div class="user-management-footer">
-        <button (click)="submit()"
-                class="ahm-btn ahm-btn-primary">Save
-        </button>
+        <button (click)="submit()" class="ahm-btn ahm-btn-primary">Save</button>
     </div>
-
 </div>

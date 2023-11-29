@@ -1,14 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { MaintenancePage } from '../../../../core/consts/maintenance.const';
 import { MaintenancePreventive } from '../../../../core/models/maintenance-preventive.model';
-import {
-    PreventiveMaintenanceListComponent
-} from '../preventive-maintenance-list/preventive-maintenance-list.component';
+import { PreventiveMaintenanceListComponent } from '../preventive-maintenance-list/preventive-maintenance-list.component';
 
 @Component({
     selector: 'ahm-preventive-maintenance-container',
     templateUrl: './preventive-maintenance-container.component.html',
-    styleUrls: [ './preventive-maintenance-container.component.scss' ]
+    styleUrls: ['./preventive-maintenance-container.component.scss'],
 })
 export class PreventiveMaintenanceContainerComponent {
     page = MaintenancePage.LIST;
@@ -16,7 +14,8 @@ export class PreventiveMaintenanceContainerComponent {
 
     data: MaintenancePreventive = null;
 
-    @ViewChild(PreventiveMaintenanceListComponent) listComponent: PreventiveMaintenanceListComponent;
+    @ViewChild(PreventiveMaintenanceListComponent)
+    listComponent: PreventiveMaintenanceListComponent;
 
     openUpsert(data: MaintenancePreventive) {
         this.data = data;
@@ -32,5 +31,4 @@ export class PreventiveMaintenanceContainerComponent {
         this.page = MaintenancePage.LIST;
         this.listComponent.refreshData();
     }
-
 }

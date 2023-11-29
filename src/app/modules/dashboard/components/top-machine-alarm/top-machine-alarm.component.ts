@@ -3,17 +3,17 @@ import { DateFilter } from '../../../../core/models/date-filter.model';
 import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
 import { interval, take } from 'rxjs';
 import { DashboardService } from '../../../../core/services/dashboard.service';
-import { DashboardMachineAlarm } from "../../../../core/models/dashboard.model";
-import { DUMMY_TOP_MACHINE_ALARM } from "./top-machine-alarm.dummy";
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DashboardMachineAlarm } from '../../../../core/models/dashboard.model';
+import { DUMMY_TOP_MACHINE_ALARM } from './top-machine-alarm.dummy';
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 
 @Component({
     selector: 'ahm-top-machine-alarm',
     templateUrl: './top-machine-alarm.component.html',
-    styleUrls: [ './top-machine-alarm.component.scss' ],
+    styleUrls: ['./top-machine-alarm.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class TopMachineAlarmComponent {
@@ -22,8 +22,7 @@ export class TopMachineAlarmComponent {
     dateFilter: DateFilter = getDefaultDateFilter();
     machineAlarms: DashboardMachineAlarm[] = DUMMY_TOP_MACHINE_ALARM;
 
-    constructor(private dashboardService: DashboardService,) {
-    }
+    constructor(private dashboardService: DashboardService) {}
 
     ngOnInit() {
         this.getChartData();
@@ -35,16 +34,16 @@ export class TopMachineAlarmComponent {
     }
 
     getChartData(): void {
-        this.dashboardService.getMachineAlarm(this.dateFilter)
+        this.dashboardService
+            .getMachineAlarm(this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.machineAlarms = resp.data;
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 

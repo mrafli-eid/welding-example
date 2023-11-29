@@ -6,7 +6,7 @@ const routes: Routes = [
     {
         path: 'login',
         loadChildren: () =>
-            import('./modules/login/login.module').then((m) => m.LoginModule),
+            import('./modules/login/login.module').then(m => m.LoginModule),
     },
     {
         path: '',
@@ -20,47 +20,65 @@ const routes: Routes = [
             {
                 path: 'dashboard',
                 loadChildren: () =>
-                    import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
+                    import('./modules/dashboard/dashboard.module').then(
+                        m => m.DashboardModule
+                    ),
             },
             {
                 path: 'machine',
                 loadChildren: () =>
-                    import('./modules/machine/machine.module').then((m) => m.MachineModule),
+                    import('./modules/machine/machine.module').then(
+                        m => m.MachineModule
+                    ),
             },
             {
                 path: 'master',
                 loadChildren: () =>
-                    import('./modules/master/master.module').then((m) => m.MasterModule),
+                    import('./modules/master/master.module').then(
+                        m => m.MasterModule
+                    ),
             },
             {
                 path: 'maintenance',
                 loadChildren: () =>
-                    import('./modules/maintenance/maintenance.module').then((m) => m.MaintenanceModule),
+                    import('./modules/maintenance/maintenance.module').then(
+                        m => m.MaintenanceModule
+                    ),
             },
             {
                 path: 'user-activity',
                 loadChildren: () =>
-                    import('./modules/user-activity/user-activity.module').then((m) => m.UserActivityModule),
+                    import('./modules/user-activity/user-activity.module').then(
+                        m => m.UserActivityModule
+                    ),
             },
             {
                 path: 'user-management',
                 loadChildren: () =>
-                    import('./modules/user-management/user-management.module').then((m) => m.UserManagementModule),
+                    import(
+                        './modules/user-management/user-management.module'
+                    ).then(m => m.UserManagementModule),
             },
             {
                 path: 'account',
                 loadChildren: () =>
-                    import('./modules/account/account.module').then((m) => m.AccountModule),
+                    import('./modules/account/account.module').then(
+                        m => m.AccountModule
+                    ),
             },
             {
                 path: 'settings',
                 loadChildren: () =>
-                    import('./modules/settings/settings.module').then((m) => m.SettingsModule),
+                    import('./modules/settings/settings.module').then(
+                        m => m.SettingsModule
+                    ),
             },
             {
                 path: 'notification',
                 loadChildren: () =>
-                    import('./modules/notification/notification.module').then((m) => m.NotificationModule),
+                    import('./modules/notification/notification.module').then(
+                        m => m.NotificationModule
+                    ),
             },
         ],
     },
@@ -71,11 +89,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(
-        routes,
-        { paramsInheritanceStrategy: 'always' }
-    ) ],
-    exports: [ RouterModule ],
+    imports: [
+        RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
+    ],
+    exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

@@ -1,4 +1,10 @@
-import { Component, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    ViewChild,
+    Input,
+    OnChanges,
+    SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
 import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
@@ -8,106 +14,110 @@ import { notNull } from 'src/app/core/helpers/object.helper';
 import { DetailMachineAmpereAndVoltage } from 'src/app/core/models/machine.model';
 
 @Component({
-  selector: 'ahm-chart-detail-machine-ampere',
-  standalone: true,
-  imports: [CommonModule, NgChartsModule],
-  templateUrl: './chart-detail-machine-ampere.component.html',
-  styleUrls: ['./chart-detail-machine-ampere.component.scss']
+    selector: 'ahm-chart-detail-machine-ampere',
+    standalone: true,
+    imports: [CommonModule, NgChartsModule],
+    templateUrl: './chart-detail-machine-ampere.component.html',
+    styleUrls: ['./chart-detail-machine-ampere.component.scss'],
 })
 export class ChartDetailMachineAmpereComponent {
-  public lineChartType: ChartType = 'line';
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+    public lineChartType: ChartType = 'line';
+    @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  @Input() data: DetailMachineAmpereAndVoltage;
-  @Input() setting: number;
-  @Input() minimum: number;
-  @Input() maximum: number;
-  
-  constructor() {
-    Chart.register(Annotation);
-  }
+    @Input() data: DetailMachineAmpereAndVoltage;
+    @Input() setting: number;
+    @Input() minimum: number;
+    @Input() maximum: number;
 
-  ngOnChanges() {
-    this.lineChartData.datasets[0].data = this.data.data_actual.map((res) => res.actual);
-    this.lineChartData.datasets[1].data = this.data.data_setting.map((res) => res.setting);
-    this.lineChartData.labels = this.data.data_label.map((res) => res.label);
+    constructor() {
+        Chart.register(Annotation);
+    }
 
-    // @ts-ignore
-    this.lineChartOptions.plugins.annotation.annotations.minimum = {
-      type: 'line',
-      yMin: this.data.minimum == null ? this.minimum : this.data.minimum,
-      yMax: this.data.minimum == null ? this.minimum : this.data.minimum,
-      borderColor: '#28A745',
-      borderWidth: 1,
+    ngOnChanges() {
+        this.lineChartData.datasets[0].data = this.data.data_actual.map(
+            res => res.actual
+        );
+        this.lineChartData.datasets[1].data = this.data.data_setting.map(
+            res => res.setting
+        );
+        this.lineChartData.labels = this.data.data_label.map(res => res.label);
+
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.minimum = {
+            type: 'line',
+            yMin: this.data.minimum == null ? this.minimum : this.data.minimum,
+            yMax: this.data.minimum == null ? this.minimum : this.data.minimum,
+            borderColor: '#28A745',
+            borderWidth: 1,
+        };
+
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.maximum = {
+            type: 'line',
+            yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
+            yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
+            borderColor: '#DC3545',
+            borderWidth: 1,
+        };
+
+        this.chart?.render();
+    }
+
+    public lineChartData: ChartConfiguration['data'] = {
+        datasets: [
+            {
+                data: [],
+                pointRadius: 4,
+                borderColor: '#0177FB',
+                fill: 'origin',
+            },
+            {
+                data: [],
+                pointRadius: 4,
+                borderColor: '#DC3545',
+                fill: 'origin',
+            },
+        ],
+        labels: [],
     };
 
-    // @ts-ignore
-    this.lineChartOptions.plugins.annotation.annotations.maximum = {
-      type: 'line',
-      yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
-      yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
-      borderColor: '#DC3545',
-      borderWidth: 1,
+    public lineChartOptions: ChartConfiguration['options'] = {
+        responsive: true,
+        maintainAspectRatio: false,
+        elements: {
+            line: {
+                tension: 0.5,
+            },
+        },
+        layout: {
+            padding: { left: -4, bottom: -5 },
+        },
+        scales: {
+            y: {
+                position: 'left',
+                ticks: {
+                    padding: 8,
+                },
+                grid: {
+                    color: '#333333',
+                },
+                border: {
+                    dash: [4, 2],
+                },
+            },
+            x: {
+                ticks: {
+                    padding: 10,
+                },
+            },
+        },
+
+        plugins: {
+            datalabels: { display: false },
+            legend: { display: false },
+            annotation: {
+                annotations: {},
+            },
+        },
     };
-    
-    this.chart?.render();
-  }
-
-  public lineChartData: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        pointRadius: 4,
-        borderColor: '#0177FB',
-        fill: 'origin',
-      },
-      {
-        data: [],
-        pointRadius: 4,
-        borderColor: '#DC3545',
-        fill: 'origin',
-      },
-    ],
-    labels: [],
-  };
-
-  public lineChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    maintainAspectRatio: false, 
-    elements: {
-      line: {
-        tension: 0.5,
-      },
-    },
-    layout: {
-        padding: { left: -4, bottom: -5 }
-    },
-    scales: {
-      y: {
-          position: 'left',
-          ticks: {
-              padding: 8,
-          },
-          grid: {
-              color: '#333333',
-          },
-          border: {
-              dash: [ 4, 2 ]
-          },
-      },
-      x: {
-          ticks: {
-              padding: 10,
-          },
-      }
-  },
-
-    plugins: {
-      datalabels: { display: false },
-      legend: { display: false },
-      annotation: {
-          annotations: {}
-      },
-  }
-  };
 }

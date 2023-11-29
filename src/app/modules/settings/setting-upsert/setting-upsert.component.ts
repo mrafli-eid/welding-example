@@ -20,11 +20,11 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./setting-upsert.component.scss'],
 })
 export class SettingUpsertComponent implements OnInit {
-    @Input () setting: Setting[];
+    @Input() setting: Setting[];
     @Output() onSubmit = new EventEmitter();
 
     machine_name = '';
-    robot_name = ''; 
+    robot_name = '';
     name = '';
     robot_fullname = '';
     machineList: registerMachine[] = DUMMY_MASTER_MACHINE_LIST;
@@ -49,23 +49,31 @@ export class SettingUpsertComponent implements OnInit {
         upper_limit: new FormControl({ value: null, disabled: true }),
         minimum_toggle: new FormControl(false),
         medium_toggle: new FormControl(false),
-        maximum_toggle: new     FormControl(false),
+        maximum_toggle: new FormControl(false),
         lower_limit_toggle: new FormControl(false),
         upper_limit_toggle: new FormControl(false),
     });
 
-    constructor(private settingService: SettingService, 
-                private activatedRoute: ActivatedRoute,) {
-                    // get by params
-                    this.machine_name = this.activatedRoute.snapshot.queryParams['machine'];
-                    this.robot_name = this.activatedRoute.snapshot.queryParams['robot'];
-                    this.robot_fullname = this.robot_name ? ` ROBOT ${this.robot_name}` : "";
-                    this.name = this.activatedRoute.snapshot.queryParams['name'];
-                    
-                    // set value to form
-                    this.formGroup.get('machine_name').patchValue(this.machine_name);
-                    this.formGroup.get('subject_name').patchValue(this.name + this.robot_fullname + " " + this.machine_name);
-                }
+    constructor(
+        private settingService: SettingService,
+        private activatedRoute: ActivatedRoute
+    ) {
+        // get by params
+        this.machine_name = this.activatedRoute.snapshot.queryParams['machine'];
+        this.robot_name = this.activatedRoute.snapshot.queryParams['robot'];
+        this.robot_fullname = this.robot_name
+            ? ` ROBOT ${this.robot_name}`
+            : '';
+        this.name = this.activatedRoute.snapshot.queryParams['name'];
+
+        // set value to form
+        this.formGroup.get('machine_name').patchValue(this.machine_name);
+        this.formGroup
+            .get('subject_name')
+            .patchValue(
+                this.name + this.robot_fullname + ' ' + this.machine_name
+            );
+    }
 
     ngOnInit() {
         this.initValidators();
@@ -77,7 +85,7 @@ export class SettingUpsertComponent implements OnInit {
         this.settingService
             .getMachineList()
             .pipe(take(1))
-            .subscribe((resp) => {
+            .subscribe(resp => {
                 this.machineList = resp.data;
             });
     }
@@ -86,7 +94,7 @@ export class SettingUpsertComponent implements OnInit {
         this.settingService
             .getSubjectList()
             .pipe(take(1))
-            .subscribe((resp) => {
+            .subscribe(resp => {
                 this.subjectList = resp.data;
             });
     }
@@ -99,10 +107,10 @@ export class SettingUpsertComponent implements OnInit {
             'lower_limit',
             'upper_limit',
         ];
-        options.forEach((option) => {
+        options.forEach(option => {
             this.formGroup
                 .get(`${option}_toggle`)
-                .valueChanges.subscribe((val) => {
+                .valueChanges.subscribe(val => {
                     if (val) {
                         this.formGroup.get(option).enable();
                         this.formGroup

@@ -4,16 +4,22 @@
     </div>
     <div *ngIf="!isDetail" class="row">
         <div class="col-4">
-            <ahm-role-upsert (onSubmit)="onFinished()"
-                                       [roleManagement]="roleManagement"></ahm-role-upsert>
+            <ahm-role-upsert
+                (onSubmit)="onFinished()"
+                [roleManagement]="roleManagement"
+            ></ahm-role-upsert>
         </div>
         <div class="col-8">
-            <ahm-role-list (onDetail)="onDetail($event)"
-                                     (onEdit)="onEdit($event)"></ahm-role-list>
+            <ahm-role-list
+                (onDetail)="onDetail($event)"
+                (onEdit)="onEdit($event)"
+            ></ahm-role-list>
         </div>
     </div>
     <div *ngIf="isDetail" class="row">
-        <ahm-role-detail (onFinished)="onFinished()"
-                        [roleManagement]="roleManagement"></ahm-role-detail>
+        <ahm-role-detail
+            (onFinished)="onFinished()"
+            [roleManagement]="roleManagement"
+        ></ahm-role-detail>
     </div>
 </div>

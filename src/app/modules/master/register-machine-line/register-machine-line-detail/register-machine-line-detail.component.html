@@ -10,20 +10,17 @@
                 <th>Last Created</th>
             </tr>
             <tr>
-                <td>{{data.line_name}}</td>
+                <td>{{ data.line_name }}</td>
                 <td>
                     <div *ngFor="let machine of data.machines">
-                        {{machine.machine_name}}
+                        {{ machine.machine_name }}
                     </div>
                 </td>
-                <td>{{data.created_at}}</td>
+                <td>{{ data.created_at }}</td>
             </tr>
         </table>
     </div>
     <div class="master-footer">
-        <button (click)="back()" class="ahm-btn ahm-btn-primary">
-            Back
-        </button>
+        <button (click)="back()" class="ahm-btn ahm-btn-primary">Back</button>
     </div>
 </div>
-

@@ -1,6 +1,6 @@
 .hidden {
     opacity: 0;
-    cursor: default!important;
+    cursor: default !important;
     visibility: hidden;
 }
 
@@ -10,7 +10,7 @@
     display: block;
 
     &.disabled {
-        cursor: default!important;
+        cursor: default !important;
     }
 }
 
@@ -37,15 +37,16 @@
         outline: 0;
         background-color: transparent;
         cursor: pointer;
-        transition: .4s;
+        transition: 0.4s;
 
         &:hover {
             background-color: #222427;
-            transition: .4s;
+            transition: 0.4s;
         }
         img {
             width: 12px;
-            filter: invert(100%) sepia(1%) saturate(2%) hue-rotate(47deg) brightness(106%) contrast(100%);
+            filter: invert(100%) sepia(1%) saturate(2%) hue-rotate(47deg)
+                brightness(106%) contrast(100%);
         }
     }
 
@@ -55,11 +56,10 @@
     }
 }
 
-
 .calendar-table {
     margin-top: 8px;
     padding: 4px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 4px;
 }
 
@@ -80,15 +80,15 @@
         aspect-ratio: 1;
 
         &.disabled {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         &.active {
-            background-color: #0177FB;
+            background-color: #0177fb;
         }
 
         &.in-range {
-            background-color: #0177FB99;
+            background-color: #0177fb99;
         }
 
         &:hover:not(.disabled) {
@@ -103,4 +103,3 @@
         }
     }
 }
-

@@ -1,6 +1,6 @@
 export interface ChartData {
-    data: number[],
-    backgroundColor?: string[],
+    data: number[];
+    backgroundColor?: string[];
 }
 
 export type ChartDatasets = any[];

@@ -46,15 +46,15 @@ export class PermissionsUpsertComponent {
 
     ngOnInit() {
         this.initList();
-        this.notSelectedFormControl.valueChanges.subscribe((text) => {
+        this.notSelectedFormControl.valueChanges.subscribe(text => {
             this.filteredNotSelectedPermissionList =
-                this.notSelectedPermissionList.filter((m) =>
+                this.notSelectedPermissionList.filter(m =>
                     m.claim_type.toLowerCase().includes(text.toLowerCase())
                 );
         });
-        this.selectedFormControl.valueChanges.subscribe((text) => {
+        this.selectedFormControl.valueChanges.subscribe(text => {
             this.filteredSelectedPermissionList =
-                this.selectedPermissionList.filter((m) =>
+                this.selectedPermissionList.filter(m =>
                     m.claim_type.toLowerCase().includes(text.toLowerCase())
                 );
         });
@@ -68,21 +68,23 @@ export class PermissionsUpsertComponent {
 
     selectOneClaimType(permissions: ClaimTypeListUserManagement) {
         permissions.selected = !permissions.selected;
-        this.selectedPermissionList.find((m) => m.id == permissions.id).selected = permissions.selected;
+        this.selectedPermissionList.find(m => m.id == permissions.id).selected =
+            permissions.selected;
     }
 
     unselectOneClaimType(permissions: ClaimTypeListUserManagement) {
         permissions.selected = !permissions.selected;
-        this.selectedPermissionList.find((m) => m.id == permissions.id).selected = permissions.selected;
+        this.selectedPermissionList.find(m => m.id == permissions.id).selected =
+            permissions.selected;
     }
 
     unselectBulk() {
-        const selected = this.selectedPermissionList.filter((m) => m.selected);
-        selected.forEach((m) => {
+        const selected = this.selectedPermissionList.filter(m => m.selected);
+        selected.forEach(m => {
             m.selected = false;
             this.notSelectedPermissionList.push(m);
             const index = this.selectedPermissionList.findIndex(
-                (o) => o.id === m.id
+                o => o.id === m.id
             );
             this.selectedPermissionList.splice(index, 1);
         });
@@ -90,14 +92,12 @@ export class PermissionsUpsertComponent {
     }
 
     selectBulk() {
-        const selected = this.notSelectedPermissionList.filter(
-            (m) => m.selected
-        );
-        selected.forEach((m) => {
+        const selected = this.notSelectedPermissionList.filter(m => m.selected);
+        selected.forEach(m => {
             m.selected = false;
             this.selectedPermissionList.push(m);
             const index = this.notSelectedPermissionList.findIndex(
-                (o) => o.id === m.id
+                o => o.id === m.id
             );
             this.notSelectedPermissionList.splice(index, 1);
         });
@@ -121,21 +121,31 @@ export class PermissionsUpsertComponent {
     }
 
     refreshData() {
-        this.filteredNotSelectedPermissionList = this.notSelectedPermissionList.filter((m) =>
-            m.claim_type.toLowerCase().includes(this.notSelectedFormControl.value.toLowerCase()));
-        this.filteredSelectedPermissionList = this.selectedPermissionList.filter((m) =>
-            m.claim_type.toLowerCase().includes(this.selectedFormControl.value.toLowerCase()));
+        this.filteredNotSelectedPermissionList =
+            this.notSelectedPermissionList.filter(m =>
+                m.claim_type
+                    .toLowerCase()
+                    .includes(this.notSelectedFormControl.value.toLowerCase())
+            );
+        this.filteredSelectedPermissionList =
+            this.selectedPermissionList.filter(m =>
+                m.claim_type
+                    .toLowerCase()
+                    .includes(this.selectedFormControl.value.toLowerCase())
+            );
     }
 
     initList() {
-        this.notSelectedPermissionList = this.claimPermissionList.filter((m) => true);
-        this.userManagementService.getRoleList().subscribe((resp) => {
+        this.notSelectedPermissionList = this.claimPermissionList.filter(
+            m => true
+        );
+        this.userManagementService.getRoleList().subscribe(resp => {
             this.roleList = resp.data;
         });
-        this.userManagementService.getListClaimType().subscribe((resp) => {
+        this.userManagementService.getListClaimType().subscribe(resp => {
             this.claimPermissionList = resp.data;
             this.notSelectedPermissionList = this.claimPermissionList.filter(
-                (m) => true
+                m => true
             );
             this.refreshData();
         });
@@ -145,13 +155,15 @@ export class PermissionsUpsertComponent {
         if (this.permissions) {
             this.formGroup.get('role').setValue(this.permissions.role_name);
             const claim_type = [];
-            this.permissions.claim_type.forEach((m) => {
+            this.permissions.claim_type.forEach(m => {
                 claim_type.push(m.claim);
-                const permissions = this.notSelectedPermissionList.find(o => o.claim_type === m.claim)
-                if (permissions){
+                const permissions = this.notSelectedPermissionList.find(
+                    o => o.claim_type === m.claim
+                );
+                if (permissions) {
                     permissions.selected = true;
                 }
-            })
+            });
             this.selectBulk();
             this.formGroup.get('claim_type').setValue(claim_type);
         }
@@ -163,7 +175,7 @@ export class PermissionsUpsertComponent {
             const body = this.formGroup.value;
 
             const claim_type = [];
-            this.selectedPermissionList.forEach((m) => {
+            this.selectedPermissionList.forEach(m => {
                 claim_type.push(m.claim_type);
             });
             body.claim_type = claim_type;
@@ -192,7 +204,8 @@ export class PermissionsUpsertComponent {
     }
 
     create(body: PermissionList) {
-        this.userManagementService.createPermission(body)
+        this.userManagementService
+            .createPermission(body)
             .pipe(take(1))
             .subscribe({
                 next: () => {
@@ -207,7 +220,9 @@ export class PermissionsUpsertComponent {
     finish() {
         this.onSubmit.emit();
         this.formGroup.reset();
-        this.notSelectedPermissionList = this.claimPermissionList.filter((m) => true);
+        this.notSelectedPermissionList = this.claimPermissionList.filter(
+            m => true
+        );
         this.selectedPermissionList = [];
         this.refreshData();
     }

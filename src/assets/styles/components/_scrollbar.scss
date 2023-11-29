@@ -1,5 +1,5 @@
 @mixin scrollbar {
-    &::-webkit-scrollbar{
+    &::-webkit-scrollbar {
         height: 10px;
         width: 4px;
         background: gray;

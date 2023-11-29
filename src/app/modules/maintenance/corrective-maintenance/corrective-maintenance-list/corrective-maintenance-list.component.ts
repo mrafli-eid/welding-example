@@ -14,11 +14,12 @@ import { DUMMY_MAINTENANCE_CORRECTIVE_LIST } from './corrective-maintenance-list
 @Component({
     selector: 'ahm-corrective-maintenance-list',
     templateUrl: './corrective-maintenance-list.component.html',
-    styleUrls: [ './corrective-maintenance-list.component.scss' ]
+    styleUrls: ['./corrective-maintenance-list.component.scss'],
 })
 export class CorrectiveMaintenanceListComponent {
     machine_name = '';
-    maintenanceList: MaintenanceCorrective[] = DUMMY_MAINTENANCE_CORRECTIVE_LIST;
+    maintenanceList: MaintenanceCorrective[] =
+        DUMMY_MAINTENANCE_CORRECTIVE_LIST;
     queryParams: Partial<MasterParams> = {};
     pagination: Pagination = {
         page_number: 1,
@@ -28,13 +29,14 @@ export class CorrectiveMaintenanceListComponent {
     };
     searchTerm = new FormControl('');
 
-
     @Output() onEdit = new EventEmitter<MaintenanceCorrective>();
     @Output() onDetail = new EventEmitter<MaintenanceCorrective>();
 
-    constructor(private maintenanceService: MaintenanceCorrectiveService,
-                private activatedRoute: ActivatedRoute,
-                private matDialog: MatDialog) {
+    constructor(
+        private maintenanceService: MaintenanceCorrectiveService,
+        private activatedRoute: ActivatedRoute,
+        private matDialog: MatDialog
+    ) {
         this.machine_name = this.activatedRoute.snapshot.paramMap.get('name');
     }
 
@@ -65,26 +67,26 @@ export class CorrectiveMaintenanceListComponent {
             page_size: this.pagination.page_size,
             page_number: this.pagination.page_number,
         };
-        this.maintenanceService.getList(this.machine_name, this.queryParams)
+        this.maintenanceService
+            .getList(this.machine_name, this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
-                    this.pagination = JSON.parse(response.headers.get('x-pagination'));
+                next: response => {
+                    this.pagination = JSON.parse(
+                        response.headers.get('x-pagination')
+                    );
                     this.maintenanceList = response.body.data || [];
                 },
             });
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.pagination.page_number = 1;
-                this.fetchList();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.pagination.page_number = 1;
+            this.fetchList();
+        });
     }
-
 
     sortData(sort: Sort) {
         const order_by = sort.active + ' ' + sort.direction;
@@ -101,9 +103,10 @@ export class CorrectiveMaintenanceListComponent {
             data: data.name,
         });
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
-                this.maintenanceService.delete(data.id)
+                this.maintenanceService
+                    .delete(data.id)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
@@ -127,6 +130,9 @@ export class CorrectiveMaintenanceListComponent {
             page_size: this.pagination.page_size,
             page_number: this.pagination.page_number,
         };
-        this.maintenanceService.exportExcel(this.machine_name, this.queryParams);
+        this.maintenanceService.exportExcel(
+            this.machine_name,
+            this.queryParams
+        );
     }
 }

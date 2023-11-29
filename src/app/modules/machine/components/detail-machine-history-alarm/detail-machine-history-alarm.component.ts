@@ -73,13 +73,11 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(350))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.queryParams.page_number = 1;
-                this.fetchList();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(350)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.queryParams.page_number = 1;
+            this.fetchList();
+        });
     }
 
     fetchList() {
@@ -90,7 +88,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
                 this.queryParams
             )
             .pipe(take(1))
-            .subscribe((response) => {
+            .subscribe(response => {
                 this.pagination = JSON.parse(
                     response.headers.get('x-pagination')
                 );
@@ -123,7 +121,7 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
             isChanged = true;
         }
 
-        if(this.searchTerm.value) {
+        if (this.searchTerm.value) {
             this.queryParams.search_term = this.searchTerm.value;
             isChanged = true;
         }
@@ -141,6 +139,10 @@ export class DetailMachineHistoryAlarmComponent implements OnInit {
     }
 
     download() {
-        this.machineService.downloadHistoryAlarm(this.machine_name, this.robot_name, this.queryParams);
+        this.machineService.downloadHistoryAlarm(
+            this.machine_name,
+            this.robot_name,
+            this.queryParams
+        );
     }
 }

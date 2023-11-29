@@ -1,24 +1,27 @@
 <div class="bg-main account-upsert">
     <div class="mx-auto-image">
-        <img src="/assets/images/profile.png" alt="Profile">
-        <input type="file" name="profile" (change)="onFileSelected($event)" accept="image/*">
+        <img src="/assets/images/profile.png" alt="Profile" />
+        <input
+            type="file"
+            name="profile"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+        />
     </div>
     <div [formGroup]="formGroup" class="account-content">
         <div>
             <label>Username</label>
-            <input formControlName="username" type="text">
+            <input formControlName="username" type="text" />
         </div>
         <div>
             <label>Email</label>
-            <input formControlName="email" type="email">
+            <input formControlName="email" type="email" />
         </div>
     </div>
     <div class="account-footer">
-        <button (click)="cancel()"
-                class="ahm-btn ahm-btn-cancel">Cancel
+        <button (click)="cancel()" class="ahm-btn ahm-btn-cancel">
+            Cancel
         </button>
-        <button (click)="save()"
-                class="ahm-btn ahm-btn-primary">Save
-        </button>
+        <button (click)="save()" class="ahm-btn ahm-btn-primary">Save</button>
     </div>
 </div>

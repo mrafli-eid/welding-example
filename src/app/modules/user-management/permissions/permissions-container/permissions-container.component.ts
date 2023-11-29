@@ -17,7 +17,8 @@ export class PermissionsContainerComponent {
     data: PermissionListUserManagement;
     isDetail = false;
 
-    @ViewChild (PermissionsListComponent) listComponent: PermissionsListComponent;
+    @ViewChild(PermissionsListComponent)
+    listComponent: PermissionsListComponent;
 
     onDetail(data: PermissionListUserManagement) {
         this.data = data;

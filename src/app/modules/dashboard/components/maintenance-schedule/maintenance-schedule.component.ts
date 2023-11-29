@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ScheduleService } from '../../../../core/services/schedule.service';
 import { Schedule } from '../../../../core/models/schedule.model';
-import * as moment from "moment";
+import * as moment from 'moment';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
-import { DUMMY_SCHEDULE_LIST } from "./maintenance-schedule.dummy";
-import { interval, take } from "rxjs";
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DUMMY_SCHEDULE_LIST } from './maintenance-schedule.dummy';
+import { interval, take } from 'rxjs';
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 
 @Component({
     selector: 'ahm-maintenance-schedule',
     templateUrl: './maintenance-schedule.component.html',
-    styleUrls: [ './maintenance-schedule.component.scss' ],
+    styleUrls: ['./maintenance-schedule.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class MaintenanceScheduleComponent implements OnInit {
@@ -22,8 +22,7 @@ export class MaintenanceScheduleComponent implements OnInit {
     currentMonth = new Date().getMonth();
     currentYear = new Date().getFullYear();
 
-    constructor(private scheduleService: ScheduleService) {
-    }
+    constructor(private scheduleService: ScheduleService) {}
 
     ngOnInit() {
         this.getScheduleList();
@@ -36,14 +35,22 @@ export class MaintenanceScheduleComponent implements OnInit {
 
     getScheduleList() {
         const start = new Date(this.currentYear, this.currentMonth, 1, 0, 0, 0);
-        const end = new Date(this.currentYear, this.currentMonth + 1, 0, 23, 59, 59);
-        this.scheduleService.getSchedule(start, end)
+        const end = new Date(
+            this.currentYear,
+            this.currentMonth + 1,
+            0,
+            23,
+            59,
+            59
+        );
+        this.scheduleService
+            .getSchedule(start, end)
             .pipe(take(1))
-            .subscribe((resp) => {
+            .subscribe(resp => {
                 if (resp.data && resp.data?.length > 0) {
-                    resp.data.forEach((r) => {
+                    resp.data.forEach(r => {
                         r.start_date = moment(r.start_date).toDate();
-                    })
+                    });
                     this.scheduleList = resp.data;
                 }
             });
@@ -54,5 +61,4 @@ export class MaintenanceScheduleComponent implements OnInit {
         this.currentMonth = input.selectedMonth;
         this.getScheduleList();
     }
-
 }

@@ -1,9 +1,9 @@
-.machine-option{
+.machine-option {
     padding: 1rem 0 1rem 0;
-   }
+}
 
 .ahm-menu-btn {
-    background-color: #0177FB;
+    background-color: #0177fb;
     border-radius: 50%;
     outline: 0;
     border-width: 0;
@@ -12,7 +12,7 @@
 }
 
 .ahm-menu {
-    background-color: #30303D;
+    background-color: #30303d;
     height: 144px;
     overflow-y: auto;
     margin-bottom: 16px;
@@ -27,13 +27,13 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #A0A0A0;
+        background: #a0a0a0;
         border-radius: 50px;
     }
 }
 
 .ahm-menu-btn {
-    background-color: #0177FB;
+    background-color: #0177fb;
     border-radius: 50%;
     outline: 0;
     border-width: 0;
@@ -43,20 +43,20 @@
 
 .ahm-menu-item {
     padding: 8px;
-    color: #A0A0A0;
+    color: #a0a0a0;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
 
     &:hover {
-        background-color: #454550!important;
-        transition: .2s;
+        background-color: #454550 !important;
+        transition: 0.2s;
     }
 
     &.selected {
-        background-color: #595964!important;
-        transition: .2s;
+        background-color: #595964 !important;
+        transition: 0.2s;
     }
 }

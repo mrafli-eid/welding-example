@@ -65,7 +65,7 @@ export class RoleListComponent {
             .getListRole(this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
+                next: response => {
                     this.pagination = JSON.parse(
                         response.headers.get('x-pagination')
                     );
@@ -75,13 +75,11 @@ export class RoleListComponent {
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.pagination.page_number = 1;
-                this.getListRole();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.pagination.page_number = 1;
+            this.getListRole();
+        });
     }
 
     sortData(sort: Sort) {
@@ -102,7 +100,7 @@ export class RoleListComponent {
             }
         );
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
                 this.userManagementService
                     .deleteRole(roleManagement.id)

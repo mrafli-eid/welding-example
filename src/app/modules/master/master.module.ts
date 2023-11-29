@@ -33,9 +33,9 @@ import { MasterRobotContainerComponent } from './master-robot/master-robot-conta
 import { MasterRobotDetailComponent } from './master-robot/master-robot-detail/master-robot-detail.component';
 import { MasterRobotListComponent } from './master-robot/master-robot-list/master-robot-list.component';
 import { MasterRobotUpsertComponent } from './master-robot/master-robot-upsert/master-robot-upsert.component';
-import {MatSelectModule } from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     declarations: [
@@ -64,7 +64,7 @@ import {MatInputModule} from '@angular/material/input';
         MasterRobotContainerComponent,
         MasterRobotDetailComponent,
         MasterRobotListComponent,
-        MasterRobotUpsertComponent
+        MasterRobotUpsertComponent,
     ],
     imports: [
         CommonModule,
@@ -77,7 +77,7 @@ import {MatInputModule} from '@angular/material/input';
         MatDialogModule,
         MatSelectModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
     ],
 })
 export class MasterModule {}

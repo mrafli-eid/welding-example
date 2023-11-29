@@ -1,11 +1,11 @@
-@import "src/assets/styles/variables";
+@import 'src/assets/styles/variables';
 
 .main-area {
     min-height: 100%;
     padding-block: 10px;
     padding-right: 10px;
     padding-left: $sidebar-width + 10px;
-    transition: padding-left .5s;
+    transition: padding-left 0.5s;
     display: flex;
     flex-direction: column;
     gap: 10px;

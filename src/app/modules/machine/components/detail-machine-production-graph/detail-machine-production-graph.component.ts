@@ -4,16 +4,16 @@ import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
 import { DetailMachineProductionGraph } from '../../../../core/models/machine.model';
 import { MachineService } from '../../../../core/services/machine.service';
 import { interval, take } from 'rxjs';
-import { DUMMY_DETAIL_MACHINE_PRODUCTION_GRAPH } from "./detail-machine-production-graph.dummy";
+import { DUMMY_DETAIL_MACHINE_PRODUCTION_GRAPH } from './detail-machine-production-graph.dummy';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 
 @Component({
     selector: 'ahm-detail-machine-production-graph',
     templateUrl: './detail-machine-production-graph.component.html',
-    styleUrls: [ './detail-machine-production-graph.component.scss' ],
+    styleUrls: ['./detail-machine-production-graph.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class DetailMachineProductionGraphComponent {
@@ -23,10 +23,10 @@ export class DetailMachineProductionGraphComponent {
     robot_name = 'MASTER' || 'SLAVE';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    productionGraphList: DetailMachineProductionGraph = DUMMY_DETAIL_MACHINE_PRODUCTION_GRAPH;
+    productionGraphList: DetailMachineProductionGraph =
+        DUMMY_DETAIL_MACHINE_PRODUCTION_GRAPH;
 
-    constructor(private machineService: MachineService) {
-    }
+    constructor(private machineService: MachineService) {}
 
     ngOnInit() {
         this.fetchProductionGraph();
@@ -38,14 +38,14 @@ export class DetailMachineProductionGraphComponent {
     }
 
     fetchProductionGraph() {
-        this.machineService.getProductionGraph(this.machine_name, this.dateFilter)
+        this.machineService
+            .getProductionGraph(this.machine_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     this.productionGraphList = resp.data;
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 
@@ -55,7 +55,9 @@ export class DetailMachineProductionGraphComponent {
     }
 
     download() {
-        this.machineService.downloadProductionGraph(this.machine_name, this.dateFilter);
+        this.machineService.downloadProductionGraph(
+            this.machine_name,
+            this.dateFilter
+        );
     }
-
 }

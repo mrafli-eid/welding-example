@@ -8,22 +8,21 @@ import { MasterRobotListComponent } from '../master-robot-list/master-robot-list
     templateUrl: './master-robot-container.component.html',
     styleUrls: ['./master-robot-container.component.scss'],
 })
-
 export class MasterRobotContainerComponent {
     breadcrumbs: Breadcrumb[] = [
         { label: 'Data Master', link: '/master' },
         { label: 'Robot', link: '/master/robot' },
     ];
-    
+
     masterRobot: MasterRobot;
     isDetail = false;
 
-    @ViewChild(MasterRobotListComponent) listComponent: MasterRobotListComponent;
+    @ViewChild(MasterRobotListComponent)
+    listComponent: MasterRobotListComponent;
 
     onDetail(masterRobot: MasterRobot) {
         this.masterRobot = masterRobot;
         this.isDetail = true;
-
     }
 
     onEdit(masterRobot: MasterRobot) {
@@ -35,5 +34,4 @@ export class MasterRobotContainerComponent {
         this.isDetail = false;
         this.listComponent.refreshData();
     }
-
 }

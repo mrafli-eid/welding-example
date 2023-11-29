@@ -11,7 +11,11 @@ import {
     UserActivity,
     UsernameList,
 } from 'src/app/core/models/user-activity.model';
-import { DUMMY_LOG_TYPE_LIST, DUMMY_USERNAME_LIST, DUMMY_USER_ACTIVITY_LIST } from './user-activity.dummy';
+import {
+    DUMMY_LOG_TYPE_LIST,
+    DUMMY_USERNAME_LIST,
+    DUMMY_USER_ACTIVITY_LIST,
+} from './user-activity.dummy';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -52,7 +56,7 @@ export class UserActivityListComponent {
             .getUsernameList()
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
+                next: response => {
                     this.usernameList = response.data || [];
                 },
             });
@@ -63,7 +67,7 @@ export class UserActivityListComponent {
             .getLogTypeList()
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
+                next: response => {
                     this.logTypeList = response.data || [];
                 },
             });
@@ -79,7 +83,7 @@ export class UserActivityListComponent {
             .getActivityUserList(this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
+                next: response => {
                     this.pagination = JSON.parse(
                         response.headers.get('x-pagination')
                     );
@@ -100,44 +104,38 @@ export class UserActivityListComponent {
     }
 
     addUserNameFilter() {
-        this.user_name.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.user_name = val;
-                this.pagination.page_number = 1;
-                this.getActivityUserList();
-            });
+        this.user_name.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.user_name = val;
+            this.pagination.page_number = 1;
+            this.getActivityUserList();
+        });
     }
 
     addLogTypeFilter() {
-        this.log_type.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.log_type = val;
-                this.pagination.page_number = 1;
-                this.getActivityUserList();
-            });
+        this.log_type.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.log_type = val;
+            this.pagination.page_number = 1;
+            this.getActivityUserList();
+        });
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-          .pipe(debounceTime(300))
-          .subscribe((val) => {
+        this.searchTerm.valueChanges.pipe(debounceTime(300)).subscribe(val => {
             this.queryParams.search_term = val;
             this.pagination.page_number = 1;
             this.getActivityUserList();
-          });
-      }
+        });
+    }
 
     addDateTimeFilter() {
-        this.date_time.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.pagination.page_number = 1;
-                this.getActivityUserList();
-                this.queryParams.date_time = dayjs(val).format('YYYY-MM-DD HH:mm:ss');
-                console.log(this.queryParams.date_time);
-            });
+        this.date_time.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.pagination.page_number = 1;
+            this.getActivityUserList();
+            this.queryParams.date_time = dayjs(val).format(
+                'YYYY-MM-DD HH:mm:ss'
+            );
+            console.log(this.queryParams.date_time);
+        });
     }
 
     sortData(sort: Sort) {

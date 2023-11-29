@@ -23,7 +23,8 @@ export class NotificationService {
         if (params) {
             params = removeEmptyObject(params);
         }
-        return this.http.get<HttpResponse<notification[]>>(`${this.baseUrl}/get-all-notif`,
+        return this.http.get<HttpResponse<notification[]>>(
+            `${this.baseUrl}/get-all-notif`,
             {
                 observe: 'response',
                 params: params,
@@ -32,7 +33,8 @@ export class NotificationService {
     }
     updateNotification(id: string) {
         return this.http.put<HttpResponse<notification[]>>(
-            `${this.baseUrl}/${id}`, { status: true }
+            `${this.baseUrl}/${id}`,
+            { status: true }
         );
     }
 }

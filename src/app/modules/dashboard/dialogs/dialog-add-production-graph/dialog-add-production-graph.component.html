@@ -8,21 +8,31 @@
             <div class="col-4">
                 <label>Plan</label>
                 <mat-form-field>
-                    <input matInput formControlName="plan" appOnlyNumber>
+                    <input matInput formControlName="plan" appOnlyNumber />
                 </mat-form-field>
             </div>
         </div>
         <div>
             <label>Date</label>
             <mat-form-field>
-                <input class="input" matInput [matDatepicker]="picker" formControlName="date_time">
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <input
+                    class="input"
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="date_time"
+                />
+                <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
         </div>
     </div>
     <div class="ahm-dialog-footer">
-        <button class="ahm-btn ahm-btn-cancel" (click)="cancel()">Cancel</button>
+        <button class="ahm-btn ahm-btn-cancel" (click)="cancel()">
+            Cancel
+        </button>
         <button class="ahm-btn ahm-btn-primary" (click)="save()">Save</button>
     </div>
 </div>

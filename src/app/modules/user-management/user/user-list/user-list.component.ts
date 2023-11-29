@@ -65,7 +65,7 @@ export class UserListComponent {
             .getListUser(this.queryParams)
             .pipe(debounceTime(300))
             .subscribe({
-                next: (response) => {
+                next: response => {
                     this.pagination = JSON.parse(
                         response.headers.get('x-pagination')
                     );
@@ -76,13 +76,11 @@ export class UserListComponent {
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.pagination.page_number = 1;
-                this.getListUser();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.pagination.page_number = 1;
+            this.getListUser();
+        });
     }
 
     sortData(sort: Sort) {
@@ -96,11 +94,14 @@ export class UserListComponent {
     }
 
     delete(userManagement: UserListUserManagement) {
-        const matDialogRef = this.matDialog.open(UserManagementDeleteComponent, {
-            data: userManagement.username,
-        });
+        const matDialogRef = this.matDialog.open(
+            UserManagementDeleteComponent,
+            {
+                data: userManagement.username,
+            }
+        );
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
                 this.userManagementService
                     .deleteUser(userManagement.id)

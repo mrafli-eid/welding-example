@@ -4,7 +4,7 @@ import { MasterSubject } from '../../../../core/models/master.model';
 @Component({
     selector: 'ahm-master-subject-detail',
     templateUrl: './master-subject-detail.component.html',
-    styleUrls: [ './master-subject-detail.component.scss' ],
+    styleUrls: ['./master-subject-detail.component.scss'],
 })
 export class MasterSubjectDetailComponent {
     @Input() masterData: MasterSubject;

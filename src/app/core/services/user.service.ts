@@ -8,12 +8,10 @@ import { HttpResponse } from '../models/http.model';
     providedIn: 'root',
 })
 export class UserService {
+    constructor(private httpClient: HttpClient) {}
 
-    constructor(private httpClient: HttpClient) {
-    }
-
-    login(username:string, password:string) {
-        const url = `${ environment.API_URL }/api/authentication/login`;
+    login(username: string, password: string) {
+        const url = `${environment.API_URL}/api/authentication/login`;
         return this.httpClient.post<any>(url, { username, password });
     }
 }

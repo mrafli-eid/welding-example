@@ -6,12 +6,10 @@ import { environment } from '../../../environments/environment';
     providedIn: 'root',
 })
 export class GeneralService {
-
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) {}
 
     getChartData(generalType: GeneralType, dateFilter: any) {
-        return this.http.get<any>(`${ environment.API_URL }${ generalType.url }`, {
+        return this.http.get<any>(`${environment.API_URL}${generalType.url}`, {
             params: dateFilter,
         });
     }

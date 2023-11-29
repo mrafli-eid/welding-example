@@ -1,4 +1,11 @@
-import { Component, DestroyRef, inject, Input, OnChanges, OnInit } from '@angular/core';
+import {
+    Component,
+    DestroyRef,
+    inject,
+    Input,
+    OnChanges,
+    OnInit,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HubConnectionService } from '../../../../core/services/hub-connection.service';
 import { DUMMY_MACHINE_LIST } from './layout-machine-area.dummy';
@@ -8,9 +15,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
     selector: 'ahm-layout-machine-area',
     templateUrl: './layout-machine-area.component.html',
-    styleUrls: [ './layout-machine-area.component.scss' ],
+    styleUrls: ['./layout-machine-area.component.scss'],
     host: {
-        'class': 'dashboard-card justify-content-between',
+        class: 'dashboard-card justify-content-between',
     },
 })
 export class LayoutMachineAreaComponent implements OnChanges, OnInit {
@@ -18,15 +25,14 @@ export class LayoutMachineAreaComponent implements OnChanges, OnInit {
     @Input() machineList: Machine[] = [];
     @Input() layoutMachineList: Machine[] = [];
 
-    constructor(private hubConnectionService: HubConnectionService) {
-    }
+    constructor(private hubConnectionService: HubConnectionService) {}
 
     ngOnChanges() {
         this.layoutMachineList = [];
 
-        this.machineList.forEach((m) => {
+        this.machineList.forEach(m => {
             this.layoutMachineList.push(m);
-        })
+        });
 
         while (this.layoutMachineList.length < 18) {
             this.layoutMachineList.push({
@@ -42,25 +48,27 @@ export class LayoutMachineAreaComponent implements OnChanges, OnInit {
         this.getMachineList();
         this.hubConnectionService.isConnectionEstablished
             .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe((turnedOn) => {
+            .subscribe(turnedOn => {
                 if (turnedOn) {
-                   this.hubConnectionService.machineHealth$
-                       .pipe(takeUntilDestroyed(this.destroyRef))
-                       .subscribe({
-                           next: (resp) => {
-                               if (resp != undefined) {
-                                   resp.forEach((res) => {
-                                       const machine = this.layoutMachineList.find((temp) => temp.name === res.name);
-                                       if (machine) {
-                                           machine.value = res.value;
-                                       }
-                                   });
-                               }
-                           },
-                       });
-           }
-        });
-
+                    this.hubConnectionService.machineHealth$
+                        .pipe(takeUntilDestroyed(this.destroyRef))
+                        .subscribe({
+                            next: resp => {
+                                if (resp != undefined) {
+                                    resp.forEach(res => {
+                                        const machine =
+                                            this.layoutMachineList.find(
+                                                temp => temp.name === res.name
+                                            );
+                                        if (machine) {
+                                            machine.value = res.value;
+                                        }
+                                    });
+                                }
+                            },
+                        });
+                }
+            });
     }
 
     private getMachineList(): void {

@@ -1,11 +1,18 @@
 <div class="user-management-upsert">
     <div class="user-management-header">
         <div>
-            <h2>{{permissions ? 'Edit' : 'Add'}}</h2>
-            <p>Please {{permissions ? 'edit' : 'add'}} register line machine</p>
+            <h2>{{ permissions ? 'Edit' : 'Add' }}</h2>
+            <p>
+                Please {{ permissions ? 'edit' : 'add' }} register line machine
+            </p>
         </div>
         <div>
-            <img alt="file" height="53" ngSrc="/assets/icons/file.svg" width="53">
+            <img
+                alt="file"
+                height="53"
+                ngSrc="/assets/icons/file.svg"
+                width="53"
+            />
         </div>
     </div>
     <div [formGroup]="formGroup" class="user-management-content">
@@ -13,7 +20,11 @@
             <label>Role</label>
             <mat-form-field>
                 <mat-select class="permissions-option" formControlName="role">
-                    <mat-option *ngFor="let role of roleList" [value]="role.name">{{role.name}}</mat-option>
+                    <mat-option
+                        *ngFor="let role of roleList"
+                        [value]="role.name"
+                        >{{ role.name }}</mat-option
+                    >
                 </mat-select>
             </mat-form-field>
         </div>
@@ -21,49 +32,70 @@
             <div class="col-6">
                 <label>Permission</label>
                 <mat-form-field class="input-register-filter">
-                    <input placeholder="Filter" matInput [formControl]="notSelectedFormControl">
+                    <input
+                        placeholder="Filter"
+                        matInput
+                        [formControl]="notSelectedFormControl"
+                    />
                 </mat-form-field>
                 <div>
                     <button class="ahm-menu-btn" (click)="selectBulk()">
-                        <img src="/assets/icons/arrow-right.svg" alt="arrow right">
+                        <img
+                            src="/assets/icons/arrow-right.svg"
+                            alt="arrow right"
+                        />
                     </button>
                 </div>
                 <div class="ahm-menu">
-                    <div *ngFor="let permission of filteredNotSelectedPermissionList; let index = index"
-                         [class.selected]="permission.selected"
-                         (dblclick)="selectPermission(index)"
-                         (click)="selectOneClaimType(permission)"
-                         class="ahm-menu-item">
-                        {{permission.claim_type}}
+                    <div
+                        *ngFor="
+                            let permission of filteredNotSelectedPermissionList;
+                            let index = index
+                        "
+                        [class.selected]="permission.selected"
+                        (dblclick)="selectPermission(index)"
+                        (click)="selectOneClaimType(permission)"
+                        class="ahm-menu-item"
+                    >
+                        {{ permission.claim_type }}
                     </div>
                 </div>
             </div>
             <div class="col-6">
                 <label>Permission</label>
                 <mat-form-field class="input-register-filter">
-                    <input placeholder="Filter" matInput [formControl]="selectedFormControl">
+                    <input
+                        placeholder="Filter"
+                        matInput
+                        [formControl]="selectedFormControl"
+                    />
                 </mat-form-field>
                 <div class="d-flex justify-content-end">
                     <button class="ahm-menu-btn" (click)="unselectBulk()">
-                        <img src="/assets/icons/arrow-left.svg" alt="arrow left">
+                        <img
+                            src="/assets/icons/arrow-left.svg"
+                            alt="arrow left"
+                        />
                     </button>
                 </div>
                 <div class="ahm-menu">
-                    <div *ngFor="let permission of filteredSelectedPermissionList; let index = index;"
-                         [class.selected]="permission.selected"
-                         (dblclick)="unselectPermission(index)"
-                         (click)="unselectOneClaimType(permission)"
-                         class="ahm-menu-item">
-                        {{permission.claim_type}}
+                    <div
+                        *ngFor="
+                            let permission of filteredSelectedPermissionList;
+                            let index = index
+                        "
+                        [class.selected]="permission.selected"
+                        (dblclick)="unselectPermission(index)"
+                        (click)="unselectOneClaimType(permission)"
+                        class="ahm-menu-item"
+                    >
+                        {{ permission.claim_type }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="user-management-footer">
-        <button (click)="submit()"
-                class="ahm-btn ahm-btn-primary">Save
-        </button>
+        <button (click)="submit()" class="ahm-btn ahm-btn-primary">Save</button>
     </div>
-
 </div>

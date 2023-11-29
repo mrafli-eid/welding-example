@@ -7,14 +7,19 @@ import {
     OnChanges,
     OnInit,
     Output,
-    ViewChild
+    ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { DatepickerCalendarV2Component } from './datepicker-calendar-v2/datepicker-calendar-v2.component';
 import { DateFilter } from '../../core/models/date-filter.model';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+    FormControl,
+    FormGroup,
+    FormsModule,
+    ReactiveFormsModule,
+} from '@angular/forms';
 import * as moment from 'moment';
 import { getDefaultDateFilter } from '../../core/consts/datepicker.const';
 import { untilDestroyed } from '../../core/helpers/rxjs.helper';
@@ -23,7 +28,7 @@ import { RANGE_PRESET_OPTIONS } from '../datepicker/date-range-preset/date-range
 @Component({
     selector: 'ahm-datepicker',
     templateUrl: './datepicker-v2.component.html',
-    styleUrls: [ './datepicker-v2.component.scss' ],
+    styleUrls: ['./datepicker-v2.component.scss'],
     standalone: true,
     imports: [
         CommonModule,
@@ -31,12 +36,12 @@ import { RANGE_PRESET_OPTIONS } from '../datepicker/date-range-preset/date-range
         DatepickerCalendarV2Component,
         FormsModule,
         ReactiveFormsModule,
-    ]
+    ],
 })
 export class DatepickerV2Component implements OnInit, OnChanges {
     untilDestroyed = untilDestroyed();
-    private  overlayRef!: OverlayRef;
-    @ViewChild(CdkPortal) public  contentTemplate!: CdkPortal;
+    private overlayRef!: OverlayRef;
+    @ViewChild(CdkPortal) public contentTemplate!: CdkPortal;
     @ViewChild('btn') private btn: ElementRef;
 
     @Input() dateFilter: DateFilter = null;
@@ -46,9 +51,9 @@ export class DatepickerV2Component implements OnInit, OnChanges {
         start: new FormControl(),
         end: new FormControl(),
         startTime: new FormControl(),
-        endTime: new FormControl({ value: null, disabled: true}),
+        endTime: new FormControl({ value: null, disabled: true }),
         startDate: new FormControl(),
-        endDate: new FormControl( { value: null, disabled: true}),
+        endDate: new FormControl({ value: null, disabled: true }),
         realtime: new FormControl(true),
         type: new FormControl('default'),
     });
@@ -60,8 +65,7 @@ export class DatepickerV2Component implements OnInit, OnChanges {
 
     @Input() hideDayPreset = false;
 
-
-    constructor(private overlay: Overlay,) {}
+    constructor(private overlay: Overlay) {}
 
     ngOnInit() {
         this.addRealtimeListener();
@@ -83,15 +87,15 @@ export class DatepickerV2Component implements OnInit, OnChanges {
         if (this.hideDayPreset) {
             this.dateTypeList = ['default', 'week', 'month', 'year'];
         } else {
-            this.dateTypeList = ['default','day', 'week', 'month', 'year'];
+            this.dateTypeList = ['default', 'day', 'week', 'month', 'year'];
         }
     }
 
     addRealtimeListener() {
-        this.formGroup.get('realtime')
-            .valueChanges
-            .pipe(this.untilDestroyed())
-            .subscribe((val) => {
+        this.formGroup
+            .get('realtime')
+            .valueChanges.pipe(this.untilDestroyed())
+            .subscribe(val => {
                 this.realtime = val;
                 if (val) {
                     this.formGroup.get('endTime').disable();
@@ -99,9 +103,9 @@ export class DatepickerV2Component implements OnInit, OnChanges {
                     const dateNow = getDefaultDateFilter();
                     this.formGroup.patchValue({
                         endTime: moment(dateNow.end).format('HH:mm'),
-                        endDate: moment(dateNow.end).format('DD/MM/YYYY')
+                        endDate: moment(dateNow.end).format('DD/MM/YYYY'),
                     });
-                } else{
+                } else {
                     this.formGroup.get('endTime').enable();
                     this.formGroup.get('endDate').enable();
                 }
@@ -118,8 +122,8 @@ export class DatepickerV2Component implements OnInit, OnChanges {
             endTime: moment(end).format('HH:mm'),
             startDate: moment(start).format('DD/MM/YYYY'),
             endDate: moment(end).format('DD/MM/YYYY'),
-            type: dateFilter?.type || 'default'
-        })
+            type: dateFilter?.type || 'default',
+        });
     }
 
     openDatepicker() {
@@ -160,7 +164,7 @@ export class DatepickerV2Component implements OnInit, OnChanges {
         });
     }
 
-    private  hide(): void {
+    private hide(): void {
         this.overlayRef.detach();
         this.showing = false;
     }
@@ -170,10 +174,16 @@ export class DatepickerV2Component implements OnInit, OnChanges {
     }
 
     shortcutToday() {
-        if (!this.isDay()) { return; }
+        if (!this.isDay()) {
+            return;
+        }
 
         const todayDateFilter = {
-            start: moment(new Date()).set('hour', 0).set('minute', 0).set('second', 0).toDate(),
+            start: moment(new Date())
+                .set('hour', 0)
+                .set('minute', 0)
+                .set('second', 0)
+                .toDate(),
             end: new Date(),
             type: RANGE_PRESET_OPTIONS.DAY,
             realtime: true,
@@ -182,12 +192,22 @@ export class DatepickerV2Component implements OnInit, OnChanges {
     }
 
     shortcutLast30Days() {
-        if (!this.isDay()) { return; }
+        if (!this.isDay()) {
+            return;
+        }
 
-        const now = moment(new Date()).set('h',0).set('minute',0).set('second',0).toDate();
+        const now = moment(new Date())
+            .set('h', 0)
+            .set('minute', 0)
+            .set('second', 0)
+            .toDate();
         const dateFilter: DateFilter = {
             start: moment(now).subtract(30, 'day').toDate(),
-            end: moment(now).set('h',23).set('minute',59).set('second',59).toDate(),
+            end: moment(now)
+                .set('h', 23)
+                .set('minute', 59)
+                .set('second', 59)
+                .toDate(),
             realtime: true,
             type: 'day',
         };
@@ -195,12 +215,22 @@ export class DatepickerV2Component implements OnInit, OnChanges {
     }
 
     shortcutLast90Days() {
-        if (!this.isDay()) { return; }
+        if (!this.isDay()) {
+            return;
+        }
 
-        const now = moment(new Date()).set('h',0).set('minute',0).set('second',0).toDate();
+        const now = moment(new Date())
+            .set('h', 0)
+            .set('minute', 0)
+            .set('second', 0)
+            .toDate();
         const dateFilter: DateFilter = {
             start: moment(now).subtract(90, 'day').toDate(),
-            end: moment(now).set('h',23).set('minute',59).set('second',59).toDate(),
+            end: moment(now)
+                .set('h', 23)
+                .set('minute', 59)
+                .set('second', 59)
+                .toDate(),
             realtime: true,
             type: 'day',
         };
@@ -208,12 +238,22 @@ export class DatepickerV2Component implements OnInit, OnChanges {
     }
 
     shortcutLastYear() {
-        if (!this.isDay()) { return; }
+        if (!this.isDay()) {
+            return;
+        }
 
-        const now = moment(new Date()).set('h',0).set('minute',0).set('second',0).toDate();
+        const now = moment(new Date())
+            .set('h', 0)
+            .set('minute', 0)
+            .set('second', 0)
+            .toDate();
         const dateFilter: DateFilter = {
             start: moment(now).subtract(365, 'day').toDate(),
-            end: moment(now).set('h',23).set('minute',59).set('second',59).toDate(),
+            end: moment(now)
+                .set('h', 23)
+                .set('minute', 59)
+                .set('second', 59)
+                .toDate(),
             realtime: true,
             type: 'day',
         };
@@ -222,15 +262,25 @@ export class DatepickerV2Component implements OnInit, OnChanges {
 
     onSelectedDate(formControlName: string, value: Date) {
         this.formGroup.get(formControlName).setValue(moment(value).toDate());
-        this.formGroup.get(formControlName+'Date').setValue(moment(value).format('DD/MM/YYYY'));
-        this.formGroup.get(formControlName+'Time').setValue(moment(value).format('HH:mm'));
+        this.formGroup
+            .get(formControlName + 'Date')
+            .setValue(moment(value).format('DD/MM/YYYY'));
+        this.formGroup
+            .get(formControlName + 'Time')
+            .setValue(moment(value).format('HH:mm'));
     }
 
     apply() {
         const formValue = this.formGroup.getRawValue();
         const dateFilter: DateFilter = {
-            start: moment(formValue.startDate + ' ' +formValue.startTime, 'DD/MM/YYYY hh:mm').toDate(),
-            end: moment(formValue.endDate + ' ' +formValue.endTime, 'DD/MM/YYYY hh:mm').toDate(),
+            start: moment(
+                formValue.startDate + ' ' + formValue.startTime,
+                'DD/MM/YYYY hh:mm'
+            ).toDate(),
+            end: moment(
+                formValue.endDate + ' ' + formValue.endTime,
+                'DD/MM/YYYY hh:mm'
+            ).toDate(),
             type: formValue.type,
             realtime: formValue.realtime,
         };

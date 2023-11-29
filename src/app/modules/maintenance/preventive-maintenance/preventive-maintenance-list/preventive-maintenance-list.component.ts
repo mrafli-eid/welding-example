@@ -14,9 +14,9 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'ahm-preventive-maintenance-list',
     templateUrl: './preventive-maintenance-list.component.html',
-    styleUrls: [ './preventive-maintenance-list.component.scss' ],
+    styleUrls: ['./preventive-maintenance-list.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class PreventiveMaintenanceListComponent {
@@ -31,13 +31,14 @@ export class PreventiveMaintenanceListComponent {
     };
     searchTerm = new FormControl('');
 
-
     @Output() onEdit = new EventEmitter<MaintenancePreventive>();
     @Output() onDetail = new EventEmitter<MaintenancePreventive>();
 
-    constructor(private maintenanceService: MaintenancePreventiveService,
-                private activatedRoute: ActivatedRoute,
-                private matDialog: MatDialog) {
+    constructor(
+        private maintenanceService: MaintenancePreventiveService,
+        private activatedRoute: ActivatedRoute,
+        private matDialog: MatDialog
+    ) {
         this.machine_name = this.activatedRoute.snapshot.paramMap.get('name');
     }
 
@@ -68,26 +69,26 @@ export class PreventiveMaintenanceListComponent {
             page_size: this.pagination.page_size,
             page_number: this.pagination.page_number,
         };
-        this.maintenanceService.getList(this.machine_name, this.queryParams)
+        this.maintenanceService
+            .getList(this.machine_name, this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
-                    this.pagination = JSON.parse(response.headers.get('x-pagination'));
+                next: response => {
+                    this.pagination = JSON.parse(
+                        response.headers.get('x-pagination')
+                    );
                     this.maintenanceList = response.body.data || [];
                 },
             });
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.pagination.page_number = 1;
-                this.fetchList();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.pagination.page_number = 1;
+            this.fetchList();
+        });
     }
-
 
     sortData(sort: Sort) {
         const order_by = sort.active + ' ' + sort.direction;
@@ -104,9 +105,10 @@ export class PreventiveMaintenanceListComponent {
             data: data.name,
         });
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
-                this.maintenanceService.delete(data.machine_name)
+                this.maintenanceService
+                    .delete(data.machine_name)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
@@ -128,7 +130,7 @@ export class PreventiveMaintenanceListComponent {
         const temp: MaintenancePreventive = {
             ...data,
             ok: true,
-        }
+        };
         this.onEdit.emit(temp);
     }
 
@@ -138,12 +140,17 @@ export class PreventiveMaintenanceListComponent {
             page_size: this.pagination.page_size,
             page_number: this.pagination.page_number,
         };
-        this.maintenanceService.exportExcel(this.machine_name, this.queryParams);
+        this.maintenanceService.exportExcel(
+            this.machine_name,
+            this.queryParams
+        );
     }
 
     upload(event) {
-        this.maintenanceService.upload(event.target.files[0]).subscribe((resp) => {
-            this.fetchList();
-        });
+        this.maintenanceService
+            .upload(event.target.files[0])
+            .subscribe(resp => {
+                this.fetchList();
+            });
     }
 }

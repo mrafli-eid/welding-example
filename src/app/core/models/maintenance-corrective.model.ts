@@ -17,10 +17,9 @@ export interface MaintenanceCorrectiveChart {
 }
 
 export interface MaintenanceCorrectiveUpsert {
-    "name": "INSTALL_FRONT",
-    "start_date": "2023-04-11",
-    "actual": "Clean MC",
-    "end_date": "2023-04-11",
-    "machine_id": "9f303dec-17dd-4ec9-acc7-2da687e6527f"
+    name: 'INSTALL_FRONT';
+    start_date: '2023-04-11';
+    actual: 'Clean MC';
+    end_date: '2023-04-11';
+    machine_id: '9f303dec-17dd-4ec9-acc7-2da687e6527f';
 }
-

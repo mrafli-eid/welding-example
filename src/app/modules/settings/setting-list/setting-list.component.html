@@ -2,8 +2,17 @@
     <div class="setting-header">
         <h2>List Machine</h2>
         <div class="ahm-input-wrapper">
-            <img alt="search" ngSrc="/assets/icons/search.svg" height="27" width="26">
-            <input [formControl]="searchTerm" placeholder="Search" type="text">
+            <img
+                alt="search"
+                ngSrc="/assets/icons/search.svg"
+                height="27"
+                width="26"
+            />
+            <input
+                [formControl]="searchTerm"
+                placeholder="Search"
+                type="text"
+            />
         </div>
     </div>
     <div class="setting-content">
@@ -22,22 +31,33 @@
                     <th mat-sort-header="createddate">Last Created</th>
                 </tr>
                 <tr *ngFor="let data of settingList; let index = index">
-                    <td>{{ ((pagination.page_number - 1) * pagination.page_size) + (index + 1)}}</td>
-                    <td>{{data.machine_name}}</td>
-                    <td>{{data.subject_name}}</td>
-                    <td>{{data.minimum == null ? '-' : data.minimum}}</td>
-                    <td>{{data.medium == null ? '-' : data.medium}}</td>
-                    <td>{{data.maximum == null ? '-' : data.maximum}}</td>
-                    <td>{{data.lower_limit == null ? '-' : data.lower_limit}}</td>
-                    <td>{{data.upper_limit == null ? '-' : data.upper_limit}}</td>
-                    <td>{{data.unit}}</td>
-                    <td>{{data.created_at}}</td>
+                    <td>
+                        {{
+                            (pagination.page_number - 1) *
+                                pagination.page_size +
+                                (index + 1)
+                        }}
+                    </td>
+                    <td>{{ data.machine_name }}</td>
+                    <td>{{ data.subject_name }}</td>
+                    <td>{{ data.minimum == null ? '-' : data.minimum }}</td>
+                    <td>{{ data.medium == null ? '-' : data.medium }}</td>
+                    <td>{{ data.maximum == null ? '-' : data.maximum }}</td>
+                    <td>
+                        {{ data.lower_limit == null ? '-' : data.lower_limit }}
+                    </td>
+                    <td>
+                        {{ data.upper_limit == null ? '-' : data.upper_limit }}
+                    </td>
+                    <td>{{ data.unit }}</td>
+                    <td>{{ data.created_at }}</td>
                 </tr>
             </table>
         </div>
-        <ahm-paginator (selectedLimit)="onSelectLimit($event)"
-                       (selectedPage)="onSelectPage($event)"
-                       [pagination]="pagination"></ahm-paginator>
+        <ahm-paginator
+            (selectedLimit)="onSelectLimit($event)"
+            (selectedPage)="onSelectPage($event)"
+            [pagination]="pagination"
+        ></ahm-paginator>
     </div>
 </div>
-

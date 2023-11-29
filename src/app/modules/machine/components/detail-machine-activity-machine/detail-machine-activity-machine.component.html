@@ -1,13 +1,17 @@
 <div class="dashboard-header">
     <h5>Activity Machine</h5>
     <div class="dashboard-header-nav">
-        <ahm-datepicker (dateChanged)="onFilterChanged($event)"
-                        [dateFilter]="dateFilter"></ahm-datepicker>
+        <ahm-datepicker
+            (dateChanged)="onFilterChanged($event)"
+            [dateFilter]="dateFilter"
+        ></ahm-datepicker>
         <button class="btn-download" (click)="download()">
-            <img alt="download" src="/assets/icons/download.svg">
+            <img alt="download" src="/assets/icons/download.svg" />
         </button>
     </div>
 </div>
 <div class="dashboard-content">
-    <ahm-chart-detail-machine-activity-machine [data]="activityMachineList"></ahm-chart-detail-machine-activity-machine>
+    <ahm-chart-detail-machine-activity-machine
+        [data]="activityMachineList"
+    ></ahm-chart-detail-machine-activity-machine>
 </div>

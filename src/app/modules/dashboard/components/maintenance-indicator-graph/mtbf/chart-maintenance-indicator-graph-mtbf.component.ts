@@ -1,18 +1,18 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
-import { DashboardGrafikMtbf } from "../../../../../core/models/dashboard.model";
-import { BaseChartDirective, NgChartsModule } from "ng2-charts";
-import { ChartConfiguration, ChartType } from "chart.js";
-import Annotation from "chartjs-plugin-annotation";
-import { notNull } from "../../../../../core/helpers/object.helper";
+import { DashboardGrafikMtbf } from '../../../../../core/models/dashboard.model';
+import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
+import { ChartConfiguration, ChartType } from 'chart.js';
+import Annotation from 'chartjs-plugin-annotation';
+import { notNull } from '../../../../../core/helpers/object.helper';
 
 @Component({
     selector: 'ahm-chart-maintenance-indicator-graph-mtbf',
     standalone: true,
-    imports: [ CommonModule, NgChartsModule ],
+    imports: [CommonModule, NgChartsModule],
     templateUrl: './chart-maintenance-indicator-graph-mtbf.component.html',
-    styleUrls: [ './chart-maintenance-indicator-graph-mtbf.component.scss' ],
+    styleUrls: ['./chart-maintenance-indicator-graph-mtbf.component.scss'],
 })
 export class ChartMaintenanceIndicatorGraphMTBFComponent implements OnChanges {
     public lineChartType: ChartType = 'line';
@@ -23,12 +23,14 @@ export class ChartMaintenanceIndicatorGraphMTBFComponent implements OnChanges {
     @Input() dataType = 'value';
 
     constructor() {
-        Chart.register(Annotation)
+        Chart.register(Annotation);
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data.map((d) => d[this.dataType]);
-        this.lineChartData.labels = this.data.data.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data.data.map(
+            d => d[this.dataType]
+        );
+        this.lineChartData.labels = this.data.data.map(d => d.label);
 
         if (notNull(this.target)) {
             // @ts-ignore
@@ -38,7 +40,7 @@ export class ChartMaintenanceIndicatorGraphMTBFComponent implements OnChanges {
                 yMax: this.target,
                 borderColor: 'rgba(241, 190, 66, 0.7)',
                 borderWidth: 1,
-            }
+            };
         }
         this.chart?.render();
     }
@@ -52,7 +54,7 @@ export class ChartMaintenanceIndicatorGraphMTBFComponent implements OnChanges {
                 fill: 'origin',
             },
         ],
-        labels: []
+        labels: [],
     };
 
     public lineChartOptions: ChartConfiguration['options'] = {
@@ -60,11 +62,11 @@ export class ChartMaintenanceIndicatorGraphMTBFComponent implements OnChanges {
         maintainAspectRatio: false,
         elements: {
             line: {
-                tension: 0.5
-            }
+                tension: 0.5,
+            },
         },
         layout: {
-            padding: { top: 0, left: -4 }
+            padding: { top: 0, left: -4 },
         },
         scales: {
             y: {
@@ -72,33 +74,32 @@ export class ChartMaintenanceIndicatorGraphMTBFComponent implements OnChanges {
                 ticks: {
                     padding: 8,
                     font: {
-                        size: 11
-                    }
+                        size: 11,
+                    },
                 },
                 grid: {
                     color: '#333333',
                 },
                 border: {
-                    dash: [ 4, 2 ]
+                    dash: [4, 2],
                 },
             },
             x: {
                 ticks: {
                     padding: 10,
                     font: {
-                        size: 10
-                    }
+                        size: 10,
+                    },
                 },
-            }
+            },
         },
 
         plugins: {
             datalabels: { display: false },
             legend: { display: false },
             annotation: {
-                annotations: {}
+                annotations: {},
             },
-        }
+        },
     };
-
 }

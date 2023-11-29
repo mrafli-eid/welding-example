@@ -1,10 +1,14 @@
 <div class="dashboard-header">
     <h5>Time Machine Detail</h5>
-    <ahm-datepicker (dateChanged)="onFilterChanged($event)"
-                    [dateFilter]="dateFilter"></ahm-datepicker>
+    <ahm-datepicker
+        (dateChanged)="onFilterChanged($event)"
+        [dateFilter]="dateFilter"
+    ></ahm-datepicker>
 </div>
 <div class="dashboard-content">
-    <ahm-chart-time-machine-detail [data]="chartData"></ahm-chart-time-machine-detail>
+    <ahm-chart-time-machine-detail
+        [data]="chartData"
+    ></ahm-chart-time-machine-detail>
 </div>
 <div class="dashboard-footer">
     <div class="chart-legend">
@@ -13,4 +17,3 @@
         <ahm-dot color="success">Running</ahm-dot>
     </div>
 </div>
-

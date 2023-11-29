@@ -11,12 +11,11 @@ export const RANGE_PRESET_OPTIONS = {
 @Component({
     selector: 'ahm-date-range-preset',
     templateUrl: './date-range-preset.component.html',
-    styleUrls: [ './date-range-preset.component.scss' ],
+    styleUrls: ['./date-range-preset.component.scss'],
     standalone: true,
-    imports: [ CommonModule ],
+    imports: [CommonModule],
 })
 export class DateRangePresetComponent implements OnInit {
-
     rangePresetList: string[] = [
         RANGE_PRESET_OPTIONS.DEFAULT,
         RANGE_PRESET_OPTIONS.DAY,
@@ -26,7 +25,8 @@ export class DateRangePresetComponent implements OnInit {
 
     @Input() selectedRangePreset = '';
     @Input() hideDayPreset = false;
-    @Output('onSelectedRangePreset') onSelectedRangePresetEmitter = new EventEmitter();
+    @Output('onSelectedRangePreset') onSelectedRangePresetEmitter =
+        new EventEmitter();
 
     onSelectedRangePreset(selected: string) {
         this.onSelectedRangePresetEmitter.emit(selected);

@@ -16,7 +16,7 @@ export class UserContainerComponent {
     userManagement: UserListUserManagement;
     isDetail = false;
 
-    @ViewChild (UserListComponent) listComponent: UserListComponent;
+    @ViewChild(UserListComponent) listComponent: UserListComponent;
 
     onDetail(userManagement: UserListUserManagement) {
         this.userManagement = userManagement;

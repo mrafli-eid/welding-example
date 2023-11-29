@@ -28,10 +28,8 @@ export class ChartDetailMachineServoLoadComponent {
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data.map(
-            (d) => d.value
-        );
-        this.lineChartData.labels = this.data.data.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data.data.map(d => d.value);
+        this.lineChartData.labels = this.data.data.map(d => d.label);
 
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.minimum = {
@@ -54,8 +52,10 @@ export class ChartDetailMachineServoLoadComponent {
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.breakdown = {
             type: 'line',
-            yMin: this.data.maximum == null ? this.breakdown : this.data.maximum,
-            yMax: this.data.maximum == null ? this.breakdown : this.data.maximum,
+            yMin:
+                this.data.maximum == null ? this.breakdown : this.data.maximum,
+            yMax:
+                this.data.maximum == null ? this.breakdown : this.data.maximum,
             borderColor: '#DC3545',
             borderWidth: 1,
         };

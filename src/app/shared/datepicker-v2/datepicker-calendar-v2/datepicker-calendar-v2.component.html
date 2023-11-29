@@ -2,28 +2,49 @@
     <div class="calendar-title">{{ label }}</div>
 
     <ng-container [ngSwitch]="calendarType">
-        <ng-container *ngSwitchCase="'day'" [ngTemplateOutlet]="dayCalendar"></ng-container>
-        <ng-container *ngSwitchCase="'month'" [ngTemplateOutlet]="monthCalendar"></ng-container>
-        <ng-container *ngSwitchCase="'year'" [ngTemplateOutlet]="yearCalendar"></ng-container>
+        <ng-container
+            *ngSwitchCase="'day'"
+            [ngTemplateOutlet]="dayCalendar"
+        ></ng-container>
+        <ng-container
+            *ngSwitchCase="'month'"
+            [ngTemplateOutlet]="monthCalendar"
+        ></ng-container>
+        <ng-container
+            *ngSwitchCase="'year'"
+            [ngTemplateOutlet]="yearCalendar"
+        ></ng-container>
     </ng-container>
-
 </div>
 
 <ng-template #dayCalendar>
     <div class="calendar-range">
         <button (click)="prevMonth()">
-            <img src="/assets/icons/left-arrow.svg" alt="left arrow">
+            <img src="/assets/icons/left-arrow.svg" alt="left arrow" />
         </button>
         <div class="calendar-dropdown">
-            <select [ngModel]="showedDate.getMonth()" (ngModelChange)="changeMonth($event)">
-                <option *ngFor="let month of monthList; let index = index" [value]="index">{{month}}</option>
+            <select
+                [ngModel]="showedDate.getMonth()"
+                (ngModelChange)="changeMonth($event)"
+            >
+                <option
+                    *ngFor="let month of monthList; let index = index"
+                    [value]="index"
+                >
+                    {{ month }}
+                </option>
             </select>
-            <select  [ngModel]="showedDate.getFullYear()" (ngModelChange)="changeYear($event)">
-                <option *ngFor="let year of yearList;" [value]="year">{{year}}</option>
+            <select
+                [ngModel]="showedDate.getFullYear()"
+                (ngModelChange)="changeYear($event)"
+            >
+                <option *ngFor="let year of yearList" [value]="year">
+                    {{ year }}
+                </option>
             </select>
         </div>
         <button (click)="nextMonth()">
-            <img src="/assets/icons/right-arrow.svg" alt="left arrow">
+            <img src="/assets/icons/right-arrow.svg" alt="left arrow" />
         </button>
     </div>
 
@@ -38,29 +59,34 @@
             <span>Sa</span>
         </div>
         <div class="calendar-table-row">
-        <span
-            *ngFor="let date of dateRange; let index = index"
-            (click)="selectDate(index)"
-            [class]="date.status">
-            {{date.value}}
-        </span>
+            <span
+                *ngFor="let date of dateRange; let index = index"
+                (click)="selectDate(index)"
+                [class]="date.status"
+            >
+                {{ date.value }}
+            </span>
         </div>
     </div>
 </ng-template>
 
-
 <ng-template #monthCalendar>
     <div class="calendar-range">
         <button (click)="prevYear()">
-            <img src="/assets/icons/left-arrow.svg" alt="left arrow">
+            <img src="/assets/icons/left-arrow.svg" alt="left arrow" />
         </button>
         <div class="calendar-dropdown">
-            <select  [ngModel]="showedDate.getFullYear()" (ngModelChange)="changeYearMonthly($event)">
-                <option *ngFor="let year of yearList;" [value]="year">{{year}}</option>
+            <select
+                [ngModel]="showedDate.getFullYear()"
+                (ngModelChange)="changeYearMonthly($event)"
+            >
+                <option *ngFor="let year of yearList" [value]="year">
+                    {{ year }}
+                </option>
             </select>
         </div>
         <button (click)="nextYear()">
-            <img src="/assets/icons/right-arrow.svg" alt="left arrow">
+            <img src="/assets/icons/right-arrow.svg" alt="left arrow" />
         </button>
     </div>
 
@@ -69,7 +95,8 @@
             <span
                 *ngFor="let month of monthRange; let index = index"
                 [class]="month.status"
-                (click)="selectMonth(index)">
+                (click)="selectMonth(index)"
+            >
                 {{ month.value }}
             </span>
         </div>
@@ -78,16 +105,30 @@
 
 <ng-template #yearCalendar>
     <div class="calendar-range">
-        <button (click)="prevYearYearly()" [class.hidden]="selectedYearIndex === 0">
-            <img src="/assets/icons/left-arrow.svg" alt="left arrow">
+        <button
+            (click)="prevYearYearly()"
+            [class.hidden]="selectedYearIndex === 0"
+        >
+            <img src="/assets/icons/left-arrow.svg" alt="left arrow" />
         </button>
         <div class="calendar-dropdown">
-            <select [ngModel]="selectedYearIndex" (ngModelChange)="changeYearYearly($event)">
-                <option *ngFor="let year of yearlyList;let index = index" [value]="index"> {{ year[0] + '-' + year[year.length-1]}}</option>
+            <select
+                [ngModel]="selectedYearIndex"
+                (ngModelChange)="changeYearYearly($event)"
+            >
+                <option
+                    *ngFor="let year of yearlyList; let index = index"
+                    [value]="index"
+                >
+                    {{ year[0] + '-' + year[year.length - 1] }}
+                </option>
             </select>
         </div>
-        <button (click)="nextYearYearly()"  [class.hidden]="selectedYearIndex === yearlyList.length - 1">
-            <img src="/assets/icons/right-arrow.svg" alt="left arrow">
+        <button
+            (click)="nextYearYearly()"
+            [class.hidden]="selectedYearIndex === yearlyList.length - 1"
+        >
+            <img src="/assets/icons/right-arrow.svg" alt="left arrow" />
         </button>
     </div>
 
@@ -96,7 +137,8 @@
             <span
                 *ngFor="let year of yearRange; let index = index"
                 [class]="year.status"
-                (click)="selectYear(year.value)">
+                (click)="selectYear(year.value)"
+            >
                 {{ year.value }}
             </span>
         </div>

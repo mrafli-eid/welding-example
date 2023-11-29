@@ -4,7 +4,7 @@ import { MasterLine } from '../../../../core/models/master.model';
 @Component({
     selector: 'ahm-master-line-detail',
     templateUrl: './master-line-detail.component.html',
-    styleUrls: [ './master-line-detail.component.scss' ],
+    styleUrls: ['./master-line-detail.component.scss'],
 })
 export class MasterLineDetailComponent {
     @Input() masterData: MasterLine;

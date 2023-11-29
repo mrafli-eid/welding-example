@@ -9,7 +9,7 @@ interface MasterData {
 @Component({
     selector: 'ahm-master-data-list',
     templateUrl: './master-data-list.component.html',
-    styleUrls: [ './master-data-list.component.scss' ],
+    styleUrls: ['./master-data-list.component.scss'],
 })
 export class MasterDataListComponent {
     masterDataList: MasterData[] = [
@@ -37,13 +37,11 @@ export class MasterDataListComponent {
             label: 'register machine line',
             link: '/master/register/machine-line',
         },
-        
     ];
 
-    constructor(private router: Router) {
-    }
+    constructor(private router: Router) {}
 
     navigateTo(link: string): void {
-        this.router.navigate([ link ]);
+        this.router.navigate([link]);
     }
 }

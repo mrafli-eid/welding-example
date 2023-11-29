@@ -1,6 +1,8 @@
-<div (click)="onSelectedRangePreset(preset)"
-     *ngFor="let preset of rangePresetList"
-     [class.selected]="selectedRangePreset == preset"
-     class="btn-preset">
+<div
+    (click)="onSelectedRangePreset(preset)"
+    *ngFor="let preset of rangePresetList"
+    [class.selected]="selectedRangePreset == preset"
+    class="btn-preset"
+>
     <span>{{ preset | titlecase }}</span>
 </div>

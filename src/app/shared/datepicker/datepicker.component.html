@@ -1,6 +1,12 @@
-<div (click)="initDatepicker()" [matMenuTriggerFor]="menu" class="btn-datepicker">
-    <span>{{(selectedRangePreset ? selectedRangePreset : 'date') | titlecase}}</span>
-    <img alt="calendar" src="/assets/icons/calendar.svg">
+<div
+    (click)="initDatepicker()"
+    [matMenuTriggerFor]="menu"
+    class="btn-datepicker"
+>
+    <span>{{
+        (selectedRangePreset ? selectedRangePreset : 'date') | titlecase
+    }}</span>
+    <img alt="calendar" src="/assets/icons/calendar.svg" />
 </div>
 
 <mat-menu #menu="matMenu" class="datepicker-container">
@@ -9,47 +15,56 @@
             (click)="$event.stopPropagation()"
             (onSelectedRangePreset)="onSelectedRangePreset($event)"
             [hideDayPreset]="hideDayPreset"
-            [selectedRangePreset]="tempSelectedRangePreset"></ahm-date-range-preset>
+            [selectedRangePreset]="tempSelectedRangePreset"
+        ></ahm-date-range-preset>
         <div class="vertical-line"></div>
         <div class="calendar-container">
             <div class="calendar-item">
                 <div class="calendar-title">From Date</div>
                 <div class="calendar-timepicker">
-                    <input [(ngModel)]="tempTimeStart" type="time">
+                    <input [(ngModel)]="tempTimeStart" type="time" />
                 </div>
                 <div class="calendar-header">
                     <div class="calendar-header-date">
                         <span>{{ firstMonthDisplay }}</span>
                         <span>{{ firstYearDisplay }}</span>
                     </div>
-                    <img (click)="onClickLeftChevron()"
-                         class="btn-chevron chevron-left"
-                         src="https://cdn.lancar.id/public/fassets/Production-V1/Icons/chevron_left.png"/>
+                    <img
+                        (click)="onClickLeftChevron()"
+                        class="btn-chevron chevron-left"
+                        src="https://cdn.lancar.id/public/fassets/Production-V1/Icons/chevron_left.png"
+                    />
                 </div>
-                <ahm-datepicker-calendar (onDateClickEvent)="onDateClickManagerEvent($event)"
-                                         [date]="firstMonth"
-                                         [selectedEnd]="tempDateEnd"
-                                         [selectedStart]="tempDateStart">
+                <ahm-datepicker-calendar
+                    (onDateClickEvent)="onDateClickManagerEvent($event)"
+                    [date]="firstMonth"
+                    [selectedEnd]="tempDateEnd"
+                    [selectedStart]="tempDateStart"
+                >
                 </ahm-datepicker-calendar>
             </div>
             <div class="calendar-item">
                 <div class="calendar-title">To Date</div>
                 <div class="calendar-timepicker">
-                    <input [(ngModel)]="tempTimeEnd" type="time">
+                    <input [(ngModel)]="tempTimeEnd" type="time" />
                 </div>
                 <div class="calendar-header">
                     <div class="calendar-header-date">
                         <span>{{ secondMonthDisplay }}</span>
                         <span>{{ secondYearDisplay }}</span>
                     </div>
-                    <img (click)="onClickRightChevron()"
-                         class="btn-chevron chevron-right"
-                         src="https://cdn.lancar.id/public/fassets/Production-V1/Icons/chevron_right.png"/>
+                    <img
+                        (click)="onClickRightChevron()"
+                        class="btn-chevron chevron-right"
+                        src="https://cdn.lancar.id/public/fassets/Production-V1/Icons/chevron_right.png"
+                    />
                 </div>
-                <ahm-datepicker-calendar (onDateClickEvent)="onDateClickManagerEvent($event)"
-                                         [date]="secondMonth"
-                                         [selectedEnd]="tempDateEnd"
-                                         [selectedStart]="tempDateStart">
+                <ahm-datepicker-calendar
+                    (onDateClickEvent)="onDateClickManagerEvent($event)"
+                    [date]="secondMonth"
+                    [selectedEnd]="tempDateEnd"
+                    [selectedStart]="tempDateStart"
+                >
                 </ahm-datepicker-calendar>
             </div>
         </div>

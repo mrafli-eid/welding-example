@@ -1,5 +1,5 @@
 :host {
-    background: #2E3034;
+    background: #2e3034;
     border-radius: 3px;
     padding: 6px 4px;
     overflow-y: hidden;
@@ -23,7 +23,7 @@
     display: flex;
     gap: 8px;
     flex-direction: column;
-    border-left: 1px solid #DC3545;
+    border-left: 1px solid #dc3545;
 
     .text-name {
         font-style: normal;
@@ -36,7 +36,7 @@
         font-weight: 300;
         font-size: 8px;
         line-height: 150%;
-        color: #CCCCCC;
+        color: #cccccc;
     }
 
     .text-date {
@@ -44,19 +44,19 @@
         font-weight: 300;
         font-size: 9px;
         line-height: 150%;
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
     &.blue {
-        border-left-color: #0E9CFF;
+        border-left-color: #0e9cff;
     }
 
     &.red {
-        border-left-color: #DC3545;
+        border-left-color: #dc3545;
     }
 
     &.green {
-        border-left-color: #33A02C;
+        border-left-color: #33a02c;
     }
 }
 

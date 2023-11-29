@@ -11,7 +11,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogSuccessLoginComponent } from './dialogs/dialog-success-login/dialog-success-login.component';
 import { DialogErrorLoginComponent } from './dialogs/dialog-error-login/dialog-error-login.component';
 
-
 @NgModule({
     declarations: [
         LoginComponent,
@@ -28,5 +27,4 @@ import { DialogErrorLoginComponent } from './dialogs/dialog-error-login/dialog-e
         MatDialogModule,
     ],
 })
-export class LoginModule {
-}
+export class LoginModule {}

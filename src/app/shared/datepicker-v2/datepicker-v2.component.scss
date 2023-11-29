@@ -5,11 +5,11 @@
     justify-content: center;
     gap: 6px;
     padding: 6px 10px;
-    background: #2D2E32;
+    background: #2d2e32;
     border-radius: 2px;
     line-height: 1em;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
 
     span {
         font-family: 'Poppins';
@@ -21,13 +21,13 @@
 
     &:hover {
         background-color: #242528;
-        transition: .2s;
+        transition: 0.2s;
     }
 }
 
 .datepicker-container {
     padding: 8px;
-    background: #2B2D31;
+    background: #2b2d31;
     border-radius: 4px;
     color: white;
     font-size: 13px;
@@ -49,11 +49,12 @@
         cursor: pointer;
         background-color: #333538;
         padding: 6px 10px;
-        transition: .2s;
+        transition: 0.2s;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
             background-color: #202123;
-            transition: .2s;
+            transition: 0.2s;
         }
 
         &:first-child {
@@ -88,12 +89,13 @@
         cursor: pointer;
         background-color: #333538;
         padding: 6px 10px;
-        transition: .2s;
+        transition: 0.2s;
         border-radius: 4px;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
             background-color: #202123;
-            transition: .2s;
+            transition: 0.2s;
         }
 
         &.disabled {
@@ -134,7 +136,7 @@
         cursor: pointer;
 
         &.btn-apply {
-            background-color: #38A551;
+            background-color: #38a551;
             color: white;
         }
     }

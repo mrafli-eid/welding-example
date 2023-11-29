@@ -4,16 +4,22 @@
     </div>
     <div *ngIf="!isDetail" class="row">
         <div class="col-4">
-            <app-master-robot-upsert (onSubmit)="onFinished()"
-                                    [masterData]="masterRobot"></app-master-robot-upsert>
+            <app-master-robot-upsert
+                (onSubmit)="onFinished()"
+                [masterData]="masterRobot"
+            ></app-master-robot-upsert>
         </div>
         <div class="col-8">
-            <app-master-robot-list (onDetail)="onDetail($event)"
-                                  (onEdit)="onEdit($event)"></app-master-robot-list>
+            <app-master-robot-list
+                (onDetail)="onDetail($event)"
+                (onEdit)="onEdit($event)"
+            ></app-master-robot-list>
         </div>
     </div>
     <div *ngIf="isDetail" class="row">
-        <app-master-robot-detail (onFinished)="onFinished()"
-                                [masterData]="masterRobot"></app-master-robot-detail>
+        <app-master-robot-detail
+            (onFinished)="onFinished()"
+            [masterData]="masterRobot"
+        ></app-master-robot-detail>
     </div>
 </div>

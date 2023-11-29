@@ -4,4 +4,4 @@ export interface notification {
     date_time: string;
     machine_name: string;
     message: string | null;
-};
+}

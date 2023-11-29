@@ -1,4 +1,4 @@
-@import "components/scrollbar";
+@import 'components/scrollbar';
 
 .machine-container {
     font-style: normal;
@@ -16,7 +16,7 @@
 }
 
 .machine {
-    background-color: #9BA5AC;
+    background-color: #9ba5ac;
     width: calc(100% / 6 - 4px);
     height: calc((100% - 10px) / 3);
     padding: 2px;
@@ -31,7 +31,7 @@
 }
 
 .machine-list {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .dashboard-footer {
@@ -52,15 +52,15 @@
 }
 
 .running {
-    background: #33A02C;
+    background: #33a02c;
 }
 
 .stop {
-    background: #DC3545;
+    background: #dc3545;
 }
 
 .idle {
-    background: #F1BE42;
+    background: #f1be42;
 }
 
 .disconnect {
@@ -69,7 +69,6 @@
 
 @keyframes shimmer {
     10% {
-        background-color: #FFFFFF;
+        background-color: #ffffff;
     }
 }
-

@@ -8,62 +8,70 @@ import { MachineService } from 'src/app/core/services/machine.service';
 import { DUMMY_DETAIL_MACHINE_AMPERE } from './detail-machine-ampere';
 import { interval, take } from 'rxjs';
 
-
 @Component({
-  selector: 'ahm-detail-machine-ampere',
-  templateUrl: './detail-machine-ampere.component.html',
-  styleUrls: ['./detail-machine-ampere.component.scss'],
-  host: {
-    'class': 'dashboard-card',
-  },
+    selector: 'ahm-detail-machine-ampere',
+    templateUrl: './detail-machine-ampere.component.html',
+    styleUrls: ['./detail-machine-ampere.component.scss'],
+    host: {
+        class: 'dashboard-card',
+    },
 })
 export class DetailMachineAmpereComponent {
-  untilDestroyed = untilDestroyed();
-  dateFilter: DateFilter = getDefaultDateFilter();
+    untilDestroyed = untilDestroyed();
+    dateFilter: DateFilter = getDefaultDateFilter();
 
-  @Input() machine_name = '';
-  @Input() robot_name = '';
-  
-  setting = 950;
-  minimum = 900;
-  maximum = 1000;
+    @Input() machine_name = '';
+    @Input() robot_name = '';
 
-  ampereList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_AMPERE;
+    setting = 950;
+    minimum = 900;
+    maximum = 1000;
 
-  constructor(private machineService: MachineService,
-    private router: Router) {}
+    ampereList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_AMPERE;
 
-  ngOnChanges() {
-    this.fetchAmpere();
-    interval(1 * 60 * 1000)
-      .pipe(this.untilDestroyed())
-      .subscribe(() => {
+    constructor(
+        private machineService: MachineService,
+        private router: Router
+    ) {}
+
+    ngOnChanges() {
         this.fetchAmpere();
-      });
-  }
+        interval(1 * 60 * 1000)
+            .pipe(this.untilDestroyed())
+            .subscribe(() => {
+                this.fetchAmpere();
+            });
+    }
 
-  fetchAmpere(){
-    this.machineService.getAmpere(this.machine_name, this.robot_name, this.dateFilter)
-    .pipe(take(1))
-    .subscribe({
-      next: (resp) => {
-        if (resp.success) {
-          this.ampereList = resp.data;
-        }
-      }
-    });
-  }
+    fetchAmpere() {
+        this.machineService
+            .getAmpere(this.machine_name, this.robot_name, this.dateFilter)
+            .pipe(take(1))
+            .subscribe({
+                next: resp => {
+                    if (resp.success) {
+                        this.ampereList = resp.data;
+                    }
+                },
+            });
+    }
 
-  onFilterChanged(dateFilter: DateFilter) {
-    this.dateFilter = dateFilter;
-    this.fetchAmpere();
-  }
+    onFilterChanged(dateFilter: DateFilter) {
+        this.dateFilter = dateFilter;
+        this.fetchAmpere();
+    }
 
-  download() {
-    // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
-  }
+    download() {
+        // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+    }
 
-  goToSettings() {
-    this.router.navigate(['/settings'], { queryParams: { name: "Ampere" ,machine: this.machine_name, robot: this.robot_name } });
-  }
+    goToSettings() {
+        this.router.navigate(['/settings'], {
+            queryParams: {
+                name: 'Ampere',
+                machine: this.machine_name,
+                robot: this.robot_name,
+            },
+        });
+    }
 }

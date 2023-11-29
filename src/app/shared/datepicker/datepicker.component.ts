@@ -1,6 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateRangePresetComponent, RANGE_PRESET_OPTIONS } from './date-range-preset/date-range-preset.component';
+import {
+    DateRangePresetComponent,
+    RANGE_PRESET_OPTIONS,
+} from './date-range-preset/date-range-preset.component';
 import * as moment from 'moment';
 import { DatepickerCalendarComponent } from './datepicker-calendar/datepicker-calendar.component';
 import { DatepickerCalendarDateComponent } from './datepicker-calendar-date/datepicker-calendar-date.component';
@@ -11,7 +21,7 @@ import { DateFilter } from '../../core/models/date-filter.model';
 @Component({
     selector: 'ahm-datepicker-legacy',
     templateUrl: './datepicker.component.html',
-    styleUrls: [ './datepicker.component.scss' ],
+    styleUrls: ['./datepicker.component.scss'],
     standalone: true,
     imports: [
         CommonModule,
@@ -147,8 +157,11 @@ export class DatepickerComponent implements OnInit {
             this.tempDateEnd = this.dateFilter.end;
 
             this.firstMonth = this.tempDateStart;
-            if (this.tempDateStart.getFullYear() === this.tempDateEnd.getFullYear() &&
-                this.tempDateStart.getMonth() === this.tempDateEnd.getMonth()) {
+            if (
+                this.tempDateStart.getFullYear() ===
+                    this.tempDateEnd.getFullYear() &&
+                this.tempDateStart.getMonth() === this.tempDateEnd.getMonth()
+            ) {
                 this.secondMonth?.setMonth(this.firstMonth?.getMonth() + 1);
             } else {
                 this.secondMonth = this.tempDateEnd;

@@ -2,17 +2,17 @@ import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
 import { DashboardProductionGraph } from '../../../../core/models/dashboard.model';
-import { BaseChartDirective, NgChartsModule } from "ng2-charts";
-import { ChartConfiguration, ChartType } from "chart.js";
-import Annotation from "chartjs-plugin-annotation";
-import { getGradient } from "../../../../core/helpers/chart.helper";
+import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
+import { ChartConfiguration, ChartType } from 'chart.js';
+import Annotation from 'chartjs-plugin-annotation';
+import { getGradient } from '../../../../core/helpers/chart.helper';
 
 @Component({
     selector: 'ahm-chart-production-graph',
     standalone: true,
-    imports: [ CommonModule, NgChartsModule ],
+    imports: [CommonModule, NgChartsModule],
     templateUrl: './chart-production-graph.component.html',
-    styleUrls: [ './chart-production-graph.component.scss' ],
+    styleUrls: ['./chart-production-graph.component.scss'],
 })
 export class ChartProductionGraphComponent implements OnChanges {
     public lineChartType: ChartType = 'bar';
@@ -21,13 +21,13 @@ export class ChartProductionGraphComponent implements OnChanges {
     @Input() data: DashboardProductionGraph;
 
     constructor() {
-        Chart.register(Annotation)
+        Chart.register(Annotation);
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data.map((d) => d.plan);
-        this.lineChartData.datasets[1].data = this.data.data.map((d) => d.actual);
-        this.lineChartData.labels = this.data.data.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data.data.map(d => d.plan);
+        this.lineChartData.datasets[1].data = this.data.data.map(d => d.actual);
+        this.lineChartData.labels = this.data.data.map(d => d.label);
         this.chart?.render();
     }
 
@@ -37,18 +37,24 @@ export class ChartProductionGraphComponent implements OnChanges {
                 data: [],
                 pointRadius: 4,
                 backgroundColor: function (context) {
-                    return getGradient(context, [ 'rgba(1, 119, 251, 1)', 'rgba(1, 119, 251, .3)' ]);
-                }
+                    return getGradient(context, [
+                        'rgba(1, 119, 251, 1)',
+                        'rgba(1, 119, 251, .3)',
+                    ]);
+                },
             },
             {
                 data: [],
                 pointRadius: 4,
                 backgroundColor: function (context) {
-                    return getGradient(context, [ 'rgba(40, 167, 69, 1)', 'rgba(40, 167, 69, .3)' ]);
-                }
+                    return getGradient(context, [
+                        'rgba(40, 167, 69, 1)',
+                        'rgba(40, 167, 69, .3)',
+                    ]);
+                },
             },
         ],
-        labels: []
+        labels: [],
     };
 
     public lineChartOptions: ChartConfiguration['options'] = {
@@ -56,11 +62,11 @@ export class ChartProductionGraphComponent implements OnChanges {
         maintainAspectRatio: false,
         elements: {
             line: {
-                tension: 0.5
-            }
+                tension: 0.5,
+            },
         },
         layout: {
-            padding: { left: -4, bottom: -5 }
+            padding: { left: -4, bottom: -5 },
         },
         scales: {
             y: {
@@ -72,14 +78,14 @@ export class ChartProductionGraphComponent implements OnChanges {
                     color: '#333333',
                 },
                 border: {
-                    dash: [ 4, 2 ]
+                    dash: [4, 2],
                 },
             },
             x: {
                 ticks: {
                     padding: 10,
                 },
-            }
+            },
         },
 
         plugins: {
@@ -88,13 +94,12 @@ export class ChartProductionGraphComponent implements OnChanges {
                 align: 'top',
                 color: 'white',
                 anchor: 'end',
-                offset: -3
+                offset: -3,
             },
             legend: { display: false },
             annotation: {
-                annotations: {}
+                annotations: {},
             },
-        }
+        },
     };
-
 }

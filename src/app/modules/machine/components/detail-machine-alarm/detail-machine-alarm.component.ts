@@ -4,16 +4,16 @@ import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
 import { MachineService } from '../../../../core/services/machine.service';
 import { interval, take } from 'rxjs';
 import { DetailMachineAlarm } from '../../../../core/models/machine.model';
-import { DUMMY_DETAIL_MACHINE_ALARM } from "./detail-machine-alarm.dummy";
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DUMMY_DETAIL_MACHINE_ALARM } from './detail-machine-alarm.dummy';
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 
 @Component({
     selector: 'ahm-detail-top-machine-alarm',
-  templateUrl: './detail-machine-alarm.component.html',
-  styleUrls: [ './detail-machine-alarm.component.scss' ],
+    templateUrl: './detail-machine-alarm.component.html',
+    styleUrls: ['./detail-machine-alarm.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class DetailMachineAlarmComponent {
@@ -25,8 +25,7 @@ export class DetailMachineAlarmComponent {
     dateFilter: DateFilter = getDefaultDateFilter();
     alarmList: DetailMachineAlarm = DUMMY_DETAIL_MACHINE_ALARM;
 
-    constructor(private machineService: MachineService) {
-    }
+    constructor(private machineService: MachineService) {}
 
     ngOnChanges() {
         this.fetchAlarm();
@@ -38,14 +37,14 @@ export class DetailMachineAlarmComponent {
     }
 
     fetchAlarm() {
-        this.machineService.getAlarm(this.machine_name, this.robot_name,  this.dateFilter)
+        this.machineService
+            .getAlarm(this.machine_name, this.robot_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
-                    this.alarmList = resp.data ;
+                next: resp => {
+                    this.alarmList = resp.data;
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 
@@ -55,7 +54,10 @@ export class DetailMachineAlarmComponent {
     }
 
     download() {
-        this.machineService.downloadAlarm(this.machine_name, this.dateFilter, this.robot_name,);
+        this.machineService.downloadAlarm(
+            this.machine_name,
+            this.dateFilter,
+            this.robot_name
+        );
     }
-
 }

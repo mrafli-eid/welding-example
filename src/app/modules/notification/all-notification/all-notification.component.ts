@@ -17,7 +17,7 @@ export class AllNotificationComponent implements OnInit {
         { label: 'Notification', link: '/notification' },
     ];
     constructor(private notificationService: NotificationService) {}
-    allNotifications:notification[] = NOTIF_DUMMY
+    allNotifications: notification[] = NOTIF_DUMMY;
     queryParams: Partial<Pagination> = {};
     pagination = {
         page_number: 1,
@@ -41,13 +41,13 @@ export class AllNotificationComponent implements OnInit {
         this.getAllNotif();
     }
 
-    updateNotif(idNotif: string){
+    updateNotif(idNotif: string) {
         this.notificationService
             .updateNotification(idNotif)
             .pipe(take(1))
             .subscribe({
                 next: () => {
-                    this.getAllNotif()
+                    this.getAllNotif();
                 },
             });
     }
@@ -58,12 +58,15 @@ export class AllNotificationComponent implements OnInit {
             page_number: this.pagination.page_number,
             page_size: this.pagination.page_size,
         };
-        this.notificationService.getAllNotification(this.queryParams)
+        this.notificationService
+            .getAllNotification(this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {   
-                    this.allNotifications = response.body.data
-                    this.pagination = JSON.parse(response.headers.get('x-pagination'));
+                next: response => {
+                    this.allNotifications = response.body.data;
+                    this.pagination = JSON.parse(
+                        response.headers.get('x-pagination')
+                    );
                 },
             });
     }

@@ -1,15 +1,15 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartData } from 'chart.js/auto';
-import { BaseChartDirective, NgChartsModule } from "ng2-charts";
-import { ChartConfiguration, ChartType } from "chart.js";
+import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
+import { ChartConfiguration, ChartType } from 'chart.js';
 
 @Component({
     selector: 'ahm-chart-time-machine-detail',
     standalone: true,
-    imports: [ CommonModule, NgChartsModule ],
+    imports: [CommonModule, NgChartsModule],
     templateUrl: './chart-time-machine-detail.component.html',
-    styleUrls: [ './chart-time-machine-detail.component.scss' ],
+    styleUrls: ['./chart-time-machine-detail.component.scss'],
 })
 export class ChartTimeMachineDetailComponent implements OnChanges {
     @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
@@ -19,30 +19,31 @@ export class ChartTimeMachineDetailComponent implements OnChanges {
 
     ngOnChanges(): void {
         this.pieChartData.datasets[0].data = this.data.map(row => row.value);
-        this.pieChartData.datasets[0].backgroundColor = this.data.map(row => row.color);
+        this.pieChartData.datasets[0].backgroundColor = this.data.map(
+            row => row.color
+        );
 
         this.chart?.render();
     }
-
 
     public pieChartData: ChartData<'pie', number[], string | string[]> = {
         datasets: [
             {
                 data: [],
                 backgroundColor: [],
-                borderColor: 'white'
-            }
-        ]
+                borderColor: 'white',
+            },
+        ],
     };
 
     public pieChartOptions: ChartConfiguration['options'] = {
         responsive: true,
         maintainAspectRatio: true,
         layout: {
-            padding: { top: 0 }
+            padding: { top: 0 },
         },
         hover: {
-            mode: null
+            mode: null,
         },
         plugins: {
             legend: {
@@ -64,7 +65,6 @@ export class ChartTimeMachineDetailComponent implements OnChanges {
                     return value + '%';
                 },
             },
-        }
+        },
     };
-
 }

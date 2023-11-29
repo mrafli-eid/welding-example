@@ -31,8 +31,8 @@ export class DashboardService {
                 `${environment.API_URL}/api/machine/get-list-machine`
             )
             .pipe(
-                map((resp) => {
-                    resp.data.forEach((m) => {
+                map(resp => {
+                    resp.data.forEach(m => {
                         m.value = -1;
                     });
                     return resp;

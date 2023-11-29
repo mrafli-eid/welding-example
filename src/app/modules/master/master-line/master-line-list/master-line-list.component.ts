@@ -11,7 +11,7 @@ import { MasterDataDeleteComponent } from '../../dialogs/master-data-delete/mast
 @Component({
     selector: 'ahm-master-line-list',
     templateUrl: './master-line-list.component.html',
-    styleUrls: [ './master-line-list.component.scss' ],
+    styleUrls: ['./master-line-list.component.scss'],
 })
 export class MasterLineListComponent {
     masterList: MasterLine[] = [
@@ -43,9 +43,10 @@ export class MasterLineListComponent {
     @Output() onEdit = new EventEmitter<MasterLine>();
     @Output() onDetail = new EventEmitter<MasterLine>();
 
-    constructor(private masterService: MasterService,
-                private matDialog: MatDialog) {
-    }
+    constructor(
+        private masterService: MasterService,
+        private matDialog: MatDialog
+    ) {}
 
     ngOnInit() {
         this.addSearchListener();
@@ -74,26 +75,26 @@ export class MasterLineListComponent {
             page_size: this.pagination.page_size,
             page_number: this.pagination.page_number,
         };
-        this.masterService.getLineList(this.queryParams)
+        this.masterService
+            .getLineList(this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
-                    this.pagination = JSON.parse(response.headers.get('x-pagination'));
+                next: response => {
+                    this.pagination = JSON.parse(
+                        response.headers.get('x-pagination')
+                    );
                     this.masterList = response.body.data || [];
                 },
             });
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.pagination.page_number = 1;
-                this.getMasterList();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.pagination.page_number = 1;
+            this.getMasterList();
+        });
     }
-
 
     sortData(sort: Sort) {
         const order_by = sort.active + ' ' + sort.direction;
@@ -110,9 +111,10 @@ export class MasterLineListComponent {
             data: masterLine.name,
         });
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
-                this.masterService.deleteLine(masterLine.id)
+                this.masterService
+                    .deleteLine(masterLine.id)
                     .pipe(take(1))
                     .subscribe(() => {
                         this.pagination.page_number = 1;
@@ -129,5 +131,4 @@ export class MasterLineListComponent {
     download() {
         this.masterService.exportExcelMachine();
     }
-
 }

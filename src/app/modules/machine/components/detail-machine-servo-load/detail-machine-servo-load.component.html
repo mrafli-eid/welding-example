@@ -1,21 +1,25 @@
 <div class="dashboard-header">
     <h5>Servo Load (A)</h5>
     <div class="dashboard-header-nav">
-        <ahm-datepicker (dateChanged)="onFilterChanged($event)"
-                        [dateFilter]="dateFilter"></ahm-datepicker>
+        <ahm-datepicker
+            (dateChanged)="onFilterChanged($event)"
+            [dateFilter]="dateFilter"
+        ></ahm-datepicker>
         <button class="btn-settings" (click)="goToSettings()">
-            <img alt="settings" src="/assets/icons/setting.svg">
+            <img alt="settings" src="/assets/icons/setting.svg" />
         </button>
         <button class="btn-download" (click)="download()">
-            <img alt="download" src="/assets/icons/download.svg">
+            <img alt="download" src="/assets/icons/download.svg" />
         </button>
     </div>
 </div>
 <div class="dashboard-content">
-    <ahm-chart-detail-machine-servo-load [data]="servoLoadList"
-                                               [standard]="standard"
-                                               [warning]="warning"
-                                               [breakdown]="breakdown"></ahm-chart-detail-machine-servo-load>
+    <ahm-chart-detail-machine-servo-load
+        [data]="servoLoadList"
+        [standard]="standard"
+        [warning]="warning"
+        [breakdown]="breakdown"
+    ></ahm-chart-detail-machine-servo-load>
 </div>
 <div class="dashboard-footer">
     <div class="chart-legend">

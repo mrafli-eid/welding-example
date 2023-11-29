@@ -1,23 +1,23 @@
 <div>
     <span>Rows per page: </span>
     <select (ngModelChange)="emitDataLimit($event)" [ngModel]="limit">
-        <option *ngFor="let l of limitList" [value]="l">{{l}}</option>
+        <option *ngFor="let l of limitList" [value]="l">{{ l }}</option>
     </select>
 </div>
 <div class="paginator-container">
-    <span (click)="emitDataPage((pagination.page_number) - 1)"
-          class="arrow">
+    <span (click)="emitDataPage(pagination.page_number - 1)" class="arrow">
         <
     </span>
 
-    <span (click)="emitDataPage(p.value)"
-          *ngFor="let p of paginationDisplay"
-          [class.active]="p.value === pagination?.page_number"
-          class="number">
-        {{p.text}}
+    <span
+        (click)="emitDataPage(p.value)"
+        *ngFor="let p of paginationDisplay"
+        [class.active]="p.value === pagination?.page_number"
+        class="number"
+    >
+        {{ p.text }}
     </span>
-    <span (click)="emitDataPage((pagination.page_number) + 1)"
-          class="arrow">
+    <span (click)="emitDataPage(pagination.page_number + 1)" class="arrow">
         >
     </span>
 </div>

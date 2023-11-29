@@ -4,16 +4,22 @@
     </div>
     <div *ngIf="!isDetail" class="row">
         <div class="col-4">
-            <ahm-master-machine-upsert (onSubmit)="onFinished()"
-                                       [masterData]="masterMachine"></ahm-master-machine-upsert>
+            <ahm-master-machine-upsert
+                (onSubmit)="onFinished()"
+                [masterData]="masterMachine"
+            ></ahm-master-machine-upsert>
         </div>
         <div class="col-8">
-            <ahm-master-machine-list (onDetail)="onDetail($event)"
-                                     (onEdit)="onEdit($event)"></ahm-master-machine-list>
+            <ahm-master-machine-list
+                (onDetail)="onDetail($event)"
+                (onEdit)="onEdit($event)"
+            ></ahm-master-machine-list>
         </div>
     </div>
     <div *ngIf="isDetail" class="row">
-        <ahm-master-machine-detail (onFinished)="onFinished()"
-                                   [masterData]="masterMachine"></ahm-master-machine-detail>
+        <ahm-master-machine-detail
+            (onFinished)="onFinished()"
+            [masterData]="masterMachine"
+        ></ahm-master-machine-detail>
     </div>
 </div>

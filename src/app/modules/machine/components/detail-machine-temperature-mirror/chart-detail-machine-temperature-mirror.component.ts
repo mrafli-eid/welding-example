@@ -29,12 +29,12 @@ export class ChartDetailMachineTemperatureMirrorComponent implements OnChanges {
 
     ngOnChanges() {
         this.lineChartData.datasets[0].data = this.data.data_tamp_one.map(
-            (d) => d.value
+            d => d.value
         );
         this.lineChartData.datasets[1].data = this.data.data_tamp_two.map(
-            (d) => d.value
+            d => d.value
         );
-        this.lineChartData.labels = this.data.data_label.map((d) => d.label);
+        this.lineChartData.labels = this.data.data_label.map(d => d.label);
 
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.minimum = {

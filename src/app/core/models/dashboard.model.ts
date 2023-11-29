@@ -8,28 +8,32 @@ export interface TimeMachineDetail {
 
 export interface DashboardMachineActivity {
     label: string[];
-    machine_list: { machine_name: string; data: number[]; backgroundColor?: string[]; }[];
+    machine_list: {
+        machine_name: string;
+        data: number[];
+        backgroundColor?: string[];
+    }[];
 }
 
 export interface DashboardOilLevel {
     machine_name: string;
     subject_name: string;
     vid: string;
-    data: { value: number; label: string; date_time: string; }[];
+    data: { value: number; label: string; date_time: string }[];
 }
 
 export interface DashboardCycleTime {
     machine_name: string;
     subject_name: string;
     vid: string;
-    data: { value: number; label: string; date_time: string; }[];
+    data: { value: number; label: string; date_time: string }[];
 }
 
 export interface DashboardProductionGraph {
     machine_name: string;
     subject_name: string;
     vid: string;
-    data: { actual: number; plan: number; label: string; date_time: string; }[]
+    data: { actual: number; plan: number; label: string; date_time: string }[];
 }
 
 export interface DashboardGrafikMtbf {
@@ -37,7 +41,7 @@ export interface DashboardGrafikMtbf {
     machine_name: string;
     data: {
         value: number;
-        label: string
+        label: string;
         date_time: string;
     }[];
 }
@@ -47,7 +51,7 @@ export interface DashboardGrafikMttr {
     machine_name: string;
     data: {
         value: number;
-        label: string
+        label: string;
         date_time: string;
     }[];
 }
@@ -74,4 +78,3 @@ export interface DashboardMtbf {
     label: string;
     date_time: string;
 }
-

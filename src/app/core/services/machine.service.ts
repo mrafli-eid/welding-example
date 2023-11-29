@@ -72,41 +72,45 @@ export class MachineService {
         }
     }
 
-    downloadAlarm(machine_name: string, params: Partial<DateFilter>, robot_name?: string) {
-        if(machine_name == 'BORRING' || machine_name == 'LASER'){
+    downloadAlarm(
+        machine_name: string,
+        params: Partial<DateFilter>,
+        robot_name?: string
+    ) {
+        if (machine_name == 'BORRING' || machine_name == 'LASER') {
             const queryParams = {
                 machine_name: machine_name,
                 ...params,
             };
 
-            this.http.get(`${this.baseUrl}/get-download-excel-alarm-all`, {
-                responseType: 'arraybuffer',
-                params: queryParams,
-                observe: 'response'
-            })
-            .subscribe((response) => {
-                const fileName = response.headers.get('x-download');
-                downLoadFile(response.body, fileName);
-            });
-            
-        }else {
+            this.http
+                .get(`${this.baseUrl}/get-download-excel-alarm-all`, {
+                    responseType: 'arraybuffer',
+                    params: queryParams,
+                    observe: 'response',
+                })
+                .subscribe(response => {
+                    const fileName = response.headers.get('x-download');
+                    downLoadFile(response.body, fileName);
+                });
+        } else {
             const queryParams = {
                 machine_name: machine_name,
                 robot_name: robot_name,
                 ...params,
             };
 
-            this.http.get(`${this.baseUrl}/get-download-excel-alarm-all`, {
-                responseType: 'arraybuffer',
-                params: queryParams,
-                observe: 'response'
-            })
-            .subscribe((response) => {
-                const fileName = response.headers.get('x-download');
-                downLoadFile(response.body, fileName);
-            });
+            this.http
+                .get(`${this.baseUrl}/get-download-excel-alarm-all`, {
+                    responseType: 'arraybuffer',
+                    params: queryParams,
+                    observe: 'response',
+                })
+                .subscribe(response => {
+                    const fileName = response.headers.get('x-download');
+                    downLoadFile(response.body, fileName);
+                });
         }
-        
     }
 
     /** Activity Machine **/
@@ -139,9 +143,9 @@ export class MachineService {
             .get(`${this.baseUrl}/get-download-excel-activity-machine-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
                 downLoadFile(response.body, fileName);
             });
@@ -180,38 +184,43 @@ export class MachineService {
         }
     }
 
-    downloadHistoryAlarm(machine_name: string, robot_name: string, params: Partial<DetailMachineHistoryAlarmParams>) {
-        if(machine_name == 'BORRING' || machine_name == 'LASER'){
+    downloadHistoryAlarm(
+        machine_name: string,
+        robot_name: string,
+        params: Partial<DetailMachineHistoryAlarmParams>
+    ) {
+        if (machine_name == 'BORRING' || machine_name == 'LASER') {
             const queryParams = {
                 machine_name: machine_name,
                 ...params,
             };
 
-            this.http.get(`${this.baseUrl}/get-download-excel-history-alarm-all`, {
-                responseType: 'arraybuffer',
-                params: queryParams,
-                observe: 'response'
-            })
-            .subscribe((response) => {
-                const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
-            });
-        }else{
+            this.http
+                .get(`${this.baseUrl}/get-download-excel-history-alarm-all`, {
+                    responseType: 'arraybuffer',
+                    params: queryParams,
+                    observe: 'response',
+                })
+                .subscribe(response => {
+                    const fileName = response.headers.get('x-download');
+                    downLoadFile(response.body, fileName);
+                });
+        } else {
             const queryParams = {
                 machine_name: machine_name,
                 robot_name: robot_name,
                 ...params,
             };
-    
+
             this.http
                 .get(`${this.baseUrl}/get-download-excel-history-alarm-all`, {
                     responseType: 'arraybuffer',
                     params: queryParams,
-                    observe: 'response'
+                    observe: 'response',
                 })
-                .subscribe((response) => {
+                .subscribe(response => {
                     const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
+                    downLoadFile(response.body, fileName);
                 });
         }
     }
@@ -246,9 +255,9 @@ export class MachineService {
             .get(`${this.baseUrl}/get-download-excel-production-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
                 console.log(fileName);
                 downLoadFile(response.body, fileName);
@@ -288,40 +297,44 @@ export class MachineService {
         }
     }
 
-    downloadRunningHour(machine_name: string, robot_name: string, params?: Partial<DateFilter>) {
-        if(machine_name == 'BORRING'){
+    downloadRunningHour(
+        machine_name: string,
+        robot_name: string,
+        params?: Partial<DateFilter>
+    ) {
+        if (machine_name == 'BORRING') {
             const queryParams = {
                 machine_name: machine_name,
                 ...params,
             };
 
-            this.http.get(`${this.baseUrl}/get-download-excel-running-hours-all`, {
-                responseType: 'arraybuffer',
-                params: queryParams,
-                observe: 'response'
-            })
-            .subscribe((response) => {
-                const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
-            });
-        }else{
+            this.http
+                .get(`${this.baseUrl}/get-download-excel-running-hours-all`, {
+                    responseType: 'arraybuffer',
+                    params: queryParams,
+                    observe: 'response',
+                })
+                .subscribe(response => {
+                    const fileName = response.headers.get('x-download');
+                    downLoadFile(response.body, fileName);
+                });
+        } else {
             const queryParams = {
                 machine_name: machine_name,
                 robot_name: robot_name,
                 ...params,
             };
-    
+
             this.http
                 .get(`${this.baseUrl}/get-download-excel-running-hour-all`, {
                     responseType: 'arraybuffer',
                     params: queryParams,
-                    observe: 'response'
+                    observe: 'response',
                 })
-                .subscribe((response) => {
+                .subscribe(response => {
                     const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
+                    downLoadFile(response.body, fileName);
                 });
-
         }
     }
 
@@ -347,7 +360,11 @@ export class MachineService {
         );
     }
 
-    downloadVoltage(machine_name: string, robot_name: string, params: Partial<DateFilter>) {
+    downloadVoltage(
+        machine_name: string,
+        robot_name: string,
+        params: Partial<DateFilter>
+    ) {
         const queryParams = {
             machine_name: machine_name,
             robot_name: robot_name,
@@ -358,11 +375,11 @@ export class MachineService {
             .get(`${this.baseUrl}/get-download-excel-voltage-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
+                downLoadFile(response.body, fileName);
             });
     }
 
@@ -381,7 +398,7 @@ export class MachineService {
         machine_name: string,
         robot_name: string,
         params?: Partial<DateFilter>
-    ){
+    ) {
         const queryParams = {
             machine_name: machine_name,
             robot_name: robot_name,
@@ -392,9 +409,9 @@ export class MachineService {
             .get(`${this.baseUrl}/get-download-excel-servo-load-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
                 console.log(fileName);
                 downLoadFile(response.body, fileName);
@@ -410,7 +427,10 @@ export class MachineService {
         );
     }
 
-    downloadTemperatureMirror(machine_name: string, params?: Partial<DateFilter>) {
+    downloadTemperatureMirror(
+        machine_name: string,
+        params?: Partial<DateFilter>
+    ) {
         const queryParams = {
             machine_name: machine_name,
             ...params,
@@ -420,11 +440,11 @@ export class MachineService {
             .get(`${this.baseUrl}/get-download-excel-temperature-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
+                downLoadFile(response.body, fileName);
             });
     }
 
@@ -445,11 +465,11 @@ export class MachineService {
             .get(`${this.baseUrl}/get-download-excel-dew-point-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
-            downLoadFile(response.body, fileName);
+                downLoadFile(response.body, fileName);
             });
     }
 
@@ -466,12 +486,13 @@ export class MachineService {
             ...params,
         };
 
-        this.http.get(`${this.baseUrl}/get-download-excel-rurge-cell-all`, {
+        this.http
+            .get(`${this.baseUrl}/get-download-excel-rurge-cell-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
                 downLoadFile(response.body, fileName);
             });
@@ -494,9 +515,9 @@ export class MachineService {
             .get(`${this.baseUrl}/get-download-excel-rpm-spindle-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
                 downLoadFile(response.body, fileName);
             });
@@ -520,9 +541,9 @@ export class MachineService {
             .get(`${this.baseUrl}/get-download-excel-sanso-matic-all`, {
                 responseType: 'arraybuffer',
                 params: queryParams,
-                observe: 'response'
+                observe: 'response',
             })
-            .subscribe((response) => {
+            .subscribe(response => {
                 const fileName = response.headers.get('x-download');
                 downLoadFile(response.body, fileName);
             });

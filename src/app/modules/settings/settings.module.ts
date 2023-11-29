@@ -5,21 +5,20 @@ import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingListComponent } from './setting-list/setting-list.component';
 import { SettingContainerComponent } from './setting-container/setting-container.component';
 import { SettingUpsertComponent } from './setting-upsert/setting-upsert.component';
-import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatSortModule } from "@angular/material/sort";
-import { PaginatorComponent } from "../../shared/paginator/paginator.component";
-import { MatSelectModule } from "@angular/material/select";
-import { MatInputModule } from "@angular/material/input";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { StringPipe } from "../../shared/pipes/string.pipe";
-
+import { BreadcrumbsComponent } from '../../shared/breadcrumbs/breadcrumbs.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
+import { PaginatorComponent } from '../../shared/paginator/paginator.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { StringPipe } from '../../shared/pipes/string.pipe';
 
 @NgModule({
     declarations: [
         SettingListComponent,
         SettingContainerComponent,
-        SettingUpsertComponent
+        SettingUpsertComponent,
     ],
     imports: [
         CommonModule,
@@ -36,6 +35,4 @@ import { StringPipe } from "../../shared/pipes/string.pipe";
         StringPipe,
     ],
 })
-export class SettingsModule {
-    
-}
+export class SettingsModule {}

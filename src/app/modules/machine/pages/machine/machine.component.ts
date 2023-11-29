@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DUMMY_MACHINE_LIST } from '../../../dashboard/components/layout-machine-area/layout-machine-area.dummy';
 import { Machine } from '../../../../core/models/layout-machine.model';
@@ -8,7 +15,7 @@ import { take } from 'rxjs';
 @Component({
     selector: 'ahm-machine',
     templateUrl: './machine.component.html',
-    styleUrls: [ './machine.component.scss' ],
+    styleUrls: ['./machine.component.scss'],
 })
 export class MachineComponent implements OnInit {
     machine_name = '';
@@ -22,52 +29,64 @@ export class MachineComponent implements OnInit {
 
     robot_name = 'MASTER' || 'SLAVE';
 
-    constructor(private activatedRoute: ActivatedRoute, private dashboardService: DashboardService){
-        this.machine_name = this.activatedRoute.snapshot.paramMap.get('name') || '';
-        this.robot_name = this.activatedRoute.snapshot.paramMap.get('robot') || '';
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private dashboardService: DashboardService
+    ) {
+        this.machine_name =
+            this.activatedRoute.snapshot.paramMap.get('name') || '';
+        this.robot_name =
+            this.activatedRoute.snapshot.paramMap.get('robot') || '';
     }
 
-  ngOnInit() {
-    this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
-    this.dashboardService.getMachineList()
-      .pipe(take(1))
-      .subscribe((resp) => {
-        this.machineList = resp.data;
-        this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
-      });
-    this.showComponent(this.machine_name);
+    ngOnInit() {
+        this.machine = this.machineList.find(
+            machine => machine.name === this.machine_name
+        );
+        this.dashboardService
+            .getMachineList()
+            .pipe(take(1))
+            .subscribe(resp => {
+                this.machineList = resp.data;
+                this.machine = this.machineList.find(
+                    machine => machine.name === this.machine_name
+                );
+            });
+        this.showComponent(this.machine_name);
 
-    if (this.machine_name === "BORRING" || this.machine_name === "LASER") {
-      this.activatedRoute.snapshot.paramMap.has('');
+        if (this.machine_name === 'BORRING' || this.machine_name === 'LASER') {
+            this.activatedRoute.snapshot.paramMap.has('');
+        }
     }
-  }
 
-  changeMachineName(name: string) {
-    this.machine_name = name;
-    this.showComponent(this.machine_name);
-    this.machine = this.machineList.find((machine) => machine.name === this.machine_name);
-  }
-
-  showComponent(machine_name: string) {
-    if (this.machine_name == 'BORRING') {
-      this.imageDetailMachine = "/assets/images/detail-machine-boring.png";
-    } else if (this.machine_name == 'LASER'){
-      this.imageDetailMachine = "/assets/images/detail-machine-laser.png";
-    }else{
-      this.imageDetailMachine = "/assets/images/detail-machine.png";
+    changeMachineName(name: string) {
+        this.machine_name = name;
+        this.showComponent(this.machine_name);
+        this.machine = this.machineList.find(
+            machine => machine.name === this.machine_name
+        );
     }
-  }
 
-  reloadPage() {
-    window.location.reload();
-  }
+    showComponent(machine_name: string) {
+        if (this.machine_name == 'BORRING') {
+            this.imageDetailMachine =
+                '/assets/images/detail-machine-boring.png';
+        } else if (this.machine_name == 'LASER') {
+            this.imageDetailMachine = '/assets/images/detail-machine-laser.png';
+        } else {
+            this.imageDetailMachine = '/assets/images/detail-machine.png';
+        }
+    }
 
-  changeRobotToSlave() {
-    window.location.href = '/machine/' + this.machine_name + '/SLAVE';
-  }
+    reloadPage() {
+        window.location.reload();
+    }
 
-  changeRobotToMaster() {
-    window.location.href = '/machine/' + this.machine_name + '/MASTER';
-  }
-    
+    changeRobotToSlave() {
+        window.location.href = '/machine/' + this.machine_name + '/SLAVE';
+    }
+
+    changeRobotToMaster() {
+        window.location.href = '/machine/' + this.machine_name + '/MASTER';
+    }
 }

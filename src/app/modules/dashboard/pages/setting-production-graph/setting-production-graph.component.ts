@@ -70,13 +70,11 @@ export class SettingProductionGraphComponent {
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.pagination.page_number = 1;
-                this.fetchList();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.pagination.page_number = 1;
+            this.fetchList();
+        });
     }
 
     fetchList() {
@@ -89,7 +87,7 @@ export class SettingProductionGraphComponent {
             .getProductionPlanList(this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
+                next: response => {
                     this.pagination = JSON.parse(
                         response.headers.get('x-pagination')
                     );
@@ -103,7 +101,7 @@ export class SettingProductionGraphComponent {
             DialogAddProductionGraphComponent
         );
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
                 this.pagination.page_number = 1;
                 this.fetchList();
@@ -119,7 +117,7 @@ export class SettingProductionGraphComponent {
             }
         );
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
                 this.pagination.page_number = 1;
                 this.fetchList();
@@ -132,7 +130,7 @@ export class SettingProductionGraphComponent {
             data: `Plan ${data.plan}`,
         });
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
                 this.dashboardService
                     .deleteProductionPlan(data.id)

@@ -6,7 +6,7 @@ import { MasterSubjectListComponent } from '../master-subject-list/master-subjec
 @Component({
     selector: 'ahm-master-subject-container',
     templateUrl: './master-subject-container.component.html',
-    styleUrls: [ './master-subject-container.component.scss' ],
+    styleUrls: ['./master-subject-container.component.scss'],
 })
 export class MasterSubjectContainerComponent {
     breadcrumbs: Breadcrumb[] = [
@@ -16,12 +16,12 @@ export class MasterSubjectContainerComponent {
     masterSubject: MasterSubject;
     isDetail = false;
 
-    @ViewChild (MasterSubjectListComponent) listComponent: MasterSubjectListComponent;
+    @ViewChild(MasterSubjectListComponent)
+    listComponent: MasterSubjectListComponent;
 
     onDetail(masterSubject: MasterSubject) {
         this.masterSubject = masterSubject;
         this.isDetail = true;
-
     }
 
     onEdit(masterSubject: MasterSubject) {
@@ -33,5 +33,4 @@ export class MasterSubjectContainerComponent {
         this.isDetail = false;
         this.listComponent.refreshData();
     }
-
 }

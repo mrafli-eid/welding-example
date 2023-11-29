@@ -12,10 +12,11 @@ export interface MasterRobot {
     description: string;
     created_at: string;
     updated_at: string;
-}[]
+}
+[];
 
 export interface MasterSubject {
-    selected?: boolean;    
+    selected?: boolean;
     id: string;
     name: string;
     vid: string;
@@ -24,7 +25,7 @@ export interface MasterSubject {
 
 export interface registerMachineList {
     machine_id: string;
-    subject_id: string[]
+    subject_id: string[];
 }
 
 export interface MasterMachineRobot {

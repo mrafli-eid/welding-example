@@ -25,9 +25,9 @@ export class MasterMachineUpsertComponent implements OnChanges {
 
     constructor(private masterService: MasterService) {}
 
-        ngOnChanges() {
-            this.formGroup.patchValue(this.masterData);
-        }
+    ngOnChanges() {
+        this.formGroup.patchValue(this.masterData);
+    }
 
     submit() {
         this.formGroup.markAllAsTouched();

@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as moment from 'moment';
 import { FormsModule } from '@angular/forms';
@@ -6,12 +12,9 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'ahm-datepicker-calendar-v2',
     templateUrl: './datepicker-calendar-v2.component.html',
-    styleUrls: [ './datepicker-calendar-v2.component.scss' ],
+    styleUrls: ['./datepicker-calendar-v2.component.scss'],
     standalone: true,
-    imports: [
-        CommonModule,
-        FormsModule,
-    ]
+    imports: [CommonModule, FormsModule],
 })
 export class DatepickerCalendarV2Component implements OnChanges {
     @Input() label = 'Start';
@@ -26,13 +29,24 @@ export class DatepickerCalendarV2Component implements OnChanges {
 
     @Input() calendarType: string = 'day';
 
-
     yearList = [];
     dateRange: any[] = [];
 
-    monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    monthList = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+    ];
     monthRange = [];
-
 
     yearlyList;
     yearRange = [];
@@ -42,8 +56,18 @@ export class DatepickerCalendarV2Component implements OnChanges {
         this.yearlyList = [];
         const yearEnd = new Date().getFullYear() + 4;
         const yearStart = yearEnd - 35;
-        for (let i = yearStart; i <= yearEnd; i+=9) {
-            const item = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8];
+        for (let i = yearStart; i <= yearEnd; i += 9) {
+            const item = [
+                i,
+                i + 1,
+                i + 2,
+                i + 3,
+                i + 4,
+                i + 5,
+                i + 6,
+                i + 7,
+                i + 8,
+            ];
             this.yearlyList.push(item);
         }
     }
@@ -66,7 +90,7 @@ export class DatepickerCalendarV2Component implements OnChanges {
                     if (i !== -1) {
                         this.selectedYearIndex = index;
                     }
-                })
+                });
                 this.generateYear();
                 break;
         }
@@ -83,69 +107,77 @@ export class DatepickerCalendarV2Component implements OnChanges {
     }
 
     generateDate() {
-        if (!this.showedDate) { return; }
+        if (!this.showedDate) {
+            return;
+        }
         this.dateRange = [];
-        let year= this.showedDate.getFullYear();
-        let month= this.showedDate.getMonth();
+        let year = this.showedDate.getFullYear();
+        let month = this.showedDate.getMonth();
 
-        let dayone=new Date(year, month, 1).getDay();
-        let lastdate=new Date(year, month + 1, 0).getDate();
-        let dayend=new Date(year, month, lastdate).getDay();
-        let monthlastdate=new Date(year, month, 0).getDate();
+        let dayone = new Date(year, month, 1).getDay();
+        let lastdate = new Date(year, month + 1, 0).getDate();
+        let dayend = new Date(year, month, lastdate).getDay();
+        let monthlastdate = new Date(year, month, 0).getDate();
 
-        for (let i=dayone; i > 0; i--) {
+        for (let i = dayone; i > 0; i--) {
             this.dateRange.push({
                 value: monthlastdate - i + 1,
-                status: 'disabled'
+                status: 'disabled',
             });
         }
 
-
-        for (let i=1; i <=lastdate; i++) {
-            let isToday= i === this.date.getDate() && month === this.date.getMonth() && year=== this.date.getFullYear();
+        for (let i = 1; i <= lastdate; i++) {
+            let isToday =
+                i === this.date.getDate() &&
+                month === this.date.getMonth() &&
+                year === this.date.getFullYear();
             const date = moment(this.showedDate).set('date', i);
             if (isToday) {
                 this.dateRange.push({
                     value: i,
-                    status: 'active'
+                    status: 'active',
                 });
-            }
-            else if (this.startDate && moment(date).isBefore(this.startDate)) {
+            } else if (
+                this.startDate &&
+                moment(date).isBefore(this.startDate)
+            ) {
                 this.dateRange.push({
                     value: i,
-                    status: 'disabled'
+                    status: 'disabled',
                 });
-            }
-            else if (this.endDate && moment(date).isAfter(this.endDate)) {
+            } else if (this.endDate && moment(date).isAfter(this.endDate)) {
                 this.dateRange.push({
                     value: i,
-                    status: 'disabled'
+                    status: 'disabled',
                 });
-            }
-            else if (this.startDate && moment(date).isBetween(this.startDate, this.date)) {
+            } else if (
+                this.startDate &&
+                moment(date).isBetween(this.startDate, this.date)
+            ) {
                 this.dateRange.push({
                     value: i,
-                    status: 'in-range'
+                    status: 'in-range',
                 });
-            }
-            else if (this.endDate && moment(date).isBetween(this.date, this.endDate)) {
+            } else if (
+                this.endDate &&
+                moment(date).isBetween(this.date, this.endDate)
+            ) {
                 this.dateRange.push({
                     value: i,
-                    status: 'in-range'
+                    status: 'in-range',
                 });
-            }
-            else {
+            } else {
                 this.dateRange.push({
                     value: i,
-                    status: ''
+                    status: '',
                 });
             }
         }
 
-        for (let i= dayend; i < 6; i++) {
+        for (let i = dayend; i < 6; i++) {
             this.dateRange.push({
                 value: i - dayend + 1,
-                status: 'disabled'
+                status: 'disabled',
             });
         }
         this.generateYearList();
@@ -154,11 +186,11 @@ export class DatepickerCalendarV2Component implements OnChanges {
     generateYearList() {
         this.yearList = [];
         const year = this.date.getFullYear();
-        for (let i = 1 ; i <= 6; i++) {
+        for (let i = 1; i <= 6; i++) {
             this.yearList.push(year + 6 - i);
         }
         this.yearList.push(year);
-        for (let i = 1 ; i <= 6; i++) {
+        for (let i = 1; i <= 6; i++) {
             this.yearList.push(year - i);
         }
     }
@@ -186,7 +218,6 @@ export class DatepickerCalendarV2Component implements OnChanges {
         this.onSelectedDate.emit(selectedDate);
     }
 
-
     nextYear() {
         this.showedDate = moment(this.showedDate).add(1, 'year').toDate();
         this.generateMonth();
@@ -201,7 +232,7 @@ export class DatepickerCalendarV2Component implements OnChanges {
         let selectedDate = moment({
             day: 1,
             month: index,
-            year: this.showedDate.getFullYear()
+            year: this.showedDate.getFullYear(),
         }).toDate();
 
         if (this.startDate && moment(selectedDate).isBefore(this.startDate)) {
@@ -211,7 +242,10 @@ export class DatepickerCalendarV2Component implements OnChanges {
         }
 
         if (this.startDate) {
-            selectedDate = moment(selectedDate).add('month', 1).subtract('day', 1).toDate();
+            selectedDate = moment(selectedDate)
+                .add('month', 1)
+                .subtract('day', 1)
+                .toDate();
             selectedDate.setMinutes(59);
             selectedDate.setHours(23);
         }
@@ -238,7 +272,10 @@ export class DatepickerCalendarV2Component implements OnChanges {
                     status = 'disabled';
                 }
 
-                if (moment(date).isSameOrAfter(this.date) && moment(date).isSameOrBefore(this.endDate)) {
+                if (
+                    moment(date).isSameOrAfter(this.date) &&
+                    moment(date).isSameOrBefore(this.endDate)
+                ) {
                     status = 'in-range';
                 }
             }
@@ -247,14 +284,17 @@ export class DatepickerCalendarV2Component implements OnChanges {
                     status = 'disabled';
                 }
 
-                if (moment(date).isSameOrAfter(this.startDate) && moment(date).isSameOrBefore(this.date)) {
+                if (
+                    moment(date).isSameOrAfter(this.startDate) &&
+                    moment(date).isSameOrBefore(this.date)
+                ) {
                     status = 'in-range';
                 }
             }
 
             this.monthRange.push({
-               value: m,
-               status
+                value: m,
+                status,
             });
         });
     }
@@ -267,7 +307,7 @@ export class DatepickerCalendarV2Component implements OnChanges {
     generateYear() {
         this.yearRange = [];
 
-        this.yearlyList[this.selectedYearIndex].forEach((y) => {
+        this.yearlyList[this.selectedYearIndex].forEach(y => {
             const date = new Date();
             date.setFullYear(y);
 
@@ -277,7 +317,10 @@ export class DatepickerCalendarV2Component implements OnChanges {
                     status = 'disabled';
                 }
 
-                if (moment(date).isSameOrAfter(this.date) && moment(date).isSameOrBefore(this.endDate)) {
+                if (
+                    moment(date).isSameOrAfter(this.date) &&
+                    moment(date).isSameOrBefore(this.endDate)
+                ) {
                     status = 'in-range';
                 }
             }
@@ -286,14 +329,17 @@ export class DatepickerCalendarV2Component implements OnChanges {
                     status = 'disabled';
                 }
 
-                if (moment(date).isSameOrAfter(this.startDate) && moment(date).isSameOrBefore(this.date)) {
+                if (
+                    moment(date).isSameOrAfter(this.startDate) &&
+                    moment(date).isSameOrBefore(this.date)
+                ) {
                     status = 'in-range';
                 }
             }
 
             this.yearRange.push({
                 value: y,
-                status
+                status,
             });
         });
     }
@@ -317,7 +363,7 @@ export class DatepickerCalendarV2Component implements OnChanges {
         let selectedDate = moment({
             day: 1,
             month: 0,
-            year
+            year,
         }).toDate();
 
         if (this.startDate && moment(selectedDate).isBefore(this.startDate)) {
@@ -327,7 +373,10 @@ export class DatepickerCalendarV2Component implements OnChanges {
         }
 
         if (this.startDate) {
-            selectedDate = moment(selectedDate).add('year', 1).subtract('day', 1).toDate();
+            selectedDate = moment(selectedDate)
+                .add('year', 1)
+                .subtract('day', 1)
+                .toDate();
             selectedDate.setMinutes(59);
             selectedDate.setHours(23);
         }

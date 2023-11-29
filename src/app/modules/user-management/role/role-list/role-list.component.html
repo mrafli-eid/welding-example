@@ -5,8 +5,17 @@
     <div class="user-management-content">
         <div class="user-management-content-filter">
             <div class="ahm-input-wrapper">
-                <img alt="search" ngSrc="/assets/icons/search.svg" height="27" width="26">
-                <input [formControl]="searchTerm" placeholder="Search" type="text">
+                <img
+                    alt="search"
+                    ngSrc="/assets/icons/search.svg"
+                    height="27"
+                    width="26"
+                />
+                <input
+                    [formControl]="searchTerm"
+                    placeholder="Search"
+                    type="text"
+                />
             </div>
         </div>
         <div class="ahm-table">
@@ -18,28 +27,41 @@
                     <th>Action</th>
                 </tr>
                 <tr *ngFor="let data of roleList; let index = index">
-                    <td>{{(index + 1)}}</td>
-                    <td>{{data.name}}</td>
-                    <td>{{data.last_created}}</td>
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.last_created }}</td>
                     <td>
                         <div class="ahm-table-action">
-                            <button (click)="detail(data)" class="ahm-table-btn ahm-btn-success">
-                                <img alt="Detail" src="/assets/icons/eye.svg">
+                            <button
+                                (click)="detail(data)"
+                                class="ahm-table-btn ahm-btn-success"
+                            >
+                                <img alt="Detail" src="/assets/icons/eye.svg" />
                             </button>
-                            <button (click)="edit(data)" class="ahm-table-btn ahm-btn-warning">
-                                <img alt="Edit" src="/assets/icons/edit.svg">
+                            <button
+                                (click)="edit(data)"
+                                class="ahm-table-btn ahm-btn-warning"
+                            >
+                                <img alt="Edit" src="/assets/icons/edit.svg" />
                             </button>
-                            <button (click)="delete(data)" class="ahm-table-btn ahm-btn-danger">
-                                <img alt="Delete" src="/assets/icons/delete.svg">
+                            <button
+                                (click)="delete(data)"
+                                class="ahm-table-btn ahm-btn-danger"
+                            >
+                                <img
+                                    alt="Delete"
+                                    src="/assets/icons/delete.svg"
+                                />
                             </button>
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
-        <ahm-paginator (selectedLimit)="onSelectLimit($event)"
-                       (selectedPage)="onSelectPage($event)"
-                       [pagination]="pagination"></ahm-paginator>
+        <ahm-paginator
+            (selectedLimit)="onSelectLimit($event)"
+            (selectedPage)="onSelectPage($event)"
+            [pagination]="pagination"
+        ></ahm-paginator>
     </div>
 </div>
-

@@ -11,17 +11,14 @@
                 <th>End Date</th>
             </tr>
             <tr>
-                <td>{{data.name | string}}</td>
-                <td>{{data.actual | string}}</td>
-                <td>{{data.start_date | string}}</td>
-                <td>{{data.end_date | string}}</td>
+                <td>{{ data.name | string }}</td>
+                <td>{{ data.actual | string }}</td>
+                <td>{{ data.start_date | string }}</td>
+                <td>{{ data.end_date | string }}</td>
             </tr>
         </table>
     </div>
     <div class="master-footer">
-        <button (click)="back()" class="ahm-btn ahm-btn-primary">
-            Back
-        </button>
+        <button (click)="back()" class="ahm-btn ahm-btn-primary">Back</button>
     </div>
 </div>
-

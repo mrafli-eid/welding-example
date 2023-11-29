@@ -1,342 +1,391 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as moment from 'moment';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'ahm-datepicker-calendar-v3',
-  templateUrl: './datepicker-calendar-v3.component.html',
-  styleUrls: ['./datepicker-calendar-v3.component.scss'],
-  standalone: true,
-  imports: [
-      CommonModule,
-      FormsModule,     
-  ]
+    selector: 'ahm-datepicker-calendar-v3',
+    templateUrl: './datepicker-calendar-v3.component.html',
+    styleUrls: ['./datepicker-calendar-v3.component.scss'],
+    standalone: true,
+    imports: [CommonModule, FormsModule],
 })
 export class DatepickerCalendarV3Component implements OnChanges {
-  @Input() label = 'Start';
-  @Input() date = new Date();
+    @Input() label = 'Start';
+    @Input() date = new Date();
 
-  @Input() startDate;
-  @Input() endDate;
+    @Input() startDate;
+    @Input() endDate;
 
-  @Output() onSelectedDate = new EventEmitter<Date>();
-  showedDate = new Date();
+    @Output() onSelectedDate = new EventEmitter<Date>();
+    showedDate = new Date();
 
-  @Input() calendarType: string = 'day';
+    @Input() calendarType: string = 'day';
 
+    yearList = [];
+    dateRange: any[] = [];
 
-  yearList = [];
-  dateRange: any[] = [];
+    monthList = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+    ];
+    monthRange = [];
 
-  monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  monthRange = [];
+    yearlyList;
+    yearRange = [];
+    selectedYearIndex = 0;
 
+    constructor() {
+        this.yearlyList = [];
+        const yearEnd = new Date().getFullYear() + 4;
+        const yearStart = yearEnd - 35;
+        for (let i = yearStart; i <= yearEnd; i += 9) {
+            const item = [
+                i,
+                i + 1,
+                i + 2,
+                i + 3,
+                i + 4,
+                i + 5,
+                i + 6,
+                i + 7,
+                i + 8,
+            ];
+            this.yearlyList.push(item);
+        }
+    }
 
-  yearlyList;
-  yearRange = [];
-  selectedYearIndex = 0;
+    ngOnChanges() {
+        this.showedDate = this.date;
+        switch (this.calendarType) {
+            case 'day':
+            case 'week':
+                this.generateDate();
+                break;
+            case 'month':
+                this.generateYearList();
+                this.generateMonth();
+                break;
+            case 'year':
+                const currentYear = this.date.getFullYear();
+                this.yearlyList.forEach((e, index) => {
+                    const i = e.findIndex(y => y === currentYear);
+                    if (i !== -1) {
+                        this.selectedYearIndex = index;
+                    }
+                });
+                this.generateYear();
+                break;
+        }
+    }
 
-  constructor() {
-      this.yearlyList = [];
-      const yearEnd = new Date().getFullYear() + 4;
-      const yearStart = yearEnd - 35;
-      for (let i = yearStart; i <= yearEnd; i+=9) {
-          const item = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8];
-          this.yearlyList.push(item);
-      }
-  }
+    changeMonth(month: number) {
+        this.showedDate.setMonth(month);
+        this.generateDate();
+    }
 
-  ngOnChanges() {
-      this.showedDate = this.date;
-      switch (this.calendarType) {
-          case 'day':
-          case 'week':
-              this.generateDate();
-              break;
-          case 'month':
-              this.generateYearList();
-              this.generateMonth();
-              break;
-          case 'year':
-              const currentYear = this.date.getFullYear();
-              this.yearlyList.forEach((e, index) => {
-                  const i = e.findIndex(y => y === currentYear);
-                  if (i !== -1) {
-                      this.selectedYearIndex = index;
-                  }
-              })
-              this.generateYear();
-              break;
-      }
-  }
+    changeYear(year: number) {
+        this.showedDate.setFullYear(year);
+        this.generateDate();
+    }
 
-  changeMonth(month: number) {
-      this.showedDate.setMonth(month);
-      this.generateDate();
-  }
+    generateDate() {
+        if (!this.showedDate) {
+            return;
+        }
+        this.dateRange = [];
+        let year = this.showedDate.getFullYear();
+        let month = this.showedDate.getMonth();
 
-  changeYear(year: number) {
-      this.showedDate.setFullYear(year);
-      this.generateDate();
-  }
+        let dayone = new Date(year, month, 1).getDay();
+        let lastdate = new Date(year, month + 1, 0).getDate();
+        let dayend = new Date(year, month, lastdate).getDay();
+        let monthlastdate = new Date(year, month, 0).getDate();
 
-  generateDate() {
-      if (!this.showedDate) { return; }
-      this.dateRange = [];
-      let year= this.showedDate.getFullYear();
-      let month= this.showedDate.getMonth();
+        for (let i = dayone; i > 0; i--) {
+            this.dateRange.push({
+                value: monthlastdate - i + 1,
+                status: 'disabled',
+            });
+        }
 
-      let dayone=new Date(year, month, 1).getDay();
-      let lastdate=new Date(year, month + 1, 0).getDate();
-      let dayend=new Date(year, month, lastdate).getDay();
-      let monthlastdate=new Date(year, month, 0).getDate();
+        for (let i = 1; i <= lastdate; i++) {
+            let isToday =
+                i === this.date.getDate() &&
+                month === this.date.getMonth() &&
+                year === this.date.getFullYear();
+            const date = moment(this.showedDate).set('date', i);
+            if (isToday) {
+                this.dateRange.push({
+                    value: i,
+                    status: 'active',
+                });
+            } else if (
+                this.startDate &&
+                moment(date).isBefore(this.startDate)
+            ) {
+                this.dateRange.push({
+                    value: i,
+                    status: 'disabled',
+                });
+            } else if (this.endDate && moment(date).isAfter(this.endDate)) {
+                this.dateRange.push({
+                    value: i,
+                    status: 'disabled',
+                });
+            } else if (
+                this.startDate &&
+                moment(date).isBetween(this.startDate, this.date)
+            ) {
+                this.dateRange.push({
+                    value: i,
+                    status: 'in-range',
+                });
+            } else if (
+                this.endDate &&
+                moment(date).isBetween(this.date, this.endDate)
+            ) {
+                this.dateRange.push({
+                    value: i,
+                    status: 'in-range',
+                });
+            } else {
+                this.dateRange.push({
+                    value: i,
+                    status: '',
+                });
+            }
+        }
 
-      for (let i=dayone; i > 0; i--) {
-          this.dateRange.push({
-              value: monthlastdate - i + 1,
-              status: 'disabled'
-          });
-      }
+        for (let i = dayend; i < 6; i++) {
+            this.dateRange.push({
+                value: i - dayend + 1,
+                status: 'disabled',
+            });
+        }
+        this.generateYearList();
+    }
 
+    generateYearList() {
+        this.yearList = [];
+        const year = this.date.getFullYear();
+        for (let i = 1; i <= 6; i++) {
+            this.yearList.push(year + 6 - i);
+        }
+        this.yearList.push(year);
+        for (let i = 1; i <= 6; i++) {
+            this.yearList.push(year - i);
+        }
+    }
 
-      for (let i=1; i <=lastdate; i++) {
-          let isToday= i === this.date.getDate() && month === this.date.getMonth() && year=== this.date.getFullYear();
-          const date = moment(this.showedDate).set('date', i);
-          if (isToday) {
-              this.dateRange.push({
-                  value: i,
-                  status: 'active'
-              });
-          }
-          else if (this.startDate && moment(date).isBefore(this.startDate)) {
-              this.dateRange.push({
-                  value: i,
-                  status: 'disabled'
-              });
-          }
-          else if (this.endDate && moment(date).isAfter(this.endDate)) {
-              this.dateRange.push({
-                  value: i,
-                  status: 'disabled'
-              });
-          }
-          else if (this.startDate && moment(date).isBetween(this.startDate, this.date)) {
-              this.dateRange.push({
-                  value: i,
-                  status: 'in-range'
-              });
-          }
-          else if (this.endDate && moment(date).isBetween(this.date, this.endDate)) {
-              this.dateRange.push({
-                  value: i,
-                  status: 'in-range'
-              });
-          }
-          else {
-              this.dateRange.push({
-                  value: i,
-                  status: ''
-              });
-          }
-      }
+    nextMonth() {
+        this.showedDate = moment(this.showedDate).add(1, 'month').toDate();
+        this.generateDate();
+    }
 
-      for (let i= dayend; i < 6; i++) {
-          this.dateRange.push({
-              value: i - dayend + 1,
-              status: 'disabled'
-          });
-      }
-      this.generateYearList();
-  }
+    prevMonth() {
+        this.showedDate = moment(this.showedDate).subtract(1, 'month').toDate();
+        this.generateDate();
+    }
 
-  generateYearList() {
-      this.yearList = [];
-      const year = this.date.getFullYear();
-      for (let i = 1 ; i <= 6; i++) {
-          this.yearList.push(year + 6 - i);
-      }
-      this.yearList.push(year);
-      for (let i = 1 ; i <= 6; i++) {
-          this.yearList.push(year - i);
-      }
-  }
+    selectDate(index: number) {
+        if (this.dateRange[index].status === 'disabled') {
+            return;
+        }
 
-  nextMonth() {
-      this.showedDate = moment(this.showedDate).add(1, 'month').toDate();
-      this.generateDate();
-  }
+        const value = this.dateRange[index].value;
 
-  prevMonth() {
-      this.showedDate = moment(this.showedDate).subtract(1, 'month').toDate();
-      this.generateDate();
-  }
+        const selectedDate = new Date(this.showedDate);
+        selectedDate.setDate(value);
+        this.generateDate();
+        this.onSelectedDate.emit(selectedDate);
+    }
 
-  selectDate(index: number) {
-      if (this.dateRange[index].status === 'disabled') {
-          return;
-      }
+    nextYear() {
+        this.showedDate = moment(this.showedDate).add(1, 'year').toDate();
+        this.generateMonth();
+    }
 
-      const value = this.dateRange[index].value;
+    prevYear() {
+        this.showedDate = moment(this.showedDate).subtract(1, 'year').toDate();
+        this.generateMonth();
+    }
 
-      const selectedDate = new Date(this.showedDate);
-      selectedDate.setDate(value);
-      this.generateDate();
-      this.onSelectedDate.emit(selectedDate);
-  }
+    selectMonth(index: number) {
+        let selectedDate = moment({
+            day: 1,
+            month: index,
+            year: this.showedDate.getFullYear(),
+        }).toDate();
 
+        if (this.startDate && moment(selectedDate).isBefore(this.startDate)) {
+            return;
+        } else if (this.endDate && moment(selectedDate).isAfter(this.endDate)) {
+            return;
+        }
 
-  nextYear() {
-      this.showedDate = moment(this.showedDate).add(1, 'year').toDate();
-      this.generateMonth();
-  }
+        if (this.startDate) {
+            selectedDate = moment(selectedDate)
+                .add('month', 1)
+                .subtract('day', 1)
+                .toDate();
+            selectedDate.setMinutes(59);
+            selectedDate.setHours(23);
+        }
 
-  prevYear() {
-      this.showedDate = moment(this.showedDate).subtract(1, 'year').toDate();
-      this.generateMonth();
-  }
+        if (this.endDate) {
+            selectedDate.setMinutes(0);
+            selectedDate.setHours(0);
+        }
 
-  selectMonth(index: number) {
-      let selectedDate = moment({
-          day: 1,
-          month: index,
-          year: this.showedDate.getFullYear()
-      }).toDate();
+        this.generateMonth();
+        this.onSelectedDate.emit(selectedDate);
+    }
 
-      if (this.startDate && moment(selectedDate).isBefore(this.startDate)) {
-          return;
-      } else if (this.endDate && moment(selectedDate).isAfter(this.endDate)) {
-          return;
-      }
+    generateMonth() {
+        this.monthRange = [];
 
-      if (this.startDate) {
-          selectedDate = moment(selectedDate).add('month', 1).subtract('day', 1).toDate();
-          selectedDate.setMinutes(59);
-          selectedDate.setHours(23);
-      }
+        this.monthList.forEach((m, index) => {
+            const date = new Date(this.showedDate);
+            date.setMonth(index);
 
-      if (this.endDate) {
-          selectedDate.setMinutes(0);
-          selectedDate.setHours(0);
-      }
+            let status = '';
+            if (this.endDate) {
+                if (moment(date).isAfter(this.endDate)) {
+                    status = 'disabled';
+                }
 
-      this.generateMonth();
-      this.onSelectedDate.emit(selectedDate);
-  }
+                if (
+                    moment(date).isSameOrAfter(this.date) &&
+                    moment(date).isSameOrBefore(this.endDate)
+                ) {
+                    status = 'in-range';
+                }
+            }
+            if (this.startDate) {
+                if (moment(date).isBefore(this.startDate)) {
+                    status = 'disabled';
+                }
 
-  generateMonth() {
-      this.monthRange = [];
+                if (
+                    moment(date).isSameOrAfter(this.startDate) &&
+                    moment(date).isSameOrBefore(this.date)
+                ) {
+                    status = 'in-range';
+                }
+            }
 
-      this.monthList.forEach((m, index) => {
-          const date = new Date(this.showedDate);
-          date.setMonth(index);
+            this.monthRange.push({
+                value: m,
+                status,
+            });
+        });
+    }
 
-          let status = '';
-          if (this.endDate) {
-              if (moment(date).isAfter(this.endDate)) {
-                  status = 'disabled';
-              }
+    changeYearMonthly(year: number) {
+        this.showedDate.setFullYear(year);
+        this.generateMonth();
+    }
 
-              if (moment(date).isSameOrAfter(this.date) && moment(date).isSameOrBefore(this.endDate)) {
-                  status = 'in-range';
-              }
-          }
-          if (this.startDate) {
-              if (moment(date).isBefore(this.startDate)) {
-                  status = 'disabled';
-              }
+    generateYear() {
+        this.yearRange = [];
 
-              if (moment(date).isSameOrAfter(this.startDate) && moment(date).isSameOrBefore(this.date)) {
-                  status = 'in-range';
-              }
-          }
+        this.yearlyList[this.selectedYearIndex].forEach(y => {
+            const date = new Date();
+            date.setFullYear(y);
 
-          this.monthRange.push({
-             value: m,
-             status
-          });
-      });
-  }
+            let status = '';
+            if (this.endDate) {
+                if (moment(date).isAfter(this.endDate)) {
+                    status = 'disabled';
+                }
 
-  changeYearMonthly(year: number) {
-      this.showedDate.setFullYear(year);
-      this.generateMonth();
-  }
+                if (
+                    moment(date).isSameOrAfter(this.date) &&
+                    moment(date).isSameOrBefore(this.endDate)
+                ) {
+                    status = 'in-range';
+                }
+            }
+            if (this.startDate) {
+                if (moment(date).isBefore(this.startDate)) {
+                    status = 'disabled';
+                }
 
-  generateYear() {
-      this.yearRange = [];
+                if (
+                    moment(date).isSameOrAfter(this.startDate) &&
+                    moment(date).isSameOrBefore(this.date)
+                ) {
+                    status = 'in-range';
+                }
+            }
 
-      this.yearlyList[this.selectedYearIndex].forEach((y) => {
-          const date = new Date();
-          date.setFullYear(y);
+            this.yearRange.push({
+                value: y,
+                status,
+            });
+        });
+    }
 
-          let status = '';
-          if (this.endDate) {
-              if (moment(date).isAfter(this.endDate)) {
-                  status = 'disabled';
-              }
+    nextYearYearly() {
+        this.selectedYearIndex++;
+        this.generateYear();
+    }
 
-              if (moment(date).isSameOrAfter(this.date) && moment(date).isSameOrBefore(this.endDate)) {
-                  status = 'in-range';
-              }
-          }
-          if (this.startDate) {
-              if (moment(date).isBefore(this.startDate)) {
-                  status = 'disabled';
-              }
+    prevYearYearly() {
+        this.selectedYearIndex--;
+        this.generateYear();
+    }
 
-              if (moment(date).isSameOrAfter(this.startDate) && moment(date).isSameOrBefore(this.date)) {
-                  status = 'in-range';
-              }
-          }
+    changeYearYearly(index: number) {
+        this.selectedYearIndex = index;
+        this.generateYear();
+    }
 
-          this.yearRange.push({
-              value: y,
-              status
-          });
-      });
-  }
+    selectYear(year: number) {
+        let selectedDate = moment({
+            day: 1,
+            month: 0,
+            year,
+        }).toDate();
 
-  nextYearYearly() {
-      this.selectedYearIndex++;
-      this.generateYear();
-  }
+        if (this.startDate && moment(selectedDate).isBefore(this.startDate)) {
+            return;
+        } else if (this.endDate && moment(selectedDate).isAfter(this.endDate)) {
+            return;
+        }
 
-  prevYearYearly() {
-      this.selectedYearIndex--;
-      this.generateYear();
-  }
+        if (this.startDate) {
+            selectedDate = moment(selectedDate)
+                .add('year', 1)
+                .subtract('day', 1)
+                .toDate();
+            selectedDate.setMinutes(59);
+            selectedDate.setHours(23);
+        }
 
-  changeYearYearly(index: number) {
-      this.selectedYearIndex = index;
-      this.generateYear();
-  }
+        if (this.endDate) {
+            selectedDate.setMinutes(0);
+            selectedDate.setHours(0);
+        }
 
-  selectYear(year: number) {
-      let selectedDate = moment({
-          day: 1,
-          month: 0,
-          year
-      }).toDate();
-
-      if (this.startDate && moment(selectedDate).isBefore(this.startDate)) {
-          return;
-      } else if (this.endDate && moment(selectedDate).isAfter(this.endDate)) {
-          return;
-      }
-
-      if (this.startDate) {
-          selectedDate = moment(selectedDate).add('year', 1).subtract('day', 1).toDate();
-          selectedDate.setMinutes(59);
-          selectedDate.setHours(23);
-      }
-
-      if (this.endDate) {
-          selectedDate.setMinutes(0);
-          selectedDate.setHours(0);
-      }
-
-      this.generateYear();
-      this.onSelectedDate.emit(selectedDate);
-  }
+        this.generateYear();
+        this.onSelectedDate.emit(selectedDate);
+    }
 }

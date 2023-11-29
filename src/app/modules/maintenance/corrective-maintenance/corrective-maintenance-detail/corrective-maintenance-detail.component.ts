@@ -4,7 +4,7 @@ import { MaintenanceCorrective } from '../../../../core/models/maintenance-corre
 @Component({
     selector: 'ahm-corrective-maintenance-detail',
     templateUrl: './corrective-maintenance-detail.component.html',
-    styleUrls: [ './corrective-maintenance-detail.component.scss' ]
+    styleUrls: ['./corrective-maintenance-detail.component.scss'],
 })
 export class CorrectiveMaintenanceDetailComponent {
     @Input() data: MaintenanceCorrective;

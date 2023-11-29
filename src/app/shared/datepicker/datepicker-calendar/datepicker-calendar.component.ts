@@ -6,12 +6,11 @@ import { DatepickerCalendarDateComponent } from '../datepicker-calendar-date/dat
 @Component({
     selector: 'ahm-datepicker-calendar',
     templateUrl: './datepicker-calendar.component.html',
-    styleUrls: [ './datepicker-calendar.component.scss' ],
+    styleUrls: ['./datepicker-calendar.component.scss'],
     standalone: true,
-    imports: [ CommonModule, DatepickerCalendarDateComponent ],
+    imports: [CommonModule, DatepickerCalendarDateComponent],
 })
 export class DatepickerCalendarComponent implements OnInit {
-
     @Input() date = new Date();
     today = new Date();
 
@@ -27,7 +26,7 @@ export class DatepickerCalendarComponent implements OnInit {
         const prevLastDay = new Date(
             this.date.getFullYear(),
             this.date.getMonth(),
-            0,
+            0
         ).getDate();
         for (let x = firstDayIndex; x > 0; x--) {
             arr.push(prevLastDay - x + 1);
@@ -40,7 +39,7 @@ export class DatepickerCalendarComponent implements OnInit {
         const lastDayIndex = new Date(
             this.date.getFullYear(),
             this.date.getMonth() + 1,
-            0,
+            0
         ).getDay();
 
         const nextDays = 7 - lastDayIndex - 1;
@@ -53,7 +52,11 @@ export class DatepickerCalendarComponent implements OnInit {
 
     get daysArray() {
         const arr = [];
-        const lastDay = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+        const lastDay = new Date(
+            this.date.getFullYear(),
+            this.date.getMonth() + 1,
+            0
+        ).getDate();
         for (let i = 1; i <= lastDay; i++) {
             arr.push(i);
         }
@@ -70,7 +73,9 @@ export class DatepickerCalendarComponent implements OnInit {
         this.today.setHours(0, 0, 0, 0);
     }
 
-    getClass(day: number):
+    getClass(
+        day: number
+    ):
         | 'select'
         | 'disable'
         | 'default'

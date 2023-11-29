@@ -1,18 +1,18 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
-import { BaseChartDirective, NgChartsModule } from "ng2-charts";
-import Annotation from "chartjs-plugin-annotation";
-import { ChartConfiguration, ChartType } from "chart.js";
-import { DashboardCycleTime } from "../../../../core/models/dashboard.model";
-import { notNull } from "../../../../core/helpers/object.helper";
+import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
+import Annotation from 'chartjs-plugin-annotation';
+import { ChartConfiguration, ChartType } from 'chart.js';
+import { DashboardCycleTime } from '../../../../core/models/dashboard.model';
+import { notNull } from '../../../../core/helpers/object.helper';
 
 @Component({
     selector: 'ahm-chart-cycle-time',
     standalone: true,
-    imports: [ CommonModule, NgChartsModule ],
+    imports: [CommonModule, NgChartsModule],
     templateUrl: './chart-cycle-time.component.html',
-    styleUrls: [ './chart-cycle-time.component.scss' ],
+    styleUrls: ['./chart-cycle-time.component.scss'],
 })
 export class ChartCycleTimeComponent implements OnChanges {
     public lineChartType: ChartType = 'line';
@@ -23,12 +23,12 @@ export class ChartCycleTimeComponent implements OnChanges {
     @Input() minimum = 3;
 
     constructor() {
-        Chart.register(Annotation)
+        Chart.register(Annotation);
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data.map((d) => d.value);
-        this.lineChartData.labels = this.data.data.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data.data.map(d => d.value);
+        this.lineChartData.labels = this.data.data.map(d => d.label);
 
         if (notNull(this.maximum)) {
             // @ts-ignore
@@ -37,7 +37,7 @@ export class ChartCycleTimeComponent implements OnChanges {
                 yMin: this.maximum,
                 yMax: this.maximum,
                 borderColor: '#DC3545',
-            }
+            };
         }
 
         if (notNull(this.minimum)) {
@@ -47,7 +47,7 @@ export class ChartCycleTimeComponent implements OnChanges {
                 yMin: this.minimum,
                 yMax: this.minimum,
                 borderColor: '#28A745',
-            }
+            };
         }
 
         this.chart?.render();
@@ -62,7 +62,7 @@ export class ChartCycleTimeComponent implements OnChanges {
                 fill: 'origin',
             },
         ],
-        labels: []
+        labels: [],
     };
 
     public lineChartOptions: ChartConfiguration['options'] = {
@@ -70,11 +70,11 @@ export class ChartCycleTimeComponent implements OnChanges {
         maintainAspectRatio: false,
         elements: {
             line: {
-                tension: 0.5
-            }
+                tension: 0.5,
+            },
         },
         layout: {
-            padding: { left: -4 }
+            padding: { left: -4 },
         },
         scales: {
             y: {
@@ -86,22 +86,22 @@ export class ChartCycleTimeComponent implements OnChanges {
                     color: '#333333',
                 },
                 border: {
-                    dash: [ 4, 2 ]
+                    dash: [4, 2],
                 },
             },
             x: {
                 ticks: {
                     padding: 10,
                 },
-            }
+            },
         },
 
         plugins: {
             datalabels: { display: false },
             legend: { display: false },
             annotation: {
-                annotations: {}
+                annotations: {},
             },
-        }
+        },
     };
 }

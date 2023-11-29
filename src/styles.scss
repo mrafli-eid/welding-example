@@ -1,4 +1,4 @@
-@import "src/assets/styles/main";
+@import 'src/assets/styles/main';
 
 html,
 body {
@@ -13,7 +13,7 @@ html {
 
 body {
     margin: 0;
-    font-family: Inter, "Helvetica Neue", sans-serif;
+    font-family: Inter, 'Helvetica Neue', sans-serif;
     background-color: black;
 }
 
@@ -26,12 +26,12 @@ body {
 //     background-color: #fff;
 //     color: #000000de
 //   }
-  
+
 //   .mat-calendar-body-selected {
 //     background-color: #007f51;
 //     color: #fff;
 //   }
-  
+
 //   .mat-calendar-body-cell-content {
 //     border: none !important;
 //   }

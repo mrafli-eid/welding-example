@@ -18,7 +18,7 @@ export class HubConnectionService {
         const client = SignalrClient.create(httpClient);
 
         client.connect(environment.SIGNALR_URL).subscribe({
-            next: (connection) => {
+            next: connection => {
                 this.connection = connection;
                 this.setupMachineHealthPipe(connection);
                 this.isConnectionEstablished.next(true);
@@ -30,7 +30,6 @@ export class HubConnectionService {
     }
 
     private setupMachineHealthPipe(connection: SignalrConnection): void {
-        this.machineHealth$ = connection.stream<any>("RealtimeMachine");
-
+        this.machineHealth$ = connection.stream<any>('RealtimeMachine');
     }
 }

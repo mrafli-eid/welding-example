@@ -6,7 +6,7 @@ import { MasterLineListComponent } from '../master-line-list/master-line-list.co
 @Component({
     selector: 'ahm-master-line-container',
     templateUrl: './master-line-container.component.html',
-    styleUrls: [ './master-line-container.component.scss' ],
+    styleUrls: ['./master-line-container.component.scss'],
 })
 export class MasterLineContainerComponent {
     breadcrumbs: Breadcrumb[] = [
@@ -16,12 +16,11 @@ export class MasterLineContainerComponent {
     masterLine: MasterLine;
     isDetail = false;
 
-    @ViewChild (MasterLineListComponent) listComponent: MasterLineListComponent;
+    @ViewChild(MasterLineListComponent) listComponent: MasterLineListComponent;
 
     onDetail(masterLine: MasterLine) {
         this.masterLine = masterLine;
         this.isDetail = true;
-
     }
 
     onEdit(masterLine: MasterLine) {
@@ -33,5 +32,4 @@ export class MasterLineContainerComponent {
         this.isDetail = false;
         this.listComponent.refreshData();
     }
-
 }

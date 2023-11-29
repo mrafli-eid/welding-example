@@ -1,11 +1,10 @@
-<h1 class="master-data-title">
-    Master Data
-</h1>
+<h1 class="master-data-title">Master Data</h1>
 <div class="master-data-container">
-    <div (click)="navigateTo(masterData.link)"
-         *ngFor="let masterData of masterDataList"
-         class="master-data-item">
-        {{masterData.label}}
+    <div
+        (click)="navigateTo(masterData.link)"
+        *ngFor="let masterData of masterDataList"
+        class="master-data-item"
+    >
+        {{ masterData.label }}
     </div>
 </div>
-

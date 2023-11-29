@@ -3,9 +3,7 @@ import { Router } from '@angular/router';
 import { getDefaultDateFilter } from 'src/app/core/consts/datepicker.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 import { DateFilter } from 'src/app/core/models/date-filter.model';
-import {
-    DetailMachineDewPoint,
-} from 'src/app/core/models/machine.model';
+import { DetailMachineDewPoint } from 'src/app/core/models/machine.model';
 import { MachineService } from 'src/app/core/services/machine.service';
 import { interval, take } from 'rxjs';
 import { DUMMY_DETAIL_MACHINE_DEW_POINT } from './detail-machine-dew-point';
@@ -16,7 +14,7 @@ import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
     templateUrl: './detail-machine-dew-point.component.html',
     styleUrls: ['./detail-machine-dew-point.component.scss'],
     host: {
-      'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class DetailMachineDewPointComponent {
@@ -35,10 +33,10 @@ export class DetailMachineDewPointComponent {
     ngOnChanges() {
         this.fetchDewPoint();
         interval(DEFAULT_INTERVAL)
-          .pipe(this.untilDestroyed())
-          .subscribe(() => {
-            this.fetchDewPoint();
-          });
+            .pipe(this.untilDestroyed())
+            .subscribe(() => {
+                this.fetchDewPoint();
+            });
     }
 
     fetchDewPoint() {
@@ -46,9 +44,9 @@ export class DetailMachineDewPointComponent {
             .getDewPoint(this.machine_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
-                      this.dewPointList = resp.data
+                        this.dewPointList = resp.data;
                     }
                 },
             });
@@ -60,10 +58,15 @@ export class DetailMachineDewPointComponent {
     }
 
     download() {
-        this.machineService.downloadDewPoint(this.machine_name, this.dateFilter);
+        this.machineService.downloadDewPoint(
+            this.machine_name,
+            this.dateFilter
+        );
     }
 
     goToSettings() {
-        this.router.navigate(['/settings'], { queryParams: {name: "Dew Point", machine: this.machine_name } });
+        this.router.navigate(['/settings'], {
+            queryParams: { name: 'Dew Point', machine: this.machine_name },
+        });
     }
 }

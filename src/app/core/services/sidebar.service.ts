@@ -7,9 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SidebarService {
     isSidebarOpened$ = new BehaviorSubject<boolean>(true);
 
-
-    constructor() {
-    }
+    constructor() {}
 
     toggle() {
         this.isSidebarOpened$.next(!this.isSidebarOpened$.value);

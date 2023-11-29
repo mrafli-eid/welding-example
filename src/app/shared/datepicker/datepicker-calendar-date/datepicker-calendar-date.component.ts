@@ -4,11 +4,10 @@ import { CommonModule } from '@angular/common';
 @Component({
     selector: 'ahm-datepicker-calendar-date',
     templateUrl: './datepicker-calendar-date.component.html',
-    styleUrls: [ './datepicker-calendar-date.component.scss' ],
+    styleUrls: ['./datepicker-calendar-date.component.scss'],
     standalone: true,
-    imports: [ CommonModule ],
+    imports: [CommonModule],
 })
-
 export class DatepickerCalendarDateComponent implements OnInit {
     @Input() d: number = 0;
     @Input() dateStyle:
@@ -21,9 +20,7 @@ export class DatepickerCalendarDateComponent implements OnInit {
         | 'selected-start'
         | 'selected-end' = 'default';
 
-    constructor() {
-    }
+    constructor() {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 }

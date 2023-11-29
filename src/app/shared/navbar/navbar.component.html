@@ -7,10 +7,10 @@
     <div class="navbar-right-area">
         <div class="navbar-date">
             <span>
-                {{ todaysDate | date : "EEEE, dd MMMM y" | uppercase }}
+                {{ todaysDate | date : 'EEEE, dd MMMM y' | uppercase }}
             </span>
             <span> | </span>
-            <span> {{ todaysDate | date : "hh:mm:ss" }} </span>
+            <span> {{ todaysDate | date : 'hh:mm:ss' }} </span>
         </div>
         <div class="navbar-notification">
             <div class="dropdown">
@@ -26,7 +26,7 @@
                     [ngClass]="{ show: isDropdownOpen }"
                 >
                     <a class="lable-notif">Notification</a>
-                    <div class="cover-msg" >
+                    <div class="cover-msg">
                         <a *ngFor="let msg of listNotif">
                             <div class="notif-info">
                                 <img

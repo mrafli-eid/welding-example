@@ -5,17 +5,16 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'ahm-breadcrumbs',
     standalone: true,
-    imports: [ CommonModule ],
+    imports: [CommonModule],
     templateUrl: './breadcrumbs.component.html',
-    styleUrls: [ './breadcrumbs.component.scss' ],
+    styleUrls: ['./breadcrumbs.component.scss'],
 })
 export class BreadcrumbsComponent {
     @Input() breadcrumbs = [];
 
-    constructor(private router: Router) {
-    }
+    constructor(private router: Router) {}
 
     navigateTo(link: string): void {
-        this.router.navigate([ link ]);
+        this.router.navigate([link]);
     }
 }

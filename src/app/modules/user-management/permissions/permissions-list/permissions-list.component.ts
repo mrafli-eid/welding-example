@@ -49,15 +49,13 @@ export class PermissionsListComponent {
         this.pagination.page_number = 1;
         this.getListPermission();
     }
-    
+
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(300))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.pagination.page_number = 1;
-                this.getListPermission();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(300)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.pagination.page_number = 1;
+            this.getListPermission();
+        });
     }
 
     refreshData() {
@@ -81,7 +79,7 @@ export class PermissionsListComponent {
             .getListPermission(this.queryParams)
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
+                next: response => {
                     this.pagination = JSON.parse(
                         response.headers.get('x-pagination')
                     );
@@ -102,7 +100,7 @@ export class PermissionsListComponent {
             }
         );
 
-        matDialogRef.afterClosed().subscribe((resp) => {
+        matDialogRef.afterClosed().subscribe(resp => {
             if (resp) {
                 this.userManagementService
                     .deletePermission(data.id)

@@ -10,7 +10,7 @@ import { DashboardService } from 'src/app/core/services/dashboard.service';
 @Component({
     selector: 'ahm-corrective-maintenance-upsert',
     templateUrl: './corrective-maintenance-upsert.component.html',
-    styleUrls: [ './corrective-maintenance-upsert.component.scss' ]
+    styleUrls: ['./corrective-maintenance-upsert.component.scss'],
 })
 export class CorrectiveMaintenanceUpsertComponent {
     machineId = '';
@@ -20,17 +20,19 @@ export class CorrectiveMaintenanceUpsertComponent {
     @Output() onSubmit = new EventEmitter();
 
     formGroup: FormGroup = new FormGroup({
-        name: new FormControl('', [ Validators.required ]),
-        actual: new FormControl('', [ Validators.required ]),
-        start_date: new FormControl('', [ Validators.required ]),
-        end_date: new FormControl('', [ Validators.required ]),
-        machine_id: new FormControl('', [ Validators.required ]),
+        name: new FormControl('', [Validators.required]),
+        actual: new FormControl('', [Validators.required]),
+        start_date: new FormControl('', [Validators.required]),
+        end_date: new FormControl('', [Validators.required]),
+        machine_id: new FormControl('', [Validators.required]),
     });
 
-    constructor(private maintenanceService: MaintenanceCorrectiveService,
-                private activatedRoute: ActivatedRoute,
-                private dashboardService: DashboardService,
-                private router: Router) {
+    constructor(
+        private maintenanceService: MaintenanceCorrectiveService,
+        private activatedRoute: ActivatedRoute,
+        private dashboardService: DashboardService,
+        private router: Router
+    ) {
         this.machineId = this.activatedRoute.snapshot.queryParamMap.get('id');
         this.machine_name = decodeURIComponent(router.url.split('/')[2]);
         this.formGroup.patchValue({
@@ -39,10 +41,12 @@ export class CorrectiveMaintenanceUpsertComponent {
         });
     }
 
-
     ngOnChanges() {
         if (this.data) {
-            this.formGroup.addControl('end_date', new FormControl('', [ Validators.required ]));
+            this.formGroup.addControl(
+                'end_date',
+                new FormControl('', [Validators.required])
+            );
         }
         this.formGroup.patchValue(this.data);
     }
@@ -70,7 +74,8 @@ export class CorrectiveMaintenanceUpsertComponent {
 
     edit(body: any) {
         const id = this.data.id;
-        this.maintenanceService.update(id, body)
+        this.maintenanceService
+            .update(id, body)
             .pipe(take(1))
             .subscribe({
                 next: () => {
@@ -83,7 +88,8 @@ export class CorrectiveMaintenanceUpsertComponent {
     }
 
     create(body: any) {
-        this.maintenanceService.create(body)
+        this.maintenanceService
+            .create(body)
             .pipe(take(1))
             .subscribe({
                 next: () => {

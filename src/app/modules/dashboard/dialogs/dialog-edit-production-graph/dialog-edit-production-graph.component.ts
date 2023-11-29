@@ -37,7 +37,7 @@ export class DialogEditProductionGraphComponent {
             };
             this.dashboardService
                 .updateProductionPlan(this.data.id, body)
-                .subscribe((resp) => {
+                .subscribe(resp => {
                     this.matDialogRef.close(true);
                 });
         }

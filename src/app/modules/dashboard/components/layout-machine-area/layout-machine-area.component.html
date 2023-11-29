@@ -3,10 +3,13 @@
 </div>
 <div class="dashboard-content">
     <div class="machine-container">
-        <div *ngFor="let machine of layoutMachineList; let index = index"
-             [class]="getMachineClass(machine.value)"
-             [routerLink]="'/machine/' + machine.name + '/MASTER'" class="machine-list">
-            <span>{{machine.name}}</span>
+        <div
+            *ngFor="let machine of layoutMachineList; let index = index"
+            [class]="getMachineClass(machine.value)"
+            [routerLink]="'/machine/' + machine.name + '/MASTER'"
+            class="machine-list"
+        >
+            <span>{{ machine.name }}</span>
         </div>
     </div>
 </div>
@@ -19,11 +22,7 @@
         <ahm-dot color="secondary">Disconnect</ahm-dot>
     </div>
     <div class="machine-info-icon">
-        <span>
-            <img src="/assets/icons/alarm.svg">Alarm
-        </span>
-        <span>
-            <img src="/assets/icons/maintenance-2.svg">Maintenance
-        </span>
+        <span> <img src="/assets/icons/alarm.svg" />Alarm </span>
+        <span> <img src="/assets/icons/maintenance-2.svg" />Maintenance </span>
     </div>
 </div>

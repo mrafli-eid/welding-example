@@ -4,7 +4,7 @@ import { MaintenancePreventive } from '../../../../core/models/maintenance-preve
 @Component({
     selector: 'ahm-preventive-maintenance-detail',
     templateUrl: './preventive-maintenance-detail.component.html',
-    styleUrls: [ './preventive-maintenance-detail.component.scss' ]
+    styleUrls: ['./preventive-maintenance-detail.component.scss'],
 })
 export class PreventiveMaintenanceDetailComponent {
     @Input() data: MaintenancePreventive;

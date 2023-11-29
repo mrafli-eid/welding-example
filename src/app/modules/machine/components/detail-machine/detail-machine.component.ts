@@ -2,16 +2,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DetailMachine } from '../../../../core/models/machine.model';
 import { MachineService } from '../../../../core/services/machine.service';
 import { interval, take } from 'rxjs';
-import { DUMMY_DETAIL_MACHINE } from "./detail-machine.dummy";
+import { DUMMY_DETAIL_MACHINE } from './detail-machine.dummy';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 
 @Component({
     selector: 'ahm-detail-machine',
     templateUrl: './detail-machine.component.html',
-    styleUrls: [ './detail-machine.component.scss' ],
+    styleUrls: ['./detail-machine.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class DetailMachineComponent implements OnInit {
@@ -21,8 +21,7 @@ export class DetailMachineComponent implements OnInit {
     @Input() src = '';
     detailMachine: DetailMachine = DUMMY_DETAIL_MACHINE;
 
-    constructor(private machineService: MachineService) {
-    }
+    constructor(private machineService: MachineService) {}
 
     ngOnInit() {
         this.fetchDetailMachine();
@@ -34,16 +33,16 @@ export class DetailMachineComponent implements OnInit {
     }
 
     fetchDetailMachine() {
-        this.machineService.getDetailMachine(this.machine_name)
+        this.machineService
+            .getDetailMachine(this.machine_name)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.data?.length > 0) {
                         this.detailMachine = resp.data[0];
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 }

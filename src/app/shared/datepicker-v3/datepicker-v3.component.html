@@ -1,6 +1,6 @@
 <div (click)="openDatepicker()" class="btn-datepicker" #btn>
-    <span>{{dateFilter?.type | titlecase}}</span>
-    <img alt="calendar" src="/assets/icons/calendar.svg">
+    <span>{{ dateFilter?.type | titlecase }}</span>
+    <img alt="calendar" src="/assets/icons/calendar.svg" />
 </div>
 
 <ng-template cdkPortal>
@@ -9,31 +9,50 @@
             <div class="datepicker-type">
                 <span
                     *ngFor="let type of dateTypeList"
-                    [class.active]="type === formGroup.get('type').value" (click)="selectType(type)">
-                    {{type | titlecase}}
+                    [class.active]="type === formGroup.get('type').value"
+                    (click)="selectType(type)"
+                >
+                    {{ type | titlecase }}
                 </span>
             </div>
             <div class="datepicker-shortcut">
-                <span (click)="setActive('X3')" [class.active]="isActiveX3" class="text-center">X 3</span>
-                <span (click)="setActive('X6')" [class.active]="isActiveX6" class="text-center">X 6</span>
-                <span (click)="setActive('X12')" [class.active]="isActiveX12" class="text-center">X 12</span>
-            </div>              
+                <span
+                    (click)="setActive('X3')"
+                    [class.active]="isActiveX3"
+                    class="text-center"
+                    >X 3</span
+                >
+                <span
+                    (click)="setActive('X6')"
+                    [class.active]="isActiveX6"
+                    class="text-center"
+                    >X 6</span
+                >
+                <span
+                    (click)="setActive('X12')"
+                    [class.active]="isActiveX12"
+                    class="text-center"
+                    >X 12</span
+                >
+            </div>
             <div class="mb-6">
                 <label class="mb-6">Custom Range</label>
-                <input 
+                <input
                     class="datepicker-input"
                     type="number"
                     formControlName="customRange"
                     min="1"
-                    max="15">
+                    max="15"
+                />
                 <span class="italic">*Input Max 15</span>
             </div>
             <div class="mb-6">
                 <label class="mb-20">Custom Range</label>
-                <input 
+                <input
                     class="datepicker-input"
                     type="text"
-                    formControlName="date">
+                    formControlName="date"
+                />
             </div>
             <div class="datepicker-button">
                 <button class="btn-apply" (click)="apply()">Apply</button>
@@ -50,5 +69,4 @@
             ></ahm-datepicker-calendar-v3>
         </div>
     </div>
-
 </ng-template>

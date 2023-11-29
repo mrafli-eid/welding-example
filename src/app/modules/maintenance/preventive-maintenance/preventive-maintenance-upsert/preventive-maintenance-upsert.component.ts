@@ -9,7 +9,7 @@ import * as moment from 'moment';
 @Component({
     selector: 'ahm-preventive-maintenance-upsert',
     templateUrl: './preventive-maintenance-upsert.component.html',
-    styleUrls: [ './preventive-maintenance-upsert.component.scss' ]
+    styleUrls: ['./preventive-maintenance-upsert.component.scss'],
 })
 export class PreventiveMaintenanceUpsertComponent {
     machineId = '';
@@ -22,13 +22,12 @@ export class PreventiveMaintenanceUpsertComponent {
     isOk = false;
 
     formGroup: FormGroup = new FormGroup({
-        name: new FormControl('', [ Validators.required ]),
-        plan: new FormControl('', [ Validators.required ]),
-        start_date: new FormControl('', [ Validators.required ]),
-        machine_id: new FormControl('', [ Validators.required ]),
+        name: new FormControl('', [Validators.required]),
+        plan: new FormControl('', [Validators.required]),
+        start_date: new FormControl('', [Validators.required]),
+        machine_id: new FormControl('', [Validators.required]),
     });
 
-    
     date_type = new FormControl('');
     custom_range = new FormControl(0);
 
@@ -37,9 +36,11 @@ export class PreventiveMaintenanceUpsertComponent {
         custom_range: 0,
     };
 
-    constructor(private maintenanceService: MaintenancePreventiveService,
-                private activatedRoute: ActivatedRoute,
-                private router: Router) {
+    constructor(
+        private maintenanceService: MaintenancePreventiveService,
+        private activatedRoute: ActivatedRoute,
+        private router: Router
+    ) {
         this.machineId = this.activatedRoute.snapshot.queryParamMap.get('id');
         this.machine_name = decodeURIComponent(router.url.split('/')[2]);
         this.formGroup.patchValue({
@@ -50,15 +51,20 @@ export class PreventiveMaintenanceUpsertComponent {
         });
     }
 
-
     ngOnChanges() {
         this.formGroup.patchValue(this.data);
         this.isOk = this.data?.ok || false;
         if (this.isOk) {
-            this.formGroup.addControl('actual', new FormControl('', [ Validators.required ]));
+            this.formGroup.addControl(
+                'actual',
+                new FormControl('', [Validators.required])
+            );
             // this.formGroup.addControl('end_date', new FormControl([ Validators.required ]));
         } else if (this.data?.actual) {
-            this.formGroup.addControl('actual', new FormControl('', [ Validators.required ]));
+            this.formGroup.addControl(
+                'actual',
+                new FormControl('', [Validators.required])
+            );
         }
     }
 
@@ -88,7 +94,8 @@ export class PreventiveMaintenanceUpsertComponent {
     }
 
     create(body: any, params?: any) {
-        this.maintenanceService.create(body, params)
+        this.maintenanceService
+            .create(body, params)
             .pipe(take(1))
             .subscribe({
                 next: () => {
@@ -102,7 +109,8 @@ export class PreventiveMaintenanceUpsertComponent {
 
     edit(body: any) {
         const id = this.data.id;
-        this.maintenanceService.update(id, body)
+        this.maintenanceService
+            .update(id, body)
             .pipe(take(1))
             .subscribe({
                 next: () => {
@@ -116,7 +124,8 @@ export class PreventiveMaintenanceUpsertComponent {
 
     ok(body: any) {
         const id = this.data.id;
-        this.maintenanceService.ok(id, body)
+        this.maintenanceService
+            .ok(id, body)
             .pipe(take(1))
             .subscribe({
                 next: () => {

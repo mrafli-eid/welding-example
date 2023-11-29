@@ -11,13 +11,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 
-
 @NgModule({
     declarations: [
-    AccountContainerComponent,
-    AccountProfileComponent,
-    AccountChangePasswordComponent,
-  ],
+        AccountContainerComponent,
+        AccountProfileComponent,
+        AccountChangePasswordComponent,
+    ],
     imports: [
         CommonModule,
         AccountRoutingModule,
@@ -25,5 +24,4 @@ import { MatIconModule } from '@angular/material/icon';
         ReactiveFormsModule,
     ],
 })
-export class AccountModule {
-}
+export class AccountModule {}

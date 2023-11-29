@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '../../core/models/pagination.model';
 import { FormsModule } from '@angular/forms';
@@ -6,17 +12,16 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'ahm-paginator',
     standalone: true,
-    imports: [ CommonModule, FormsModule ],
+    imports: [CommonModule, FormsModule],
     templateUrl: './paginator.component.html',
-    styleUrls: [ './paginator.component.scss' ],
+    styleUrls: ['./paginator.component.scss'],
 })
 export class PaginatorComponent implements OnChanges {
     @Input() pagination: Pagination;
     paginationDisplay = [];
 
-    limitList = [ 3, 5, 10, 20, 50, 100 ];
+    limitList = [3, 5, 10, 20, 50, 100];
     limit = 3;
-
 
     @Output() public selectedPage: EventEmitter<number> = new EventEmitter();
     @Output() public selectedLimit: EventEmitter<number> = new EventEmitter();

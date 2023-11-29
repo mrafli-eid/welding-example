@@ -5,41 +5,25 @@ import { MachineRoutingModule } from './machine-routing.module';
 import { DetailMachineComponent } from './components/detail-machine/detail-machine.component';
 import { MachineComponent } from './pages/machine/machine.component';
 import { DetailMachineAlarmComponent } from './components/detail-machine-alarm/detail-machine-alarm.component';
-import {
-    DetailMachineActivityMachineComponent
-} from './components/detail-machine-activity-machine/detail-machine-activity-machine.component';
-import {
-    DetailMachineHistoryAlarmComponent
-} from './components/detail-machine-history-alarm/detail-machine-history-alarm.component';
-import {
-    DetailMachineProductionGraphComponent
-} from './components/detail-machine-production-graph/detail-machine-production-graph.component';
-import {
-    DetailMachineActualMaintenanceComponent
-} from './components/detail-machine-actual-maintenance/detail-machine-actual-maintenance.component';
-import {
-    ChartTopMachineAlarmComponent
-} from '../dashboard/components/top-machine-alarm/chart-top-machine-alarm.component';
+import { DetailMachineActivityMachineComponent } from './components/detail-machine-activity-machine/detail-machine-activity-machine.component';
+import { DetailMachineHistoryAlarmComponent } from './components/detail-machine-history-alarm/detail-machine-history-alarm.component';
+import { DetailMachineProductionGraphComponent } from './components/detail-machine-production-graph/detail-machine-production-graph.component';
+import { DetailMachineActualMaintenanceComponent } from './components/detail-machine-actual-maintenance/detail-machine-actual-maintenance.component';
+import { ChartTopMachineAlarmComponent } from '../dashboard/components/top-machine-alarm/chart-top-machine-alarm.component';
 import { DatepickerComponent } from '../../shared/datepicker/datepicker.component';
 import { DotComponent } from '../../shared/dot/dot.component';
 import { PaginatorComponent } from '../../shared/paginator/paginator.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatGridListModule } from "@angular/material/grid-list";
-import { NgChartsModule } from "ng2-charts";
-import {
-    ChartDetailMachineAlarmComponent
-} from "./components/detail-machine-alarm/chart-detail-machine-alarm.component";
-import {
-    ChartDetailMachineProductionGraphComponent
-} from "./components/detail-machine-production-graph/chart-detail-machine-production-graph.component";
-import {
-    ChartDetailMachineActivityMachineComponent
-} from "./components/detail-machine-activity-machine/chart-detail-machine-activity-machine.component";
-import { MatMenuModule } from "@angular/material/menu";
-import { MatInputModule } from "@angular/material/input";
-import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatNativeDateModule } from "@angular/material/core";
-import { MatSelectModule } from "@angular/material/select";
+import { MatGridListModule } from '@angular/material/grid-list';
+import { NgChartsModule } from 'ng2-charts';
+import { ChartDetailMachineAlarmComponent } from './components/detail-machine-alarm/chart-detail-machine-alarm.component';
+import { ChartDetailMachineProductionGraphComponent } from './components/detail-machine-production-graph/chart-detail-machine-production-graph.component';
+import { ChartDetailMachineActivityMachineComponent } from './components/detail-machine-activity-machine/chart-detail-machine-activity-machine.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { DetailMachineTemperatureMirrorComponent } from './components/detail-machine-temperature-mirror/detail-machine-temperature-mirror.component';
 import { ChartDetailMachineTemperatureMirrorComponent } from './components/detail-machine-temperature-mirror/chart-detail-machine-temperature-mirror.component';
 import { DetailMachineRunningHourComponent } from './components/detail-machine-running-hour/detail-machine-running-hour.component';
@@ -61,7 +45,6 @@ import { ChartDetailMachineDewPointComponent } from './components/detail-machine
 import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v2.component';
 import { DatepickerV3Component } from 'src/app/shared/datepicker-v3/datepicker-v3.component';
 
-
 @NgModule({
     declarations: [
         DetailMachineComponent,
@@ -79,7 +62,7 @@ import { DatepickerV3Component } from 'src/app/shared/datepicker-v3/datepicker-v
         DetailMachineRpmSpindleComponent,
         DetailMachineRurgeCellComponent,
         DetailMachineSansoMaticComponent,
-        DetailMachineDewPointComponent
+        DetailMachineDewPointComponent,
     ],
     imports: [
         CommonModule,
@@ -113,5 +96,4 @@ import { DatepickerV3Component } from 'src/app/shared/datepicker-v3/datepicker-v
         DatepickerV3Component,
     ],
 })
-export class MachineModule {
-}
+export class MachineModule {}

@@ -10,11 +10,10 @@
     border-radius: 50%;
     background: #616161;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
 
     &.active {
-        background: #FFFFFF;
-        transition: .2s;
+        background: #ffffff;
+        transition: 0.2s;
     }
 }
-

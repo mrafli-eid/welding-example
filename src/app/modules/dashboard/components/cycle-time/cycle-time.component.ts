@@ -6,15 +6,15 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
 import { DashboardOilLevel } from '../../../../core/models/dashboard.model';
 import { DUMMY_DASHBOARD_CYCLE_TIME } from './cycle-time.dummy';
 import { Machine } from '../../../../core/models/layout-machine.model';
-import { untilDestroyed } from "../../../../core/helpers/rxjs.helper";
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { untilDestroyed } from '../../../../core/helpers/rxjs.helper';
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 
 @Component({
     selector: 'ahm-cycle-time',
     templateUrl: './cycle-time.component.html',
-    styleUrls: [ './cycle-time.component.scss' ],
+    styleUrls: ['./cycle-time.component.scss'],
     host: {
-        'class': 'dashboard-card justify-content-between',
+        class: 'dashboard-card justify-content-between',
     },
 })
 export class CycleTimeComponent implements OnInit {
@@ -30,8 +30,7 @@ export class CycleTimeComponent implements OnInit {
     minimum = 3;
     step = 1;
 
-    constructor(private dashboardService: DashboardService) {
-    }
+    constructor(private dashboardService: DashboardService) {}
 
     ngOnInit() {
         this.getChartData();
@@ -43,17 +42,19 @@ export class CycleTimeComponent implements OnInit {
     }
 
     getChartData(): void {
-        const machineName = encodeURIComponent(this.machineList[this.page].name);
-        this.dashboardService.getCycleTime(machineName, this.dateFilter)
+        const machineName = encodeURIComponent(
+            this.machineList[this.page].name
+        );
+        this.dashboardService
+            .getCycleTime(machineName, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.cycleTime = resp.data;
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 

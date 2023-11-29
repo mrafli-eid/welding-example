@@ -29,14 +29,12 @@ export class ChartDetailMachineVoltageComponent {
 
     ngOnChanges() {
         this.lineChartData.datasets[0].data = this.data.data_actual.map(
-            (res) => res.actual
+            res => res.actual
         );
         this.lineChartData.datasets[1].data = this.data.data_setting.map(
-            (res) => res.setting
+            res => res.setting
         );
-        this.lineChartData.labels = this.data.data_label.map(
-            (res) => res.label
-        );
+        this.lineChartData.labels = this.data.data_label.map(res => res.label);
 
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.minimum = {
@@ -49,23 +47,23 @@ export class ChartDetailMachineVoltageComponent {
         this.chart?.render();
     }
 
-  public lineChartData: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        pointRadius: 4,
-        borderColor: '#0177FB',
-        fill: 'origin',
-      },
-      {
-        data: [],
-        pointRadius: 4,
-        borderColor: '#DC3545',
-        fill: 'origin',
-      },
-    ],
-    labels: [],
-  };
+    public lineChartData: ChartConfiguration['data'] = {
+        datasets: [
+            {
+                data: [],
+                pointRadius: 4,
+                borderColor: '#0177FB',
+                fill: 'origin',
+            },
+            {
+                data: [],
+                pointRadius: 4,
+                borderColor: '#DC3545',
+                fill: 'origin',
+            },
+        ],
+        labels: [],
+    };
 
     public lineChartOptions: ChartConfiguration['options'] = {
         responsive: true,

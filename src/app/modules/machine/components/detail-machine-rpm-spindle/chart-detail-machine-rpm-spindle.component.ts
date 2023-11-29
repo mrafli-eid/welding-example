@@ -33,15 +33,13 @@ export class ChartDetailMachineRpmSpindleComponent {
 
     ngOnChanges() {
         this.lineChartData.datasets[0].data = this.data.data_rpm_a.map(
-            (res) => res.value
+            res => res.value
         );
         this.lineChartData.datasets[1].data = this.data.data_rpm_b.map(
-            (res) => res.value
+            res => res.value
         );
         // this.lineChartData.datasets[1].data = this.data.maximum;
-        this.lineChartData.labels = this.data.data_label.map(
-            (res) => res.label
-        );
+        this.lineChartData.labels = this.data.data_label.map(res => res.label);
 
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.maximum = {

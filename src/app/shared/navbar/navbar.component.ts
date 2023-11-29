@@ -9,7 +9,11 @@ import { take } from 'rxjs';
 import { notification } from 'src/app/core/models/notification.model';
 import { NOTIF_DUMMY } from '../../modules/notification/all-notification/notification.dummy';
 import { Router } from '@angular/router';
-import { HALF_MINUTE_INTERVAL, TEN_MINUTE_INTERVAL, TEN_SECOND_INTERVAL } from '../../core/consts/app.const';
+import {
+    HALF_MINUTE_INTERVAL,
+    TEN_MINUTE_INTERVAL,
+    TEN_SECOND_INTERVAL,
+} from '../../core/consts/app.const';
 import { ROBOT_PARAMS } from './robot-params';
 
 @Component({
@@ -29,7 +33,7 @@ export class NavbarComponent implements OnInit {
     ) {}
 
     listNotif: notification[] = NOTIF_DUMMY.filter(
-        (data) => data.status !== true
+        data => data.status !== true
     );
     params = {
         start: null,
@@ -59,8 +63,6 @@ export class NavbarComponent implements OnInit {
         }, 1000);
     }
 
-  
-
     toggle() {
         this.sidebarService.toggle();
     }
@@ -79,7 +81,7 @@ export class NavbarComponent implements OnInit {
             .getListNotification()
             .pipe(take(1))
             .subscribe({
-                next: (response) => {
+                next: response => {
                     this.listNotif = response.data.filter(
                         (data: notification) => data.status !== true
                     );

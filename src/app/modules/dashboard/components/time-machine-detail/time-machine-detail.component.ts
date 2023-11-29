@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DateFilter } from '../../../../core/models/date-filter.model';
 import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
-import { interval, take } from "rxjs";
-import { DashboardService } from "../../../../core/services/dashboard.service";
-import { TimeMachineDetail } from "../../../../core/models/dashboard.model";
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+import { interval, take } from 'rxjs';
+import { DashboardService } from '../../../../core/services/dashboard.service';
+import { TimeMachineDetail } from '../../../../core/models/dashboard.model';
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 
 @Component({
     selector: 'ahm-time-machine-detail',
     templateUrl: './time-machine-detail.component.html',
-    styleUrls: [ './time-machine-detail.component.scss' ],
+    styleUrls: ['./time-machine-detail.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class TimeMachineDetailComponent implements OnInit {
@@ -22,12 +22,12 @@ export class TimeMachineDetailComponent implements OnInit {
     @Output() changedDateFilter = new EventEmitter<DateFilter>();
 
     data: TimeMachineDetail = {
-        "value_stopline": 100,
-        "value_idle": 20,
-        "value_running": 30,
-        "label": "Monday",
-        "date_time": new Date()
-    }
+        value_stopline: 100,
+        value_idle: 20,
+        value_running: 30,
+        label: 'Monday',
+        date_time: new Date(),
+    };
 
     chartData = [];
 
@@ -45,17 +45,17 @@ export class TimeMachineDetailComponent implements OnInit {
     }
 
     getChartData(): void {
-        this.dashboardService.getTimeMachineDetail(this.dateFilter)
+        this.dashboardService
+            .getTimeMachineDetail(this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.data = resp.data;
                         this.convertToChartData();
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 
@@ -64,17 +64,17 @@ export class TimeMachineDetailComponent implements OnInit {
         this.chartData.push(
             {
                 value: this.data.value_running,
-                color: [ '#33A02C' ]
+                color: ['#33A02C'],
             },
             {
                 value: this.data.value_idle,
-                color: [ '#F1BE42' ]
+                color: ['#F1BE42'],
             },
             {
                 value: this.data.value_stopline,
-                color: [ '#DC3545' ]
-            },
-        )
+                color: ['#DC3545'],
+            }
+        );
     }
 
     onFilterChanged(dateFilter: DateFilter) {

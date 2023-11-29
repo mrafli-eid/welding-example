@@ -11,21 +11,18 @@
                 <th>Date Joined</th>
             </tr>
             <tr>
-                <td>{{data.user_name}}</td>
-                <td>{{data.role_name}}</td>
+                <td>{{ data.user_name }}</td>
+                <td>{{ data.role_name }}</td>
                 <td>
                     <div *ngFor="let data of data.claim_type">
-                        {{data.claim}}
+                        {{ data.claim }}
                     </div>
                 </td>
-                <td>{{data.last_created}}</td>
+                <td>{{ data.last_created }}</td>
             </tr>
         </table>
     </div>
     <div class="user-management-footer">
-        <button (click)="back()" class="ahm-btn ahm-btn-primary">
-            Back
-        </button>
+        <button (click)="back()" class="ahm-btn ahm-btn-primary">Back</button>
     </div>
 </div>
-

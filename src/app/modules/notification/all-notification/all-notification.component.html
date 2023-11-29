@@ -1,31 +1,51 @@
 <div>
-  <div class="row">
-    <ahm-breadcrumbs [breadcrumbs]="breadcrumbs"></ahm-breadcrumbs>
-  </div>
-  <div class="ahm-table">
-    <table>
-        <tr>
-            <th>No</th>
-            <th>Machine</th>
-            <th>Datetime</th>
-            <th>Message</th>
-            <th>Action</th>
-          </tr>
-        <tr *ngFor="let data of allNotifications; let index = index" [ngStyle]="{ 'color': data.status ? '#616161' : 'white', 'background-color': data.status ? '#2D2E32' : 'black' }">
-            <td >{{ ((pagination.page_number - 1) * pagination.page_size) + (index + 1)}}</td>
-            <td>{{data.machine_name}}</td>
-            <td>{{data.date_time}}</td>
-            <td>{{data.message}}</td>
-            <td class="disable-notif" *ngIf="data.status == true" >
-              <img src="../../../../assets//icons/disabled-action.svg" alt="">
-            </td>
-            <td class="enable-notif" *ngIf="data.status == false">
-              <img (click)="updateNotif(data.id)" src="../../../../assets/icons/enable-action.svg" alt="">
-            </td>
-          </tr>
+    <div class="row">
+        <ahm-breadcrumbs [breadcrumbs]="breadcrumbs"></ahm-breadcrumbs>
+    </div>
+    <div class="ahm-table">
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Machine</th>
+                <th>Datetime</th>
+                <th>Message</th>
+                <th>Action</th>
+            </tr>
+            <tr
+                *ngFor="let data of allNotifications; let index = index"
+                [ngStyle]="{
+                    color: data.status ? '#616161' : 'white',
+                    'background-color': data.status ? '#2D2E32' : 'black'
+                }"
+            >
+                <td>
+                    {{
+                        (pagination.page_number - 1) * pagination.page_size +
+                            (index + 1)
+                    }}
+                </td>
+                <td>{{ data.machine_name }}</td>
+                <td>{{ data.date_time }}</td>
+                <td>{{ data.message }}</td>
+                <td class="disable-notif" *ngIf="data.status == true">
+                    <img
+                        src="../../../../assets//icons/disabled-action.svg"
+                        alt=""
+                    />
+                </td>
+                <td class="enable-notif" *ngIf="data.status == false">
+                    <img
+                        (click)="updateNotif(data.id)"
+                        src="../../../../assets/icons/enable-action.svg"
+                        alt=""
+                    />
+                </td>
+            </tr>
         </table>
-</div>
-<ahm-paginator (selectedLimit)="onSelectLimit($event)"
-               (selectedPage)="onSelectPage($event)"
-               [pagination]="pagination"></ahm-paginator>
+    </div>
+    <ahm-paginator
+        (selectedLimit)="onSelectLimit($event)"
+        (selectedPage)="onSelectPage($event)"
+        [pagination]="pagination"
+    ></ahm-paginator>
 </div>

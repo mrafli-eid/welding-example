@@ -1,17 +1,17 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
-import { BaseChartDirective, NgChartsModule } from "ng2-charts";
-import { ChartConfiguration, ChartType } from "chart.js";
-import Annotation from "chartjs-plugin-annotation";
-import { DetailMachineActivityMachine } from "../../../../core/models/machine.model";
+import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
+import { ChartConfiguration, ChartType } from 'chart.js';
+import Annotation from 'chartjs-plugin-annotation';
+import { DetailMachineActivityMachine } from '../../../../core/models/machine.model';
 
 @Component({
     selector: 'ahm-chart-detail-machine-activity-machine',
     standalone: true,
-    imports: [ CommonModule, NgChartsModule ],
+    imports: [CommonModule, NgChartsModule],
     templateUrl: './chart-detail-machine-activity-machine.component.html',
-    styleUrls: [ './chart-detail-machine-activity-machine.component.scss' ],
+    styleUrls: ['./chart-detail-machine-activity-machine.component.scss'],
 })
 export class ChartDetailMachineActivityMachineComponent implements OnChanges {
     public lineChartType: ChartType = 'bar';
@@ -20,14 +20,20 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
     @Input() data: DetailMachineActivityMachine;
 
     constructor() {
-        Chart.register(Annotation)
+        Chart.register(Annotation);
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data?.data?.map((d) => d.value_run);
-        this.lineChartData.datasets[2].data = this.data?.data?.map((d) => d.value_stop);
-        this.lineChartData.datasets[1].data = this.data?.data?.map((d) => d.value_idle);
-        this.lineChartData.labels = this.data?.data?.map((d) => d.label);
+        this.lineChartData.datasets[0].data = this.data?.data?.map(
+            d => d.value_run
+        );
+        this.lineChartData.datasets[2].data = this.data?.data?.map(
+            d => d.value_stop
+        );
+        this.lineChartData.datasets[1].data = this.data?.data?.map(
+            d => d.value_idle
+        );
+        this.lineChartData.labels = this.data?.data?.map(d => d.label);
 
         this.chart?.update();
     }
@@ -56,11 +62,11 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
                 stack: 'a',
                 borderRadius: {
                     topLeft: 3,
-                    topRight: 3
-                }
+                    topRight: 3,
+                },
             },
         ],
-        labels: []
+        labels: [],
     };
 
     public lineChartOptions: ChartConfiguration['options'] = {
@@ -68,11 +74,11 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
         maintainAspectRatio: false,
         elements: {
             line: {
-                tension: 0.5
-            }
+                tension: 0.5,
+            },
         },
         layout: {
-            padding: { left: -4, bottom: -5 }
+            padding: { left: -4, bottom: -5 },
         },
         scales: {
             y: {
@@ -84,14 +90,14 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
                     color: '#333333',
                 },
                 border: {
-                    dash: [ 4, 2 ]
+                    dash: [4, 2],
                 },
             },
             x: {
                 ticks: {
                     padding: 10,
                 },
-            }
+            },
         },
 
         plugins: {
@@ -108,8 +114,8 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
             },
             legend: { display: false },
             annotation: {
-                annotations: {}
+                annotations: {},
             },
-        }
+        },
     };
 }

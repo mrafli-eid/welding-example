@@ -8,11 +8,10 @@ import { SidebarService } from '../../../core/services/sidebar.service';
 @Component({
     selector: 'app-backoffice-layout',
     standalone: true,
-    imports: [ CommonModule, NavbarComponent, SidebarComponent, RouterModule ],
+    imports: [CommonModule, NavbarComponent, SidebarComponent, RouterModule],
     templateUrl: './backoffice-layout.component.html',
-    styleUrls: [ './backoffice-layout.component.scss' ],
+    styleUrls: ['./backoffice-layout.component.scss'],
 })
 export class BackofficeLayoutComponent {
-    constructor(public sidebarService: SidebarService) {
-    }
+    constructor(public sidebarService: SidebarService) {}
 }

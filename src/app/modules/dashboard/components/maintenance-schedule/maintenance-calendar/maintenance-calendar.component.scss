@@ -1,5 +1,5 @@
 .calendar-container {
-    background: #2E3034;
+    background: #2e3034;
     border-radius: 3px;
     padding: 6px 4px;
     font-family: 'Inter';
@@ -46,16 +46,16 @@
         margin-inline: auto;
         padding: 6px 20px;
         border-radius: 20px;
-        transition: .2s;
+        transition: 0.2s;
 
         &:hover {
             background-color: #151618;
-            transition: .2s;
+            transition: 0.2s;
         }
-
     }
 
-    .calendar-prev-btn, .calendar-next-btn {
+    .calendar-prev-btn,
+    .calendar-next-btn {
         background: #151618;
         color: white;
         border-radius: 50%;
@@ -78,18 +78,17 @@
         justify-content: center;
         cursor: pointer;
         border-radius: 4px;
-        transition: .2s;
+        transition: 0.2s;
     }
 
     &.month-view {
-
         div {
             width: calc(100% / 7);
             aspect-ratio: 1/1;
             cursor: default;
 
             &.disabled {
-                color: #ADADAD;
+                color: #adadad;
                 cursor: default;
             }
 
@@ -99,13 +98,13 @@
                 font-weight: 400;
                 font-size: 8px;
                 line-height: 10px;
-                color: #FFFFFF;
+                color: #ffffff;
                 opacity: 0.5;
             }
 
             &.active {
-                color: #FFFFFF;
-                background-color: #101F5C;
+                color: #ffffff;
+                background-color: #101f5c;
             }
         }
     }
@@ -123,20 +122,20 @@
             span {
                 padding: 4px 8px;
                 border-radius: 50px;
-                transition: .2s;
+                transition: 0.2s;
             }
 
             &.active {
                 span {
-                    background-color: #101F5C;
-                    color: #FFFFFF;
+                    background-color: #101f5c;
+                    color: #ffffff;
                 }
             }
 
             &:hover:not(.active) {
                 span {
                     background-color: #151618;
-                    transition: .2s;
+                    transition: 0.2s;
                 }
             }
         }
@@ -155,20 +154,20 @@
             span {
                 padding: 4px 8px;
                 border-radius: 50px;
-                transition: .2s;
+                transition: 0.2s;
             }
 
             &.active {
                 span {
-                    background-color: #101F5C;
-                    color: #FFFFFF;
+                    background-color: #101f5c;
+                    color: #ffffff;
                 }
             }
 
             &:hover {
                 span {
                     background-color: #151618;
-                    transition: .2s;
+                    transition: 0.2s;
                 }
             }
         }
@@ -176,13 +175,13 @@
 }
 
 .today {
-    color: #0177FB;
+    color: #0177fb;
 }
 
 .red {
-    color: #DC3545;
+    color: #dc3545;
 }
 
 .green {
-    color: #33A02C;
+    color: #33a02c;
 }

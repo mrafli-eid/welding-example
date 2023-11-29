@@ -1,4 +1,4 @@
 <ng-container *ngFor="let b of breadcrumbs; let index = index">
-    <a (click)="navigateTo(b.link)">{{b.label}}</a>
-    <span *ngIf="index !== breadcrumbs.length-1">/</span>
+    <a (click)="navigateTo(b.link)">{{ b.label }}</a>
+    <span *ngIf="index !== breadcrumbs.length - 1">/</span>
 </ng-container>

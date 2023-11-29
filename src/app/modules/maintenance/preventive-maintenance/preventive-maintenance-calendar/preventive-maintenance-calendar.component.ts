@@ -11,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'ahm-preventive-maintenance-calendar',
     templateUrl: './preventive-maintenance-calendar.component.html',
-    styleUrls: [ './preventive-maintenance-calendar.component.scss' ],
+    styleUrls: ['./preventive-maintenance-calendar.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class PreventiveMaintenanceCalendarComponent {
@@ -24,8 +24,10 @@ export class PreventiveMaintenanceCalendarComponent {
     currentMonth = new Date().getMonth();
     currentYear = new Date().getFullYear();
 
-    constructor(private maintenanceService: MaintenancePreventiveService,
-                private activatedRoute: ActivatedRoute) {
+    constructor(
+        private maintenanceService: MaintenancePreventiveService,
+        private activatedRoute: ActivatedRoute
+    ) {
         this.machine_name = this.activatedRoute.snapshot.paramMap.get('name');
     }
 
@@ -40,14 +42,22 @@ export class PreventiveMaintenanceCalendarComponent {
 
     getScheduleList() {
         const start = new Date(this.currentYear, this.currentMonth, 1, 0, 0, 0);
-        const end = new Date(this.currentYear, this.currentMonth + 1, 0, 23, 59, 59);
-        this.maintenanceService.getSchedule(this.machine_name, start, end)
+        const end = new Date(
+            this.currentYear,
+            this.currentMonth + 1,
+            0,
+            23,
+            59,
+            59
+        );
+        this.maintenanceService
+            .getSchedule(this.machine_name, start, end)
             .pipe(take(1))
-            .subscribe((resp) => {
+            .subscribe(resp => {
                 if (resp.data && resp.data?.length > 0) {
-                    resp.data.forEach((r) => {
+                    resp.data.forEach(r => {
                         r.start_date = moment(r.start_date).toDate();
-                    })
+                    });
                     this.scheduleList = resp.data;
                 }
             });

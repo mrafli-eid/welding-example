@@ -1,36 +1,56 @@
 <div class="dashboard-header">
-    <h5 class="text-center">MTBF | MTTR <br> {{ getPreviousMonth() }}</h5>
+    <h5 class="text-center">
+        MTBF | MTTR <br />
+        {{ getPreviousMonth() }}
+    </h5>
 </div>
 <div class="indicator-container">
     <div class="indicator-item mttr" [class.down-mttr]="mttr < targetMttr">
         <h6>MTTR</h6>
-        <div class="indicator-hour">{{mttr | thousand}} Hours</div>
+        <div class="indicator-hour">{{ mttr | thousand }} Hours</div>
         <div class="indicator-info">
             <div class="indicator-info-img">
-                <svg fill="none" height="12" viewBox="0 0 13 12" width="13" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6.625 0L12.7954 11.25H0.454569L6.625 0Z" fill="#22FC14"/>
+                <svg
+                    fill="none"
+                    height="12"
+                    viewBox="0 0 13 12"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.625 0L12.7954 11.25H0.454569L6.625 0Z"
+                        fill="#22FC14"
+                    />
                 </svg>
             </div>
             <div class="indicator-info-number">
-                <div class="target">{{targetMttr | thousand}} Hours</div>
+                <div class="target">{{ targetMttr | thousand }} Hours</div>
                 <div>Target MTTR</div>
             </div>
         </div>
     </div>
     <div class="indicator-item" [class.down-mtbf]="mtbf < targetMtbf">
         <h6>MTBF</h6>
-        <div class="indicator-hour">{{mtbf | thousand}} Hours</div>
+        <div class="indicator-hour">{{ mtbf | thousand }} Hours</div>
         <div class="indicator-info">
             <div class="indicator-info-img">
-                <svg fill="none" height="12" viewBox="0 0 13 12" width="13" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6.625 0L12.7954 11.25H0.454569L6.625 0Z" fill="#22FC14"/>
+                <svg
+                    fill="none"
+                    height="12"
+                    viewBox="0 0 13 12"
+                    width="13"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.625 0L12.7954 11.25H0.454569L6.625 0Z"
+                        fill="#22FC14"
+                    />
                 </svg>
             </div>
             <div class="indicator-info-number">
-                <div class="target">{{targetMtbf | thousand}} Hours</div>
+                <div class="target">{{ targetMtbf | thousand }} Hours</div>
                 <div>Target MTBF</div>
             </div>
         </div>
     </div>
 </div>
-

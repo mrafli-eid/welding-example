@@ -1,28 +1,28 @@
 import { Component, Input } from '@angular/core';
-import { Pagination } from "../../../../core/models/pagination.model";
+import { Pagination } from '../../../../core/models/pagination.model';
 import {
     DetailMachineActualMaintenance,
-    DetailMachineActualMaintenanceParams
-} from "../../../../core/models/machine.model";
-import { FormControl } from "@angular/forms";
-import { MachineService } from "../../../../core/services/machine.service";
-import { debounceTime, interval, take } from "rxjs";
-import { DUMMY_DETAIL_MACHINE_ACTUAL_MAINTENANCE } from "./detail-machine-actual-maintenance.dummy";
-import { DEFAULT_INTERVAL } from "../../../../core/consts/app.const";
+    DetailMachineActualMaintenanceParams,
+} from '../../../../core/models/machine.model';
+import { FormControl } from '@angular/forms';
+import { MachineService } from '../../../../core/services/machine.service';
+import { debounceTime, interval, take } from 'rxjs';
+import { DUMMY_DETAIL_MACHINE_ACTUAL_MAINTENANCE } from './detail-machine-actual-maintenance.dummy';
+import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 
 @Component({
     selector: 'ahm-detail-machine-actual-maintenance',
     templateUrl: './detail-machine-actual-maintenance.component.html',
-    styleUrls: [ './detail-machine-actual-maintenance.component.scss' ],
+    styleUrls: ['./detail-machine-actual-maintenance.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class DetailMachineActualMaintenanceComponent {
     untilDestroyed = untilDestroyed();
 
-  @Input() machine_name: string;
+    @Input() machine_name: string;
     pagination: Pagination = {
         page_number: 1,
         page_size: 10,
@@ -31,18 +31,17 @@ export class DetailMachineActualMaintenanceComponent {
     };
     queryParams: Partial<DetailMachineActualMaintenanceParams> = {
         page_size: this.pagination.page_size,
-        page_number: this.pagination.page_number
-    }
+        page_number: this.pagination.page_number,
+    };
 
     searchTerm = new FormControl('');
     actDate = new FormControl(null);
     planDate = new FormControl(null);
 
-    actualMaintenanceList: DetailMachineActualMaintenance[] = DUMMY_DETAIL_MACHINE_ACTUAL_MAINTENANCE;
+    actualMaintenanceList: DetailMachineActualMaintenance[] =
+        DUMMY_DETAIL_MACHINE_ACTUAL_MAINTENANCE;
 
-    constructor(private machineService: MachineService) {
-
-    }
+    constructor(private machineService: MachineService) {}
 
     ngOnInit() {
         this.addSearchListener();
@@ -55,22 +54,23 @@ export class DetailMachineActualMaintenanceComponent {
     }
 
     addSearchListener() {
-        this.searchTerm.valueChanges
-            .pipe(debounceTime(350))
-            .subscribe((val) => {
-                this.queryParams.search_term = val;
-                this.queryParams.page_number = 1;
-                this.fetchList();
-            });
+        this.searchTerm.valueChanges.pipe(debounceTime(350)).subscribe(val => {
+            this.queryParams.search_term = val;
+            this.queryParams.page_number = 1;
+            this.fetchList();
+        });
     }
 
     fetchList() {
-      this.machineService.getActualMaintenance(this.machine_name, this.queryParams)
+        this.machineService
+            .getActualMaintenance(this.machine_name, this.queryParams)
             .pipe(take(1))
-            .subscribe((response) => {
-                this.pagination = JSON.parse(response.headers.get('x-pagination'));
+            .subscribe(response => {
+                this.pagination = JSON.parse(
+                    response.headers.get('x-pagination')
+                );
                 this.actualMaintenanceList = response.body.data || [];
-            })
+            });
     }
 
     changePage(page: number) {

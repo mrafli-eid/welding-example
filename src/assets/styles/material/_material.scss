@@ -2,15 +2,22 @@
 
 @include mat.core();
 $assembly-frame-web-primary: mat.define-palette(mat.$indigo-palette);
-$assembly-frame-web-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$assembly-frame-web-accent: mat.define-palette(
+    mat.$pink-palette,
+    A200,
+    A100,
+    A400
+);
 $assembly-frame-web-warn: mat.define-palette(mat.$red-palette);
-$assembly-frame-web-theme: mat.define-light-theme((
+$assembly-frame-web-theme: mat.define-light-theme(
+    (
         color: (
-                primary: $assembly-frame-web-primary,
-                accent: $assembly-frame-web-accent,
-                warn: $assembly-frame-web-warn,
-        )
-));
+            primary: $assembly-frame-web-primary,
+            accent: $assembly-frame-web-accent,
+            warn: $assembly-frame-web-warn,
+        ),
+    )
+);
 @include mat.all-component-themes($assembly-frame-web-theme);
 
 /* mat-form-field*/
@@ -21,61 +28,85 @@ mat-form-field {
 
 /* mat-select mat-option */
 /* change mat-option color to light grey */
-.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
-    border-color: #30303D;
-    transition: .2s;
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__trailing {
+    border-color: #30303d;
+    transition: 0.2s;
 }
 /* change mat-form-field color to blue grey on hover */
-.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
-    border-color: #0177FB;
-    transition: .2s;
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(
+        .mdc-text-field--focused
+    ):hover
+    .mdc-notched-outline
+    .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(
+        .mdc-text-field--focused
+    ):hover
+    .mdc-notched-outline
+    .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(
+        .mdc-text-field--focused
+    ):hover
+    .mdc-notched-outline
+    .mdc-notched-outline__trailing,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+    .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+    .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+    .mdc-notched-outline__trailing {
+    border-color: #0177fb;
+    transition: 0.2s;
 }
 .mdc-text-field--disabled .mdc-notched-outline__leading,
 .mdc-text-field--disabled .mdc-notched-outline__notch,
 .mdc-text-field--disabled .mdc-notched-outline__trailing {
-    border-color: #30303D;
+    border-color: #30303d;
 }
-.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
-.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
-.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
-    border-color: #f44336!important;
+.mdc-text-field--invalid:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__leading,
+.mdc-text-field--invalid:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__notch,
+.mdc-text-field--invalid:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__trailing {
+    border-color: #f44336 !important;
 }
 
 /* change mat-option color to dark grey on hover */
 .mat-mdc-option:hover:not(.mdc-list-item--disabled),
 .mat-mdc-option:focus.mdc-list-item,
 .mat-mdc-option.mat-mdc-option-active.mdc-list-item,
-.mat-mdc-option.mdc-list-item--selected:not(.mat-mdc-option-multiple):not(.mdc-list-item--disabled) {
+.mat-mdc-option.mdc-list-item--selected:not(.mat-mdc-option-multiple):not(
+        .mdc-list-item--disabled
+    ) {
     background: #2d2e32;
 }
 /* change selected mat-option color to white */
 .mat-mdc-select-value,
-.mat-primary .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text ,
+.mat-primary
+    .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+    .mdc-list-item__primary-text,
 .mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
-.mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
-    color: #FFFFFF;
+.mat-primary
+    .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+    color: #ffffff;
 }
-/* change mat-option text color to grey */              
+/* change mat-option text color to grey */
 .mdc-list-item__primary-text {
-    color: #A0A0A0;
+    color: #a0a0a0;
 }
-
 
 /* mat-menu */
 .mdc-menu-surface {
     background-color: #313235;
-    width: 50rem; 
+    width: 50rem;
 }
-
 
 /* remove padding from material list */
 .mdc-menu-surface.mat-mdc-select-panel {
-    padding: 0!important;
+    padding: 0 !important;
 }

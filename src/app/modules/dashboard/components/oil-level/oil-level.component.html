@@ -1,17 +1,20 @@
 <div class="dashboard-header">
     <h5>
         Oil Level
-        <span *ngIf="oilLevel">({{this.machineList[this.page].name}})</span>
+        <span *ngIf="oilLevel">({{ this.machineList[this.page].name }})</span>
     </h5>
-    <ahm-datepicker (dateChanged)="onFilterChanged($event)"
-                    [dateFilter]="dateFilter"></ahm-datepicker>
+    <ahm-datepicker
+        (dateChanged)="onFilterChanged($event)"
+        [dateFilter]="dateFilter"
+    ></ahm-datepicker>
 </div>
 <div class="dashboard-content">
-    <ahm-chart-oil-level [data]="oilLevel"
-                         [maximum]="maximum"
-                         [warning]="warning"
-                         [minimum]="minimum"></ahm-chart-oil-level>
-
+    <ahm-chart-oil-level
+        [data]="oilLevel"
+        [maximum]="maximum"
+        [warning]="warning"
+        [minimum]="minimum"
+    ></ahm-chart-oil-level>
 </div>
 <div class="dashboard-footer justify-content-between">
     <div class="chart-legend">
@@ -20,7 +23,9 @@
         <ahm-dot color="success" type="line">Minimum</ahm-dot>
         <ahm-dot color="primary">Actual</ahm-dot>
     </div>
-    <ahm-pagination (onPageChange)="onPageChange($event)"
-                    [page]="page"
-                    [totalPage]="machineList.length"></ahm-pagination>
+    <ahm-pagination
+        (onPageChange)="onPageChange($event)"
+        [page]="page"
+        [totalPage]="machineList.length"
+    ></ahm-pagination>
 </div>

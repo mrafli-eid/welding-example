@@ -33,9 +33,9 @@ export class ChartDetailMachineRunningHourComponent {
 
     ngOnChanges() {
         this.lineChartData.datasets[0].data = this.data.data.map(
-            (res) => res.value
+            res => res.value
         );
-        this.lineChartData.labels = this.data.data.map((res) => res.label);
+        this.lineChartData.labels = this.data.data.map(res => res.label);
 
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.maximum = {

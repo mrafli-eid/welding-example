@@ -1,8 +1,9 @@
 <div class="master-data-container">
-    <a *ngFor="let machine of machineList"
-       class="master-data-item"
-       (click)="navigateToDetail(machine)">
-        {{machine.name}}
+    <a
+        *ngFor="let machine of machineList"
+        class="master-data-item"
+        (click)="navigateToDetail(machine)"
+    >
+        {{ machine.name }}
     </a>
 </div>
-

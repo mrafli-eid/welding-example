@@ -12,9 +12,9 @@ import { MaintenancePreventiveService } from '../../../../core/services/maintena
 @Component({
     selector: 'ahm-preventive-maintenance-graph',
     templateUrl: './preventive-maintenance-graph.component.html',
-    styleUrls: [ './preventive-maintenance-graph.component.scss' ],
+    styleUrls: ['./preventive-maintenance-graph.component.scss'],
     host: {
-        'class': 'dashboard-card',
+        class: 'dashboard-card',
     },
 })
 export class PreventiveMaintenanceGraphComponent {
@@ -22,12 +22,15 @@ export class PreventiveMaintenanceGraphComponent {
     machine_name = '';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    data: MaintenancePreventiveChart[] = DUMMY_MAINTENANCE_PREVENTIVE_CHART_LIST;
+    data: MaintenancePreventiveChart[] =
+        DUMMY_MAINTENANCE_PREVENTIVE_CHART_LIST;
 
     page: number = 0;
 
-    constructor(private maintenanceService: MaintenancePreventiveService,
-                private activatedRoute: ActivatedRoute) {
+    constructor(
+        private maintenanceService: MaintenancePreventiveService,
+        private activatedRoute: ActivatedRoute
+    ) {
         this.machine_name = this.activatedRoute.snapshot.paramMap.get('name');
     }
 
@@ -41,16 +44,16 @@ export class PreventiveMaintenanceGraphComponent {
     }
 
     getChartData(): void {
-        this.maintenanceService.getChart(this.machine_name, this.dateFilter)
+        this.maintenanceService
+            .getChart(this.machine_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.data = resp.data;
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 

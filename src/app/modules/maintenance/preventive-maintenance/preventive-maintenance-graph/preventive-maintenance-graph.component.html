@@ -1,7 +1,9 @@
 <div class="dashboard-header">
     <h5>Maintenance</h5>
-    <ahm-datepicker (dateChanged)="onFilterChanged($event)"
-                    [dateFilter]="dateFilter"></ahm-datepicker>
+    <ahm-datepicker
+        (dateChanged)="onFilterChanged($event)"
+        [dateFilter]="dateFilter"
+    ></ahm-datepicker>
 </div>
 <div class="dashboard-content">
     <ahm-chart-maintenance [data]="data"></ahm-chart-maintenance>
@@ -12,4 +14,3 @@
         <ahm-dot color="success">Actual</ahm-dot>
     </div>
 </div>
-

@@ -10,60 +10,68 @@ import { DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR } from './detail-machine-temper
 import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
 
 @Component({
-  selector: 'ahm-detail-machine-temperature-mirror',
-  templateUrl: './detail-machine-temperature-mirror.component.html',
-  styleUrls: ['./detail-machine-temperature-mirror.component.scss'],
-  host: {
-    'class': 'dashboard-card',
-  },
+    selector: 'ahm-detail-machine-temperature-mirror',
+    templateUrl: './detail-machine-temperature-mirror.component.html',
+    styleUrls: ['./detail-machine-temperature-mirror.component.scss'],
+    host: {
+        class: 'dashboard-card',
+    },
 })
 export class DetailMachineTemperatureMirrorComponent {
-  untilDestroyed = untilDestroyed();
+    untilDestroyed = untilDestroyed();
 
-  @Input() machine_name = '';
+    @Input() machine_name = '';
 
-  dateFilter: DateFilter = getDefaultDateFilter();
-  temperatureMirrorList: DetailMachineTemperatureMirror = DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR;
+    dateFilter: DateFilter = getDefaultDateFilter();
+    temperatureMirrorList: DetailMachineTemperatureMirror =
+        DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR;
 
-  minimum = 13;
-  medium = 20;
-  maximum = 40;
+    minimum = 13;
+    medium = 20;
+    maximum = 40;
 
-  constructor(private machineService: MachineService,
-    private router: Router) {
-  }
-  
-  ngOnInit() {
-    this.fetchTemperatureMirror();
-    interval(DEFAULT_INTERVAL)
-      .pipe(this.untilDestroyed())
-      .subscribe(() => {
+    constructor(
+        private machineService: MachineService,
+        private router: Router
+    ) {}
+
+    ngOnInit() {
         this.fetchTemperatureMirror();
-      });
-  }
+        interval(DEFAULT_INTERVAL)
+            .pipe(this.untilDestroyed())
+            .subscribe(() => {
+                this.fetchTemperatureMirror();
+            });
+    }
 
-  fetchTemperatureMirror(){
-    this.machineService.getTemperatureMirror(this.machine_name, this.dateFilter)
-    .pipe(take(1))
-    .subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.temperatureMirrorList = res.data;
-        }
-      }
-    });
-  }
+    fetchTemperatureMirror() {
+        this.machineService
+            .getTemperatureMirror(this.machine_name, this.dateFilter)
+            .pipe(take(1))
+            .subscribe({
+                next: res => {
+                    if (res.success) {
+                        this.temperatureMirrorList = res.data;
+                    }
+                },
+            });
+    }
 
-  onFilterChanged(dateFilter: DateFilter) {
-    this.dateFilter = dateFilter;
-    this.fetchTemperatureMirror();
-  }
+    onFilterChanged(dateFilter: DateFilter) {
+        this.dateFilter = dateFilter;
+        this.fetchTemperatureMirror();
+    }
 
-  download() {
-      this.machineService.downloadTemperatureMirror(this.machine_name, this.dateFilter);
-  }
+    download() {
+        this.machineService.downloadTemperatureMirror(
+            this.machine_name,
+            this.dateFilter
+        );
+    }
 
-  goToSettings() {
-      this.router.navigate([ '/settings' ], { queryParams: { name: "Temp Mirror", machine: this.machine_name } });
-  }
+    goToSettings() {
+        this.router.navigate(['/settings'], {
+            queryParams: { name: 'Temp Mirror', machine: this.machine_name },
+        });
+    }
 }

@@ -1,10 +1,14 @@
 <div class="dashboard-header">
     <h5>Machine Activity</h5>
-    <ahm-datepicker (dateChanged)="onFilterChanged($event)"
-                    [dateFilter]="dateFilter"></ahm-datepicker>
+    <ahm-datepicker
+        (dateChanged)="onFilterChanged($event)"
+        [dateFilter]="dateFilter"
+    ></ahm-datepicker>
 </div>
 <div class="dashboard-content">
-    <ahm-chart-machine-activity [data]="chartDatasets"></ahm-chart-machine-activity>
+    <ahm-chart-machine-activity
+        [data]="chartDatasets"
+    ></ahm-chart-machine-activity>
 </div>
 <div class="dashboard-footer justify-content-between">
     <div class="chart-legend">

@@ -1,7 +1,7 @@
 export function removeEmptyObject(obj: object): object {
     const result = {};
-    Object.entries(obj).forEach(([ k, v ]) => {
-        if ((v !== null) && (v !== '')) {
+    Object.entries(obj).forEach(([k, v]) => {
+        if (v !== null && v !== '') {
             result[k] = v;
         }
     });
@@ -18,7 +18,11 @@ export function jsonToQueryParams(json: any) {
         '?' +
         Object.keys(json)
             .map(function (key) {
-                return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]);
+                return (
+                    encodeURIComponent(key) +
+                    '=' +
+                    encodeURIComponent(json[key])
+                );
             })
             .join('&')
     );

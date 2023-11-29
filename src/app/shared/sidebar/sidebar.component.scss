@@ -1,4 +1,4 @@
-@import "src/assets/styles/variables";
+@import 'src/assets/styles/variables';
 
 nav {
     background-color: #141517;
@@ -63,7 +63,7 @@ nav {
     border-left: 3px solid transparent;
     text-align: center;
     font-size: 12px;
-    transition: .2s;
+    transition: 0.2s;
     cursor: pointer;
 
     svg {
@@ -74,7 +74,7 @@ nav {
     }
 
     &:hover {
-        transition: .2s;
+        transition: 0.2s;
         background-color: #1f2b31;
 
         img {
@@ -82,13 +82,14 @@ nav {
     }
 
     &.active {
-        transition: .2s;
+        transition: 0.2s;
         background-color: #334851;
         border-left: 3px solid white;
-        color: #0177FB;
+        color: #0177fb;
 
         img {
-            filter: invert(57%) sepia(86%) saturate(7092%) hue-rotate(201deg) brightness(102%) contrast(101%);
+            filter: invert(57%) sepia(86%) saturate(7092%) hue-rotate(201deg)
+                brightness(102%) contrast(101%);
         }
     }
 }

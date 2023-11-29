@@ -15,17 +15,22 @@ export class ActivityUserService {
     baseUrl = `${environment.API_URL}/api/activity`;
 
     getUsernameList() {
-        return this.http.get<HttpResponse<UsernameList[]>>(`${this.baseUrl}/get-list-username`);
+        return this.http.get<HttpResponse<UsernameList[]>>(
+            `${this.baseUrl}/get-list-username`
+        );
     }
 
     getLogTypeList() {
-        return this.http.get<HttpResponse<any[]>>(`${this.baseUrl}/get-list-log-type`);
+        return this.http.get<HttpResponse<any[]>>(
+            `${this.baseUrl}/get-list-log-type`
+        );
     }
 
     getActivityUserList(params: Partial<MasterParams>) {
         params = removeEmptyObject(params);
         return this.http.get<HttpResponse<UserActivity[]>>(
-            `${this.baseUrl}/get-activity-user`, {
+            `${this.baseUrl}/get-activity-user`,
+            {
                 observe: 'response',
                 params: params,
             }
