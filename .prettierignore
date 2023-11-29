@@ -4,6 +4,7 @@ build
 e2e
 package-lock.json
 *.json
+*.yaml
 
 # Compiled output
 /dist
