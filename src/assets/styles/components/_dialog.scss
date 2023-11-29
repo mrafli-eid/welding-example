@@ -58,6 +58,11 @@
     .ahm-dialog-content {
         padding-block: 24px;
         color: white;
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+        }
     }
 
     .ahm-dialog-footer {
