@@ -43,6 +43,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { OnlyNumberDirective } from 'src/app/shared/directives/number-only.directive';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v2.component';
+import { DialogAddMttrMtbfComponent } from './dialogs/dialog-add-mttr-mtbf/dialog-add-mttr-mtbf.component';
 
 @NgModule({
     declarations: [
@@ -62,6 +63,7 @@ import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v
         SettingProductionGraphComponent,
         DialogAddProductionGraphComponent,
         DialogEditProductionGraphComponent,
+        DialogAddMttrMtbfComponent,
     ],
     imports: [
         CommonModule,

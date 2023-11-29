@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map, Subscription } from 'rxjs';
 import { HubConnectionService } from './hub-connection.service';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { HttpResponse } from '../models/http.model';
 import {
@@ -127,6 +127,13 @@ export class DashboardService {
             {
                 params: dateFilter,
             }
+        );
+    }
+
+    createSettingMttrMtbf(body: any) {
+        return this.http.post<HttpResponse<any>>(
+            `${environment.API_URL}/api/mttr-mtbf/create-mttr-mtbf`,
+            body
         );
     }
 

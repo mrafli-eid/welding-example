@@ -10,6 +10,8 @@ import { DEFAULT_INTERVAL } from '../../../../../core/consts/app.const';
 import { untilDestroyed } from '../../../../../core/helpers/rxjs.helper';
 import { DUMMY_DASHBOARD_PRODUCTION_GRAPH } from '../../production-graph/production-graph.dummy';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddMttrMtbfComponent } from '../../../dialogs/dialog-add-mttr-mtbf/dialog-add-mttr-mtbf.component';
 
 @Component({
     selector: 'ahm-maintenance-indicator-graph-mttr',
@@ -29,7 +31,8 @@ export class MaintenanceIndicatorGraphMTTRComponent {
 
     constructor(
         private dashboardService: DashboardService,
-        private router: Router
+        private router: Router,
+        private matDialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -39,6 +42,16 @@ export class MaintenanceIndicatorGraphMTTRComponent {
             .subscribe(() => {
                 this.getChartData();
             });
+    }
+
+    create(){
+        const matDialogRef = this.matDialog.open(DialogAddMttrMtbfComponent);
+
+        matDialogRef.afterClosed().subscribe(resp => {
+            if (resp) {
+                this.getChartData();
+            }
+        });
     }
 
     getChartData(): void {
