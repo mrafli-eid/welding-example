@@ -39,7 +39,7 @@ export class LayoutMachineAreaComponent implements OnChanges, OnInit {
                 id: '',
                 name: '',
                 value: -1,
-                date_time: new Date(),
+                date_time: new Date(),  
             });
         }
     }

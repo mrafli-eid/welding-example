@@ -21,6 +21,7 @@ export class DialogAddProductionGraphComponent {
 
     save() {
         this.formGroup.markAllAsTouched();
+        console.log(this.formGroup.value);
         if (this.formGroup.valid) {
             const body = [];
             const date_time = toIsoString(
