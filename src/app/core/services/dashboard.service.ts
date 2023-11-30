@@ -96,7 +96,7 @@ export class DashboardService {
 
     getGrafikMttr(dateFilter: any) {
         return this.http.get<HttpResponse<DashboardGrafikMtbf>>(
-            `${environment.API_URL}/api/device-data/get-mttr-grafik-all`,
+            `${environment.API_URL}/api/mttr-mtbf/get-mttr-grafik-all`,
             {
                 params: dateFilter,
             }
@@ -105,7 +105,7 @@ export class DashboardService {
 
     getGrafikMtbf(dateFilter: any) {
         return this.http.get<HttpResponse<DashboardGrafikMttr>>(
-            `${environment.API_URL}/api/device-data/get-mtbf-grafik-all`,
+            `${environment.API_URL}/api/mttr-mtbf/get-mtbf-grafik-all`,
             {
                 params: dateFilter,
             }
@@ -114,7 +114,7 @@ export class DashboardService {
 
     getMttr(dateFilter: any) {
         return this.http.get<HttpResponse<DashboardMttr>>(
-            `${environment.API_URL}/api/device-data/get-mttr-all`,
+            `${environment.API_URL}/api/mttr-mtbf/get-mttr-all`,
             {
                 params: dateFilter,
             }
@@ -123,7 +123,7 @@ export class DashboardService {
 
     getMtbf(dateFilter: any) {
         return this.http.get<HttpResponse<DashboardMtbf>>(
-            `${environment.API_URL}/api/device-data/get-mtbf-all`,
+            `${environment.API_URL}/api/mttr-mtbf/get-mtbf-all`,
             {
                 params: dateFilter,
             }
