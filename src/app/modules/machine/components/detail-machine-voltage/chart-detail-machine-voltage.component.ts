@@ -52,13 +52,13 @@ export class ChartDetailMachineVoltageComponent {
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#0177FB',
+                borderColor: '#16A086',
                 fill: 'origin',
             },
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#DC3545',
+                borderColor: '#22C55E',
                 fill: 'origin',
             },
         ],

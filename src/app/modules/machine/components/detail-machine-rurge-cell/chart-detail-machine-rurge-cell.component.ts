@@ -54,7 +54,7 @@ export class ChartDetailMachineRurgeCellComponent {
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#0177FB',
+                borderColor: '#16A086',
                 fill: 'origin',
             },
         ],

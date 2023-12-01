@@ -35,7 +35,7 @@ export class ChartDetailMachineAlarmComponent implements OnChanges {
                 pointRadius: 4,
                 backgroundColor: function (context) {
                     return getGradient(context, [
-                        'rgba(220, 53, 69)',
+                        'rgba(229,57,53)',
                         'rgba(21, 22, 24)',
                     ]);
                 },

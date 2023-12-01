@@ -68,13 +68,12 @@ export class ChartDetailMachineAmpereComponent {
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#0177FB',
-                fill: 'origin',
+                borderColor: '#16A086',
             },
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#DC3545',
+                borderColor: '#22C55E',
                 fill: 'origin',
             },
         ],

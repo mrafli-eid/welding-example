@@ -80,13 +80,13 @@ export class MachineActivityComponent {
             machine.data.forEach((data, y) => {
                 const d = data;
 
-                let backgroundColor = 'rgba(140, 137, 180, 0.5)';
+                let backgroundColor = 'rgba(154, 152, 152, 1)';
                 if (d === 0) {
-                    backgroundColor = '#DC3545';
+                    backgroundColor = '#ff5853';
                 } else if (d === 1) {
-                    backgroundColor = '#F1BE42';
+                    backgroundColor = '#ffc02d';
                 } else if (d === 2) {
-                    backgroundColor = '#28A745';
+                    backgroundColor = '#4caf50';
                 }
 
                 chartDatasets[y].data.push(1);

@@ -6,6 +6,9 @@ export type DotColor =
     | 'warning'
     | 'danger'
     | 'success'
+    | 'greenplan'
+    | 'greenactual'
+    | 'greenmttrmtbf'
     | 'secondary';
 export type DotType = 'dot' | 'line' | 'dashed';
 

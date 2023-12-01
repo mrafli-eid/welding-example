@@ -34,7 +34,7 @@ export class ChartTopMachineAlarmComponent implements OnChanges {
         datasets: [
             {
                 data: [],
-                backgroundColor: '#DC3545',
+                backgroundColor: '#e53935',
                 pointRadius: 4,
                 fill: 'origin',
             },
