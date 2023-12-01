@@ -1,6 +1,16 @@
 <div class="dashboard-header">
     <h5>Production Graph</h5>
     <div class="dashboard-header-nav">
+        <mat-form-field>
+            <mat-select [value]="calendarProductionGraph[0].date">
+                <mat-option
+                    *ngFor="let data of calendarProductionGraph"
+                    [value]="data.date"
+                    (click)="edit(data)"
+                    >{{ data.date }}</mat-option
+                >
+            </mat-select>
+        </mat-form-field>
         <ahm-datepicker
             (dateChanged)="onFilterChanged($event)"
             [dateFilter]="dateFilter"

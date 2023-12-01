@@ -35,6 +35,7 @@ export class DialogEditProductionGraphComponent {
                 plan: this.formGroup.get('plan').value,
                 date_time: toIsoString(this.formGroup.get('date_time').value),
             };
+            console.log(body);
             this.dashboardService
                 .updateProductionPlan(this.data.id, body)
                 .subscribe(resp => {

@@ -17,3 +17,10 @@ export interface MachineLine {
         machine_name: string;
     }[];
 }
+
+export interface CalendarProductionGraph {
+    id: string;
+    plan: number;
+    date_time: string;
+    date: string;
+}
