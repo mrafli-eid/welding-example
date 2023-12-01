@@ -63,7 +63,7 @@ export class ChartDetailMachineRpmSpindleComponent {
             },
             {
                 data: [],
-                borderColor: '#0177FB',
+                borderColor: '#16A086',
                 fill: 'origin',
                 pointRadius: 4,
             },

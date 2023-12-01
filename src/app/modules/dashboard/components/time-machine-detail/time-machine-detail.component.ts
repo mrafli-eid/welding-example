@@ -64,15 +64,15 @@ export class TimeMachineDetailComponent implements OnInit {
         this.chartData.push(
             {
                 value: this.data.value_running,
-                color: ['#33A02C'],
+                color: ['#4CAF50'],
             },
             {
                 value: this.data.value_idle,
-                color: ['#F1BE42'],
+                color: ['#FFC02D'],
             },
             {
                 value: this.data.value_stopline,
-                color: ['#DC3545'],
+                color: ['#FF5853'],
             }
         );
     }

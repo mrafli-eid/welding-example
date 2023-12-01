@@ -26,7 +26,7 @@
     min-height: calc(50% - 12px);
     background: linear-gradient(
         180deg,
-        #33a02c 0%,
+        #16a086 0%,
         rgba(51, 160, 44, 0.34) 100%
     );
 
@@ -69,7 +69,7 @@
     &.down-mtbf {
         background: linear-gradient(
             180deg,
-            #0177fb 0%,
+            #91c090 0%,
             rgba(1, 114, 240, 0.33) 100%
         );
 
@@ -90,7 +90,7 @@
     &.down-mttr {
         background: linear-gradient(
             180deg,
-            #33a02c 0%,
+            #16a086 0%,
             rgba(51, 160, 44, 0.34) 100%
         );
         svg {
@@ -111,7 +111,7 @@
 .mttr {
     background: linear-gradient(
         180deg,
-        #0177fb 0%,
+        #91c090 0%,
         rgba(1, 114, 240, 0.33) 100%
     );
     path {

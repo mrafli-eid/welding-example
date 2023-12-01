@@ -38,8 +38,8 @@ export class ChartProductionGraphComponent implements OnChanges {
                 pointRadius: 4,
                 backgroundColor: function (context) {
                     return getGradient(context, [
-                        'rgba(1, 119, 251, 1)',
-                        'rgba(1, 119, 251, .3)',
+                        'rgba(39, 157, 157, 1)',
+                        'rgba(39, 157, 157, .1)',
                     ]);
                 },
             },
@@ -48,8 +48,8 @@ export class ChartProductionGraphComponent implements OnChanges {
                 pointRadius: 4,
                 backgroundColor: function (context) {
                     return getGradient(context, [
-                        'rgba(40, 167, 69, 1)',
-                        'rgba(40, 167, 69, .3)',
+                        'rgba(40, 110, 110, 1)',
+                        'rgba(40, 110, 110, .1)',
                     ]);
                 },
             },

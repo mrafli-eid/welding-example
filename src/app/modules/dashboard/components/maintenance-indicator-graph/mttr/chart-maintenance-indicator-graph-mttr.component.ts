@@ -39,7 +39,7 @@ export class ChartMaintenanceIndicatorGraphMTTRComponent implements OnChanges {
                 yMin: this.target,
                 yMax: this.target,
                 borderColor: 'rgba(241, 190, 66, 0.7)',
-                borderWidth: 1,
+                borderWidth: 4,
             };
         }
         this.chart?.render();
@@ -50,7 +50,7 @@ export class ChartMaintenanceIndicatorGraphMTTRComponent implements OnChanges {
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#28A745',
+                borderColor: '#16A086',
                 fill: 'origin',
             },
         ],

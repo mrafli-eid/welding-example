@@ -34,26 +34,34 @@
 }
 
 .success {
-    background: #33a02c;
-    border-bottom-color: #33a02c;
+    background: #4caf50;
+    border-bottom-color: #4caf50;
 }
 
 .danger {
-    background: #dc3545;
-    border-bottom-color: #dc3545;
+    background: #ff5853;
+    border-bottom-color: #ff5853;
 }
 
 .warning {
-    background: #f1be42;
-    border-bottom-color: #f1be42;
+    background: #ffc02d;
+    border-bottom-color: #ffc02d;
 }
 
 .primary {
     background: #0177fb;
     border-bottom-color: #0177fb;
 }
-
-.secondary {
-    background: rgba(140, 137, 180, 0.5);
-    border-bottom-color: rgba(140, 137, 180, 0.5);
+.greenplan{
+    background: #279d9d;
+    background-color: #279d9d;
+}.greenactual{
+    background: #286e6e;
+    background-color: #286e6e;
+}.greenmttrmtbf{
+    background: #16A086;
+    background-color: #16A086;
+}.secondary {
+    background: rgba(154, 152, 152, 1);
+    border-bottom-color: rgba(154, 152, 152, 1);
 }

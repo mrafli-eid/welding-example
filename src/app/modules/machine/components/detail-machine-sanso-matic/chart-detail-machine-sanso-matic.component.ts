@@ -70,13 +70,13 @@ export class ChartDetailMachineSansoMaticComponent {
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#0177FB',
+                borderColor: '#22C55E',
                 fill: 'origin',
             },
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#28A745',
+                borderColor: '#16A086',
                 fill: 'origin',
             },
         ],

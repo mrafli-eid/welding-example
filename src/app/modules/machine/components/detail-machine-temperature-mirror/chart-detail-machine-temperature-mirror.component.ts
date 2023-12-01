@@ -70,13 +70,13 @@ export class ChartDetailMachineTemperatureMirrorComponent implements OnChanges {
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#0177FB',
+                borderColor: '#16A086',
                 fill: 'origin',
             },
             {
                 data: [],
                 pointRadius: 4,
-                borderColor: '#0177FB',
+                borderColor: '#22C55E',
                 fill: 'origin',
             },
         ],

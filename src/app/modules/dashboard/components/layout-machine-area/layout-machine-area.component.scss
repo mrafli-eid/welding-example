@@ -52,19 +52,19 @@
 }
 
 .running {
-    background: #33a02c;
+    background: #4caf50;
 }
 
 .stop {
-    background: #dc3545;
+    background: #ff5853;
 }
 
 .idle {
-    background: #f1be42;
+    background: #ffc02d;
 }
 
 .disconnect {
-    background: rgba(140, 137, 180, 0.5);
+    background: rgb(154, 152, 152, 1);
 }
 
 @keyframes shimmer {

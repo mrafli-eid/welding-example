@@ -43,21 +43,21 @@ export class ChartDetailMachineActivityMachineComponent implements OnChanges {
             {
                 data: [],
                 pointRadius: 4,
-                backgroundColor: '#28A745',
+                backgroundColor: '#4caf50',
                 fill: 'origin',
                 stack: 'a',
             },
             {
                 data: [],
                 pointRadius: 4,
-                backgroundColor: '#E3C053',
+                backgroundColor: '#ffc02d',
                 fill: 'origin',
                 stack: 'a',
             },
             {
                 data: [],
                 pointRadius: 4,
-                backgroundColor: '#DC3545',
+                backgroundColor: '#ff5853',
                 fill: 'origin',
                 stack: 'a',
                 borderRadius: {

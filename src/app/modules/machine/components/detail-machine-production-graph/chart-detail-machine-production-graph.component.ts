@@ -37,8 +37,8 @@ export class ChartDetailMachineProductionGraphComponent implements OnChanges {
                 pointRadius: 4,
                 backgroundColor: function (context) {
                     return getGradient(context, [
-                        'rgba(1, 119, 251, 1)',
-                        'rgba(21, 22, 24)',
+                        'rgba(40, 110, 110, 1)',
+                        'rgba(40, 110, 110, .1)',
                     ]);
                 },
             },
