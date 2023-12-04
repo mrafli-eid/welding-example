@@ -45,7 +45,7 @@ export class DialogAddProductionGraphComponent {
         if (this.formGroup.valid || (this.formGroup.get('start_date').value && this.formGroup.get('plan').value)) {
             const body = [];
             const start_date = toIsoString(this.formGroup.get('start_date').value);
-            const end_date = toIsoString(this.formGroup.get('end_date').value);
+            const end_date = toIsoString(this.formGroup.get('end_date')?.value);
             body.push({
                 plan: +this.formGroup.get('plan').value,
                 date_time: start_date,
