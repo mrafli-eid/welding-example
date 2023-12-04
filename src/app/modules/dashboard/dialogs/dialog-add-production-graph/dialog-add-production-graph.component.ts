@@ -49,7 +49,7 @@ export class DialogAddProductionGraphComponent {
             const end_date = toIsoString(this.formGroup.get('end_date').value);
             body.push({
                 plan: +this.formGroup.get('plan').value,
-                start_date: start_date,
+                date_time: start_date,
             });
 
             // Calculate the date range in days
