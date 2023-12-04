@@ -29,7 +29,7 @@ export class DialogAddProductionGraphComponent {
         plan: new FormControl('1500', [Validators.required]),
         // date_time: new FormControl(null, [Validators.required]),
         start_date: new FormControl(null, [Validators.required]),
-        end_date: new FormControl(null, [Validators.required]),
+        end_date: new FormControl(null),
     });
 
     dateFilter: DateFilter = getDefaultDateFilter();
@@ -42,8 +42,7 @@ export class DialogAddProductionGraphComponent {
 
     save() {
         this.formGroup.markAllAsTouched();
-        console.log(this.formGroup.value);
-        if (this.formGroup.valid) {
+        if (this.formGroup.valid || (this.formGroup.get('start_date').value && this.formGroup.get('plan').value)) {
             const body = [];
             const start_date = toIsoString(this.formGroup.get('start_date').value);
             const end_date = toIsoString(this.formGroup.get('end_date').value);
