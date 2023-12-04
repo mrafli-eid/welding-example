@@ -16,7 +16,7 @@ import {
 } from '../models/dashboard.model';
 import { Machine } from '../models/layout-machine.model';
 import { removeEmptyObject } from '../helpers/object.helper';
-import { ProductionGraphPlan } from '../models/production-graph.model';
+import { ProductionGraphPlan, ProductionGraphPlanParams } from '../models/production-graph.model';
 import { MasterParams } from '../models/master.model';
 
 @Injectable({
@@ -148,10 +148,13 @@ export class DashboardService {
         );
     }
 
-    createProductionPlan(body: any) {
+    createProductionPlan(body: any, params: Partial<ProductionGraphPlanParams>) {
         return this.http.post<HttpResponse<ProductionGraphPlan[]>>(
-            `${environment.API_URL}/api/set-plan-production/create-set-plan`,
-            body
+            `${environment.API_URL}/api/set-plan-production/create-set-plan-range`,
+            body,
+            {
+                params: params,
+            }
         );
     }
 

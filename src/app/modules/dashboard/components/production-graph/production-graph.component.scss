@@ -1,3 +1,20 @@
+:host {
+    ::ng-deep {
+        mat-form-field {
+            margin: 0 !important;
+        }
+        
+        .mdc-notched-outline.ng-tns-c1205077789-0.mdc-notched-outline--notched.mdc-notched-outline--no-label.ng-star-inserted {
+            height: 80% !important;
+            // bottom: 0 !important;
+            top: auto;
+        }
+        .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+            padding: 0 !important;
+        }
+    }
+}
+
 ahm-chart-production-graph {
     position: absolute;
     width: 100%;

@@ -8,24 +8,24 @@
             <div class="col-4">
                 <label>Plan</label>
                 <mat-form-field>
-                    <input matInput formControlName="plan" appOnlyNumber />
+                    <input matInput formControlName="plan" appOnlyNumber/>
                 </mat-form-field>
             </div>
         </div>
         <div>
             <label>Date</label>
             <mat-form-field>
-                <input
-                    class="input"
-                    matInput
-                    [matDatepicker]="picker"
-                    formControlName="date_time"
-                />
-                <mat-datepicker-toggle
-                    matIconSuffix
-                    [for]="picker"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-date-range-input [rangePicker]="rangePicker">
+                    <input matStartDate placeholder="Start date" formControlName="start_date">
+                    <input matEndDate placeholder="End date" formControlName="end_date">
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #rangePicker>
+                    <mat-date-range-picker-actions>
+                      <button mat-button matDateRangePickerCancel>Cancel</button>
+                      <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                    </mat-date-range-picker-actions>
+                  </mat-date-range-picker>
             </mat-form-field>
         </div>
     </div>

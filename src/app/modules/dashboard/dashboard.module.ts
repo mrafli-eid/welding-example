@@ -44,6 +44,7 @@ import { OnlyNumberDirective } from 'src/app/shared/directives/number-only.direc
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v2.component';
 import { DialogAddMttrMtbfComponent } from './dialogs/dialog-add-mttr-mtbf/dialog-add-mttr-mtbf.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -95,6 +96,7 @@ import { DialogAddMttrMtbfComponent } from './dialogs/dialog-add-mttr-mtbf/dialo
         MatNativeDateModule,
         OnlyNumberDirective,
         DatepickerV2Component,
+        MatButtonModule
     ],
 })
 export class DashboardModule {}

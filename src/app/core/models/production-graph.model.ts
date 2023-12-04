@@ -5,3 +5,7 @@ export interface ProductionGraphPlan {
     date_time: string;
     created_at: string;
 }
+
+export interface ProductionGraphPlanParams {
+    range: number;
+}
