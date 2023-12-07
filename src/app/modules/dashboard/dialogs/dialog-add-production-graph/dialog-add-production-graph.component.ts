@@ -27,7 +27,6 @@ export class DialogAddProductionGraphComponent {
     ) {}
     formGroup = new FormGroup({
         plan: new FormControl('1500', [Validators.required]),
-        // date_time: new FormControl(null, [Validators.required]),
         start_date: new FormControl(null, [Validators.required]),
         end_date: new FormControl(null),
     });

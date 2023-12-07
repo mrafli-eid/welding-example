@@ -33,7 +33,7 @@
                 </mat-form-field>
             </div>
 
-            <div>
+            <div *ngIf="!data">
                 <label>Date Type</label>
                 <mat-form-field>
                     <mat-select
@@ -51,7 +51,7 @@
                 </mat-form-field>
             </div>
 
-            <div class="col-12">
+            <div class="col-12" *ngIf="!data">
                 <label>Custom Range</label>
                 <mat-form-field>
                     <input
