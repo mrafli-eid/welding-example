@@ -24,7 +24,9 @@ export class PreventiveMaintenanceUpsertComponent {
     formGroup: FormGroup = new FormGroup({
         name: new FormControl('', [Validators.required]),
         plan: new FormControl('', [Validators.required]),
+        actual: new FormControl(''),
         start_date: new FormControl('', [Validators.required]),
+        end_date: new FormControl(''),
         machine_id: new FormControl('', [Validators.required]),
     });
 
@@ -46,7 +48,7 @@ export class PreventiveMaintenanceUpsertComponent {
         this.formGroup.patchValue({
             name: this.machine_name,
             machine_id: this.machineId,
-            actual: null,
+            actual: "88",
             end_date: null,
         });
     }
