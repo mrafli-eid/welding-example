@@ -29,6 +29,6 @@ export class PreventiveMaintenanceContainerComponent {
 
     openList() {
         this.page = MaintenancePage.LIST;
-        this.listComponent.refreshData();
+        this.listComponent?.refreshData();
     }
 }

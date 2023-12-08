@@ -24,9 +24,7 @@ export class PreventiveMaintenanceUpsertComponent {
     formGroup: FormGroup = new FormGroup({
         name: new FormControl('', [Validators.required]),
         plan: new FormControl('', [Validators.required]),
-        actual: new FormControl(''),
         start_date: new FormControl('', [Validators.required]),
-        end_date: new FormControl(''),
         machine_id: new FormControl('', [Validators.required]),
     });
 
@@ -48,8 +46,6 @@ export class PreventiveMaintenanceUpsertComponent {
         this.formGroup.patchValue({
             name: this.machine_name,
             machine_id: this.machineId,
-            actual: "88",
-            end_date: null,
         });
     }
 
@@ -61,7 +57,7 @@ export class PreventiveMaintenanceUpsertComponent {
                 'actual',
                 new FormControl('', [Validators.required])
             );
-            // this.formGroup.addControl('end_date', new FormControl([ Validators.required ]));
+            this.formGroup.addControl('end_date', new FormControl([ Validators.required ]));
         } else if (this.data?.actual) {
             this.formGroup.addControl(
                 'actual',
@@ -79,18 +75,20 @@ export class PreventiveMaintenanceUpsertComponent {
                 custom_range: this.custom_range.value,
             };
 
-            if (body.start_date) {
+            if (body.start_date || body.end_date) {
                 body.start_date = moment(body.start_date).format('YYYY-MM-DD');
             }
             if (this.data) {
                 if (this.isOk) {
+                    body.end_date = moment(body.end_date).format('YYYY-MM-DD');
+                    console.log(body);
                     this.ok(body);
                 } else {
+                    console.log(body);
                     this.edit(body);
                 }
             } else {
                 this.create(body, this.queryParams);
-                console.log(body, this.queryParams);
             }
         }
     }
@@ -110,6 +108,7 @@ export class PreventiveMaintenanceUpsertComponent {
     }
 
     edit(body: any) {
+        console.log(this.formGroup, body);
         const id = this.data.id;
         this.maintenanceService
             .update(id, body)
