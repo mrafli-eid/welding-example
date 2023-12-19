@@ -1,7 +1,7 @@
 @import 'src/assets/styles/variables';
 
 nav {
-    background-color: #141517;
+    background-color: #636970;
     height: 100%;
     position: fixed;
     overflow-y: auto;
@@ -75,10 +75,7 @@ nav {
 
     &:hover {
         transition: 0.2s;
-        background-color: #1f2b31;
-
-        // img {
-        // }
+        background-color: #495058;
     }
 
     &.active {

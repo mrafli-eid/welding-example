@@ -4,8 +4,8 @@ import { getDefaultDateFilter } from '../../../../core/consts/datepicker.const';
 import { DetailMachineActivityMachine } from '../../../../core/models/machine.model';
 import { MachineService } from '../../../../core/services/machine.service';
 import { interval, take } from 'rxjs';
-import { DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE } from './detail-machine-activity-machine.dummy';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
+import { DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE } from './detail-machine-activity-machine.dummy';
 import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
 
 @Component({

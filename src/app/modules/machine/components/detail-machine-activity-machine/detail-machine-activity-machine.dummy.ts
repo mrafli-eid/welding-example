@@ -47,5 +47,29 @@ export const DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE: DetailMachineActivityMachine
                 value_idle: 16,
                 label: 'Wednesday',
             },
+            {
+                value_stop: 7,
+                value_run: 79,
+                value_idle: 14,
+                label: 'Sunday',
+            },
+            {
+                value_stop: 11,
+                value_run: 80,
+                value_idle: 9,
+                label: 'Monday',
+            },
+            {
+                value_stop: 2,
+                value_run: 88,
+                value_idle: 10,
+                label: 'Tuesday',
+            },
+            {
+                value_stop: 15,
+                value_run: 69,
+                value_idle: 16,
+                label: 'Wednesday',
+            },
         ],
     };

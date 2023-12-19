@@ -5,7 +5,7 @@
 
     border-radius: 7px;
     padding: 12px 16px;
-    background-color: #141517;
+    background-color: #303231;
     height: 100%;
     box-sizing: border-box;
     justify-content: space-between;
@@ -38,6 +38,8 @@
         flex-direction: column;
         justify-content: center;
         position: relative;
+        width: 100%;
+        overflow-x: auto;
 
         .ahm-table {
             th,
