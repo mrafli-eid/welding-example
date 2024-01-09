@@ -148,6 +148,7 @@ export interface DetailMachineServoLoad {
     maximum: number | null;
     medium: number | null;
     minimum: number | null;
+    average: number | null;
     vid?: string;
     data: {
         machine_name?: string;

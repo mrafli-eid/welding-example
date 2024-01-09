@@ -7,6 +7,7 @@ export const DUMMY_DETAIL_MACHINE_SERVO_LOAD: DetailMachineServoLoad = {
     maximum: null,
     minimum: null,
     medium: null,
+    average: null,
     vid: '1300,PEC,PEC2,P3WEA0,FRONT_1_2,MASTER_FEED_LOAD',
     data: [
         {

@@ -32,6 +32,7 @@ export class DetailMachineServoLoadComponent {
     standard = 10;
     warning = 15;
     breakdown = 20;
+    average = 4;
 
     constructor(
         private machineService: MachineService,

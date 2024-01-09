@@ -22,6 +22,7 @@ export class ChartDetailMachineServoLoadComponent {
     @Input() standard: number;
     @Input() warning: number;
     @Input() breakdown: number;
+    @Input() average: number;
 
     constructor() {
         Chart.register(Annotation);
@@ -59,6 +60,18 @@ export class ChartDetailMachineServoLoadComponent {
             borderColor: '#DC3545',
             borderWidth: 1,
         };
+
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.breakdown = {
+            type: 'line',
+            yMin:
+                this.data.average == null ? this.average : this.data.average,
+            yMax:
+                this.data.average == null ? this.average : this.data.average,
+            borderColor: '#3443eb',
+            borderWidth: 1,
+        };
+        
         this.chart?.render();
     }
 
@@ -67,8 +80,9 @@ export class ChartDetailMachineServoLoadComponent {
             {
                 data: [],
                 pointRadius: 4,
+                backgroundColor:  'rgba(255, 255,255, 1)',
                 borderColor: '#16A086',
-                fill: 'origin',
+                fill: 'start',
             },
         ],
         labels: [],
@@ -95,7 +109,6 @@ export class ChartDetailMachineServoLoadComponent {
                     color: '#333333',
                 },
                 border: {
-                    // dash: [ 4, 2 ]
                 },
             },
             x: {
