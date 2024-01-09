@@ -80,7 +80,6 @@ export class ChartDetailMachineServoLoadComponent {
             {
                 data: [],
                 pointRadius: 4,
-                backgroundColor:  'rgba(255, 255,255, 1)',
                 borderColor: '#16A086',
                 fill: 'start',
             },
