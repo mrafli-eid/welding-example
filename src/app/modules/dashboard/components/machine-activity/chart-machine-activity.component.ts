@@ -32,7 +32,7 @@ export class ChartMachineActivityComponent implements OnChanges {
                 m => m.machine_name
             );
 
-        this.chart?.render();
+        this.chart?.update();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
@@ -96,7 +96,7 @@ export class ChartMachineActivityComponent implements OnChanges {
             }
 
             ctx.save();
-            ctx.font = '8px Inter';
+            ctx.font = '8px Kanit';
             ctx.fillStyle = '#FFF';
 
             x.ticks.forEach((tick, index) => {

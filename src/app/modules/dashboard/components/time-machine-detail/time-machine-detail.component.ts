@@ -22,12 +22,12 @@ export class TimeMachineDetailComponent implements OnInit {
     @Output() changedDateFilter = new EventEmitter<DateFilter>();
 
     data: TimeMachineDetail = {
-        value_stopline: 100,
-        value_idle: 20,
-        value_running: 30,
-        label: 'Monday',
-        date_time: new Date(),
-    };
+        "value_stopline": 100,
+        "value_idle": 20,
+        "value_running": 30,
+        "label": "Monday",
+        "date_time": new Date()
+    }
 
     chartData = [];
 
@@ -45,17 +45,17 @@ export class TimeMachineDetailComponent implements OnInit {
     }
 
     getChartData(): void {
-        this.dashboardService
-            .getTimeMachineDetail(this.dateFilter)
+        this.dashboardService.getTimeMachineDetail(this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: resp => {
+                next: (resp) => {
                     if (resp.success) {
                         this.data = resp.data;
                         this.convertToChartData();
                     }
                 },
-                error: () => {},
+                error: () => {
+                },
             });
     }
 
@@ -64,17 +64,17 @@ export class TimeMachineDetailComponent implements OnInit {
         this.chartData.push(
             {
                 value: this.data.value_running,
-                color: ['#4CAF50'],
+                color: [ '#4CAF50' ]
             },
             {
                 value: this.data.value_idle,
-                color: ['#FFC02D'],
+                color: [ '#FFC02D' ]
             },
             {
                 value: this.data.value_stopline,
-                color: ['#FF5853'],
-            }
-        );
+                color: [ '#FF5853' ]
+            },
+        )
     }
 
     onFilterChanged(dateFilter: DateFilter) {

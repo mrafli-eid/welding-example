@@ -2,6 +2,15 @@
     width: 137px;
 }
 
+h5 {
+    text-align: center;
+    line-height: 1.3em;
+}
+
+.dashboard-card {
+    gap: 8px;
+}
+
 .indicator-container {
     margin-inline: -16px;
     margin-bottom: -12px;
@@ -24,23 +33,20 @@
     justify-content: space-around;
     gap: 13px;
     min-height: calc(50% - 12px);
-    background: linear-gradient(
-        180deg,
-        #16a086 0%,
-        rgba(51, 160, 44, 0.34) 100%
-    );
+    background: linear-gradient(180deg,  #16a086 0%,
+    rgba(51, 160, 44, 0.34) 100%);
 
     h6 {
-        font-family: 'Inter';
+        font-family: 'Kanit';
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
         line-height: 131.9%;
-        color: #ffffff;
+        color: #FFFFFF;
     }
 
     .indicator-hour {
-        font-family: 'Inter';
+        font-family: 'Kanit';
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
@@ -48,7 +54,7 @@
     }
 
     .indicator-info {
-        font-family: 'Inter';
+        font-family: 'Kanit';
         font-style: normal;
         font-size: 8px;
         line-height: 1em;
@@ -67,32 +73,25 @@
     }
 
     &.down-mtbf {
-        background: linear-gradient(
-            180deg,
-            #91c090 0%,
-            rgba(1, 114, 240, 0.33) 100%
-        );
+        background: linear-gradient(180deg, #91c090 0%, rgba(71, 91, 70, 0.15) 100%);
 
         svg {
             rotate: 180deg;
         }
 
         path {
-            fill: #dc3545;
+            fill: #DC3545;
         }
 
-        .indicator-info,
-        .indicator-hour {
-            color: #dc3545;
+        .indicator-info, .indicator-hour {
+            color: #fff;
         }
     }
 
     &.down-mttr {
-        background: linear-gradient(
-            180deg,
-            #16a086 0%,
-            rgba(51, 160, 44, 0.34) 100%
-        );
+        background: linear-gradient(180deg,  #16a086 0%,
+        rgba(51, 160, 44, 0.34) 100%);
+
         svg {
             rotate: 180deg;
         }
@@ -101,25 +100,23 @@
             fill: rgb(34, 252, 20);
         }
 
-        .indicator-info,
-        .indicator-hour {
-            color: rgba(255, 255, 255, 0.8);
+        .indicator-info, .indicator-hour {
+            color: #FFF;
         }
+
     }
 }
 
 .mttr {
-    background: linear-gradient(
-        180deg,
-        #91c090 0%,
-        rgba(1, 114, 240, 0.33) 100%
-    );
+    background: linear-gradient(180deg,#16A086 0%,
+    rgba(17, 72, 62, 0.15) 100%);
+
     path {
-        fill: #dc3545;
+        fill: #DC3545;
     }
 
-    .indicator-info,
-    .indicator-hour {
-        color: #dc3545;
+    .indicator-info, .indicator-hour {
+        color: #fff;
     }
 }
+

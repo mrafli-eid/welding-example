@@ -16,34 +16,24 @@ export class ChartTimeMachineDetailComponent implements OnChanges {
     public pieChartType: ChartType = 'pie';
 
     @Input() data: any;
-
-    ngOnChanges(): void {
-        this.pieChartData.datasets[0].data = this.data.map(row => row.value);
-        this.pieChartData.datasets[0].backgroundColor = this.data.map(
-            row => row.color
-        );
-
-        this.chart?.render();
-    }
-
     public pieChartData: ChartData<'pie', number[], string | string[]> = {
         datasets: [
             {
                 data: [],
                 backgroundColor: [],
-                borderColor: 'white',
-            },
-        ],
+                borderWidth: 1,
+                borderColor: 'white'
+            }
+        ]
     };
-
     public pieChartOptions: ChartConfiguration['options'] = {
         responsive: true,
         maintainAspectRatio: true,
         layout: {
-            padding: { top: 0 },
+            padding: { top: 0 }
         },
         hover: {
-            mode: null,
+            mode: null
         },
         plugins: {
             legend: {
@@ -65,6 +55,14 @@ export class ChartTimeMachineDetailComponent implements OnChanges {
                     return value + '%';
                 },
             },
-        },
+        }
     };
+
+    ngOnChanges(): void {
+        this.pieChartData.datasets[0].data = this.data.map(row => row.value);
+        this.pieChartData.datasets[0].backgroundColor = this.data.map(row => row.color);
+
+        this.chart?.update();
+    }
+
 }

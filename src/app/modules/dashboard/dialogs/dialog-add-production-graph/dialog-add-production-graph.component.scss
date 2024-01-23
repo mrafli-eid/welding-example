@@ -3,3 +3,49 @@ label {
     font-size: 14px;
     margin-bottom: 4px;
 }
+
+.example-form-field {
+    margin: 0 8px 16px 0;
+}
+
+::ng-deep {
+    .mat-calendar-body-cell-content.mat-focus-indicator {
+        border: 0;
+    }
+    
+    .mat-calendar-body-in-preview {
+        color: black !important;
+        background-color: #a7caf3 !important;
+        border: 0 !important;
+    }
+
+    .mat-focus-indicator {
+        outline: none !important;
+    }
+
+    .mat-calendar-body-in-range {
+        color: black !important;
+        background-color: #a7caf3 !important;
+    }
+
+    .mat-calendar-body-cell-content {
+        top: 5%;
+        left: 5%;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 90%;
+        height: 90%;
+        line-height: 1;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 999px;
+      }
+
+    .mat-calendar-body-selected {
+        background-color: #0177fb !important;
+        color: #fff;
+      }
+} 

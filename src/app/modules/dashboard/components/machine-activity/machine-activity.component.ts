@@ -22,17 +22,15 @@ export class MachineActivityComponent {
     untilDestroyed = untilDestroyed();
     dateFilter: DateFilter = getDefaultDateFilter();
     machineActivity: DashboardMachineActivity = DUMMY_MACHINE_ACTIVITY;
-    chartDatasets: ChartDatasets = this.convertToDatasets(
-        DUMMY_MACHINE_ACTIVITY
-    );
+    chartDatasets: ChartDatasets = this.convertToDatasets(DUMMY_MACHINE_ACTIVITY);
 
-    constructor(private dashboardService: DashboardService) {
+    constructor(private dashboardService: DashboardService,) {
         ChartMachineActivityComponent.machineActivity = DUMMY_MACHINE_ACTIVITY;
     }
 
     ngOnInit() {
         this.getChartData();
-        interval(60 * 1000 * 2)
+        interval(DEFAULT_INTERVAL)
             .pipe(this.untilDestroyed())
             .subscribe(() => {
                 this.getChartData();
@@ -40,19 +38,18 @@ export class MachineActivityComponent {
     }
 
     getChartData(): void {
-        this.dashboardService
-            .getMachineActivity(this.dateFilter)
+        this.dashboardService.getMachineActivity(this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: resp => {
+                next: (resp) => {
                     if (resp.success) {
                         this.machineActivity = resp.data;
-                        ChartMachineActivityComponent.machineActivity =
-                            resp.data;
+                        ChartMachineActivityComponent.machineActivity = resp.data;
                         this.chartDatasets = this.convertToDatasets(resp.data);
                     }
                 },
-                error: () => {},
+                error: () => {
+                },
             });
     }
 
@@ -61,16 +58,10 @@ export class MachineActivityComponent {
         this.getChartData();
     }
 
-    convertToDatasets(
-        machineActivity: DashboardMachineActivity
-    ): ChartDatasets {
+    convertToDatasets(machineActivity: DashboardMachineActivity): ChartDatasets {
         const chartDatasets: ChartDatasets = [];
 
-        for (
-            let y = 0;
-            y < machineActivity?.machine_list[0]?.data.length;
-            y++
-        ) {
+        for (let y = 0; y < machineActivity.machine_list[0].data.length; y++) {
             const data: number[] = [];
             const backgroundColor: string[] = [];
             chartDatasets.push({ data, backgroundColor });
@@ -87,12 +78,15 @@ export class MachineActivityComponent {
                     backgroundColor = '#ffc02d';
                 } else if (d === 2) {
                     backgroundColor = '#4caf50';
+                } else if (d === 3) {
+                    backgroundColor = '#DC3545';
                 }
 
                 chartDatasets[y].data.push(1);
                 chartDatasets[y].backgroundColor.push(backgroundColor);
             });
         });
+
 
         return chartDatasets;
     }

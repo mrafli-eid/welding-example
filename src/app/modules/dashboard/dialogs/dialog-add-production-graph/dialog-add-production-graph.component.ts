@@ -3,16 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { toIsoString } from '../../../../core/helpers/date.helper';
 import { DashboardService } from '../../../../core/services/dashboard.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import {
-    MatDatepicker,
-    MatDatepickerModule,
-} from '@angular/material/datepicker';
 import { getDefaultDateFilter } from 'src/app/core/consts/datepicker.const';
 import { DateFilter } from 'src/app/core/models/date-filter.model';
-import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import * as moment from 'moment';
 
 @Component({

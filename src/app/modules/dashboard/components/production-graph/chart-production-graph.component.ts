@@ -35,23 +35,11 @@ export class ChartProductionGraphComponent implements OnChanges {
         datasets: [
             {
                 data: [],
-                pointRadius: 4,
-                backgroundColor: function (context) {
-                    return getGradient(context, [
-                        'rgba(39, 157, 157, 1)',
-                        'rgba(39, 157, 157, .1)',
-                    ]);
-                },
+                backgroundColor: 'rgba(39, 157, 157, 1)'
             },
             {
                 data: [],
-                pointRadius: 4,
-                backgroundColor: function (context) {
-                    return getGradient(context, [
-                        'rgba(40, 110, 110, 1)',
-                        'rgba(40, 110, 110, .1)',
-                    ]);
-                },
+                backgroundColor: 'rgba(40, 110, 110, 1)'
             },
         ],
         labels: [],
