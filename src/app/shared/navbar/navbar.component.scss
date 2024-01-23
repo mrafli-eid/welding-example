@@ -22,25 +22,24 @@ nav {
     }
 
     h1 {
-        font-family: 'Inter';
+        font-family: 'Kanit';
         font-style: normal;
-        font-weight: 800;
-        font-size: 24px;
+        font-weight: 700;
+        font-size: 20px;
         line-height: 29px;
-        color: #ffffff;
+        color: #FFFFFF;
         margin: 0;
     }
 }
 
 .navbar-date {
-    font-family: 'Inter';
+    font-family: 'Kanit';
     font-style: normal;
-    font-size: 18px;
     line-height: 22px;
 
-    span:nth-child(2),
-    span:nth-child(3) {
-        font-weight: 500;
+    span {
+        font-weight: 400;
+        font-size: 30px;
     }
 }
 
