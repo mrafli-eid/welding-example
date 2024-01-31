@@ -61,6 +61,7 @@ export class NavbarComponent implements OnInit {
         setInterval(() => {
             this.todaysDate = new Date();
         }, 1000);
+        this.getListNotif();
     }
 
     toggle() {

@@ -27,7 +27,7 @@ nav {
         font-weight: 700;
         font-size: 20px;
         line-height: 29px;
-        color: #FFFFFF;
+        color: #ffffff;
         margin: 0;
     }
 }
@@ -56,7 +56,7 @@ nav {
 
 .navbar-notification {
     button {
-        background-color: #141517;
+        background-color: #232524;
         color: inherit;
         border: none;
         padding: 0;
@@ -75,14 +75,14 @@ nav {
         span {
             position: absolute;
             background-color: red;
-            border-radius: 100%;
+            border-radius: 50%;
             text-align: center;
+            width: -moz-fit-content;
             width: fit-content;
-            min-width: 1.4rem;
-            padding: 0.4rem;
-            font-size: 0.6rem;
-            top: 0;
-            right: 0;
+            padding: 0.5rem;
+            top: 5px;
+            right: 5px;
+            height: 2px;
         }
     }
 

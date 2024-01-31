@@ -61,7 +61,7 @@
     ></ahm-paginator>
 </div>
 
-<mat-menu #menu="matMenu" class="menu-request">
+<mat-menu #menu="matMenu" class="menu-request" (click)="$event.stopPropagation()">
     <label (click)="$event.stopPropagation()">Desc</label>
     <mat-form-field (click)="$event.stopPropagation()">
         <input type="text" matInput [formControl]="description" />
