@@ -15,7 +15,7 @@
         <div class="navbar-notification">
             <div class="dropdown">
                 <button (click)="toggleDropdown()" class="dropbtn">
-                    <span></span>
+                    <span *ngIf="listNotif.length > 0"></span>
                     <img alt="" src="/assets/icons/notif-deactivate.svg" />
                 </button>
                 <div
