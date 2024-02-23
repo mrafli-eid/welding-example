@@ -41,7 +41,9 @@ export class LoginComponent {
                     setTimeout(() => {
                         matDialogRef.close();
                     }, 3000);
-                    this.router.navigate(['/dashboard']);
+                    this.router.navigate(['/dashboard'], {
+                        queryParams: { token: response.accessToken },
+                    });
                 },
                 error: () => {
                     this.matDialog.open(DialogErrorLoginComponent);

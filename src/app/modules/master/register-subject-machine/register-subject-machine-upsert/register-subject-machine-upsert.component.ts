@@ -46,6 +46,7 @@ export class RegisterSubjectMachineUpsertComponent {
     ) {}
 
     ngOnInit() {
+        console.log("on init");
         this.initList();
         this.notSelectedFormControl.valueChanges.subscribe(text => {
             this.filteredNotSelectedSubjectList =
@@ -60,10 +61,14 @@ export class RegisterSubjectMachineUpsertComponent {
         });
         this.selectedFormControl.setValue('');
         this.notSelectedFormControl.setValue('');
+        
+        console.log(this.filteredNotSelectedSubjectList);
     }
 
     ngOnChanges() {
         this.patchValue();
+        console.log("pathc balue");
+        console.log(this.filteredNotSelectedSubjectList);
     }
 
     selectOneMachine(subject: MasterSubject) {
@@ -136,14 +141,14 @@ export class RegisterSubjectMachineUpsertComponent {
 
     initList() {
         this.notSelectedSubjectList = this.subjectList.filter(m => true);
-        this.pureService.getMachineList().subscribe(resp => {
-            this.machineList = resp.data;
-        });
-        this.pureService.getSubjectList().subscribe(resp => {
-            this.subjectList = resp.data;
-            this.notSelectedSubjectList = this.subjectList.filter(m => true);
-            this.refreshData();
-        });
+        // this.pureService.getMachineList().subscribe(resp => {
+        //     this.machineList = resp.data;
+        // });
+        // this.pureService.getSubjectList().subscribe(resp => {
+        //     this.subjectList = resp.data;
+        //     this.notSelectedSubjectList = this.subjectList.filter(m => true);
+        //     this.refreshData();
+        // });
     }
 
     patchValue() {
@@ -187,6 +192,7 @@ export class RegisterSubjectMachineUpsertComponent {
 
     edit(body: registerMachineList) {
         const id = this.masterData.machine_id;
+        console.log(id, body);
         this.registerService
             .updateSubjectMachine(id, body)
             .pipe(take(1))

@@ -58,8 +58,8 @@ export class MaintenanceCorrectiveService {
 
     exportExcel(machine_name: string, params: Partial<MasterParams>) {
         const queryParams = {
-            ...params,
             machine: machine_name,
+            ...params,
         };
 
         this.http

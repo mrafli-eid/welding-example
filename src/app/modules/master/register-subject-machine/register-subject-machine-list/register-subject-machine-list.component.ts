@@ -90,6 +90,7 @@ export class RegisterSubjectMachineListComponent {
 
     edit(data: SubjectMachine) {
         this.onEdit.emit(data);
+        console.log(data);
     }
 
     delete(data: SubjectMachine) {
