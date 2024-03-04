@@ -1,0 +1,66 @@
+<div class="flex">
+    <div class="profile">
+        <h3>My Profile</h3>
+        <div class="flex-column">
+            <div class="flex detail">
+                <img
+                    [src]="
+                        image_url != null
+                            ? image_url
+                            : '/assets/icons/profile.svg'
+                    "
+                    alt=""
+                />
+                <div class="flex-column">
+                    <h3>Username : {{ username }}</h3>
+                    <p>Email : {{ email }}</p>
+                </div>
+            </div>
+            <span>Upload Image Max 2 MB (JPEG,JPG, PNG)</span>
+
+            <input
+                style="display: none"
+                type="file"
+                id="file"
+                accept="image/*"
+                (change)="onChange($event)"
+            />
+
+            <div class="flex">
+                <button class="ahm-btn primary" (click)="clickInputFile()">
+                    Browse...
+                </button>
+                <button class="ahm-btn delete" (click)="deleteFileImage()">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="password" [formGroup]="formGroup"> 
+        <h3 class="mb-3">Password</h3>
+        <div class="flex-column">
+            <div class="col-12 col-md-6">
+                <label class="mb-3">Current Password</label>
+                <mat-form-field>
+                    <input formControlName="current_password" type="password" matInput />
+                </mat-form-field>
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="mb-3">New Password</label>
+                <mat-form-field>
+                    <input formControlName="new_password" type="password" matInput />
+                </mat-form-field>
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="mb-3">Repeat New Password</label>
+                <mat-form-field>
+                    <input formControlName="repeat_password" type="password" matInput />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="flex justify-content-end">
+            <button class="ahm-btn delete" (click)="resetPassword()">Reset</button>
+            <button class="ahm-btn primary" (click)="changePassword()">Save</button>
+        </div>
+    </div>
+</div>

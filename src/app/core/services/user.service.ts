@@ -10,8 +10,8 @@ import { HttpResponse } from '../models/http.model';
 export class UserService {
     constructor(private httpClient: HttpClient) {}
 
-    login(username: string, password: string) {
+    login(body: any) {
         const url = `${environment.API_URL}/api/authentication/login`;
-        return this.httpClient.post<any>(url, { username, password });
+        return this.httpClient.post<any>(url, body);
     }
 }

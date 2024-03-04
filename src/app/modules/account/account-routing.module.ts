@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountContainerComponent } from './account-container/account-container.component';
+import { AccountComponent } from './pages/account.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: AccountContainerComponent,
+        component: AccountComponent,
     },
 ];
 

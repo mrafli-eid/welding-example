@@ -11,6 +11,14 @@
     transition: 0.2s;
     outline: 0;
 
+    &.primary {
+        background-color: #0177FB;
+    }
+
+    &.delete {
+        background-color: #9BA5AC;
+    }
+
     &:hover {
         background-color: #cd3f3a;
         transition: 0.2s;
@@ -37,6 +45,14 @@
     padding-inline: 24px;
     border-radius: 4px;
     min-height: 38px;
+
+    &.primary {
+        background-color: #0177FB;
+    }
+
+    &.delete {
+        background-color: #9BA5AC;
+    }
 
     img {
         height: 28px;

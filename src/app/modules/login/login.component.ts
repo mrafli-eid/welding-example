@@ -5,6 +5,8 @@ import { UserService } from '../../core/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogSuccessLoginComponent } from './dialogs/dialog-success-login/dialog-success-login.component';
 import { DialogErrorLoginComponent } from './dialogs/dialog-error-login/dialog-error-login.component';
+import { take } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
     selector: 'app-login',
@@ -12,6 +14,10 @@ import { DialogErrorLoginComponent } from './dialogs/dialog-error-login/dialog-e
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+    accessToken: string;
+    refreshToken: string;
+    decodedToken: any;
+    
     formGroup: FormGroup = new FormGroup({
         username: new FormControl(''),
         password: new FormControl(''),
@@ -27,23 +33,28 @@ export class LoginComponent {
         this.formGroup.markAllAsTouched();
         const body = this.formGroup.value;
 
-        if (body.username || body.password) {
-            this.userService.login(body.username, body.password).subscribe({
-                next: response => {
+        // Service login
+        this.userService
+            .login(body)
+            .pipe(take(1))
+            .subscribe({
+                next: (res: any) => {
                     const matDialogRef = this.matDialog.open(
                         DialogSuccessLoginComponent
                     );
 
-                    // save token (localStorage)
-                    localStorage.setItem('accessToken', response.accessToken);
-                    localStorage.setItem('refreshToken', response.refreshToken);
+                    this.accessToken = res.accessToken;
+                        this.refreshToken = res.refreshToken;
 
-                    setTimeout(() => {
-                        matDialogRef.close();
-                    }, 3000);
-                    this.router.navigate(['/dashboard'], {
-                        queryParams: { token: response.accessToken },
-                    });
+                        setTimeout(() => {
+                            matDialogRef.close();
+                        }, 2000);
+
+                        // Decode token
+                        this.decodedToken = jwtDecode(this.accessToken);
+                        localStorage.setItem('id_user', this.decodedToken.id);
+
+                        return this.router.navigate(['/dashboard']);
                 },
                 error: () => {
                     this.matDialog.open(DialogErrorLoginComponent);
@@ -53,12 +64,5 @@ export class LoginComponent {
                     });
                 },
             });
-        } else if (body.username == '' || body.password == '') {
-            this.matDialog.open(DialogErrorLoginComponent);
-            this.formGroup.patchValue({
-                username: '',
-                password: '',
-            });
-        }
     }
 }

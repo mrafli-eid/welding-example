@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BackofficeLayoutComponent } from './modules/layouts/backoffice-layout/backoffice-layout.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
     {
@@ -16,6 +17,7 @@ const routes: Routes = [
     {
         path: '',
         component: BackofficeLayoutComponent,
+        canActivate: [authGuard],
         children: [
             {
                 path: 'dashboard',
