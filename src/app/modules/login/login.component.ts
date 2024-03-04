@@ -19,8 +19,8 @@ export class LoginComponent {
     decodedToken: any;
     
     formGroup: FormGroup = new FormGroup({
-        username: new FormControl(''),
-        password: new FormControl(''),
+        userName: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required]),
     });
 
     constructor(
