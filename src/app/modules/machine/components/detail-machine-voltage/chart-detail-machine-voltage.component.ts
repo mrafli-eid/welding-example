@@ -28,11 +28,11 @@ export class ChartDetailMachineVoltageComponent {
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data_actual.map(
-            res => res.actual
+        this.lineChartData.datasets[0].data = this.data.first_data.map(
+            res => res.value
         );
-        this.lineChartData.datasets[1].data = this.data.data_setting.map(
-            res => res.setting
+        this.lineChartData.datasets[1].data = this.data.second_data.map(
+            res => res.value
         );
         this.lineChartData.labels = this.data.data_label.map(res => res.label);
 

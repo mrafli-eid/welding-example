@@ -5,7 +5,7 @@ import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import Annotation from 'chartjs-plugin-annotation';
 import { notNull } from '../../../../core/helpers/object.helper';
-import { DetailMachineTemperatureMirror } from 'src/app/core/models/machine.model';
+import { DetailMachineAmpereAndVoltage, DetailMachineTemperatureMirror } from 'src/app/core/models/machine.model';
 
 @Component({
     selector: 'ahm-chart-detail-machine-temperature-mirror',
@@ -18,7 +18,7 @@ export class ChartDetailMachineTemperatureMirrorComponent implements OnChanges {
     public lineChartType: ChartType = 'line';
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-    @Input() data: DetailMachineTemperatureMirror;
+    @Input() data: DetailMachineAmpereAndVoltage;
     @Input() minimum: number;
     @Input() medium: number;
     @Input() maximum: number;
@@ -28,10 +28,10 @@ export class ChartDetailMachineTemperatureMirrorComponent implements OnChanges {
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data_tamp_one.map(
+        this.lineChartData.datasets[0].data = this.data.first_data.map(
             d => d.value
         );
-        this.lineChartData.datasets[1].data = this.data.data_tamp_two.map(
+        this.lineChartData.datasets[1].data = this.data.second_data.map(
             d => d.value
         );
         this.lineChartData.labels = this.data.data_label.map(d => d.label);

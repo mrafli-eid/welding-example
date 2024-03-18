@@ -11,7 +11,7 @@ import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import Annotation from 'chartjs-plugin-annotation';
 import { notNull } from 'src/app/core/helpers/object.helper';
-import { DetailMachineRpmSpindle } from 'src/app/core/models/machine.model';
+import { DetailMachineAmpereAndVoltage, DetailMachineRpmSpindle } from 'src/app/core/models/machine.model';
 
 @Component({
     selector: 'ahm-chart-detail-machine-rpm-spindle',
@@ -24,7 +24,7 @@ export class ChartDetailMachineRpmSpindleComponent {
     public lineChartType: ChartType = 'line';
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-    @Input() data: DetailMachineRpmSpindle;
+    @Input() data: DetailMachineAmpereAndVoltage;
     @Input() maximum: number;
 
     constructor() {
@@ -32,10 +32,10 @@ export class ChartDetailMachineRpmSpindleComponent {
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data_rpm_a.map(
+        this.lineChartData.datasets[0].data = this.data.first_data.map(
             res => res.value
         );
-        this.lineChartData.datasets[1].data = this.data.data_rpm_b.map(
+        this.lineChartData.datasets[1].data = this.data.second_data.map(
             res => res.value
         );
         // this.lineChartData.datasets[1].data = this.data.maximum;

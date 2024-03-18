@@ -56,8 +56,7 @@ export class DetailMachineProductionGraphComponent {
 
     download() {
         this.machineService.downloadProductionGraph(
-            this.machine_name,
-            this.dateFilter
+            this.machine_name
         );
     }
 }

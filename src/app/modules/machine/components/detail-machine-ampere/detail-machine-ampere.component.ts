@@ -62,7 +62,7 @@ export class DetailMachineAmpereComponent {
     }
 
     download() {
-        // this.machineService.downloadLubOilPressure(this.id, this.dateFilter);
+        this.machineService.downloadAmpere(this.machine_name, this.robot_name);
     }
 
     goToSettings() {

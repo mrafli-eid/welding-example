@@ -4,6 +4,7 @@ export const DUMMY_DETAIL_MACHINE_SERVO_LOAD: DetailMachineServoLoad = {
     machine_name: 'FRONT 1, 2',
     subject_name: 'Servo Load ROBOT MASTER FRONT 1, 2',
     robot_name: 'ROBOT MASTER FRONT 1, 2',
+    unit: 'SB',
     maximum: null,
     minimum: null,
     medium: null,

@@ -59,8 +59,7 @@ export class DetailMachineRurgeCellComponent {
 
     download() {
         this.machineService.downloadRurgeCell(
-            this.machine_name,
-            this.dateFilter
+            this.machine_name
         );
     }
 

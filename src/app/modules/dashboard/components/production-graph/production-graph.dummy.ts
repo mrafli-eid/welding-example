@@ -3,7 +3,6 @@ import { DashboardProductionGraph } from '../../../../core/models/dashboard.mode
 export const DUMMY_DASHBOARD_PRODUCTION_GRAPH: DashboardProductionGraph = {
     machine_name: 'KOMATSU#1',
     subject_name: 'Production Graph MC 1',
-    vid: '1350,PEC,PEC3,P3PRB0,Komatsu-1,MC-01,Part_Counter',
     data: [
         {
             actual: 70,

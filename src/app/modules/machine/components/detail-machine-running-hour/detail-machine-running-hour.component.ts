@@ -73,8 +73,7 @@ export class DetailMachineRunningHourComponent {
     download() {
         this.machineService.downloadRunningHour(
             this.machine_name,
-            this.robot_name,
-            this.dateFilter
+            this.robot_name
         );
     }
 

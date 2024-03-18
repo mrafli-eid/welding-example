@@ -1,8 +1,9 @@
 export interface TimeMachineDetail {
+    machine_name: string;
+    subject_name: string;
     value_stopline: number;
     value_idle: number;
     value_running: number;
-    label: string;
     date_time: Date;
 }
 
@@ -32,7 +33,6 @@ export interface DashboardCycleTime {
 export interface DashboardProductionGraph {
     machine_name: string;
     subject_name: string;
-    vid: string;
     data: { actual: number; plan: number; label: string; date_time: string }[];
 }
 
@@ -58,11 +58,11 @@ export interface DashboardGrafikMttr {
 
 export interface DashboardMachineAlarm {
     subject_name: string;
-    vid: string;
+    vid: string | null;
     value: number;
     label: string;
     date_time: string;
-    date: string;
+    date: string | null;
 }
 
 export interface DashboardMttr {

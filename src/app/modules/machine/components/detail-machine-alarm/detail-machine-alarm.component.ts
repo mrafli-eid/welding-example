@@ -56,7 +56,6 @@ export class DetailMachineAlarmComponent {
     download() {
         this.machineService.downloadAlarm(
             this.machine_name,
-            this.dateFilter,
             this.robot_name
         );
     }

@@ -126,18 +126,21 @@ export interface DetailMachineAmpereAndVoltage {
     machine_name: string;
     subject_name?: string;
     robot_name?: string;
+    unit: string;
     minimum: number | null;
+    medium: number | null;
     maximum: number | null;
-    data_actual: {
-        actual: number;
+    lower_limit: number;
+    upper_limit: number;
+    first_data: {
+        value: number;
     }[];
-    data_setting: {
-        setting?: number;
+    second_data: {
+        value: number;
     }[];
     data_label: {
         label: string;
-        message?: string;
-        date_time?: string;
+        date_time: string;
     }[];
 }
 
@@ -145,13 +148,13 @@ export interface DetailMachineServoLoad {
     machine_name: string;
     subject_name?: string;
     robot_name?: string;
+    unit: string;
     maximum: number | null;
     medium: number | null;
     minimum: number | null;
     average: number | null;
     vid?: string;
     data: {
-        machine_name?: string;
         value: number;
         label: string;
         date_time: string;

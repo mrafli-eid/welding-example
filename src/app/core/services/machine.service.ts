@@ -74,13 +74,11 @@ export class MachineService {
 
     downloadAlarm(
         machine_name: string,
-        params: Partial<DateFilter>,
         robot_name?: string
     ) {
         if (machine_name == 'BORRING' || machine_name == 'LASER') {
             const queryParams = {
-                machine_name: machine_name,
-                ...params,
+                machine_name: machine_name
             };
 
             this.http
@@ -96,8 +94,7 @@ export class MachineService {
         } else {
             const queryParams = {
                 machine_name: machine_name,
-                robot_name: robot_name,
-                ...params,
+                robot_name: robot_name
             };
 
             this.http
@@ -133,10 +130,9 @@ export class MachineService {
         }
     }
 
-    downloadActivityMachine(id: string, params: Partial<DateFilter>) {
+    downloadActivityMachine(id: string,) {
         const queryParams = {
-            machine_name: id,
-            ...params,
+            machine_name: id
         };
 
         this.http
@@ -245,10 +241,9 @@ export class MachineService {
         }
     }
 
-    downloadProductionGraph(machine_name: string, params: Partial<DateFilter>) {
+    downloadProductionGraph(machine_name: string) {
         const queryParams = {
-            machine_name: machine_name,
-            ...params,
+            machine_name: machine_name
         };
 
         this.http
@@ -299,13 +294,11 @@ export class MachineService {
 
     downloadRunningHour(
         machine_name: string,
-        robot_name: string,
-        params?: Partial<DateFilter>
+        robot_name: string
     ) {
         if (machine_name == 'BORRING') {
             const queryParams = {
-                machine_name: machine_name,
-                ...params,
+                machine_name: machine_name
             };
 
             this.http
@@ -321,8 +314,7 @@ export class MachineService {
         } else {
             const queryParams = {
                 machine_name: machine_name,
-                robot_name: robot_name,
-                ...params,
+                robot_name: robot_name
             };
 
             this.http
@@ -349,6 +341,27 @@ export class MachineService {
         );
     }
 
+    downloadAmpere(
+        machine_name: string,
+        robot_name: string,
+    ) {
+        const queryParams = {
+            machine_name: machine_name,
+            robot_name: robot_name,
+        };
+
+        this.http
+            .get(`${this.baseUrl}/get-download-excel-ampere-all`, {
+                responseType: 'arraybuffer',
+                params: queryParams,
+                observe: 'response',
+            })
+            .subscribe(response => {
+                const fileName = response.headers.get('x-download');
+                downLoadFile(response.body, fileName);
+            });
+    }
+
     getVoltage(
         machine_name: string,
         robot_name: string,
@@ -363,12 +376,10 @@ export class MachineService {
     downloadVoltage(
         machine_name: string,
         robot_name: string,
-        params: Partial<DateFilter>
     ) {
         const queryParams = {
             machine_name: machine_name,
             robot_name: robot_name,
-            ...params,
         };
 
         this.http
@@ -397,12 +408,10 @@ export class MachineService {
     downloadServoLoad(
         machine_name: string,
         robot_name: string,
-        params?: Partial<DateFilter>
     ) {
         const queryParams = {
             machine_name: machine_name,
-            robot_name: robot_name,
-            ...params,
+            robot_name: robot_name
         };
 
         this.http
@@ -429,11 +438,9 @@ export class MachineService {
 
     downloadTemperatureMirror(
         machine_name: string,
-        params?: Partial<DateFilter>
     ) {
         const queryParams = {
             machine_name: machine_name,
-            ...params,
         };
 
         this.http
@@ -455,10 +462,9 @@ export class MachineService {
         );
     }
 
-    downloadDewPoint(machine_name: string, params?: Partial<DateFilter>) {
+    downloadDewPoint(machine_name: string) {
         const queryParams = {
-            machine_name: machine_name,
-            ...params,
+            machine_name: machine_name
         };
 
         this.http
@@ -480,10 +486,9 @@ export class MachineService {
         );
     }
 
-    downloadRurgeCell(machine_name: string, params?: Partial<DateFilter>) {
+    downloadRurgeCell(machine_name: string) {
         const queryParams = {
-            machine_name: machine_name,
-            ...params,
+            machine_name: machine_name
         };
 
         this.http
@@ -505,10 +510,9 @@ export class MachineService {
         );
     }
 
-    downloadRpmSpindle(machine_name: string, params?: Partial<DateFilter>) {
+    downloadRpmSpindle(machine_name: string) {
         const queryParams = {
-            machine_name: machine_name,
-            ...params,
+            machine_name: machine_name
         };
 
         this.http
@@ -531,10 +535,9 @@ export class MachineService {
         );
     }
 
-    downloadSansoMatic(machine_name: string, params?: Partial<DateFilter>) {
+    downloadSansoMatic(machine_name: string) {
         const queryParams = {
-            machine_name: machine_name,
-            ...params,
+            machine_name: machine_name
         };
 
         this.http

@@ -5,7 +5,7 @@ import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import Annotation from 'chartjs-plugin-annotation';
 import { notNull } from '../../../../core/helpers/object.helper';
-import { DetailMachineSansoMatic } from 'src/app/core/models/machine.model';
+import { DetailMachineAmpereAndVoltage, DetailMachineSansoMatic } from 'src/app/core/models/machine.model';
 
 @Component({
     selector: 'ahm-chart-detail-machine-sanso-matic',
@@ -18,7 +18,7 @@ export class ChartDetailMachineSansoMaticComponent {
     public lineChartType: ChartType = 'line';
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-    @Input() data: DetailMachineSansoMatic;
+    @Input() data: DetailMachineAmpereAndVoltage;
     @Input() minimum: number;
     @Input() medium: number;
     @Input() maximum: number;
@@ -28,10 +28,10 @@ export class ChartDetailMachineSansoMaticComponent {
     }
 
     ngOnChanges() {
-        this.lineChartData.datasets[0].data = this.data.data_sanso_matic_a.map(
+        this.lineChartData.datasets[0].data = this.data.first_data.map(
             d => d.value
         );
-        this.lineChartData.datasets[1].data = this.data.data_sanso_matic_b.map(
+        this.lineChartData.datasets[1].data = this.data.second_data.map(
             d => d.value
         );
         this.lineChartData.labels = this.data.data_label.map(d => d.label);

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { getDefaultDateFilter } from 'src/app/core/consts/datepicker.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 import { DateFilter } from 'src/app/core/models/date-filter.model';
-import { DetailMachineRpmSpindle } from '../../../../core/models/machine.model';
+import { DetailMachineAmpereAndVoltage, DetailMachineRpmSpindle } from '../../../../core/models/machine.model';
 import { MachineService } from '../../../../core/services/machine.service';
 import { DUMMY_DETAIL_MACHINE_RPM_SPINDLE } from './detail-machine-rpm-spindle';
 import { DEFAULT_INTERVAL } from 'src/app/core/consts/app.const';
@@ -31,7 +31,7 @@ export class DetailMachineRpmSpindleComponent {
     dateFilter: DateFilter = getDefaultDateFilter();
     maximum = 100;
 
-    rpmSpindleList: DetailMachineRpmSpindle = DUMMY_DETAIL_MACHINE_RPM_SPINDLE;
+    rpmSpindleList: DetailMachineAmpereAndVoltage;
 
     constructor(
         private machineService: MachineService,
@@ -52,7 +52,7 @@ export class DetailMachineRpmSpindleComponent {
             .getRpmSpindle(this.machine_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: resp => {
+                next: (resp: any) => {
                     if (resp.success) {
                         this.rpmSpindleList = resp.data;
                     }
@@ -67,8 +67,7 @@ export class DetailMachineRpmSpindleComponent {
 
     download() {
         this.machineService.downloadRpmSpindle(
-            this.machine_name,
-            this.dateFilter
+            this.machine_name
         );
     }
 

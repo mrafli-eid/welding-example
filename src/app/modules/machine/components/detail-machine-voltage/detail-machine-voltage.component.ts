@@ -72,8 +72,7 @@ export class DetailMachineVoltageComponent {
     download() {
         this.machineService.downloadVoltage(
             this.machine_name,
-            this.robot_name,
-            this.dateFilter
+            this.robot_name
         );
     }
 

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { getDefaultDateFilter } from 'src/app/core/consts/datepicker.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 import { DateFilter } from 'src/app/core/models/date-filter.model';
-import { DetailMachineTemperatureMirror } from 'src/app/core/models/machine.model';
+import { DetailMachineAmpereAndVoltage, DetailMachineTemperatureMirror } from 'src/app/core/models/machine.model';
 import { MachineService } from 'src/app/core/services/machine.service';
 import { interval, take } from 'rxjs';
 import { DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR } from './detail-machine-temperature-mirror';
@@ -23,8 +23,7 @@ export class DetailMachineTemperatureMirrorComponent {
     @Input() machine_name = '';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    temperatureMirrorList: DetailMachineTemperatureMirror =
-        DUMMY_DETAIL_MACHINE_TEMPERATURE_MIRROR;
+    temperatureMirrorList: DetailMachineAmpereAndVoltage;
 
     minimum = 13;
     medium = 20;
@@ -49,7 +48,7 @@ export class DetailMachineTemperatureMirrorComponent {
             .getTemperatureMirror(this.machine_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: res => {
+                next: (res: any) => {
                     if (res.success) {
                         this.temperatureMirrorList = res.data;
                     }
@@ -65,7 +64,6 @@ export class DetailMachineTemperatureMirrorComponent {
     download() {
         this.machineService.downloadTemperatureMirror(
             this.machine_name,
-            this.dateFilter
         );
     }
 

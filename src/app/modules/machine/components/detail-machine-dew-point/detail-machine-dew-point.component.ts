@@ -59,8 +59,7 @@ export class DetailMachineDewPointComponent {
 
     download() {
         this.machineService.downloadDewPoint(
-            this.machine_name,
-            this.dateFilter
+            this.machine_name
         );
     }
 

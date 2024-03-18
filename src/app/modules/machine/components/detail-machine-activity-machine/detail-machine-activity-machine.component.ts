@@ -57,8 +57,7 @@ export class DetailMachineActivityMachineComponent {
 
     download() {
         this.machineService.downloadActivityMachine(
-            this.machine_name,
-            this.dateFilter
+            this.machine_name
         );
     }
 }

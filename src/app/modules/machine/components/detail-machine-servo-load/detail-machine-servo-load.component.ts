@@ -75,8 +75,7 @@ export class DetailMachineServoLoadComponent {
     download() {
         this.machineService.downloadServoLoad(
             this.machine_name,
-            this.robot_name,
-            this.dateFilter
+            this.robot_name
         );
     }
 

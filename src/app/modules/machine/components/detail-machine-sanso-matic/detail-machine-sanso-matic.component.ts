@@ -6,6 +6,7 @@ import { getDefaultDateFilter } from 'src/app/core/consts/datepicker.const';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 import { DateFilter } from 'src/app/core/models/date-filter.model';
 import {
+    DetailMachineAmpereAndVoltage,
     DetailMachineSansoMatic,
     DetailMachineTemperatureMirror,
 } from 'src/app/core/models/machine.model';
@@ -26,7 +27,7 @@ export class DetailMachineSansoMaticComponent {
     @Input() machine_name = '';
     dateFilter: DateFilter = getDefaultDateFilter();
 
-    sansoMaticList: DetailMachineSansoMatic = DUMMY_DETAIL_MACHINE_SANSO_MATIC;
+    sansoMaticList: DetailMachineAmpereAndVoltage;
     minimum = 13;
     medium = 20;
     maximum = 40;
@@ -50,7 +51,7 @@ export class DetailMachineSansoMaticComponent {
             .getSansoMatic(this.machine_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: res => {
+                next: (res: any) => {
                     if (res.success) {
                         this.sansoMaticList = res.data;
                     }
@@ -68,8 +69,7 @@ export class DetailMachineSansoMaticComponent {
 
     download() {
         this.machineService.downloadSansoMatic(
-            this.machine_name,
-            this.dateFilter
+            this.machine_name
         );
     }
 

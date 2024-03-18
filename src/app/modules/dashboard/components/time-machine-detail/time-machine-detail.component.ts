@@ -22,10 +22,11 @@ export class TimeMachineDetailComponent implements OnInit {
     @Output() changedDateFilter = new EventEmitter<DateFilter>();
 
     data: TimeMachineDetail = {
+        "machine_name": "BASENG",
+        "subject_name": "LAJU NYENTAK",
         "value_stopline": 100,
         "value_idle": 20,
         "value_running": 30,
-        "label": "Monday",
         "date_time": new Date()
     }
 
