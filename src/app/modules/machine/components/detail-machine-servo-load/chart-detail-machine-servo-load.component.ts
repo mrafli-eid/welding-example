@@ -40,6 +40,7 @@ export class ChartDetailMachineServoLoadComponent {
             borderColor: '#28A745',
             borderWidth: 1,
         };
+        
 
         // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.warning = {

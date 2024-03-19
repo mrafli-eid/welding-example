@@ -25,6 +25,7 @@ export class DetailMachineAmpereComponent {
 
     setting = 950;
     minimum = 900;
+    medium = 950;
     maximum = 1000;
 
     ampereList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_AMPERE;

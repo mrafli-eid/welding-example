@@ -27,6 +27,7 @@ export class ChartDetailMachineAmpereComponent {
     @Input() data: DetailMachineAmpereAndVoltage;
     @Input() setting: number;
     @Input() minimum: number;
+    @Input() medium: number;
     @Input() maximum: number;
 
     constructor() {
@@ -48,6 +49,15 @@ export class ChartDetailMachineAmpereComponent {
             yMin: this.data.minimum == null ? this.minimum : this.data.minimum,
             yMax: this.data.minimum == null ? this.minimum : this.data.minimum,
             borderColor: '#28A745',
+            borderWidth: 1,
+        };
+
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.medium = {
+            type: 'line',
+            yMin: this.data.medium == null ? this.medium : this.data.medium,
+            yMax: this.data.medium == null ? this.medium : this.data.medium,
+            borderColor: '#F1BE42',
             borderWidth: 1,
         };
 

@@ -55,6 +55,15 @@ export class ChartDetailMachineSansoMaticComponent {
         };
 
         // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.medium = {
+            type: 'line',
+            yMin: this.data.medium == null ? this.medium : this.data.medium,
+            yMax: this.data.medium == null ? this.medium : this.data.medium,
+            borderColor: '#F1BE42',
+            borderWidth: 1,
+        };
+
+        // @ts-ignore
         this.lineChartOptions.plugins.annotation.annotations.maximum = {
             type: 'line',
             yMin: this.data.maximum == null ? this.maximum : this.data.maximum,

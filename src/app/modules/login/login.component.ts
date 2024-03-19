@@ -53,6 +53,7 @@ export class LoginComponent {
                         // Decode token
                         this.decodedToken = jwtDecode(this.accessToken);
                         localStorage.setItem('id_user', this.decodedToken.id);
+                        console.log('id_user', localStorage.getItem('id_user'));
 
                         return this.router.navigate(['/dashboard']);
                 },
