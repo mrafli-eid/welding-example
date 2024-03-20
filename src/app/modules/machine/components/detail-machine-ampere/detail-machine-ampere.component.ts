@@ -25,9 +25,9 @@ export class DetailMachineAmpereComponent {
     @Input() robot_name = '';
 
     dateFilter: DateFilter = getDefaultDateFilter();
-    setting = 950;
-    minimum = 900;
-    maximum = 1000;
+    setting = 250;
+    minimum = 100;
+    maximum = 400;
 
     ampereList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_VOLTAGE;
 
