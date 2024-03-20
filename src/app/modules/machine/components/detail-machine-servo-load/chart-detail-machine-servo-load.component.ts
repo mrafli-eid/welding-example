@@ -43,7 +43,7 @@ export class ChartDetailMachineServoLoadComponent {
         
 
         // @ts-ignore
-        this.lineChartOptions.plugins.annotation.annotations.warning = {
+        this.lineChartOptions.plugins.annotation.annotations.medium = {
             type: 'line',
             yMin: this.data.medium == null ? this.warning : this.data.medium,
             yMax: this.data.medium == null ? this.warning : this.data.medium,
@@ -52,7 +52,7 @@ export class ChartDetailMachineServoLoadComponent {
         };
 
         // @ts-ignore
-        this.lineChartOptions.plugins.annotation.annotations.breakdown = {
+        this.lineChartOptions.plugins.annotation.annotations.maximum = {
             type: 'line',
             yMin:
                 this.data.maximum == null ? this.breakdown : this.data.maximum,
@@ -73,7 +73,7 @@ export class ChartDetailMachineServoLoadComponent {
             borderWidth: 1,
         };
         
-        this.chart?.update();
+        this.chart?.render();
     }
 
     public lineChartData: ChartConfiguration['data'] = {
