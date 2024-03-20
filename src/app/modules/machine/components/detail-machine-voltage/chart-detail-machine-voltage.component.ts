@@ -44,6 +44,16 @@ export class ChartDetailMachineVoltageComponent {
             borderColor: '#28A745',
             borderWidth: 1,
         };
+
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.maximum = {
+            type: 'line',
+            yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
+            yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
+            borderColor: '#DC3545',
+            borderWidth: 1,
+        };
+
         this.chart?.render();
     }
 
@@ -85,9 +95,7 @@ export class ChartDetailMachineVoltageComponent {
                 grid: {
                     color: '#333333',
                 },
-                border: {
-                    dash: [4, 2],
-                },
+                border: {},
             },
             x: {
                 ticks: {
