@@ -63,7 +63,7 @@ export class ChartDetailMachineServoLoadComponent {
         };
 
         // @ts-ignore
-        this.lineChartOptions.plugins.annotation.annotations.breakdown = {
+        this.lineChartOptions.plugins.annotation.annotations.average = {
             type: 'line',
             yMin:
                 this.data.average == null ? this.average : this.data.average,
