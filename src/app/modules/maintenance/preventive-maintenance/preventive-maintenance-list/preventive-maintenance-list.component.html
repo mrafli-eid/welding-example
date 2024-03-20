@@ -48,7 +48,7 @@
                     <th mat-sort-header="enddate">End Date</th>
                     <th>Action</th>
                 </tr>
-                <tr *ngFor="let data of maintenanceList; let index = index">
+                <tr class="tr-body" *ngFor="let data of maintenanceList; let index = index">
                     <td>{{ index + 1 }}</td>
                     <td>{{ data.name | string }}</td>
                     <td>{{ data.plan | string }}</td>
