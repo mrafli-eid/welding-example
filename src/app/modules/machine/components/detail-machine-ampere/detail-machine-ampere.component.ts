@@ -18,22 +18,24 @@ import { interval, take } from 'rxjs';
 })
 export class DetailMachineAmpereComponent {
     untilDestroyed = untilDestroyed();
-    dateFilter: DateFilter = getDefaultDateFilter();
-
+    
     @Input() machine_name = '';
     @Input() robot_name = '';
-
+    
+    dateFilter: DateFilter = getDefaultDateFilter();
     setting = 950;
     minimum = 900;
     medium = 950;
     maximum = 1000;
 
-    ampereList: DetailMachineAmpereAndVoltage = DUMMY_DETAIL_MACHINE_AMPERE;
+    ampereList: DetailMachineAmpereAndVoltage;
 
     constructor(
         private machineService: MachineService,
         private router: Router
-    ) {}
+    ) {
+        
+    }
 
     ngOnChanges() {
         this.fetchAmpere();
@@ -45,14 +47,16 @@ export class DetailMachineAmpereComponent {
     }
 
     fetchAmpere() {
+        const machine_name = this.router.url.split('/')[2];
+        const robot_name = this.router.url.split('/')[3];
+        console.log(machine_name, robot_name);     
         this.machineService
-            .getAmpere(this.machine_name, this.robot_name, this.dateFilter)
+            .getAmpere(machine_name, robot_name, this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: resp => {
-                    if (resp.success) {
-                        this.ampereList = resp.data;
-                    }
+                next: (resp: any) => {
+                    this.ampereList = resp.data;
+                    console.log(resp.data);
                 },
             });
     }

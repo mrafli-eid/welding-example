@@ -73,7 +73,7 @@ export class ChartDetailMachineServoLoadComponent {
             borderWidth: 1,
         };
         
-        this.chart?.render();
+        this.chart?.update();
     }
 
     public lineChartData: ChartConfiguration['data'] = {

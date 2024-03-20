@@ -149,16 +149,15 @@ export interface DetailMachineServoLoad {
     subject_name?: string;
     robot_name?: string;
     unit: string;
-    maximum: number | null;
-    medium: number | null;
     minimum: number | null;
+    medium: number | null;
+    maximum: number | null;
     average: number | null;
     vid?: string;
     data: {
         value: number;
         label: string;
         date_time: string;
-        message: string;
     }[];
 }
 
