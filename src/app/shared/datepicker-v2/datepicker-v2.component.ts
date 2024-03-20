@@ -64,6 +64,7 @@ export class DatepickerV2Component implements OnInit, OnChanges {
     dateTypeList = ['day', 'week', 'month', 'year'];
 
     @Input() hideDayPreset = false;
+    @Input() hideDayWeekMonthPreset = false;
 
     constructor(private overlay: Overlay) {}
 
@@ -86,8 +87,10 @@ export class DatepickerV2Component implements OnInit, OnChanges {
     ngOnChanges() {
         if (this.hideDayPreset) {
             this.dateTypeList = ['default', 'week', 'month', 'year'];
+        } else if(this.hideDayWeekMonthPreset) {
+            this.dateTypeList = ['default', 'year'];
         } else {
-            this.dateTypeList = ['default', 'day', 'week', 'month', 'year'];
+            this.dateTypeList = ['default','day', 'week', 'month', 'year'];
         }
     }
 
