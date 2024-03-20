@@ -1,6 +1,6 @@
 <div class="setting-list">
     <div class="setting-header">
-        <h2>List Machine</h2>
+        <h2>List Setting</h2>
         <div class="ahm-input-wrapper">
             <img
                 alt="search"
@@ -27,6 +27,8 @@
                     <th mat-sort-header="maximum">Maximum</th>
                     <th mat-sort-header="lowerlimit">Lower Limit</th>
                     <th mat-sort-header="upperlimit">Upper Limit</th>
+                    <th mat-sort-header="standardmttr">Standard MTTR</th>
+                    <th mat-sort-header="standardmtbf">Standard MTBF</th>
                     <th mat-sort-header="unit">Unit</th>
                     <th mat-sort-header="createddate">Last Created</th>
                 </tr>
@@ -40,16 +42,14 @@
                     </td>
                     <td>{{ data.machine_name }}</td>
                     <td>{{ data.subject_name }}</td>
-                    <td>{{ data.minimum == null ? '-' : data.minimum }}</td>
-                    <td>{{ data.medium == null ? '-' : data.medium }}</td>
-                    <td>{{ data.maximum == null ? '-' : data.maximum }}</td>
-                    <td>
-                        {{ data.lower_limit == null ? '-' : data.lower_limit }}
-                    </td>
-                    <td>
-                        {{ data.upper_limit == null ? '-' : data.upper_limit }}
-                    </td>
-                    <td>{{ data.unit }}</td>
+                    <td>{{ data.minimum | string }}</td>
+                    <td>{{ data.medium | string }}</td>
+                    <td>{{ data.maximum | string }}</td>
+                    <td>{{ data.lower_limit | string }}</td>
+                    <td>{{ data.upper_limit | string }}</td>
+                    <td>{{ data.standard_mttr | string }}</td>
+                    <td>{{ data.standard_mtbf | string }}</td>
+                    <td>{{ data.unit | string }}</td>
                     <td>{{ data.created_at }}</td>
                 </tr>
             </table>

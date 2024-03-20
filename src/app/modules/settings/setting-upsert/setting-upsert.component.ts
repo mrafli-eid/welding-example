@@ -27,6 +27,8 @@ export class SettingUpsertComponent implements OnInit {
     robot_name = '';
     name = '';
     robot_fullname = '';
+    options = [ 'minimum', 'medium', 'maximum', 'lower_limit', 'upper_limit', 'standard_mttr', 'standard_mtbf' ];
+    
     machineList: registerMachine[] = DUMMY_MASTER_MACHINE_LIST;
     subjectList: MasterSubject[] = DUMMY_MASTER_SUBJECT_LIST;
     settingList: Setting[] = DUMMY_SETTING_LIST;
@@ -39,19 +41,23 @@ export class SettingUpsertComponent implements OnInit {
     };
 
     formGroup: FormGroup = new FormGroup({
-        machine_name: new FormControl('', [Validators.required]),
-        subject_name: new FormControl('', [Validators.required]),
-        unit: new FormControl('', [Validators.required]),
+        machine_name: new FormControl('', [ Validators.required ]),
+        subject_name: new FormControl('', [ Validators.required ]),
+        unit: new FormControl('', [ Validators.required ]),
         minimum: new FormControl({ value: null, disabled: true }),
         medium: new FormControl({ value: null, disabled: true }),
         maximum: new FormControl({ value: null, disabled: true }),
         lower_limit: new FormControl({ value: null, disabled: true }),
         upper_limit: new FormControl({ value: null, disabled: true }),
+        standard_mttr: new FormControl({ value: null, disabled: true }),
+        standard_mtbf: new FormControl({ value: null, disabled: true }),
         minimum_toggle: new FormControl(false),
         medium_toggle: new FormControl(false),
         maximum_toggle: new FormControl(false),
         lower_limit_toggle: new FormControl(false),
         upper_limit_toggle: new FormControl(false),
+        standard_mttr_toggle: new FormControl(false),
+        standard_mtbf_toggle: new FormControl(false),
     });
 
     constructor(
@@ -100,31 +106,18 @@ export class SettingUpsertComponent implements OnInit {
     }
 
     initValidators() {
-        const options = [
-            'minimum',
-            'medium',
-            'maximum',
-            'lower_limit',
-            'upper_limit',
-        ];
-        options.forEach(option => {
-            this.formGroup
-                .get(`${option}_toggle`)
-                .valueChanges.subscribe(val => {
-                    if (val) {
-                        this.formGroup.get(option).enable();
-                        this.formGroup
-                            .get(option)
-                            .setValidators([Validators.required]);
-                    } else {
-                        this.formGroup.get(option).disable();
-                        this.formGroup.get(option).setValue(null);
-                        this.formGroup
-                            .get(option)
-                            .removeValidators([Validators.required]);
-                    }
-                    this.formGroup.get(option).updateValueAndValidity();
-                });
+        this.options.forEach((option) => {
+            this.formGroup.get(`${ option }_toggle`).valueChanges.subscribe((val) => {
+                if (val) {
+                    this.formGroup.get(option).enable();
+                    this.formGroup.get(option).setValidators([ Validators.required ]);
+                } else {
+                    this.formGroup.get(option).disable();
+                    this.formGroup.get(option).setValue(null);
+                    this.formGroup.get(option).removeValidators([ Validators.required ]);
+                }
+                this.formGroup.get(option).updateValueAndValidity();
+            });
         });
     }
 
@@ -132,12 +125,11 @@ export class SettingUpsertComponent implements OnInit {
         this.formGroup.markAllAsTouched();
         if (this.formGroup.valid) {
             const body = this.formGroup.getRawValue();
-            delete body['minimum_toggle'];
-            delete body['medium_toggle'];
-            delete body['maximum_toggle'];
-            delete body['lower_limit_toggle'];
-            delete body['upper_limit_toggle'];
+            this.options.forEach((o) => {
+                delete body[`${o}_toggle`];
+            })
             this.create(body);
+            console.log(body);
         }
     }
 

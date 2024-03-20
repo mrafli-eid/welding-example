@@ -13,7 +13,7 @@
             />
         </div>
     </div>
-    <div [formGroup]="formGroup" class="setting-content">
+    <!-- <div [formGroup]="formGroup" class="setting-content">
         <div>
             <label>Machine</label>
             <mat-form-field>
@@ -129,6 +129,129 @@
                         matInput
                         formControlName="upper_limit"
                     />
+                </mat-form-field>
+            </div>
+        </div>
+    </div> -->
+    <div [formGroup]="formGroup" class="setting-content">
+        <div class="row">
+            <div class="col-12">
+                <label>Machine</label>
+                <mat-form-field>
+                    <mat-select formControlName="machine_name">
+                        <mat-option *ngFor="let machine of machineList" [value]="machine.name">{{machine.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <label>Subject</label>
+                <mat-form-field>
+                    <mat-select formControlName="subject_name">
+                        <mat-option *ngFor="let subject of subjectList" [value]="subject.name">{{subject.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <label>Unit</label>
+                <mat-form-field>
+                    <input formControlName="unit" matInput type="text">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label>Setting</label>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="between">
+                    <label>Minimum</label>
+                    <label class="switch">
+                        <input formControlName="minimum_toggle" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <mat-form-field>
+                    <input formControlName="minimum"
+                           matInput
+                           type="number">
+                </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="between">
+                    <label>Medium</label>
+                    <label class="switch">
+                        <input formControlName="medium_toggle" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <mat-form-field>
+                    <input formControlName="medium" matInput type="number">
+                </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="between">
+                    <label>Maximum</label>
+                    <label class="switch">
+                        <input formControlName="maximum_toggle" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <mat-form-field>
+                    <input formControlName="maximum" matInput type="number">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="between">
+                    <label>Lower Limit</label>
+                    <label class="switch">
+                        <input formControlName="lower_limit_toggle" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <mat-form-field>
+                    <input formControlName="lower_limit" matInput type="number">
+                </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="between">
+                    <label>Upper Limit</label>
+                    <label class="switch">
+                        <input formControlName="upper_limit_toggle" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <mat-form-field>
+                    <input formControlName="upper_limit" matInput type="number">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="between">
+                    <label>Standard MTTR</label>
+                    <label class="switch">
+                        <input formControlName="standard_mttr_toggle" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <mat-form-field>
+                    <input formControlName="standard_mttr" matInput type="number">
+                </mat-form-field>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-12">
+                <div class="between">
+                    <label>Standard MTBF</label>
+                    <label class="switch">
+                        <input formControlName="standard_mtbf_toggle" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <mat-form-field>
+                    <input formControlName="standard_mtbf" matInput type="number">
                 </mat-form-field>
             </div>
         </div>
