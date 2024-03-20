@@ -27,7 +27,6 @@ export class ChartDetailMachineAmpereComponent implements OnChanges {
     @Input() data: DetailMachineAmpereAndVoltage;
     @Input() setting: number;
     @Input() minimum: number;
-    @Input() medium: number;
     @Input() maximum: number;
 
     constructor() {
@@ -35,40 +34,31 @@ export class ChartDetailMachineAmpereComponent implements OnChanges {
     }
 
     ngOnChanges() {
-            this.lineChartData.datasets[0].data = this.data?.first_data.map(
-                res => res.value
-            );
-            this.lineChartData.datasets[1].data = this.data?.second_data.map(
-                res => res.value
-            );
-            this.lineChartData.labels = this.data?.data_label.map(res => res.label);
-    
-            // @ts-ignore
-            this.lineChartOptions.plugins.annotation.annotations.minimum = {
-                type: 'line',
-                yMin: this.data.minimum == null ? this.minimum : this.data.minimum,
-                yMax: this.data.minimum == null ? this.minimum : this.data.minimum,
-                borderColor: '#28A745',
-                borderWidth: 1,
-            };
-    
-            // @ts-ignore
-            this.lineChartOptions.plugins.annotation.annotations.medium = {
-                type: 'line',
-                yMin: this.data.medium == null ? this.medium : this.data.medium,
-                yMax: this.data.medium == null ? this.medium : this.data.medium,
-                borderColor: '#F1BE42',
-                borderWidth: 1,
-            };
-    
-            // @ts-ignore
-            this.lineChartOptions.plugins.annotation.annotations.maximum = {
-                type: 'line',
-                yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
-                yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
-                borderColor: '#DC3545',
-                borderWidth: 1,
-            };
+        this.lineChartData.datasets[0].data = this.data?.first_data.map(
+            res => res.value
+        );
+        this.lineChartData.datasets[1].data = this.data?.second_data.map(
+            res => res.value
+        );
+        this.lineChartData.labels = this.data?.data_label.map(res => res.label);
+
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.minimum = {
+            type: 'line',
+            yMin: this.data.minimum == null ? this.minimum : this.data.minimum,
+            yMax: this.data.minimum == null ? this.minimum : this.data.minimum,
+            borderColor: '#28A745',
+            borderWidth: 1,
+        };
+
+        // @ts-ignore
+        this.lineChartOptions.plugins.annotation.annotations.maximum = {
+            type: 'line',
+            yMin: this.data.maximum == null ? this.maximum : this.data.maximum,
+            yMax: this.data.maximum == null ? this.maximum : this.data.maximum,
+            borderColor: '#DC3545',
+            borderWidth: 1,
+        };
 
         this.chart?.render();
     }
