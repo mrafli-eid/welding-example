@@ -28,6 +28,7 @@ export class MaintenanceIndicatorGraphMTBFComponent {
     dateFilter: DateFilter = getDefaultDateFilter();
     chartData: DashboardGrafikMtbf = DUMMY_DASHBOARD_MTTR;
     page: number = 0;
+    target: number = 204.9;
 
     constructor(
         private dashboardService: DashboardService,

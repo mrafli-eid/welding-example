@@ -63,15 +63,15 @@ export class ChartDetailMachineServoLoadComponent {
         };
 
         // @ts-ignore
-        this.lineChartOptions.plugins.annotation.annotations.average = {
-            type: 'line',
-            yMin:
-                this.data.average == null ? this.average : this.data.average,
-            yMax:
-                this.data.average == null ? this.average : this.data.average,
-            borderColor: '#3443eb',
-            borderWidth: 1,
-        };
+        // this.lineChartOptions.plugins.annotation.annotations.average = {
+        //     type: 'line',
+        //     yMin:
+        //         this.data.average == null ? this.average : this.data.average,
+        //     yMax:
+        //         this.data.average == null ? this.average : this.data.average,
+        //     borderColor: '#3443eb',
+        //     borderWidth: 1,
+        // };
         
         this.chart?.render();
     }
