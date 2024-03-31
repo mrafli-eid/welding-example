@@ -2,10 +2,13 @@
     <div class="grid-item transparent">
         <ahm-time-machine-wrapper></ahm-time-machine-wrapper>
     </div>
-    <div class="grid-layout col-xl-8 col-lg-6 col-sm-12">
+    <div class="grid-item">
         <ahm-layout-machine-area
             [machineList]="machineList"
         ></ahm-layout-machine-area>
+    </div>
+    <div class="grid-item">
+        <ahm-maintenance-schedule></ahm-maintenance-schedule>
     </div>
     <div class="grid-item">
         <ahm-machine-activity></ahm-machine-activity>
@@ -21,14 +24,14 @@
         ></ahm-production-graph>
     </div>
     <div class="grid-item">
-        <ahm-maintenance-schedule></ahm-maintenance-schedule>
-    </div>
-    <div class="grid-item">
         <ahm-maintenance-indicator-graph-mtbf
             [machineList]="machineList"
         ></ahm-maintenance-indicator-graph-mtbf>
     </div>
     <div class="grid-item">
         <ahm-top-machine-alarm></ahm-top-machine-alarm>
+    </div>
+    <div class="grid-item">
+        <ahm-servo-load [machineList]="machineList" />
     </div>
 </div>

@@ -1,0 +1,41 @@
+<div class="dashboard-header">
+    <div class="cursor-pointer flex" (click)="changeRobot()">
+        <h5>Servo Load 
+            <span *ngIf="servoLoadList">({{this.machineList[this.page].name}}</span> -
+            <span>{{ robotName }})</span>
+        </h5>
+    </div>
+    <div class="dashboard-header-nav">
+        <ahm-datepicker
+            (dateChanged)="onFilterChanged($event)"
+            [dateFilter]="dateFilter"
+        ></ahm-datepicker>
+        <button class="btn-settings" (click)="goToSettings()">
+            <img alt="settings" src="/assets/icons/setting.svg" />
+        </button>
+        <button class="btn-download" (click)="download()">
+            <img alt="download" src="/assets/icons/download.svg" />
+        </button>
+    </div>
+</div>
+<div class="dashboard-content">
+    <ahm-dashboard-chart-detail-servo-load
+        [data]="servoLoadList"
+        [standard]="standard"
+        [warning]="warning"
+        [breakdown]="breakdown"
+        [average]="average"
+    ></ahm-dashboard-chart-detail-servo-load>
+</div>
+<div class="dashboard-footer justify-between">
+    <div class="chart-legend">
+        <ahm-dot type="line" color="success">Standard</ahm-dot>
+        <ahm-dot type="line" color="warning">Warning</ahm-dot>
+        <ahm-dot type="line" color="danger">Breakdown</ahm-dot>
+        <!-- <ahm-dot type="line" color="primary">Average</ahm-dot> -->
+        <ahm-dot type="line" color="greenmttrmtbf">Actual</ahm-dot>
+    </div>
+    <ahm-pagination (onPageChange)="onPageChange($event)"
+                    [page]="page"
+                    [totalPage]="machineList.length"></ahm-pagination>
+</div>

@@ -45,6 +45,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { DatepickerV2Component } from 'src/app/shared/datepicker-v2/datepicker-v2.component';
 import { DialogAddMttrMtbfComponent } from './dialogs/dialog-add-mttr-mtbf/dialog-add-mttr-mtbf.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MachineModule } from '../machine/machine.module';
+import { ServoLoadComponent } from './components/servo-load/servo-load.component';
+import { DashboardChartDetailServoLoadComponent } from './components/servo-load/dashboard-chart-detail-servo-load.component';
 
 @NgModule({
     declarations: [
@@ -65,6 +68,7 @@ import { MatButtonModule } from '@angular/material/button';
         DialogAddProductionGraphComponent,
         DialogEditProductionGraphComponent,
         DialogAddMttrMtbfComponent,
+        ServoLoadComponent,
     ],
     imports: [
         CommonModule,
@@ -78,6 +82,7 @@ import { MatButtonModule } from '@angular/material/button';
         ChartOilLevelComponent,
         ChartMaintenanceIndicatorGraphMTBFComponent,
         ChartMaintenanceIndicatorGraphMTTRComponent,
+        DashboardChartDetailServoLoadComponent,
         ChartMachineActivityComponent,
         DotComponent,
         ChartTimeMachineDetailComponent,
