@@ -24,14 +24,14 @@
         ></ahm-production-graph>
     </div>
     <div class="grid-item">
+        <ahm-servo-load [machineList]="machineList" />
+    </div>
+    <div class="grid-item">
         <ahm-maintenance-indicator-graph-mtbf
             [machineList]="machineList"
         ></ahm-maintenance-indicator-graph-mtbf>
     </div>
     <div class="grid-item">
         <ahm-top-machine-alarm></ahm-top-machine-alarm>
-    </div>
-    <div class="grid-item">
-        <ahm-servo-load [machineList]="machineList" />
     </div>
 </div>
