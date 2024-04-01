@@ -21,11 +21,11 @@ export class MaintenanceIndicatorComponent implements OnChanges, OnInit {
 
     @Input() dateFilter: DateFilter;
 
-    targetMtbf = 200;
+    targetMtbf = 204.90;
     mtbf = 190;
 
     targetMttr = 1.33;
-    mttr = 1.4;
+    mttr = 1.28;
 
     constructor(
         private dashboardService: DashboardService,
