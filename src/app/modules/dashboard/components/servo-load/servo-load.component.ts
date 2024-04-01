@@ -62,18 +62,22 @@ export class ServoLoadComponent {
     }
 
     download() {
+      const machineName = encodeURIComponent(this.machineList[this.page].name);
+      
         this.machineService.downloadServoLoad(
-            this.machine_name,
-            this.robot_name
+            machineName,
+            this.robotName,
         );
     }
 
     goToSettings() {
+      const machineName = encodeURIComponent(this.machineList[this.page].name);
+      
         this.router.navigate(['/settings'], {
             queryParams: {
                 name: 'Servo Load',
-                // machine: this.machine_name,
-                // robot: this.robot_name,
+                machine: machineName,
+                robot: this.robotName,
             },
         });
     }
