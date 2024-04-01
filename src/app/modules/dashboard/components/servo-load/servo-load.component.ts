@@ -42,6 +42,7 @@ export class ServoLoadComponent {
 
     ngOnInit() {
       this.robotName = 'MASTER';
+      this.getChartData();
     }
 
     changeRobot() {
@@ -57,14 +58,14 @@ export class ServoLoadComponent {
 
     onFilterChanged(dateFilter: DateFilter) {
         this.dateFilter = dateFilter;
-        // this.fetchServoLoad();
+        this.getChartData();
     }
 
     download() {
-        // this.machineService.downloadServoLoad(
-        //     this.machine_name,
-        //     this.robot_name
-        // );
+        this.machineService.downloadServoLoad(
+            this.machine_name,
+            this.robot_name
+        );
     }
 
     goToSettings() {
