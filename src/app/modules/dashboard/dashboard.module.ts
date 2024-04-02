@@ -48,6 +48,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MachineModule } from '../machine/machine.module';
 import { ServoLoadComponent } from './components/servo-load/servo-load.component';
 import { DashboardChartDetailServoLoadComponent } from './components/servo-load/dashboard-chart-detail-servo-load.component';
+import { SettingMttrMtbfComponent } from './pages/setting-mttr-mtbf/setting-mttr-mtbf.component';
 
 @NgModule({
     declarations: [
@@ -69,6 +70,7 @@ import { DashboardChartDetailServoLoadComponent } from './components/servo-load/
         DialogEditProductionGraphComponent,
         DialogAddMttrMtbfComponent,
         ServoLoadComponent,
+        SettingMttrMtbfComponent,
     ],
     imports: [
         CommonModule,

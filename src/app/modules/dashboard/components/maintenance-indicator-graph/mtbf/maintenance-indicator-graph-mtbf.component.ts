@@ -81,7 +81,7 @@ export class MaintenanceIndicatorGraphMTBFComponent {
     }
 
     goToSettings() {
-        this.router.navigate(['/settings']);
+        this.router.navigate(['/dashboard/setting-mttr-mtbf']);
     }
 
     protected readonly DUMMY_DASHBOARD_PRODUCTION_GRAPH =

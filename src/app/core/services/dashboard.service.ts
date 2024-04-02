@@ -137,6 +137,13 @@ export class DashboardService {
         );
     }
 
+    getSettingMttrMtbfList(params: Partial<MasterParams>) {
+        return this.http.get<HttpResponse<any>>(`${environment.API_URL}/api/mttr-mtbf/get-mttr-and-mtbf-all`, {
+            params: params,
+            observe: 'response',
+        });
+    }
+
     getProductionPlanList(params: Partial<MasterParams>) {
         params = removeEmptyObject(params);
         return this.http.get<HttpResponse<ProductionGraphPlan[]>>(

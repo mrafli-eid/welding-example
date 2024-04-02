@@ -78,3 +78,11 @@ export interface DashboardMtbf {
     label: string;
     date_time: string;
 }
+
+export interface MttrMtbfList {
+    id: string;
+    mttr: number;
+    mtbf: number;
+    date_time: string;
+    created_at: string;
+}

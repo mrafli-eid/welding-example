@@ -11,6 +11,7 @@ import { DashboardService } from '../../../../core/services/dashboard.service';
 import { DialogAddProductionGraphComponent } from '../../dialogs/dialog-add-production-graph/dialog-add-production-graph.component';
 import { DialogEditProductionGraphComponent } from '../../dialogs/dialog-edit-production-graph/dialog-edit-production-graph.component';
 import { ProductionGraphPlan } from 'src/app/core/models/production-graph.model';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ahm-setting-production-graph',
@@ -35,7 +36,8 @@ export class SettingProductionGraphComponent {
 
     constructor(
         private dashboardService: DashboardService,
-        private matDialog: MatDialog
+        private matDialog: MatDialog,
+        private router: Router
     ) {}
 
     queryParams: Partial<MasterParams> = {};
@@ -94,6 +96,10 @@ export class SettingProductionGraphComponent {
                     this.productionGraphList = response.body.data || [];
                 },
             });
+    }
+
+    toDashboard() {
+        this.router.navigate(['/dashboard']);
     }
 
     create() {
