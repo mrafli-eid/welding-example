@@ -22,13 +22,13 @@ export class TimeMachineDetailComponent implements OnInit {
     @Output() changedDateFilter = new EventEmitter<DateFilter>();
 
     data: TimeMachineDetail = {
-        "machine_name": "BASENG",
-        "subject_name": "LAJU NYENTAK",
-        "value_stopline": 100,
-        "value_idle": 20,
-        "value_running": 30,
-        "date_time": new Date()
-    }
+        machine_name: 'BASENG',
+        subject_name: 'LAJU NYENTAK',
+        value_stopline: 100,
+        value_idle: 20,
+        value_running: 30,
+        date_time: new Date(),
+    };
 
     chartData = [];
 
@@ -37,26 +37,32 @@ export class TimeMachineDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getChartData();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.getChartData();
-            });
+        setInterval(() => {
+            this.data = {
+                value_running: Math.floor(Math.random() * 100) + 1,
+                value_stopline: Math.floor(Math.random() * 20) + 1,
+                value_idle: Math.floor(Math.random() * 30) + 1,
+                machine_name: 'BASENG',
+                subject_name: 'LAJU NYENTAK',
+                date_time: new Date(),
+            };
+
+            this.convertToChartData();
+        }, 3000);
     }
 
     getChartData(): void {
-        this.dashboardService.getTimeMachineDetail(this.dateFilter)
+        this.dashboardService
+            .getTimeMachineDetail(this.dateFilter)
             .pipe(take(1))
             .subscribe({
-                next: (resp) => {
+                next: resp => {
                     if (resp.success) {
                         this.data = resp.data;
                         this.convertToChartData();
                     }
                 },
-                error: () => {
-                },
+                error: () => {},
             });
     }
 
@@ -65,17 +71,17 @@ export class TimeMachineDetailComponent implements OnInit {
         this.chartData.push(
             {
                 value: this.data.value_running,
-                color: [ '#4CAF50' ]
+                color: ['#4CAF50'],
             },
             {
                 value: this.data.value_idle,
-                color: [ '#FFC02D' ]
+                color: ['#FFC02D'],
             },
             {
                 value: this.data.value_stopline,
-                color: [ '#FF5853' ]
-            },
-        )
+                color: ['#FF5853'],
+            }
+        );
     }
 
     onFilterChanged(dateFilter: DateFilter) {

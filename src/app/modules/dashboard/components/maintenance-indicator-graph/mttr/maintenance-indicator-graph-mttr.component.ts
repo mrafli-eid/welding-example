@@ -36,15 +36,25 @@ export class MaintenanceIndicatorGraphMTTRComponent {
     ) {}
 
     ngOnInit() {
-        this.getChartData();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.getChartData();
-            });
+        // this.getChartData();
+        // interval(DEFAULT_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.getChartData();
+        //     });
+        setInterval(() => {
+            this.chartData = {
+                machine_name: DUMMY_DASHBOARD_MTTR.machine_name,
+                subject_name: DUMMY_DASHBOARD_MTTR.subject_name,
+                data: DUMMY_DASHBOARD_MTTR.data.map(item => ({
+                    ...item,
+                    value: Math.floor(Math.random() * 9 + 1) / 10,
+                })),
+            };
+        }, 3000);
     }
 
-    create(){
+    create() {
         const matDialogRef = this.matDialog.open(DialogAddMttrMtbfComponent);
 
         matDialogRef.afterClosed().subscribe(resp => {

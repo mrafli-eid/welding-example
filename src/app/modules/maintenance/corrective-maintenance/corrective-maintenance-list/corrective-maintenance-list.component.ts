@@ -104,15 +104,15 @@ export class CorrectiveMaintenanceListComponent {
         });
 
         matDialogRef.afterClosed().subscribe(resp => {
-            if (resp) {
-                this.maintenanceService
-                    .delete(data.id)
-                    .pipe(take(1))
-                    .subscribe(() => {
-                        this.pagination.page_number = 1;
-                        this.fetchList();
-                    });
-            }
+            // if (resp) {
+            //     this.maintenanceService
+            //         .delete(data.id)
+            //         .pipe(take(1))
+            //         .subscribe(() => {
+            //             this.pagination.page_number = 1;
+            //             this.fetchList();
+            //         });
+            // }
         });
     }
 

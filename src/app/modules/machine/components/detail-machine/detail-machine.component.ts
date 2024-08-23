@@ -5,7 +5,7 @@ import { interval, take } from 'rxjs';
 import { DUMMY_DETAIL_MACHINE } from './detail-machine.dummy';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
-
+import { getSortedRandomValues } from '../../../../core/helpers/random';
 @Component({
     selector: 'ahm-detail-machine',
     templateUrl: './detail-machine.component.html',
@@ -24,12 +24,22 @@ export class DetailMachineComponent implements OnInit {
     constructor(private machineService: MachineService) {}
 
     ngOnInit() {
-        this.fetchDetailMachine();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchDetailMachine();
-            });
+        // this.fetchDetailMachine();
+        // interval(DEFAULT_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchDetailMachine();
+        //     });
+
+        setInterval(() => {
+            const [val1, val2, val3] = getSortedRandomValues();
+            this.detailMachine = {
+                ...DUMMY_DETAIL_MACHINE,
+                value_running: val3,
+                value_idle: val2,
+                value_stopline: val1,
+            };
+        }, 3000);
     }
 
     fetchDetailMachine() {

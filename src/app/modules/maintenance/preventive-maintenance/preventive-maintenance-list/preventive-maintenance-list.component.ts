@@ -106,15 +106,15 @@ export class PreventiveMaintenanceListComponent {
         });
 
         matDialogRef.afterClosed().subscribe(resp => {
-            if (resp) {
-                this.maintenanceService
-                    .delete(data.machine_name)
-                    .pipe(take(1))
-                    .subscribe(() => {
-                        this.pagination.page_number = 1;
-                        this.fetchList();
-                    });
-            }
+            // if (resp) {
+            //     this.maintenanceService
+            //         .delete(data.machine_name)
+            //         .pipe(take(1))
+            //         .subscribe(() => {
+            //             this.pagination.page_number = 1;
+            //             this.fetchList();
+            //         });
+            // }
         });
     }
 

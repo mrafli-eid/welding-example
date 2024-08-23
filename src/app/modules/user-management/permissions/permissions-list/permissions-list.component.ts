@@ -101,15 +101,15 @@ export class PermissionsListComponent {
         );
 
         matDialogRef.afterClosed().subscribe(resp => {
-            if (resp) {
-                this.userManagementService
-                    .deletePermission(data.id)
-                    .pipe(take(1))
-                    .subscribe(() => {
-                        this.pagination.page_number = 1;
-                        this.getListPermission();
-                    });
-            }
+            // if (resp) {
+            //     this.userManagementService
+            //         .deletePermission(data.id)
+            //         .pipe(take(1))
+            //         .subscribe(() => {
+            //             this.pagination.page_number = 1;
+            //             this.getListPermission();
+            //         });
+            // }
         });
     }
 

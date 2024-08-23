@@ -20,6 +20,7 @@ export class DetailMachineProductionGraphComponent {
     untilDestroyed = untilDestroyed();
 
     @Input() machine_name = '';
+    //@ts-ignore
     robot_name = 'MASTER' || 'SLAVE';
 
     dateFilter: DateFilter = getDefaultDateFilter();
@@ -29,12 +30,22 @@ export class DetailMachineProductionGraphComponent {
     constructor(private machineService: MachineService) {}
 
     ngOnInit() {
-        this.fetchProductionGraph();
-        interval(1 * 60 * 1000)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchProductionGraph();
-            });
+        // this.fetchProductionGraph();
+        // interval(1 * 60 * 1000)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchProductionGraph();
+        //     });
+        setInterval(() => {
+            this.productionGraphList = {
+                ...DUMMY_DETAIL_MACHINE_PRODUCTION_GRAPH,
+                data: DUMMY_DETAIL_MACHINE_PRODUCTION_GRAPH.data.map(item => ({
+                    label: item.label,
+                    date_time: item.date_time,
+                    value: Math.floor(Math.random() * (1600 - 1500) + 1500),
+                })),
+            };
+        }, 3000);
     }
 
     fetchProductionGraph() {
@@ -55,8 +66,6 @@ export class DetailMachineProductionGraphComponent {
     }
 
     download() {
-        this.machineService.downloadProductionGraph(
-            this.machine_name
-        );
+        this.machineService.downloadProductionGraph(this.machine_name);
     }
 }

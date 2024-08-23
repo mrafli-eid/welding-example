@@ -30,13 +30,25 @@ export class DetailMachineRurgeCellComponent {
         private router: Router
     ) {}
 
+    ngOnInit() {
+        setInterval(() => {
+            this.rurgeCellList = {
+                ...DUMMY_DETAIL_MACHINE_RURGE_CELL,
+                data: DUMMY_DETAIL_MACHINE_RURGE_CELL.data.map(item => ({
+                    ...item,
+                    value: Math.floor(Math.random() * (30 - 20)) + 10,
+                })),
+            };
+        }, 3000);
+    }
+
     ngOnChanges() {
-        this.fetchRurgeCell();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchRurgeCell();
-            });
+        // this.fetchRurgeCell();
+        // interval(DEFAULT_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchRurgeCell();
+        //     });
     }
 
     fetchRurgeCell() {
@@ -58,9 +70,7 @@ export class DetailMachineRurgeCellComponent {
     }
 
     download() {
-        this.machineService.downloadRurgeCell(
-            this.machine_name
-        );
+        this.machineService.downloadRurgeCell(this.machine_name);
     }
 
     goToSettings() {

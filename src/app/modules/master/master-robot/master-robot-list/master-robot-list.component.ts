@@ -99,17 +99,17 @@ export class MasterRobotListComponent {
             data: masterRobot.name,
         });
 
-        matDialogRef.afterClosed().subscribe(resp => {
-            if (resp) {
-                this.masterService
-                    .deleteRobot(masterRobot.id)
-                    .pipe(take(1))
-                    .subscribe(() => {
-                        this.pagination.page_number = 1;
-                        this.getRobotList();
-                    });
-            }
-        });
+        // matDialogRef.afterClosed().subscribe(resp => {
+        //     if (resp) {
+        //         this.masterService
+        //             .deleteRobot(masterRobot.id)
+        //             .pipe(take(1))
+        //             .subscribe(() => {
+        //                 this.pagination.page_number = 1;
+        //                 this.getRobotList();
+        //             });
+        //     }
+        // });
     }
 
     detail(masterRobot: MasterRobot) {

@@ -37,12 +37,22 @@ export class MaintenanceIndicatorGraphMTBFComponent {
     ) {}
 
     ngOnInit() {
-        this.getChartData();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.getChartData();
-            });
+        // this.getChartData();
+        // interval(DEFAULT_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.getChartData();
+        //     });
+        setInterval(() => {
+            this.chartData = {
+                machine_name: DUMMY_DASHBOARD_MTTR.machine_name,
+                subject_name: DUMMY_DASHBOARD_MTTR.subject_name,
+                data: DUMMY_DASHBOARD_MTTR.data.map(item => ({
+                    ...item,
+                    value: Math.floor(Math.random() * (250 - 200) + 210),
+                })),
+            };
+        }, 3000);
     }
 
     create() {

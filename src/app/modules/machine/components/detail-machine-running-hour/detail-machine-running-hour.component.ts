@@ -43,13 +43,25 @@ export class DetailMachineRunningHourComponent {
         private router: Router
     ) {}
 
+    ngOnInit() {
+        setInterval(() => {
+            this.runningHourList = {
+                ...DUMMY_DETAIL_MACHINE_RUNNING_HOUR,
+                data: DUMMY_DETAIL_MACHINE_RUNNING_HOUR.data.map(item => ({
+                    ...item,
+                    value: Math.floor(Math.random() * (1600 - 1500) + 1500),
+                })),
+            };
+        }, 3000);
+    }
+
     ngOnChanges() {
-        this.fetchRunningHour();
-        interval(HALF_MINUTE_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchRunningHour();
-            });
+        // this.fetchRunningHour();
+        // interval(HALF_MINUTE_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchRunningHour();
+        //     });
     }
 
     fetchRunningHour() {

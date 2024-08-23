@@ -29,6 +29,7 @@ export class LayoutMachineAreaComponent implements OnChanges, OnInit {
 
     ngOnChanges() {
         this.layoutMachineList = [];
+        console.log(this.machineList);
 
         this.machineList.forEach(m => {
             this.layoutMachineList.push(m);
@@ -39,36 +40,61 @@ export class LayoutMachineAreaComponent implements OnChanges, OnInit {
                 id: '',
                 name: '',
                 value: -1,
-                date_time: new Date(),  
+                date_time: new Date(),
             });
         }
     }
 
     ngOnInit() {
         this.getMachineList();
-        this.hubConnectionService.isConnectionEstablished
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe(turnedOn => {
-                if (turnedOn) {
-                    this.hubConnectionService.machineHealth$
-                        .pipe(takeUntilDestroyed(this.destroyRef))
-                        .subscribe({
-                            next: resp => {
-                                if (resp != undefined) {
-                                    resp.forEach(res => {
-                                        const machine =
-                                            this.layoutMachineList.find(
-                                                temp => temp.name === res.name
-                                            );
-                                        if (machine) {
-                                            machine.value = res.value;
-                                        }
-                                    });
-                                }
-                            },
-                        });
-                }
+        setInterval(() => {
+            this.machineList = DUMMY_MACHINE_LIST.map(item => ({
+                id: item.id,
+                name: item.name,
+                date_time: item.date_time,
+                value: Math.floor(Math.random() * 3),
+            }));
+
+            this.layoutMachineList = [];
+            
+            this.machineList.forEach(m => {
+                this.layoutMachineList.push(m);
             });
+
+            while (this.layoutMachineList.length < 18) {
+                this.layoutMachineList.push({
+                    id: '',
+                    name: '',
+                    value: -1,
+                    date_time: new Date(),
+                });
+            }
+        }, 4000);
+
+        // this.getMachineList();
+        // this.hubConnectionService.isConnectionEstablished
+        //     .pipe(takeUntilDestroyed(this.destroyRef))
+        //     .subscribe(turnedOn => {
+        //         if (turnedOn) {
+        //             this.hubConnectionService.machineHealth$
+        //                 .pipe(takeUntilDestroyed(this.destroyRef))
+        //                 .subscribe({
+        //                     next: resp => {
+        //                         if (resp != undefined) {
+        //                             resp.forEach(res => {
+        //                                 const machine =
+        //                                     this.layoutMachineList.find(
+        //                                         temp => temp.name === res.name
+        //                                     );
+        //                                 if (machine) {
+        //                                     machine.value = res.value;
+        //                                 }
+        //                             });
+        //                         }
+        //                     },
+        //                 });
+        //         }
+        //     });
     }
 
     private getMachineList(): void {

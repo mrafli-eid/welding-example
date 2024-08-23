@@ -37,7 +37,7 @@ export class ChartMaintenanceIndicatorGraphMTTRComponent implements OnChanges {
             this.lineChartOptions.plugins.annotation.annotations.minimum = {
                 type: 'line',
                 yMin: this.target,
-                yMax: this.target,
+                yMax: 1.33,
                 borderColor: 'rgba(241, 190, 66, 0.7)',
                 borderWidth: 4,
             };

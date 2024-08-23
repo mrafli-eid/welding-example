@@ -23,7 +23,7 @@ export class ServoLoadComponent {
 
     constructor(
         private machineService: MachineService,
-        private router: Router,
+        private router: Router
     ) {}
 
     @Input() machineList: Machine[] = [];
@@ -41,19 +41,33 @@ export class ServoLoadComponent {
     page: number = 0;
 
     ngOnInit() {
-      this.robotName = 'MASTER';
-      this.getChartData();
+        this.robotName = 'MASTER';
+        setInterval(() => {
+            this.servoLoadList = {
+                minimum: 10,
+                maximum: 20,
+                ...DUMMY_DETAIL_MACHINE_SERVO_LOAD,
+                data: DUMMY_DETAIL_MACHINE_SERVO_LOAD.data.map(item => ({
+                    date_time: item.date_time,
+                    label: item.label,
+                    value:
+                        Math.floor(
+                            Math.random() * (this.breakdown - this.standard + 1)
+                        ) + this.standard,
+                })),
+            };
+        }, 3000);
     }
 
     changeRobot() {
-      if (this.robotName === 'MASTER') {
-        this.robotName = 'SLAVE';
-        this.getChartData();
-      } else {
-        this.robotName = 'MASTER';
-        this.getChartData();
-      }
-      console.log(this.robotName);
+        if (this.robotName === 'MASTER') {
+            this.robotName = 'SLAVE';
+            this.getChartData();
+        } else {
+            this.robotName = 'MASTER';
+            this.getChartData();
+        }
+        console.log(this.robotName);
     }
 
     onFilterChanged(dateFilter: DateFilter) {
@@ -62,17 +76,18 @@ export class ServoLoadComponent {
     }
 
     download() {
-      const machineName = encodeURIComponent(this.machineList[this.page].name);
-      
-        this.machineService.downloadServoLoad(
-            machineName,
-            this.robotName,
+        const machineName = encodeURIComponent(
+            this.machineList[this.page].name
         );
+
+        this.machineService.downloadServoLoad(machineName, this.robotName);
     }
 
     goToSettings() {
-      const machineName = encodeURIComponent(this.machineList[this.page].name);
-      
+        const machineName = encodeURIComponent(
+            this.machineList[this.page].name
+        );
+
         this.router.navigate(['/settings'], {
             queryParams: {
                 name: 'Servo Load',
@@ -83,21 +98,25 @@ export class ServoLoadComponent {
     }
 
     getChartData(): void {
-      const machineName = encodeURIComponent(this.machineList[this.page].name);
-      this.machineService.getServoLoad(machineName, this.robotName, this.dateFilter).pipe(take(1))
-        .pipe(debounceTime(1000))
-        .subscribe({
-          next: resp => {
-            if (resp.success) {
-              this.servoLoadList = resp.data;
-            }
-          },
-          error: () => {},
-        });
+        const machineName = encodeURIComponent(
+            this.machineList[this.page].name
+        );
+        this.machineService
+            .getServoLoad(machineName, this.robotName, this.dateFilter)
+            .pipe(take(1))
+            .pipe(debounceTime(1000))
+            .subscribe({
+                next: resp => {
+                    if (resp.success) {
+                        this.servoLoadList = resp.data;
+                    }
+                },
+                error: () => {},
+            });
     }
 
     onPageChange($event) {
-      this.page = $event;
-      this.getChartData();
-  }
+        this.page = $event;
+        this.getChartData();
+    }
 }

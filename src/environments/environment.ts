@@ -1,4 +1,4 @@
 export const environment = {
-    API_URL: 'http://169.254.25.180:45458/weatherforecast',
-    SIGNALR_URL: 'https://localhost:5001/datahub',
+    API_URL: 'https://192.168.1.242',
+   SIGNALR_URL: 'https://192.168.1.242/datahub',
 };

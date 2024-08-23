@@ -102,15 +102,15 @@ export class UserListComponent {
         );
 
         matDialogRef.afterClosed().subscribe(resp => {
-            if (resp) {
-                this.userManagementService
-                    .deleteUser(userManagement.id)
-                    .pipe(take(1))
-                    .subscribe(() => {
-                        this.pagination.page_number = 1;
-                        this.getListUser();
-                    });
-            }
+            // if (resp) {
+            //     this.userManagementService
+            //         .deleteUser(userManagement.id)
+            //         .pipe(take(1))
+            //         .subscribe(() => {
+            //             this.pagination.page_number = 1;
+            //             this.getListUser();
+            //         });
+            // }
         });
     }
 

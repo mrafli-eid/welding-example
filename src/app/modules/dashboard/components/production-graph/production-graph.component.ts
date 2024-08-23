@@ -12,7 +12,11 @@ import { Router } from '@angular/router';
 import { ProductionPlanService } from 'src/app/core/services/production-plan.service';
 import { CalendarProductionGraph } from 'src/app/core/models/register.model';
 import { DialogEditProductionGraphComponent } from '../../dialogs/dialog-edit-production-graph/dialog-edit-production-graph.component';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+    MAT_DIALOG_DATA,
+    MatDialog,
+    MatDialogRef,
+} from '@angular/material/dialog';
 import { ProductionGraphPlan } from 'src/app/core/models/production-graph.model';
 
 @Component({
@@ -42,13 +46,25 @@ export class ProductionGraphComponent {
     ) {}
 
     ngOnInit() {
-        this.getCalendarProductionGraph();
-        this.getChartData();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.getChartData();
-            });
+        // this.getCalendarProductionGraph();
+        // this.getChartData();
+        // interval(DEFAULT_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.getChartData();
+        //     });
+        setInterval(() => {
+            this.productionGraph = {
+                machine_name: DUMMY_DASHBOARD_PRODUCTION_GRAPH.machine_name,
+                subject_name: DUMMY_DASHBOARD_PRODUCTION_GRAPH.subject_name,
+                data: DUMMY_DASHBOARD_PRODUCTION_GRAPH.data.map(item => ({
+                    actual: Math.round(Math.random() * (1600 - 1500) + 1500),
+                    label: item.label,
+                    date_time: item.date_time,
+                    plan: Math.round(Math.random() * (1600 - 1500) + 1500),
+                })),
+            };
+        }, 3000);
     }
 
     edit(data: CalendarProductionGraph) {
@@ -83,13 +99,14 @@ export class ProductionGraphComponent {
             });
     }
 
-    getCalendarProductionGraph(){
-        this.productionPlanService.getCalendarProductionGraph()
+    getCalendarProductionGraph() {
+        this.productionPlanService
+            .getCalendarProductionGraph()
             .pipe(take(1))
             .subscribe((res: any) => {
                 console.log(res.data);
                 this.calendarProductionGraph = res.data;
-            })
+            });
     }
 
     onFilterChanged(dateFilter: DateFilter) {

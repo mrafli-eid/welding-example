@@ -98,17 +98,17 @@ export class RegisterSubjectMachineListComponent {
             data: data.machine_name,
         });
 
-        matDialogRef.afterClosed().subscribe(resp => {
-            if (resp) {
-                this.registerService
-                    .deleteSubjectMachine(data.machine_id)
-                    .pipe(take(1))
-                    .subscribe(() => {
-                        this.pagination.page_number = 1;
-                        this.getMasterList();
-                    });
-            }
-        });
+        // matDialogRef.afterClosed().subscribe(resp => {
+        //     if (resp) {
+        //         this.registerService
+        //             .deleteSubjectMachine(data.machine_id)
+        //             .pipe(take(1))
+        //             .subscribe(() => {
+        //                 this.pagination.page_number = 1;
+        //                 this.getMasterList();
+        //             });
+        //     }
+        // });
     }
 
     detail(data: SubjectMachine) {

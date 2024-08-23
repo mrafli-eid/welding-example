@@ -100,15 +100,15 @@ export class MasterSubjectListComponent {
         });
 
         matDialogRef.afterClosed().subscribe(resp => {
-            if (resp) {
-                this.masterService
-                    .deleteSubject(masterSubject.id)
-                    .pipe(take(1))
-                    .subscribe(() => {
-                        this.pagination.page_number = 1;
-                        this.getMasterList();
-                    });
-            }
+            // if (resp) {
+            //     this.masterService
+            //         .deleteSubject(masterSubject.id)
+            //         .pipe(take(1))
+            //         .subscribe(() => {
+            //             this.pagination.page_number = 1;
+            //             this.getMasterList();
+            //         });
+            // }
         });
     }
 

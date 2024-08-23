@@ -73,32 +73,34 @@ export class UserUpsertComponent {
     }
 
     edit(body: any) {
-        const id = this.userManagement.id;
-        this.userManagementService
-            .updateUser(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish()
+        // const id = this.userManagement.id;
+        // this.userManagementService
+        //     .updateUser(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     create(body: any) {
-        this.userManagementService
-            .createUser(body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish()
+        // this.userManagementService
+        //     .createUser(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {

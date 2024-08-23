@@ -7,6 +7,7 @@ import { interval, take } from 'rxjs';
 import { untilDestroyed } from 'src/app/core/helpers/rxjs.helper';
 import { DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE } from './detail-machine-activity-machine.dummy';
 import { DEFAULT_INTERVAL } from '../../../../core/consts/app.const';
+import { getSortedRandomValues } from 'src/app/core/helpers/random';
 
 @Component({
     selector: 'ahm-detail-machine-activity-machine',
@@ -28,12 +29,26 @@ export class DetailMachineActivityMachineComponent {
     constructor(private machineService: MachineService) {}
 
     ngOnInit() {
-        this.fetchActivityMachine();
-        interval(1 * 60 * 1000)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchActivityMachine();
-            });
+        // this.fetchActivityMachine();
+        // interval(1 * 60 * 1000)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchActivityMachine();
+        //     });
+        setInterval(() => {
+            this.activityMachineList = {
+                ...DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE,
+                data: DUMMY_DETAIL_MACHINE_ACTIVITY_MACHINE.data.map(item => {
+                    const [val1, val2, val3] = getSortedRandomValues();
+                    return {
+                        label: item.label,
+                        value_run: val3,
+                        value_idle: val2,
+                        value_stop: val1,
+                    };
+                }),
+            };
+        }, 3000);
     }
 
     fetchActivityMachine() {
@@ -56,8 +71,6 @@ export class DetailMachineActivityMachineComponent {
     }
 
     download() {
-        this.machineService.downloadActivityMachine(
-            this.machine_name
-        );
+        this.machineService.downloadActivityMachine(this.machine_name);
     }
 }

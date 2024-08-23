@@ -38,21 +38,36 @@ export class DetailMachineAmpereComponent {
 
     ngOnInit() {
         this.robot_name = 'MASTER';
+        setInterval(() => {
+            this.ampereList = {
+                ...DUMMY_DETAIL_MACHINE_VOLTAGE,
+                maximum: 400,
+                minimum: 100,
+                first_data: DUMMY_DETAIL_MACHINE_VOLTAGE.first_data.map(() => ({
+                    value: Math.round(Math.random() * (300 - 100) + 100),
+                })),
+                second_data: DUMMY_DETAIL_MACHINE_VOLTAGE.second_data.map(
+                    () => ({
+                        value: Math.round(Math.random() * (300 - 100) + 100),
+                    })
+                ),
+            };
+        }, 3000);
     }
 
     ngOnChanges() {
-        this.fetchAmpere();
-        interval(ONE_MINUTE_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchAmpere();
-            });
+        // this.fetchAmpere();
+        // interval(ONE_MINUTE_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchAmpere();
+        //     });
     }
 
     fetchAmpere() {
         const machine_name = this.router.url.split('/')[2];
         const robot_name = this.router.url.split('/')[3];
-        console.log(machine_name, robot_name);     
+        console.log(machine_name, robot_name);
         this.machineService
             .getAmpere(machine_name, robot_name, this.dateFilter)
             .pipe(take(1))

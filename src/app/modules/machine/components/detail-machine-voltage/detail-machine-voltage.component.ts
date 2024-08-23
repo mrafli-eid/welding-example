@@ -40,15 +40,31 @@ export class DetailMachineVoltageComponent {
 
     ngOnInit() {
         this.robot_name = 'MASTER';
+
+        setInterval(() => {
+            this.voltageList = {
+                ...DUMMY_DETAIL_MACHINE_VOLTAGE,
+                maximum: 400,
+                minimum: 100,
+                first_data: DUMMY_DETAIL_MACHINE_VOLTAGE.first_data.map(() => ({
+                    value: Math.round(Math.random() * (300 - 100) + 100),
+                })),
+                second_data: DUMMY_DETAIL_MACHINE_VOLTAGE.second_data.map(
+                    () => ({
+                        value: Math.round(Math.random() * (300 - 100) + 100),
+                    })
+                ),
+            };
+        }, 3000);
     }
 
     ngOnChanges() {
-        this.fetchVoltage();
-        interval(ONE_MINUTE_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchVoltage();
-            });
+        // this.fetchVoltage();
+        // interval(ONE_MINUTE_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchVoltage();
+        //     });
     }
 
     fetchVoltage() {
@@ -70,10 +86,7 @@ export class DetailMachineVoltageComponent {
     }
 
     download() {
-        this.machineService.downloadVoltage(
-            this.machine_name,
-            this.robot_name
-        );
+        this.machineService.downloadVoltage(this.machine_name, this.robot_name);
     }
 
     goToSettings() {

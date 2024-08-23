@@ -12,6 +12,7 @@ import {
 } from 'src/app/core/models/machine.model';
 import { MachineService } from 'src/app/core/services/machine.service';
 import { DUMMY_DETAIL_MACHINE_SANSO_MATIC } from './detail-machine-sanso-matic';
+import { DUMMY_DETAIL_MACHINE_VOLTAGE } from '../detail-machine-voltage/detail-machine-voltage';
 
 @Component({
     selector: 'ahm-detail-machine-sanso-matic',
@@ -37,13 +38,29 @@ export class DetailMachineSansoMaticComponent {
         private router: Router
     ) {}
 
+    ngOnInit() {
+        setInterval(() => {
+            this.sansoMaticList = {
+                ...DUMMY_DETAIL_MACHINE_VOLTAGE,
+                first_data: DUMMY_DETAIL_MACHINE_VOLTAGE.first_data.map(() => ({
+                    value: Math.round(Math.random() * (10 - 1) + 1),
+                })),
+                second_data: DUMMY_DETAIL_MACHINE_VOLTAGE.second_data.map(
+                    () => ({
+                        value: Math.round(Math.random() * (10 - 1) + 1),
+                    })
+                ),
+            };
+        }, 3000);
+    }
+
     ngOnChanges() {
-        this.fetchSansoMatic();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchSansoMatic();
-            });
+        // this.fetchSansoMatic();
+        // interval(DEFAULT_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchSansoMatic();
+        //     });
     }
 
     fetchSansoMatic() {
@@ -68,9 +85,7 @@ export class DetailMachineSansoMaticComponent {
     }
 
     download() {
-        this.machineService.downloadSansoMatic(
-            this.machine_name
-        );
+        this.machineService.downloadSansoMatic(this.machine_name);
     }
 
     goToSettings() {

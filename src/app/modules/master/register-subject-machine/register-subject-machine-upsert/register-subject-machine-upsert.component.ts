@@ -61,7 +61,7 @@ export class RegisterSubjectMachineUpsertComponent {
         });
         this.selectedFormControl.setValue('');
         this.notSelectedFormControl.setValue('');
-        
+
         console.log(this.filteredNotSelectedSubjectList);
     }
 
@@ -191,40 +191,42 @@ export class RegisterSubjectMachineUpsertComponent {
     }
 
     edit(body: registerMachineList) {
-        const id = this.masterData.machine_id;
-        console.log(id, body);
-        this.registerService
-            .updateSubjectMachine(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // const id = this.masterData.machine_id;
+        // console.log(id, body);
+        // this.registerService
+        //     .updateSubjectMachine(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     create(body: registerMachineList) {
-        this.registerService
-            .createSubjectMachine(body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // this.registerService
+        //     .createSubjectMachine(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {
-        this.onSubmit.emit();
+        // this.onSubmit.emit();
         this.formGroup.reset();
         this.notSelectedSubjectList = this.subjectList.filter(m => true);
         this.selectedSubjectList = [];
-        this.refreshData();
+        // this.refreshData();
     }
 }

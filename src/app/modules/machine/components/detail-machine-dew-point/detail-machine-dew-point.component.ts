@@ -30,13 +30,25 @@ export class DetailMachineDewPointComponent {
         private router: Router
     ) {}
 
+    ngOnInit() {
+        setInterval(() => {
+            this.dewPointList = {
+                ...DUMMY_DETAIL_MACHINE_DEW_POINT,
+                data: DUMMY_DETAIL_MACHINE_DEW_POINT.data.map(item => ({
+                    ...item,
+                    value: Math.floor(Math.random() * (30 - 20)) + 10,
+                })),
+            };
+        }, 3000);
+    }
+
     ngOnChanges() {
-        this.fetchDewPoint();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchDewPoint();
-            });
+        // this.fetchDewPoint();
+        // interval(DEFAULT_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchDewPoint();
+        //     });
     }
 
     fetchDewPoint() {
@@ -58,9 +70,7 @@ export class DetailMachineDewPointComponent {
     }
 
     download() {
-        this.machineService.downloadDewPoint(
-            this.machine_name
-        );
+        this.machineService.downloadDewPoint(this.machine_name);
     }
 
     goToSettings() {

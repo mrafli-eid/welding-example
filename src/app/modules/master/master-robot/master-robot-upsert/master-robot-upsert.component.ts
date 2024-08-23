@@ -47,32 +47,34 @@ export class MasterRobotUpsertComponent {
     }
 
     edit(body: MasterRobot[]) {
-        const id = this.masterData.id;
-        this.masterService
-            .updateRobot(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // const id = this.masterData.id;
+        // this.masterService
+        //     .updateRobot(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     create(body: MasterRobot[]) {
-        this.masterService
-            .createRobot(body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // this.masterService
+        //     .createRobot(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {

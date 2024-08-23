@@ -43,24 +43,25 @@ export class AccountComponent {
     }
 
     changePassword() {
-        this.formGroup.markAllAsTouched();
-        if (this.formGroup.valid) {
-            const body = {
-                id_user: this.id_user,
-                current_password: this.formGroup.get('current_password').value,
-                new_password: this.formGroup.get('new_password').value,
-                repeat_password: this.formGroup.get('repeat_password').value,
-            };
-            console.log(body);
-            this.accountService
-                .changePassword(body)
-                .pipe(take(1))
-                .subscribe({
-                    next: res => {
-                        this.formGroup.reset();
-                    },
-                });
-        }
+        this.formGroup.reset();
+        // this.formGroup.markAllAsTouched();
+        // if (this.formGroup.valid) {
+        //     const body = {
+        //         id_user: this.id_user,
+        //         current_password: this.formGroup.get('current_password').value,
+        //         new_password: this.formGroup.get('new_password').value,
+        //         repeat_password: this.formGroup.get('repeat_password').value,
+        //     };
+        //     console.log(body);
+        //     this.accountService
+        //         .changePassword(body)
+        //         .pipe(take(1))
+        //         .subscribe({
+        //             next: res => {
+        //                 this.formGroup.reset();
+        //             },
+        //         });
+        // }
     }
 
     resetPassword() {
@@ -79,15 +80,16 @@ export class AccountComponent {
 
             const form = new FormData();
             form.append('img_path', file);
+            this.image_url = URL.createObjectURL(event.target.files[0]);
 
-            this.accountService
-                .uploadImage(this.id_user, form)
-                .pipe(take(1))
-                .subscribe({
-                    next: (res: any) => {
-                        this.getListAccount();
-                    },
-                });
+            // this.accountService
+            //     .uploadImage(this.id_user, form)
+            //     .pipe(take(1))
+            //     .subscribe({
+            //         next: (res: any) => {
+            //             this.getListAccount();
+            //         },
+            //     });
         }
     }
 
@@ -96,13 +98,14 @@ export class AccountComponent {
     }
 
     deleteFileImage() {
-        this.accountService
-            .deleteAccount(this.id_user)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.getListAccount();
-                },
-            });
+        // this.accountService
+        //     .deleteAccount(this.id_user)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.getListAccount();
+        //         },
+        //     });
+        this.image_url = null;
     }
 }

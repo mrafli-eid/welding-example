@@ -27,8 +27,16 @@ export class SettingUpsertComponent implements OnInit {
     robot_name = '';
     name = '';
     robot_fullname = '';
-    options = [ 'minimum', 'medium', 'maximum', 'lower_limit', 'upper_limit', 'standard_mttr', 'standard_mtbf' ];
-    
+    options = [
+        'minimum',
+        'medium',
+        'maximum',
+        'lower_limit',
+        'upper_limit',
+        'standard_mttr',
+        'standard_mtbf',
+    ];
+
     machineList: registerMachine[] = DUMMY_MASTER_MACHINE_LIST;
     subjectList: MasterSubject[] = DUMMY_MASTER_SUBJECT_LIST;
     settingList: Setting[] = DUMMY_SETTING_LIST;
@@ -41,9 +49,9 @@ export class SettingUpsertComponent implements OnInit {
     };
 
     formGroup: FormGroup = new FormGroup({
-        machine_name: new FormControl('', [ Validators.required ]),
-        subject_name: new FormControl('', [ Validators.required ]),
-        unit: new FormControl('', [ Validators.required ]),
+        machine_name: new FormControl('', [Validators.required]),
+        subject_name: new FormControl('', [Validators.required]),
+        unit: new FormControl('', [Validators.required]),
         minimum: new FormControl({ value: null, disabled: true }),
         medium: new FormControl({ value: null, disabled: true }),
         maximum: new FormControl({ value: null, disabled: true }),
@@ -106,18 +114,24 @@ export class SettingUpsertComponent implements OnInit {
     }
 
     initValidators() {
-        this.options.forEach((option) => {
-            this.formGroup.get(`${ option }_toggle`).valueChanges.subscribe((val) => {
-                if (val) {
-                    this.formGroup.get(option).enable();
-                    this.formGroup.get(option).setValidators([ Validators.required ]);
-                } else {
-                    this.formGroup.get(option).disable();
-                    this.formGroup.get(option).setValue(null);
-                    this.formGroup.get(option).removeValidators([ Validators.required ]);
-                }
-                this.formGroup.get(option).updateValueAndValidity();
-            });
+        this.options.forEach(option => {
+            this.formGroup
+                .get(`${option}_toggle`)
+                .valueChanges.subscribe(val => {
+                    if (val) {
+                        this.formGroup.get(option).enable();
+                        this.formGroup
+                            .get(option)
+                            .setValidators([Validators.required]);
+                    } else {
+                        this.formGroup.get(option).disable();
+                        this.formGroup.get(option).setValue(null);
+                        this.formGroup
+                            .get(option)
+                            .removeValidators([Validators.required]);
+                    }
+                    this.formGroup.get(option).updateValueAndValidity();
+                });
         });
     }
 
@@ -125,26 +139,27 @@ export class SettingUpsertComponent implements OnInit {
         this.formGroup.markAllAsTouched();
         if (this.formGroup.valid) {
             const body = this.formGroup.getRawValue();
-            this.options.forEach((o) => {
+            this.options.forEach(o => {
                 delete body[`${o}_toggle`];
-            })
+            });
             this.create(body);
             console.log(body);
         }
     }
 
     create(body: any) {
-        this.settingService
-            .createSetting(body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // this.settingService
+        //     .createSetting(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {

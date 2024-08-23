@@ -184,39 +184,41 @@ export class RegisterMachineLineUpsertComponent {
     }
 
     edit(body: registerMachineList) {
-        const id = this.masterData.line_id;
-        this.registerService
-            .updateMachineLine(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // const id = this.masterData.line_id;
+        // this.registerService
+        //     .updateMachineLine(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     create(body: registerMachineList) {
-        this.registerService
-            .createMachineLine(body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // this.registerService
+        //     .createMachineLine(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {
-        this.onSubmit.emit();
+        // this.onSubmit.emit();
         this.formGroup.reset();
         this.notSelectedMachineList = this.machineList.filter(m => true);
         this.selectedMachineList = [];
-        this.refreshData();
+        // this.refreshData();
     }
 }

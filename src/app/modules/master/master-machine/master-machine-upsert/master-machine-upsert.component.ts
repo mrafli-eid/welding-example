@@ -42,32 +42,34 @@ export class MasterMachineUpsertComponent implements OnChanges {
     }
 
     edit(body: any) {
-        const id = this.masterData.id;
-        this.masterService
-            .updateMachine(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // const id = this.masterData.id;
+        // this.masterService
+        //     .updateMachine(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     create(body: any) {
-        this.masterService
-            .createMachine(body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // this.masterService
+        //     .createMachine(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {

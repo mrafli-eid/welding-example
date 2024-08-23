@@ -41,15 +41,25 @@ export class DetailMachineServoLoadComponent {
 
     ngOnInit() {
         this.robot_name = 'MASTER';
+        setInterval(() => {
+            this.servoLoadList = {
+                ...DUMMY_DETAIL_MACHINE_SERVO_LOAD,
+                data: DUMMY_DETAIL_MACHINE_SERVO_LOAD.data.map(item => ({
+                    label: item.label,
+                    date_time: item.date_time,
+                    value: Math.floor(Math.random() * (30 - 20) + 10),
+                })),
+            };
+        }, 3000);
     }
 
     ngOnChanges() {
-        this.fetchServoLoad();
-        interval(ONE_MINUTE_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchServoLoad();
-            });
+        // this.fetchServoLoad();
+        // interval(ONE_MINUTE_INTERVAL)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchServoLoad();
+        //     });
     }
 
     fetchServoLoad() {

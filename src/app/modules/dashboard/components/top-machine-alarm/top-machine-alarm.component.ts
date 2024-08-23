@@ -25,12 +25,16 @@ export class TopMachineAlarmComponent {
     constructor(private dashboardService: DashboardService) {}
 
     ngOnInit() {
-        this.getChartData();
-        interval(DEFAULT_INTERVAL)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.getChartData();
-            });
+        setInterval(() => {
+            this.machineAlarms = DUMMY_TOP_MACHINE_ALARM.map(item => ({
+                date: item.date_time,
+                date_time: item.date_time,
+                label: item.label,
+                value: Math.round(Math.random() * (10 - 1) + 1),
+                subject_name: item.subject_name,
+                vid: item.vid,
+            }));
+        }, 3000);
     }
 
     getChartData(): void {

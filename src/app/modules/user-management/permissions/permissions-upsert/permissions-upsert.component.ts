@@ -189,32 +189,34 @@ export class PermissionsUpsertComponent {
     }
 
     edit(body: PermissionList) {
-        const id = this.permissions.id;
-        this.userManagementService
-            .updatePermission(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish()
+        // const id = this.permissions.id;
+        // this.userManagementService
+        //     .updatePermission(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     create(body: PermissionList) {
-        this.userManagementService
-            .createPermission(body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish()
+        // this.userManagementService
+        //     .createPermission(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {

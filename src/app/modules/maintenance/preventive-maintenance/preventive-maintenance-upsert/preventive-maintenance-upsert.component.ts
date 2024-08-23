@@ -14,6 +14,7 @@ import * as moment from 'moment';
 export class PreventiveMaintenanceUpsertComponent {
     machineId = '';
     machine_name = '';
+    // @ts-ignore
     maintenance = 'preventive' || 'corrective';
     dateTypeList = ['day', 'week', 'month', 'year'];
 
@@ -57,7 +58,10 @@ export class PreventiveMaintenanceUpsertComponent {
                 'actual',
                 new FormControl('', [Validators.required])
             );
-            this.formGroup.addControl('end_date', new FormControl([ Validators.required ]));
+            this.formGroup.addControl(
+                'end_date',
+                new FormControl([Validators.required])
+            );
         } else if (this.data?.actual) {
             this.formGroup.addControl(
                 'actual',
@@ -94,48 +98,51 @@ export class PreventiveMaintenanceUpsertComponent {
     }
 
     create(body: any, params?: any) {
-        this.maintenanceService
-            .create(body, params)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // this.maintenanceService
+        //     .create(body, params)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     edit(body: any) {
-        console.log(this.formGroup, body);
-        const id = this.data.id;
-        this.maintenanceService
-            .update(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish();
+        // console.log(this.formGroup, body);
+        // const id = this.data.id;
+        // this.maintenanceService
+        //     .update(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     ok(body: any) {
-        const id = this.data.id;
-        this.maintenanceService
-            .ok(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        // const id = this.data.id;
+        this.finish();
+        // this.maintenanceService
+        //     .ok(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {

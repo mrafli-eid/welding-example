@@ -46,32 +46,34 @@ export class RoleUpsertComponent {
     }
 
     edit(body: any) {
-        const id = this.roleManagement.id;
-        this.userManagementService
-            .updateRole(id, body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish()
+        // const id = this.roleManagement.id;
+        // this.userManagementService
+        //     .updateRole(id, body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     create(body: any) {
-        this.userManagementService
-            .createRole(body)
-            .pipe(take(1))
-            .subscribe({
-                next: () => {
-                    this.finish();
-                },
-                error: () => {
-                    this.finish();
-                },
-            });
+        this.finish()
+        // this.userManagementService
+        //     .createRole(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: () => {
+        //             this.finish();
+        //         },
+        //         error: () => {
+        //             this.finish();
+        //         },
+        //     });
     }
 
     finish() {

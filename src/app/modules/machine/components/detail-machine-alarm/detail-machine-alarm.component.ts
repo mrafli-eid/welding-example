@@ -27,13 +27,26 @@ export class DetailMachineAlarmComponent {
 
     constructor(private machineService: MachineService) {}
 
+    ngOnInit() {
+        setInterval(() => {
+            this.alarmList = {
+                ...DUMMY_DETAIL_MACHINE_ALARM,
+                data: DUMMY_DETAIL_MACHINE_ALARM.data.map(item => ({
+                    label: item.label,
+                    value: Math.round(Math.random() * 100),
+                    date_time: item.date_time,
+                })),
+            };
+        }, 3000);
+    }
+
     ngOnChanges() {
-        this.fetchAlarm();
-        interval(30 * 1000)
-            .pipe(this.untilDestroyed())
-            .subscribe(() => {
-                this.fetchAlarm();
-            });
+        // this.fetchAlarm();
+        // interval(30 * 1000)
+        //     .pipe(this.untilDestroyed())
+        //     .subscribe(() => {
+        //         this.fetchAlarm();
+        //     });
     }
 
     fetchAlarm() {
@@ -54,9 +67,6 @@ export class DetailMachineAlarmComponent {
     }
 
     download() {
-        this.machineService.downloadAlarm(
-            this.machine_name,
-            this.robot_name
-        );
+        this.machineService.downloadAlarm(this.machine_name, this.robot_name);
     }
 }
