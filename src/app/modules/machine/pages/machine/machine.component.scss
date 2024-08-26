@@ -2,7 +2,6 @@ ahm-detail-machine-activity-machine {
     width: 100%;
 }
 
-
 :host {
     position: absolute;
     height: 100%;
@@ -10,7 +9,7 @@ ahm-detail-machine-activity-machine {
 }
 
 .grid {
-    height: 100%;
+    height: calc(100% - 45px);
     width: 100%;
     display: flex;
     flex-flow: row wrap;

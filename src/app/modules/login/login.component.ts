@@ -17,7 +17,7 @@ export class LoginComponent {
     accessToken: string;
     refreshToken: string;
     decodedToken: any;
-    
+
     formGroup: FormGroup = new FormGroup({
         userName: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),
@@ -32,38 +32,43 @@ export class LoginComponent {
     login() {
         this.formGroup.markAllAsTouched();
         const body = this.formGroup.value;
+        const matDialogRef = this.matDialog.open(DialogSuccessLoginComponent);
+        setTimeout(() => {
+            matDialogRef.close();
+        }, 2000);
+        this.router.navigate(['/dashboard']);
 
         // Service login
-        this.userService
-            .login(body)
-            .pipe(take(1))
-            .subscribe({
-                next: (res: any) => {
-                    const matDialogRef = this.matDialog.open(
-                        DialogSuccessLoginComponent
-                    );
+        // this.userService
+        //     .login(body)
+        //     .pipe(take(1))
+        //     .subscribe({
+        //         next: (res: any) => {
+        //             const matDialogRef = this.matDialog.open(
+        //                 DialogSuccessLoginComponent
+        //             );
 
-                    this.accessToken = res.accessToken;
-                        this.refreshToken = res.refreshToken;
+        //             this.accessToken = res.accessToken;
+        //             this.refreshToken = res.refreshToken;
 
-                        setTimeout(() => {
-                            matDialogRef.close();
-                        }, 2000);
+        //             setTimeout(() => {
+        //                 matDialogRef.close();
+        //             }, 2000);
 
-                        // Decode token
-                        this.decodedToken = jwtDecode(this.accessToken);
-                        localStorage.setItem('id_user', this.decodedToken.id);
-                        console.log('id_user', localStorage.getItem('id_user'));
+        //             // Decode token
+        //             this.decodedToken = jwtDecode(this.accessToken);
+        //             localStorage.setItem('id_user', this.decodedToken.id);
+        //             console.log('id_user', localStorage.getItem('id_user'));
 
-                        return this.router.navigate(['/dashboard']);
-                },
-                error: () => {
-                    this.matDialog.open(DialogErrorLoginComponent);
-                    this.formGroup.patchValue({
-                        username: '',
-                        password: '',
-                    });
-                },
-            });
+        //             return this.router.navigate(['/dashboard']);
+        //         },
+        //         error: () => {
+        //             this.matDialog.open(DialogErrorLoginComponent);
+        //             this.formGroup.patchValue({
+        //                 username: '',
+        //                 password: '',
+        //             });
+        //         },
+        //     });
     }
 }

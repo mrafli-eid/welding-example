@@ -5,11 +5,12 @@
 }
 
 .grid {
-    height: 100%;
+    height: calc(100% - 24px);
     width: 100%;
     display: flex;
     flex-flow: row wrap;
     gap: 10px;
+    margin-bottom: 24px;
 }
 
 .grid-item {

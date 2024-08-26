@@ -2,7 +2,6 @@
 
 .main-area {
     min-height: 100%;
-    padding-block: 10px;
     padding-right: 10px;
     padding-left: $sidebar-width + 10px;
     transition: padding-left 0.5s;
@@ -22,7 +21,7 @@
 
 .copyright {
     position: absolute;
-    bottom: -24px;
+    bottom: 0;
     left: 0;
     font-size: 14px;
 }
