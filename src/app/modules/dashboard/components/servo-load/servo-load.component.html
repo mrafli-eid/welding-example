@@ -1,7 +1,11 @@
 <div class="dashboard-header">
     <div class="cursor-pointer flex" (click)="changeRobot()">
-        <h5>Servo Load 
-            <span *ngIf="servoLoadList">({{this.machineList[this.page].name}}</span> -
+        <h5>
+            Welding Robot
+            <span *ngIf="servoLoadList"
+                >({{ this.machineList[this.page].name }}</span
+            >
+            -
             <span>{{ robotName }})</span>
         </h5>
     </div>
@@ -35,7 +39,9 @@
         <!-- <ahm-dot type="line" color="primary">Average</ahm-dot> -->
         <ahm-dot type="line" color="greenmttrmtbf">Actual</ahm-dot>
     </div>
-    <ahm-pagination (onPageChange)="onPageChange($event)"
-                    [page]="page"
-                    [totalPage]="machineList.length"></ahm-pagination>
+    <ahm-pagination
+        (onPageChange)="onPageChange($event)"
+        [page]="page"
+        [totalPage]="machineList.length"
+    ></ahm-pagination>
 </div>
